@@ -9,7 +9,7 @@ function Navbar() {
             <section>
                 <nav className="flex justify-between items-center mx-28 my-8">
                     <div className="flex items-center">
-                        <Image src={Logo} alt={"logo"} className="w-[21px] h-[21px]"/>
+                        <Image src={Logo} alt={"logo"} className={"w-[21px] h-[21px]"}/>
                         <h1 className="font-bold text-2xl ml-2">Travel.id</h1>
                     </div>
                     <div className="flex">
