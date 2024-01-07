@@ -1,15 +1,10 @@
-
 interface ButtonProps {
-    className: string;
-    content: string;
+  className: string;
+  content: string;
 }
 
-function Button({className, content}: ButtonProps) {
-    return (
-        <button className={className}>
-            {content}
-        </button>
-    );
-};
+function Button({ className, content }: ButtonProps) {
+  return <button className={className}>{content}</button>;
+}
 
 export default Button;
