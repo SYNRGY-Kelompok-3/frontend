@@ -18,4 +18,8 @@
 
 - the `frontend` is currently automatically deployed to `staging` env
 
+### Workflows
+
+- All devs needs to branch out from `develop` on development process
+
 ### Run any data migration
