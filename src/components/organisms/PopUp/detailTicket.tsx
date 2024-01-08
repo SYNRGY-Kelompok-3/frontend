@@ -20,7 +20,7 @@ function DetailTiket({ onClose }: DetailTiketProps) {
                 {/* Content */}
                 <div>
                     {/* Isi konten sesuai kebutuhan */}
-                    <p>Isi konten bebas disini...</p>
+                    <p className="text-black">Isi konten bebas disini...</p>
                 </div>
 
                 {/* Footer */}
