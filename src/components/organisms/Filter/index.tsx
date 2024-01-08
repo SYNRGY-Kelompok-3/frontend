@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 import Button from "../../atoms/Button";
-import Image from "../../atoms/Img";
 
 function Filter() {
+    const navigate = useNavigate();
+
     return (
         <>
             <section>
@@ -16,7 +19,7 @@ function Filter() {
                             <div className="flex items-center gap-2.5 self-stretch">
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
                                     <div className="dari text-[#333] font-['Poppins'] text-lg font-medium leading-[1.625rem]">Dari</div>
-                                    <div className="flex gap-5 self-stretch opacity-[0.7] masukkan_kota_atau_bandara opacity-[0.8] text-[#757575] font-['Poppins'] text-sm leading-5">
+                                    <div className="flex gap-5 self-stretch opacity-[0.7] text-[#757575] font-['Poppins'] text-sm leading-5">
                                         Masukkan kota atau bandara
                                     </div>
                                 </div>
@@ -25,7 +28,7 @@ function Filter() {
                                 </svg>
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
                                     <div className="dari text-[#333] font-['Poppins'] text-lg font-medium leading-[1.625rem]">Ke</div>
-                                    <div className="flex gap-5 self-stretch opacity-[0.7] masukkan_kota_atau_bandara opacity-[0.8] text-[#757575] font-['Poppins'] text-sm leading-5">
+                                    <div className="flex gap-5 self-stretch opacity-[0.7] text-[#757575] font-['Poppins'] text-sm leading-5">
                                         Masukkan kota atau bandara
                                     </div>
                                 </div>
@@ -34,7 +37,7 @@ function Filter() {
                                 </svg>
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
                                     <div className="dari text-[#333] font-['Poppins'] text-lg font-medium leading-[1.625rem]">Jumlah Penumpang</div>
-                                    <div className="flex gap-5 self-stretch opacity-[0.7] masukkan_kota_atau_bandara opacity-[0.8] text-[#757575] font-['Poppins'] text-sm leading-5">
+                                    <div className="flex gap-5 self-stretch opacity-[0.7] text-[#757575] font-['Poppins'] text-sm leading-5">
                                         Masukkan Jumlah Penumpang
                                     </div>
                                 </div>
@@ -42,7 +45,7 @@ function Filter() {
                             <div className="flex items-center gap-2.5 self-stretch">
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
                                     <div className="dari text-[#333] font-['Poppins'] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
-                                    <div className="flex gap-5 self-stretch opacity-[0.7] masukkan_kota_atau_bandara opacity-[0.8] text-[#757575] font-['Poppins'] text-sm leading-5">
+                                    <div className="flex gap-5 self-stretch opacity-[0.7] text-[#757575] font-['Poppins'] text-sm leading-5">
                                         Pilih Tanggal Keberangkatan
                                     </div>
                                 </div>
@@ -51,7 +54,7 @@ function Filter() {
                                 </svg>
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
                                     <div className="dari text-[#333] font-['Poppins'] text-lg font-medium leading-[1.625rem]">Tanggal Pulang</div>
-                                    <div className="flex gap-5 self-stretch opacity-[0.7] masukkan_kota_atau_bandara opacity-[0.8] text-[#757575] font-['Poppins'] text-sm leading-5">
+                                    <div className="flex gap-5 self-stretch opacity-[0.7] text-[#757575] font-['Poppins'] text-sm leading-5">
                                         Pilih Tanggal Kepulangan
                                     </div>
                                 </div>
@@ -60,7 +63,7 @@ function Filter() {
                                 </svg>
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
                                     <div className="dari text-[#333] font-['Poppins'] text-lg font-medium leading-[1.625rem]">Kelas Penerbangan</div>
-                                    <div className="flex gap-5 self-stretch opacity-[0.7] masukkan_kota_atau_bandara opacity-[0.8] text-[#757575] font-['Poppins'] text-sm leading-5">
+                                    <div className="flex gap-5 self-stretch opacity-[0.7] text-[#757575] font-['Poppins'] text-sm leading-5">
                                         Pilih Kelas Penerbangan
                                     </div>
                                 </div>
