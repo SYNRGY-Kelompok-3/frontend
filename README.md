@@ -17,9 +17,13 @@
 ### Deployment
 
 - the `frontend` is currently automatically deployed to `staging` env
+- staging: https://staging-booking-travel.vercel.app/
+- prod: https://booking-travel-teal.vercel.app/
 
 ### Workflows
 
 - All devs needs to branch out from `develop` on development process
+- Branch out template feat/`ticket-number-and-description`
+- PRs requires at least 2 reviewers, including code owners
 
 ### Run any data migration
