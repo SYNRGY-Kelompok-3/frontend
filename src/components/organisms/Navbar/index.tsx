@@ -1,34 +1,43 @@
+import { Link, useNavigate } from "react-router-dom";
+
 import Logo from "../../../assets/Logo.png";
 
 import Button from "../../atoms/Button";
 import Image from "../../atoms/Img";
 
 function Navbar() {
-  return (
-    <>
-      <section>
-        <nav className="flex justify-between items-center mx-28 my-8">
-          <div className="flex items-center">
-            <Image src={Logo} alt={"logo"} className="w-[21px] h-[21px]" />
-            <h1 className="font-bold text-2xl ml-2">Travel.id tes tes</h1>
-          </div>
-          <div className="flex">
-            <h1 className="font-semibold text-sm mx-2">Home</h1>
-            <h1 className="font-semibold text-sm mx-2">About Us</h1>
-            <h1 className="font-semibold text-sm mx-2">Contact Us</h1>
-            <h1 className="font-semibold text-sm mx-2">Article</h1>
-          </div>
-          <div>
-            <Button className={"font-medium text-sm mr-5"} content={"Daftar Sekarang"} />
-            <Button
-              className={"bg-sky-600 text-white font-medium text-sm py-2 px-3 rounded-md"}
-              content={"Masuk"}
-            />
-          </div>
-        </nav>
-      </section>
-    </>
-  );
-}
+    const navigate = useNavigate();
+
+    return (
+        <>
+            <section className="bg-transparent">
+                <nav className="flex justify-between items-center px-28 py-5">
+                    <Link to="/" className="flex items-center">
+                        <Image src={Logo} alt={"logo"} className={"w-[25px] h-[25px]"} />
+                        <h1 className="font-bold text-3xl ml-2">Travel.id</h1>
+                    </Link>
+                    <div className="flex">
+                        <div className="py-2 px-3 rounded-md bg-transparent hover:bg-slate-700">
+                            <Link to="/" className="font-semibold text-lg px-2">Beranda</Link>
+                        </div>
+                        <div className="py-2 px-3 rounded-md bg-transparent hover:bg-slate-700">
+                            <Link to="/tentang-kami" className="font-semibold text-lg px-2">Tentang Kami</Link>
+                        </div>
+                        <div className="py-2 px-3 rounded-md bg-transparent hover:bg-slate-700">
+                            <Link to="/artikel" className="font-semibold text-lg px-2">Artikel</Link>
+                        </div>
+                        <div className="py-2 px-3 rounded-md bg-transparent hover:bg-slate-700">
+                            <Link to="/pusat-bantuan" className="font-semibold text-lg px-2">Pusat Bantuan</Link>
+                        </div>
+                    </div>
+                    <div>
+                        <Button onClick={() => navigate("/register")} type={"button"} className={"font-medium text-lg mr-5 py-2 px-4 rounded-md hover:bg-slate-700"} content={"Daftar Sekarang"} />
+                        <Button onClick={() => navigate("/login")} type={"button"} className={"bg-blue-600 text-white font-medium text-lg py-2 px-4 rounded-md hover:bg-blue-700"} content={"Masuk"} />
+                    </div>
+                </nav>
+            </section>
+        </>
+    );
+};
 
 export default Navbar;
