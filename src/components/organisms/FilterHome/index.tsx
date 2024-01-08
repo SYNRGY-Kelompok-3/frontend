@@ -30,7 +30,7 @@ function Filter() {
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
                                     <div className="flex items-center">
                                         <Image src={Departure} alt={"Departure"} className="h-[15px] mr-2" />
-                                        <div htmlFor="kotaasal" className=" text-[#333] text-lg font-medium leading-[1.625rem]">Dari</div>
+                                        <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Dari</div>
                                     </div>
                                     <select id="kotaasal" className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full">
                                         <option selected>Masukkan kota atau bandara</option>
@@ -47,7 +47,7 @@ function Filter() {
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
                                     <div className="flex items-center">
                                         <Image src={Arrival} alt={"Departure"} className="h-[15px] mr-2" />
-                                        <div htmlFor="kotaasal" className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
+                                        <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
                                     </div>
                                     <select id="kotatujuan" className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full">
                                         <option selected>Masukkan kota atau bandara</option>
@@ -64,7 +64,7 @@ function Filter() {
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
                                     <div className="flex items-center">
                                         <Image src={Passanger} alt={"Departure"} className="h-[15px] mr-2" />
-                                        <div htmlFor="kotaasal" className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
+                                        <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
                                     </div>
                                     <select id="jumlah" className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full">
                                         <option selected>Masukkan Jumlah Penumpang</option>
@@ -76,7 +76,7 @@ function Filter() {
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
                                     <div className="flex items-center">
                                         <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
-                                        <div htmlFor="kotaasal" className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
+                                        <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
                                     </div>
                                     <input type="date" className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2" />
                                 </div>
@@ -86,7 +86,7 @@ function Filter() {
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
                                     <div className="flex items-center">
                                         <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
-                                        <div htmlFor="kotaasal" className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pulang</div>
+                                        <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pulang</div>
                                     </div>
                                     <input type="date" className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2" />
                                 </div>
@@ -96,7 +96,7 @@ function Filter() {
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
                                     <div className="flex items-center">
                                         <Image src={Class} alt={"Departure"} className="h-[15px] mr-2" />
-                                        <div htmlFor="kotaasal" className=" text-[#333] text-lg font-medium leading-[1.625rem]">Kelas Penerbangan</div>
+                                        <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Kelas Penerbangan</div>
                                     </div>
                                     <select id="jumlah" className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full">
                                         <option selected>Pilih Kelas Penerbangan</option>
