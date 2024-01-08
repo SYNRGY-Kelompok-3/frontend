@@ -1,5 +1,5 @@
 import Navbar from "../../components/organisms/Navbar";
-import Filter from "../../components/organisms/Filter";
+import Filter from "../../components/organisms/FilterHome";
 import Footer from "../../components/organisms/Footer";
 
 function Home() {
