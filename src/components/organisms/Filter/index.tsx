@@ -1,5 +1,3 @@
-import Search from "../../../assets/search.png";
-
 import Button from "../../atoms/Button";
 import Image from "../../atoms/Img";
 
