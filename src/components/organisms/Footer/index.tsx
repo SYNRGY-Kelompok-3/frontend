@@ -64,7 +64,7 @@ function Footer() {
                     <div className="self-stretch h-px bg-[#ededed] my-[20px]" />
                     <div className="flex justify-between items-center">
                         <div className="text-black">
-                            2023 Travel Indonesia. All right reserved.
+                            {new Date().getFullYear()} Travel Indonesia. All right reserved.
                         </div>
                         <div className="flex items-center">
                             <div className="text-black mr-5">Pemberitahuan Privasi</div>
