@@ -10,8 +10,8 @@ function Navbar() {
 
     return (
         <>
-            <section>
-                <nav className="flex justify-between items-center mx-28 my-8">
+            <section className="bg-transparent">
+                <nav className="flex justify-between items-center px-28 py-8">
                     <Link to="/" className="flex items-center">
                         <Image src={Logo} alt={"logo"} className={"w-[25px] h-[25px]"} />
                         <h1 className="font-bold text-3xl ml-2">Travel.id</h1>
