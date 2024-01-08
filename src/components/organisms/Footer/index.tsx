@@ -1,8 +1,8 @@
 import Logo from "../../../assets/LogoBlue.png";
-import Facebook from "../../../assets/Facebook F.png";
-import Twitter from "../../../assets/Twitter.png";
-import Instagram from "../../../assets/Instagram.png";
-import Linkedin from "../../../assets/Linkedin In.png";
+import Facebook from "../../../assets/Footer/Facebook F.png";
+import Twitter from "../../../assets/Footer/Twitter.png";
+import Instagram from "../../../assets/Footer/Instagram.png";
+import Linkedin from "../../../assets/Footer/Linkedin In.png";
 
 import Image from "../../atoms/Img";
 

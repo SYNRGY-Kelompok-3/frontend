@@ -1,6 +1,15 @@
 import { useNavigate } from "react-router-dom";
 
+import Image from "../../atoms/Img";
 import Button from "../../atoms/Button";
+
+import Globe from "../../../assets/FilterHome/globe-africa.png";
+import Departure from "../../../assets/FilterHome/plane-departure.png";
+import Arrival from "../../../assets/FilterHome/plane-arrival.png";
+import Passanger from "../../../assets/FilterHome/user-friends.png";
+import Callendar from "../../../assets/FilterHome/calendar-alt.png";
+import Class from "../../../assets/FilterHome/chair-office.png";
+
 
 function Filter() {
     const navigate = useNavigate();
@@ -10,16 +19,20 @@ function Filter() {
             <section>
                 <div className="search flex flex-col justify-center items-start self-stretch p-5 rounded-xl bg-white/[.20] mx-[200px] my-[75px]">
                     <div className="flex items-start">
-                        <div className="flex items-start gap-2.5 p-4 rounded-t-xl bg-white">
-                            <div className="text-[#3e7bfa] text-center font-['Poppins'] font-semibold leading-6">Sekali Jalan/Pulang Pergi</div>
+                        <div className="flex gap-2.5 p-4 rounded-t-xl bg-white items-center">
+                            <Image src={Globe} alt={"Globe"} className="h-[15px]" />
+                            <div className="text-[#3e7bfa] text-center font-semibold leading-6">Sekali Jalan/Pulang Pergi</div>
                         </div>
                     </div>
                     <div className="flex justify-center gap-2.5 self-stretch">
                         <div className="w-full gap-3 self-stretch p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl bg-white">
                             <div className="flex items-center gap-2.5 self-stretch">
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
-                                    <label htmlFor="kotaasal" className=" text-[#333] font-['Poppins'] text-lg font-medium leading-[1.625rem]">Dari</label>
-                                    <select id="kotaasal" className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] font-['Poppins'] text-sm leading-5 mt-2 w-full">
+                                    <div className="flex items-center">
+                                        <Image src={Departure} alt={"Departure"} className="h-[15px] mr-2" />
+                                        <div htmlFor="kotaasal" className=" text-[#333] text-lg font-medium leading-[1.625rem]">Dari</div>
+                                    </div>
+                                    <select id="kotaasal" className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full">
                                         <option selected>Masukkan kota atau bandara</option>
                                         <option>Jakarta</option>
                                         <option>Bandung</option>
@@ -32,8 +45,11 @@ function Filter() {
                                     <path opacity="0.1" d="M0.666504 0.5V50.5" stroke="#333333" strokeLinecap="round" />
                                 </svg>
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
-                                    <label htmlFor="kotatujuan" className=" text-[#333] font-['Poppins'] text-lg font-medium leading-[1.625rem]">Ke</label>
-                                    <select id="kotatujuan" className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] font-['Poppins'] text-sm leading-5 mt-2 w-full">
+                                    <div className="flex items-center">
+                                        <Image src={Arrival} alt={"Departure"} className="h-[15px] mr-2" />
+                                        <div htmlFor="kotaasal" className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
+                                    </div>
+                                    <select id="kotatujuan" className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full">
                                         <option selected>Masukkan kota atau bandara</option>
                                         <option>Jakarta</option>
                                         <option>Bandung</option>
@@ -46,8 +62,11 @@ function Filter() {
                                     <path opacity="0.1" d="M0.666504 0.5V50.5" stroke="#333333" strokeLinecap="round" />
                                 </svg>
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
-                                    <label htmlFor="jumlah" className=" text-[#333] font-['Poppins'] text-lg font-medium leading-[1.625rem]">Jumlah Penumpang</label>
-                                    <select id="jumlah" className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] font-['Poppins'] text-sm leading-5 mt-2 w-full">
+                                    <div className="flex items-center">
+                                        <Image src={Passanger} alt={"Departure"} className="h-[15px] mr-2" />
+                                        <div htmlFor="kotaasal" className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
+                                    </div>
+                                    <select id="jumlah" className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full">
                                         <option selected>Masukkan Jumlah Penumpang</option>
                                         <option>1</option>
                                     </select>
@@ -55,22 +74,31 @@ function Filter() {
                             </div>
                             <div className="flex items-center gap-2.5 self-stretch">
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
-                                    <label className=" text-[#333] font-['Poppins'] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</label>
-                                    <input type="date" className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] font-['Poppins'] text-sm leading-5 mt-2" />
+                                    <div className="flex items-center">
+                                        <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
+                                        <div htmlFor="kotaasal" className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
+                                    </div>
+                                    <input type="date" className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2" />
                                 </div>
                                 <svg width={2} height={51} viewBox="0 0 2 51" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path opacity="0.1" d="M0.666504 0.5V50.5" stroke="#333333" strokeLinecap="round" />
                                 </svg>
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
-                                    <label className=" text-[#333] font-['Poppins'] text-lg font-medium leading-[1.625rem]">Tanggal Pulang</label>
-                                    <input type="date" className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] font-['Poppins'] text-sm leading-5 mt-2" />
+                                    <div className="flex items-center">
+                                        <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
+                                        <div htmlFor="kotaasal" className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pulang</div>
+                                    </div>
+                                    <input type="date" className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2" />
                                 </div>
                                 <svg width={2} height={51} viewBox="0 0 2 51" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path opacity="0.1" d="M0.666504 0.5V50.5" stroke="#333333" strokeLinecap="round" />
                                 </svg>
                                 <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
-                                    <label className=" text-[#333] font-['Poppins'] text-lg font-medium leading-[1.625rem]">Kelas Penerbangan</label>
-                                    <select id="jumlah" className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] font-['Poppins'] text-sm leading-5 mt-2 w-full">
+                                    <div className="flex items-center">
+                                        <Image src={Class} alt={"Departure"} className="h-[15px] mr-2" />
+                                        <div htmlFor="kotaasal" className=" text-[#333] text-lg font-medium leading-[1.625rem]">Kelas Penerbangan</div>
+                                    </div>
+                                    <select id="jumlah" className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full">
                                         <option selected>Pilih Kelas Penerbangan</option>
                                         <option>Economy</option>
                                         <option>Business</option>
@@ -82,7 +110,7 @@ function Filter() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section >
         </>
     );
 };
