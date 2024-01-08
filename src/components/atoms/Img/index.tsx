@@ -4,7 +4,7 @@ interface Image {
     alt: string;
 };
 
-function Image({className, src, alt}: Image) {
+function Image({ className, src, alt }: Image) {
     return (
         <img
             className={className}
