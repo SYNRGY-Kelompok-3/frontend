@@ -8,6 +8,7 @@ function Router() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/detailTiket" element={<DummyDetailTiket />} />
                 </Routes>
             </BrowserRouter>
         </>
