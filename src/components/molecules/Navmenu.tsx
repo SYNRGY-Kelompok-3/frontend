@@ -1,20 +1,21 @@
-import { Link } from "react-router-dom";
+
+import { NavLink } from "react-router-dom";
 
 function Navmenu() {
     return (
         <>
-            <div className="py-2 px-3 rounded-md bg-transparent hover:bg-slate-700">
-                <Link to="/" className="font-semibold text-lg px-2">Beranda</Link>
-            </div>
-            <div className="py-2 px-3 rounded-md bg-transparent hover:bg-slate-700">
-                <Link to="/tentang-kami" className="font-semibold text-lg px-2">Tentang Kami</Link>
-            </div>
-            <div className="py-2 px-3 rounded-md bg-transparent hover:bg-slate-700">
-                <Link to="/artikel" className="font-semibold text-lg px-2">Artikel</Link>
-            </div>
-            <div className="py-2 px-3 rounded-md bg-transparent hover:bg-slate-700">
-                <Link to="/pusat-bantuan" className="font-semibold text-lg px-2">Pusat Bantuan</Link>
-            </div>
+            <NavLink to="/" className={({ isActive }) => `${isActive ? 'bg-slate-700' : 'bg-transparent hover:bg-slate-700'} py-2 px-3 rounded-md`}>
+                <div className="font-semibold text-lg px-2">Beranda</div>
+            </NavLink>
+            <NavLink to="/tentang-kami" className={({ isActive }) => `${isActive ? 'bg-slate-700' : 'bg-transparent hover:bg-slate-700'} py-2 px-3 rounded-md`}>
+                <div className="font-semibold text-lg px-2">Tentang Kami</div>
+            </NavLink>
+            <NavLink to="/artikel" className={({ isActive }) => `${isActive ? 'bg-slate-700' : 'bg-transparent hover:bg-slate-700'} py-2 px-3 rounded-md`}>
+                <div className="font-semibold text-lg px-2">Artikel</div>
+            </NavLink>
+            <NavLink to="/pusat-bantuan" className={({ isActive }) => `${isActive ? 'bg-slate-700' : 'bg-transparent hover:bg-slate-700'} py-2 px-3 rounded-md`}>
+                <div className="font-semibold text-lg px-2">Pusat Bantuan</div>
+            </NavLink>
         </>
     );
 };

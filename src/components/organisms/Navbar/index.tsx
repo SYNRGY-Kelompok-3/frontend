@@ -18,7 +18,7 @@ function Navbar() {
                         <Image src={Logo} alt={"logo"} className={"w-[25px] h-[25px]"} />
                         <h1 className="font-bold text-3xl ml-2">Travel.id</h1>
                     </Link>
-                    <div className="flex">
+                    <div className="flex gap-1">
                         <Navmenu />
                     </div>
                     <div>

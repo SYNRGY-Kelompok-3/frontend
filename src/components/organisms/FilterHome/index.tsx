@@ -106,7 +106,7 @@ function Filter() {
                                     </select>
                                 </div>
                             </div>
-                            <Button onSubmit={() => navigate("/tiket")} type={"submit"} content={"Cari Tiket"} className={"w-full button_large flex justify-center items-center self-stretch pl-[3.4375rem] pr-[3.4375rem] p-5 rounded bg-[#3e7bfa]"} />
+                            <Button onSubmit={() => navigate("/tiket")} type={"submit"} content={"Cari Tiket"} className={"w-full flex justify-center items-center self-stretch pl-[3.4375rem] pr-[3.4375rem] p-5 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium text-lg"} />
                         </div>
                     </div>
                 </div>
