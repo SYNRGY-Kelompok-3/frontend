@@ -1,9 +1,9 @@
 import Logo from "../../../assets/LogoBlue.png";
-
-import Button from "../../atoms/Button";
 import Image from "../../atoms/Img";
+import DropdownMenu from "../Dropdown";
+import Notification from "../Notification";
 
-function Navbar() {
+function NavbarLogin() {
     return (
         <>
             <section>
@@ -18,9 +18,9 @@ function Navbar() {
                         <h1 className="font-semibold text-sm mx-2">Contact Us</h1>
                         <h1 className="font-semibold text-sm mx-2">Article</h1>
                     </div>
-                    <div>
-                        <Button className={"font-medium text-sm mr-5"} content={"Daftar Sekarang"}/>
-                        <Button className={"bg-sky-600 text-white font-medium text-sm py-2 px-3 rounded-md"} content={"Masuk"} />
+                    <div className="flex">
+                        <Notification />
+                        <DropdownMenu />
                     </div>
                 </nav>
             </section>
@@ -28,4 +28,4 @@ function Navbar() {
     );
 }
 
-export default Navbar;
+export default NavbarLogin;
