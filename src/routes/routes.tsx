@@ -9,7 +9,7 @@ function Router() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/tentang-kami" element={<Tentang />} />
+                    <Route path="/tentang" element={<Tentang />} />
                 </Routes>
             </BrowserRouter>
         </>
