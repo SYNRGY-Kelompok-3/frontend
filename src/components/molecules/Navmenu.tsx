@@ -1,20 +1,20 @@
 
 import { NavLink } from "react-router-dom";
 
-function Navmenu() {
+function Navmenu({ bg }: any) {
     return (
         <>
-            <NavLink to="/" className={({ isActive }) => `${isActive ? 'bg-slate-700' : 'bg-transparent hover:bg-slate-700'} py-2 px-3 rounded-md`}>
-                <div className="font-semibold text-lg px-2">Beranda</div>
+            <NavLink to="/" className={({ isActive }) => `${isActive ? (bg === 'bg-white' ? 'text-[#075efd] hover:bg-slate-100' : 'text-white bg-slate-700') : (bg === "bg-white" ? 'text-black hover:bg-slate-100' : 'bg-transparent hover:bg-slate-700')} py-2 px-3 rounded-md font-semibold text-lg`}>
+                Beranda
             </NavLink>
-            <NavLink to="/tentang-kami" className={({ isActive }) => `${isActive ? 'bg-slate-700' : 'bg-transparent hover:bg-slate-700'} py-2 px-3 rounded-md`}>
-                <div className="font-semibold text-lg px-2">Tentang Kami</div>
+            <NavLink to="/tentang-kami" className={({ isActive }) => `${isActive ? (bg === 'bg-white' ? 'text-[#075efd]  hover:bg-slate-100' : 'text-white bg-slate-700') : (bg === "bg-white" ? 'text-black hover:bg-slate-100' : 'bg-transparent hover:bg-slate-700')} py-2 px-3 rounded-md font-semibold text-lg`}>
+                Tentang Kami
             </NavLink>
-            <NavLink to="/artikel" className={({ isActive }) => `${isActive ? 'bg-slate-700' : 'bg-transparent hover:bg-slate-700'} py-2 px-3 rounded-md`}>
-                <div className="font-semibold text-lg px-2">Artikel</div>
+            <NavLink to="/artikel" className={({ isActive }) => `${isActive ? (bg === 'bg-white' ? 'text-[#075efd]  hover:bg-slate-100' : 'text-white bg-slate-700') : (bg === "bg-white" ? 'text-black hover:bg-slate-100' : 'bg-transparent hover:bg-slate-700')} py-2 px-3 rounded-md font-semibold text-lg`}>
+                Artikel
             </NavLink>
-            <NavLink to="/pusat-bantuan" className={({ isActive }) => `${isActive ? 'bg-slate-700' : 'bg-transparent hover:bg-slate-700'} py-2 px-3 rounded-md`}>
-                <div className="font-semibold text-lg px-2">Pusat Bantuan</div>
+            <NavLink to="/pusat-bantuan" className={({ isActive }) => `${isActive ? (bg === 'bg-white' ? 'text-[#075efd]  hover:bg-slate-100' : 'text-white bg-slate-700') : (bg === "bg-white" ? 'text-black hover:bg-slate-100' : 'bg-transparent hover:bg-slate-700')} py-2 px-3 rounded-md font-semibold text-lg`}>
+                Pusat Bantuan
             </NavLink>
         </>
     );
