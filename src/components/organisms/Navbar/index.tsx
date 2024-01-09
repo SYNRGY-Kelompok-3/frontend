@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import Logo from "../../../assets/Logo.png";
 
+import Navmenu from "../../molecules/Navmenu";
+
 import Button from "../../atoms/Button";
 import Image from "../../atoms/Img";
 
@@ -17,18 +19,7 @@ function Navbar() {
                         <h1 className="font-bold text-3xl ml-2">Travel.id</h1>
                     </Link>
                     <div className="flex">
-                        <div className="py-2 px-3 rounded-md bg-transparent hover:bg-slate-700">
-                            <Link to="/" className="font-semibold text-lg px-2">Beranda</Link>
-                        </div>
-                        <div className="py-2 px-3 rounded-md bg-transparent hover:bg-slate-700">
-                            <Link to="/tentang-kami" className="font-semibold text-lg px-2">Tentang Kami</Link>
-                        </div>
-                        <div className="py-2 px-3 rounded-md bg-transparent hover:bg-slate-700">
-                            <Link to="/artikel" className="font-semibold text-lg px-2">Artikel</Link>
-                        </div>
-                        <div className="py-2 px-3 rounded-md bg-transparent hover:bg-slate-700">
-                            <Link to="/pusat-bantuan" className="font-semibold text-lg px-2">Pusat Bantuan</Link>
-                        </div>
+                        <Navmenu />
                     </div>
                     <div>
                         <Button onClick={() => navigate("/register")} type={"button"} className={"font-medium text-lg mr-5 py-2 px-4 rounded-md hover:bg-slate-700"} content={"Daftar Sekarang"} />
