@@ -1,10 +1,10 @@
-import Logo from "../../../assets/LogoBlue.png";
-import Facebook from "../../../assets/Footer/Facebook F.png";
-import Twitter from "../../../assets/Footer/Twitter.png";
-import Instagram from "../../../assets/Footer/Instagram.png";
-import Linkedin from "../../../assets/Footer/Linkedin In.png";
+import Logo from "src/assets/LogoBlue.png";
+import Facebook from "src/assets/Footer/Facebook F.png";
+import Twitter from "src/assets/Footer/Twitter.png";
+import Instagram from "src/assets/Footer/Instagram.png";
+import Linkedin from "src/assets/Footer/Linkedin In.png";
 
-import Image from "../../atoms/Img";
+import Image from "src/components/atoms/Img";
 
 import { Link } from "react-router-dom";
 

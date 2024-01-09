@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 
-import Image from "../../atoms/Img";
-import Button from "../../atoms/Button";
+import Image from "src/components/atoms/Img";
+import Button from "src/components/atoms/Button";
 
-import Globe from "../../../assets/FilterHome/globe-africa.png";
-import Departure from "../../../assets/FilterHome/plane-departure.png";
-import Arrival from "../../../assets/FilterHome/plane-arrival.png";
-import Passanger from "../../../assets/FilterHome/user-friends.png";
-import Callendar from "../../../assets/FilterHome/calendar-alt.png";
-import Class from "../../../assets/FilterHome/chair-office.png";
+import Globe from "src/assets/FilterHome/globe-africa.png";
+import Departure from "src/assets/FilterHome/plane-departure.png";
+import Arrival from "src/assets/FilterHome/plane-arrival.png";
+import Passanger from "src/assets/FilterHome/user-friends.png";
+import Callendar from "src/assets/FilterHome/calendar-alt.png";
+import Class from "src/assets/FilterHome/chair-office.png";
 
 
 function Filter() {

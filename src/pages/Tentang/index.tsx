@@ -1,5 +1,5 @@
-import Navbar from "../../components/organisms/Navbar";
-import Footer from "../../components/organisms/Footer";
+import Navbar from "src/components/organisms/Navbar";
+import Footer from "src/components/organisms/Footer";
 
 function Home() {
     return (

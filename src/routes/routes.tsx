@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Home from "../pages/Home";
-import Tentang from "../pages/Tentang";
+import Home from "src/pages/Home";
+import Tentang from "src/pages/Tentang";
 
 function Router() {
     return (

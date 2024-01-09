@@ -1,6 +1,6 @@
-import Navbar from "../../components/organisms/Navbar";
-import Filter from "../../components/organisms/FilterHome";
-import Footer from "../../components/organisms/Footer";
+import Navbar from "src/components/organisms/Navbar";
+import Filter from "src/components/organisms/FilterHome";
+import Footer from "src/components/organisms/Footer";
 
 function Home() {
     return (

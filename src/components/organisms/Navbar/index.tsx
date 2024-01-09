@@ -1,12 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
 
-import Logo from "../../../assets/Logo.png";
-import LogoBlue from "../../../assets/LogoBlue.png";
+import Logo from "src/assets/Logo.png";
+import LogoBlue from "src/assets/LogoBlue.png";
 
-import Navmenu from "../../molecules/Navmenu";
+import Navmenu from "src/components/molecules/Navmenu";
 
-import Button from "../../atoms/Button";
-import Image from "../../atoms/Img";
+import Button from "src/components/atoms/Button";
+import Image from "src/components/atoms/Img";
 
 function Navbar({ bg }: any) {
     const navigate = useNavigate();
