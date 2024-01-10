@@ -11,7 +11,7 @@ function Breadcrumb({ steps }: { steps: BreadcrumbItem[] }) {
           {steps.map((step, index) => (
             <li key={index} className="flex items-center">
               {step.link ? (
-                <a href={step.link} className="font-semibold hover:underline">
+                <a href={step.link} className="font-semibold text-black hover:underline">
                   {step.text}
                 </a>
               ) : (

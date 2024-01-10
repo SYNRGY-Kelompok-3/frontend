@@ -1,9 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { NavLink, useNavigate } from "react-router-dom";
+
 import Logo from "../../../assets/Logo.png";
+import LogoBlue from "../../../assets/LogoBlue.png";
+
+import Navmenu from "../../molecules/Navmenu";
 
 import Button from "../../atoms/Button";
 import Image from "../../atoms/Img";
 
-function Navbar({ bg = "bg-transparent" }: any) {
+function Navbar({ bg = "bg-white" }: any) {
     const navigate = useNavigate();
 
     return (
@@ -25,6 +31,6 @@ function Navbar({ bg = "bg-transparent" }: any) {
             </section>
         </>
     );
-};
+}
 
 export default Navbar;

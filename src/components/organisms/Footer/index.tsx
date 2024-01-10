@@ -75,7 +75,7 @@ function Footer() {
             </footer>
         </section >
     );
-};
+}
 
 export default Footer;
 
