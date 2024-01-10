@@ -28,7 +28,6 @@ function DetailTiket({ onClose }: DetailTiketProps) {
         {/* Content */}
         <div className="mb-4">
 
-          {/* Section 1 */}
           <div className="flex flex-col items-center mb-4 md:flex-row">
             {/* Kolom Kiri (hanya ditampilkan di layar besar) */}
             <div className="flex-col items-center hidden mr-4 md:flex">
@@ -82,7 +81,6 @@ function DetailTiket({ onClose }: DetailTiketProps) {
                   {accordionOpen ? <ChevronUp size={24} className="ml-2 text-black" /> : <ChevronDown size={24} className="ml-2 text-black" />}
               </summary>
 
-              {/* Isi dari accordion */}
               <div className="flex flex-col gap-4 mt-4 mb-2">
                   <div className="flex items-center">
                       <div className="mr-3">
