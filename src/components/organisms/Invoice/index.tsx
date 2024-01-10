@@ -1,8 +1,8 @@
 import Breadcrumb from '../../atoms/Breadcrumb';
 import Steps from '../../atoms/Step';
 import Button from "../../atoms/Button";
-import BG1 from "../../../assets/BG1.png";
-import BG2 from "../../../assets/BG2.png";
+import BG1 from "../../../assets/Invoices/BG1.png";
+import BG2 from "../../../assets/Invoices/BG2.png";
 
 
 function Invoice() {
