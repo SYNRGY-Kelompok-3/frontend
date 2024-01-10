@@ -32,4 +32,5 @@ function Navbar({ bg = "bg-transparent" }: any) {
     );
 };
 
+
 export default Navbar;
