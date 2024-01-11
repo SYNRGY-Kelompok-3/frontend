@@ -8,7 +8,7 @@ import Navmenu from "../../molecules/Navmenu";
 import Button from "../../atoms/Button";
 import Image from "../../atoms/Img";
 
-function Navbar({ bg }: any) {
+function Navbar({ bg = "bg-transparent" }: any) {
     const navigate = useNavigate();
 
     return (
