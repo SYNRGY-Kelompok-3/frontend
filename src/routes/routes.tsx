@@ -1,13 +1,22 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import DummyDetailTiket from "../pages/ListTiket/dummy";
+import Layouthome from "src/layout/Home";
+import Layoutpage from "src/layout/Page";
+
+import Home from "src/pages/Home";
+import Detailtiket from "src/pages/ListTiket/dummy";
 
 function Router() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/detailTiket" element={<DummyDetailTiket />} />
+          <Route element={<Layouthome />}>
+            <Route path="/" element={<Home />} />
+          </Route>
+          <Route element={<Layoutpage />}>
+            <Route path="/detailtiket" element={<Detailtiket />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
