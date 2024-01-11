@@ -11,7 +11,7 @@ function Order() {
                 <FormCheckout 
                     firstName="" 
                     lastName="" 
-                    titel="Pilih Titel"
+                    titel=""
                     firstName2=""
                     lastName2=""
                     titel2=""

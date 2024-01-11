@@ -14,7 +14,7 @@ interface Payload {
 }
 
 function FormCheckout({firstName, lastName, titel, checked, setChecked}: Payload)  {
-    const { handleSubmit, register, setValue, watch } = useForm();
+    const { handleSubmit, register, setValue, watch, formState: { errors } } = useForm();
 
     const watchfirstName = watch("firstName", firstName);
     const watchlastName = watch("lastName", lastName);
@@ -34,7 +34,7 @@ function FormCheckout({firstName, lastName, titel, checked, setChecked}: Payload
         } else {
             setValue("firstName2", "");
             setValue("lastName2", "");
-            setValue("titel2", "Pilih Titel");
+            setValue("titel2", "");
             setChecked(false);
         }
     };
@@ -53,32 +53,36 @@ function FormCheckout({firstName, lastName, titel, checked, setChecked}: Payload
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <h2 className="mb-5 text-base font-semibold">Detail Pemesanan</h2>
                     <div className="border-b border/10 pb-2.5 mb-5">
-                        <div className="mb-5 flex">
-                            <div className="grid flex-1 mr-2.5">
-                                <label htmlFor="firstName" className="mb-2 text-xs font-medium">Nama Depan</label>
-                                <input type="text" id="firstName" {...register("firstName")} className="px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-blue-500 focus:border-blue-500 placeholder:text-[#757575]" placeholder="Masukkan Nama Depan"  />
+                        <div className="mb-5 flex gap-2.5">
+                            <div className="flex flex-col flex-1">
+                                <label htmlFor="firstName" className="mb-2 text-xs font-medium">Nama Depan<span className="text-xs text-red-500">*</span></label>
+                                <input type="text" id="firstName" {...register("firstName", {required: true})} className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${errors.firstName && "focus:border-red-500 focus:ring-red-500 border-red-500"}`} placeholder="Masukkan Nama Depan"  />
+                                {errors.firstName && <span className="text-[10px] text-red-500">This is required</span>}
                             </div>
-                            <div className="grid flex-1">
+                            <div className="flex flex-col flex-1">
                                 <label htmlFor="lastName" className="mb-2 text-xs font-medium">Nama Belakang</label>
-                                <input type="text" id="lastName" {...register("lastName")} className="px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-blue-500 focus:border-blue-500 placeholder:text-[#757575]" placeholder="Masukkan Nama Belakang"  />
+                                <input type="text" id="lastName" {...register("lastName")} className="px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575]" placeholder="Masukkan Nama Belakang"  />
                             </div>
                         </div>
-                        <div className="mb-5 grid">
-                            <label htmlFor="titel" className="mb-2 text-xs font-medium">Titel</label>
-                            <select id="titel" {...register("titel")} className="px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-blue-500 focus:border-blue-500 placeholder:text-[#757575]">
-                                <option selected>Pilih Titel</option>
+                        <div className="mb-5 flex flex-col">
+                            <label htmlFor="titel" className="mb-2 text-xs font-medium">Titel<span className="text-xs text-red-500">*</span></label>
+                            <select id="titel" {...register("titel", {required: true})} className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-1 focus:ring-blue-700 focus:border-blue-700 placeholder:text-[#757575] ${errors.titel && "focus:border-red-500 focus:ring-red-500 border-red-500"}`}>
+                                <option value="">Pilih Titel</option>
                                 <option value="tuan">Tuan</option>
                                 <option value="nyonya">Nyonya</option>
                             </select>
+                            {errors.titel && <span className="text-[10px] text-red-500">This is required</span>}
                         </div>
-                        <div className="mb-5 flex">
-                            <div className="grid flex-1 mr-2.5">
-                                <label htmlFor="phone" className="mb-2 text-xs font-medium">Nomor Handphone</label>
-                                <input type="text" id="phone" {...register("phone")} className="px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-blue-500 focus:border-blue-500 placeholder:text-[#757575]" placeholder="Masukkan Nomor Handphone"  />
+                        <div className="mb-5 flex gap-2.5">
+                            <div className="flex flex-col flex-1">
+                                <label htmlFor="phone" className="mb-2 text-xs font-medium">Nomor Handphone<span className="text-xs text-red-500">*</span></label>
+                                <input type="text" id="phone" {...register("phone", {required: true})} className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${errors.phone && "focus:border-red-500 focus:ring-red-500 border-red-500"}`} placeholder="Masukkan Nomor Handphone"  />
+                                {errors.phone && <span className="text-[10px] text-red-500">This is required</span>}
                             </div>
-                            <div className="grid flex-1">
-                                <label htmlFor="email" className="mb-2 text-xs font-medium">Email</label>
-                                <input type="text" id="email" {...register("email")} className="px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-blue-500 focus:border-blue-500 placeholder:text-[#757575]" placeholder="Masukkan Email"  />
+                            <div className="flex flex-col flex-1">
+                                <label htmlFor="email" className="mb-2 text-xs font-medium">Email<span className="text-xs text-red-500">*</span></label>
+                                <input type="text" id="email" {...register("email", {required: true})} className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${errors.email && "focus:border-red-500 focus:ring-red-500 border-red-500"}`} placeholder="Masukkan Email"  />
+                                {errors.email && <span className="text-[10px] text-red-500">This is required</span>}
                             </div>
                         </div>
                     </div>
@@ -93,39 +97,41 @@ function FormCheckout({firstName, lastName, titel, checked, setChecked}: Payload
                         </div>
                     </div>
                     <div className="border-b border/10 pb-2.5 mb-5">
-                        <div className="mb-5 flex">
-                            <div className="grid flex-1 mr-2.5">
-                                <label htmlFor="firstName2" className="mb-2 text-xs font-medium">Nama Depan</label>
+                        <div className="mb-5 flex gap-2.5">
+                            <div className="flex flex-col flex-1">
+                                <label htmlFor="firstName2" className="mb-2 text-xs font-medium">Nama Depan<span className="text-xs text-red-500">*</span></label>
                                 {checked ? (
-                                    <input type="text" id="firstName2" {...register("firstName2")} disabled={true} className="px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-blue-500 focus:border-blue-500 placeholder:text-[#757575]" placeholder="Masukkan Nama Depan"  />
+                                    <input type="text" id="firstName2" {...register("firstName2")} disabled={true} className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${errors.firstName2 && "focus:border-red-500 focus:ring-red-500 border-red-500"}`} placeholder="Masukkan Nama Depan"  />
                                 ) : (
-                                    <input type="text" id="firstName2" {...register("firstName2")} className="px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-blue-500 focus:border-blue-500 placeholder:text-[#757575]" placeholder="Masukkan Nama Depan"  />
+                                    <input type="text" id="firstName2" {...register("firstName2", {required: true})} className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${errors.firstName2 && "focus:border-red-500 focus:ring-red-500 border-red-500"}`} placeholder="Masukkan Nama Depan"  />
                                 )}
+                                {errors.firstName2 && <span className="text-[10px] text-red-500">This is required</span>}
                             </div>
-                            <div className="grid flex-1">
+                            <div className="flex flex-col flex-1">
                                 <label htmlFor="lastName2" className="mb-2 text-xs font-medium">Nama Belakang</label>
                                 {checked ? (
-                                    <input type="text" id="lastName2" {...register("lastName2")} disabled={true} className="px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-blue-500 focus:border-blue-500 placeholder:text-[#757575]" placeholder="Masukkan Nama Belakang"  />
+                                    <input type="text" id="lastName2" {...register("lastName2")} disabled={true} className="px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575]" placeholder="Masukkan Nama Belakang"  />
                                 ) : (
-                                    <input type="text" id="lastName2" {...register("lastName2")} className="px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-blue-500 focus:border-blue-500 placeholder:text-[#757575]" placeholder="Masukkan Nama Belakang"  />
+                                    <input type="text" id="lastName2" {...register("lastName2")} className="px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575]" placeholder="Masukkan Nama Belakang"  />
                                 )}
                             </div>
                         </div>
-                        <div className="mb-5 grid">
-                            <label htmlFor="titel2" className="mb-2 text-xs font-medium">Titel</label>
+                        <div className="mb-5 flex flex-col">
+                            <label htmlFor="titel2" className="mb-2 text-xs font-medium">Titel<span className="text-xs text-red-500">*</span></label>
                             {checked ? (
-                                <select id="titel2" {...register("titel2")} disabled={true} className="px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-blue-500 focus:border-blue-500 placeholder:text-[#757575]">
-                                    <option selected>Pilih Titel</option>
+                                <select id="titel2" {...register("titel2")} disabled={true} className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-1 focus:ring-blue-700 focus:border-blue-700 placeholder:text-[#757575] ${errors.titel2 && "focus:border-red-500 focus:ring-red-500 border-red-500"}`}>
+                                    <option value="">Pilih Titel</option>
                                     <option value="tuan">Tuan</option>
                                     <option value="nyonya">Nyonya</option>
                                 </select>
                             ) : (
-                                <select id="titel2" {...register("titel2")} className="px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-blue-500 focus:border-blue-500 placeholder:text-[#757575]">
-                                    <option selected>Pilih Titel</option>
+                                <select id="titel2" {...register("titel2", {required: true})} className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-1 focus:ring-blue-700 focus:border-blue-700 placeholder:text-[#757575] ${errors.titel2 && "focus:border-red-500 focus:ring-red-500 border-red-500"}`}>
+                                    <option value="">Pilih Titel</option>
                                     <option value="tuan">Tuan</option>
                                     <option value="nyonya">Nyonya</option>
                                 </select>
                             )}
+                            {errors.titel2 && <span className="text-[10px] text-red-500">This is required</span>}
                         </div>
                     </div>
                     <div className="mb-2 flex justify-between">
