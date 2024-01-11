@@ -13,8 +13,8 @@ function Navbar({ bg = "bg-transparent" }: any) {
 
   return (
     <>
-      <section className={bg}>
-        <nav className="flex justify-between items-center px-28 py-5">
+      <nav className={bg}>
+        <div className="flex justify-between items-center px-28 py-5">
           <NavLink to="/" className="flex items-center">
             <Image
               src={bg === "bg-white shadow-md" ? LogoBlue : Logo}
@@ -50,8 +50,8 @@ function Navbar({ bg = "bg-transparent" }: any) {
               content={"Masuk"}
             />
           </div>
-        </nav>
-      </section>
+        </div>
+      </nav>
     </>
   );
 }
