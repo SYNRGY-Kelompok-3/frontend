@@ -15,7 +15,7 @@ function Router() {
             <Route path="/" element={<Home />} />
           </Route>
           <Route element={<Layoutpage />}>
-            <Route path="/detailtiket" element={<Detailtiket />} />
+            <Route path="/tentang-kami" element={<Detailtiket />} />
           </Route>
         </Routes>
       </BrowserRouter>

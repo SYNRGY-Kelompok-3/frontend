@@ -4,12 +4,12 @@ import Footer from "src/components/organisms/Footer";
 
 function Layout() {
   return (
-    <div>
-      <Navbar bg={"bg-transparent"} />
+    <div className="bg-[url('/src/assets/bg.jpg')]">
+      <Navbar />
       <Outlet />
       <Footer />
     </div>
   );
-};
+}
 
 export default Layout;
