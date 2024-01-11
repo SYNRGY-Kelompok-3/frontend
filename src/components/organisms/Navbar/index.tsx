@@ -17,7 +17,7 @@ function Navbar({ bg = "bg-transparent" }: any) {
                 <nav className="flex justify-between items-center px-28 py-5">
                     <NavLink to="/" className="flex items-center">
                         <Image src={(bg === "bg-white" ? LogoBlue : Logo)} alt={"logo"} className={"w-[25px] h-[25px]"} />
-                        <h1 className={`${bg === "bg-white" ? "text-[#075efd]" : "text-white"} font-bold text-3xl ml-2`}>Travel.id</h1>
+                        <div className={`${bg === "bg-white" ? "text-[#075efd]" : "text-white"} font-bold text-3xl ml-2`}>Travel.id</div>
                     </NavLink>
                     <div className="flex gap-1">
                         <Navmenu bg={bg} />
