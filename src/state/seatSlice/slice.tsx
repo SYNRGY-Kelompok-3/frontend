@@ -13,7 +13,7 @@ const initialState: SeatState = {
 };
 
 const seatSlice = createSlice({
-  name: 'seat',
+  name: "seat",
   initialState,
   reducers: {
     setSeats: (state, action: PayloadAction<SeatProps[]>) => {

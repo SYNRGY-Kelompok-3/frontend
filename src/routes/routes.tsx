@@ -6,8 +6,9 @@ import Layoutcheckout from "src/layout/Checkout";
 
 import Home from "src/pages/Home";
 import Invoice from "src/pages/Invoices";
-import Checkout from "../pages/Checkout";
+import Checkout from "src/pages/Checkout";
 import Detailtiket from "src/pages/ListTiket/dummy";
+import ListSeat from "src/pages/ListSeat/dummy";
 import Login from "src/pages/Login";
 
 function Router() {
@@ -21,10 +22,11 @@ function Router() {
           <Route element={<Layoutpage />}>
             <Route path="/detailtiket" element={<Detailtiket />} />
             <Route path="/invoices" element={<Invoice />} />
+            <Route path="/listseat" element={<ListSeat />} />
           </Route>
           <Route element={<Layoutcheckout />}>
             <Route path="/checkout" element={<Checkout />} />
-           </Route>
+          </Route>
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>

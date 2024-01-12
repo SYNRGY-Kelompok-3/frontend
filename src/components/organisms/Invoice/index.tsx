@@ -1,21 +1,20 @@
-import Breadcrumb from '../../atoms/Breadcrumb';
-import Steps from '../../atoms/Step';
+import Breadcrumb from "../../atoms/Breadcrumb";
+import Steps from "../../atoms/Step";
 import Button from "../../atoms/Button";
 import BG1 from "../../../assets/Invoices/BG1.png";
 import BG2 from "../../../assets/Invoices/BG2.png";
 
-
 function Invoice() {
   const breadcrumbSteps = [
-    { text: 'Beranda', link: '#' },
-    { text: 'Cari Tiket', link: '#' },
-    { text: 'Checkout' },
+    { text: "Beranda", link: "#" },
+    { text: "Cari Tiket", link: "#" },
+    { text: "Checkout" },
   ];
 
   const steps = [
-    { text: 'Pemesanan Tiket', isActive: false },
-    { text: 'Pembayaran', isActive: false },
-    { text: 'Selesai', isActive: true },
+    { text: "Pemesanan Tiket", isActive: false },
+    { text: "Pembayaran", isActive: false },
+    { text: "Selesai", isActive: true },
   ];
 
   return (
@@ -24,8 +23,17 @@ function Invoice() {
         <Breadcrumb steps={breadcrumbSteps} />
         <Steps steps={steps} />
         <section className="container mx-auto my-8 max-w-[78rem] py-2 px-2 border-2 rounded-md">
-          <div className="relative flex items-center justify-center rounded-md" style={{ height: '112px', backgroundImage: `url(${BG1}), url(${BG2})`, backgroundRepeat: 'no-repeat, no-repeat', backgroundPosition: 'bottom left, bottom right', backgroundColor: '#3E7BFA' }}>
-            <h1 className='text-white text-4xl font-semibold'>Pembelian Tiket Berhasil</h1>
+          <div
+            className="relative flex items-center justify-center rounded-md"
+            style={{
+              height: "112px",
+              backgroundImage: `url(${BG1}), url(${BG2})`,
+              backgroundRepeat: "no-repeat, no-repeat",
+              backgroundPosition: "bottom left, bottom right",
+              backgroundColor: "#3E7BFA",
+            }}
+          >
+            <h1 className="text-white text-4xl font-semibold">Pembelian Tiket Berhasil</h1>
           </div>
           <div className="flex justify-between mt-4">
             <div>
@@ -39,7 +47,7 @@ function Invoice() {
               <p className="font-semibold text-black my-3">01 Januari 2024</p>
             </div>
           </div>
-          <hr className='my-3'/>
+          <hr className="my-3" />
           <div className="flex justify-between mt-4">
             <div>
               <p className="font-semibold text-black text-base">Detail Pembayaran</p>
@@ -54,7 +62,7 @@ function Invoice() {
               <p className="font-semibold text-black my-3">654234876321</p>
             </div>
           </div>
-          <hr className='my-3'/>
+          <hr className="my-3" />
           <div className="flex justify-between mt-4">
             <div>
               <p className="font-semibold text-black text-base">Detail Pemesan</p>
@@ -69,14 +77,16 @@ function Invoice() {
               <p className="font-semibold text-black my-3">travel@gmail.com</p>
             </div>
           </div>
-          <hr className='my-3'/>
+          <hr className="my-3" />
           <div className="flex justify-between mt-4">
             <div>
               <p className="font-semibold text-black text-base">Detail Pemesanan</p>
-              <p className="bg-blue-100 text-blue-500 my-3 py-2 px-2" style={{ width: '76.8rem'}}>Tn. Charles Wilson</p>
+              <p className="bg-blue-100 text-blue-500 my-3 py-2 px-2" style={{ width: "76.8rem" }}>
+                Tn. Charles Wilson
+              </p>
             </div>
           </div>
-          <hr className='my-3'/>
+          <hr className="my-3" />
           <div className="flex justify-between mt-4">
             <div>
               <p className="font-semibold text-black text-base">Detail Pembelian</p>
@@ -92,7 +102,10 @@ function Invoice() {
             </div>
           </div>
           <div className="flex justify-between mt-2">
-            <Button className={"bg-blue-500 hover:bg-blue-600 text-white font-normal py-3 rounded w-full"} content={"Lihat E-Ticket"} />
+            <Button
+              className={"bg-blue-500 hover:bg-blue-600 text-white font-normal py-3 rounded w-full"}
+              content={"Lihat E-Ticket"}
+            />
           </div>
         </section>
       </section>

@@ -1,6 +1,8 @@
 import { useState } from "react";
-import Button from "../../components/atoms/Button";
-import DetailTiket from "../../components/organisms/PopUp/detailTicket";
+
+import Button from "src/components/atoms/Button";
+import Backdrop from "src/components/atoms/Backdrop";
+import SeatModal from "src/components/organisms/SeatModal";
 
 function DummyDetailTiket() {
   const [showModalDetailTicket, setShowModalDetailTicket] = useState(false);
@@ -23,7 +25,11 @@ function DummyDetailTiket() {
         onClick={handleButtonClick}
       />
 
-      {showModalDetailTicket && <DetailTiket onClose={handleCloseClick} />}
+      {showModalDetailTicket && (
+        <Backdrop>
+          <SeatModal onClose={handleCloseClick} />
+        </Backdrop>
+      )}
     </>
   );
 }

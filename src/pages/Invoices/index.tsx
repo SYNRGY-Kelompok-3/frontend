@@ -1,11 +1,11 @@
 import Invoice from "../../components/organisms/Invoice";
 
 function Invoices() {
-    return (
-        <>
-            <Invoice />
-        </>
-    );
+  return (
+    <>
+      <Invoice />
+    </>
+  );
 }
 
 export default Invoices;

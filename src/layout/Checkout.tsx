@@ -5,7 +5,7 @@ import Footer from "src/components/organisms/Footer";
 function Layout() {
   return (
     <div>
-      <NavbarLogin />
+      <NavbarLogin bg={"bg-white shadow-md"} />
       <Outlet />
       <Footer />
     </div>
