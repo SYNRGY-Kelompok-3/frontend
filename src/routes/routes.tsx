@@ -17,8 +17,6 @@ function Router() {
           </Route>
           <Route element={<Layoutpage />}>
             <Route path="/detailtiket" element={<Detailtiket />} />
-          </Route>
-          <Route element={<Layoutpage />}>
             <Route path="/invoices" element={<Invoice />} />
           </Route>
         </Routes>
