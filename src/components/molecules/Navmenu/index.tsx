@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NavLink } from "react-router-dom";
 interface NavmenuProps {
   bg?: "bg-transparent" | "bg-opaque" | "bg-white shadow-md" | undefined;
