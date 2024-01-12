@@ -6,6 +6,5 @@ function Home() {
             <Navbar />
         </>
     );
-};
-
-export default Home
+}
+export default Home;
