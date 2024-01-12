@@ -7,6 +7,7 @@ interface SeatType {
 
 interface SeatProps {
   rows: string[];
+  // eslint-disable-next-line no-unused-vars
   renderSeat: ({ seat, row }: SeatType) => JSX.Element | undefined;
 }
 
