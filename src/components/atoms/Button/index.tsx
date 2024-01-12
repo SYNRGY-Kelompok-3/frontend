@@ -12,6 +12,6 @@ function Button({ onClick, onSubmit, className, content, type }: ButtonProps) {
       {content}
     </button>
   );
-};
+}
 
 export default Button;
