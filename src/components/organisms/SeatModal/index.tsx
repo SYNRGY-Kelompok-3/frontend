@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import CloseIcon from "../../atoms/Icon";
+import { useState } from "react";
+// import CloseIcon from "../../atoms/Icon";
+import { X } from "lucide-react";
 import Rectangle from "../../atoms/Rectangle";
 import bgBody from "../../../assets/Body_Front.png";
 import SeatLists from "../SeatLists";
@@ -13,7 +14,11 @@ interface SeatProps {
   price?: number;
 }
 
-const SeatModal = () => {
+interface DetailTiketProps {
+  onClose?: () => void;
+}
+
+const SeatModal = ({ onClose }: DetailTiketProps) => {
   const [selectedSeats, setSelectedSeats] = useState<SeatProps[]>([]);
   const dispatch = useDispatch();
 
@@ -25,7 +30,11 @@ const SeatModal = () => {
   return (
     <div className="w-[698px] bg-white h-[990px] p-[20px] rounded-lg">
       <div className="relative w-full h-full">
-        <CloseIcon />
+        <div className="flex justify-end">
+          <button onClick={onClose} className="text-black">
+            <X size={24} />
+          </button>
+        </div>
 
         <div className="pt-[40px] space-y-[20px]">
           <div className="text-center">
