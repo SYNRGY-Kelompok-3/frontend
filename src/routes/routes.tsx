@@ -5,6 +5,7 @@ import Layoutpage from "src/layout/Page";
 
 import Home from "src/pages/Home";
 import Detailtiket from "src/pages/ListTiket/dummy";
+import Login from "src/pages/Login";
 
 function Router() {
   return (
@@ -17,6 +18,7 @@ function Router() {
           <Route element={<Layoutpage />}>
             <Route path="/detailtiket" element={<Detailtiket />} />
           </Route>
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </>
