@@ -1,11 +1,17 @@
 interface ButtonProps {
-  className: string;
-  content: string;
+  className?: string;
+  content?: string;
+  type?: "button" | "submit" | "reset";
   onClick?: () => void;
+  onSubmit?: () => void;
 }
 
-function Button({ className, content, onClick}: ButtonProps) {
-  return <button className={className} onClick={onClick} > {content}</button>;
+function Button({ onClick, onSubmit, className, content, type }: ButtonProps) {
+  return (
+    <button onClick={onClick} onSubmit={onSubmit} type={type} className={className}>
+      {content}
+    </button>
+  );
 }
 
 export default Button;
