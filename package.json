@@ -10,13 +10,15 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "pretty-commit": "pretty-quick --staged",
-    "commitlint": "commitlint --edit"
+    "commitlint": "commitlint --edit",
+    "test": "jest"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.4",
     "date-fns": "^3.0.6",
     "dayjs": "^1.11.10",
+    "lucide-react": "^0.309.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",
@@ -25,6 +27,10 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.4",
     "@commitlint/config-conventional": "^18.4.4",
+    "@testing-library/jest-dom": "^6.2.0",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.11",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
@@ -35,6 +41,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "husky": "^8.0.3",
+    "jest": "^29.7.0",
     "postcss": "^8.4.32",
     "prettier": "^2.6.0",
     "pretty-quick": "^3.1.3",
