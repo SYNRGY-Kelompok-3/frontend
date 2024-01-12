@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom";
+interface NavmenuProps {
+  bg?: "bg-transparent" | "bg-opaque" | "bg-white shadow-md" | undefined;
+}
 
-function Navmenu({ bg }: any) {
+function Navmenu({ bg }: NavmenuProps) {
   return (
     <>
       <NavLink
