@@ -1,4 +1,4 @@
-import Logo from "../../../assets/Logo.png";
+import Logo from "../../../assets/LogoBlue.png";
 
 import Button from "../../atoms/Button";
 import Image from "../../atoms/Img";
@@ -10,7 +10,7 @@ function Navbar() {
                 <nav className="flex justify-between items-center mx-28 my-8">
                     <div className="flex items-center">
                         <Image src={Logo} alt={"logo"} className="w-[21px] h-[21px]"/>
-                        <h1 className="font-bold text-2xl ml-2">Travel.id</h1>
+                        <h1 className="font-bold text-2xl ml-2 text-blue-600">Travel.id</h1>
                     </div>
                     <div className="flex">
                         <h1 className="font-semibold text-sm mx-2">Home</h1>
@@ -26,6 +26,6 @@ function Navbar() {
             </section>
         </>
     );
-};
+}
 
 export default Navbar;
