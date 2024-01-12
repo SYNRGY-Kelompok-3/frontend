@@ -1,4 +1,3 @@
-import React from "react";
 import closeSVG from "../../../assets/close-icon.svg";
 
 const CloseIcon = () => {
