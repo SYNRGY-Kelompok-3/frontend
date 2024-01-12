@@ -9,16 +9,28 @@ import Navmenu from "src/components/molecules/Navmenu";
 import Button from "src/components/atoms/Button";
 import Image from "src/components/atoms/Img";
 
-function Navbar({ bg = "bg-transparent" }: any) {
+interface NavmenuProps {
+  bg?: "bg-transparent" | "bg-opaque" | "bg-white shadow-md" | undefined;
+}
+
+function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
   const navigate = useNavigate();
 
   return (
     <>
-      <section className={bg}>
-        <nav className="flex justify-between items-center px-28 py-5">
+      <nav className={bg}>
+        <div className="flex justify-between items-center px-28 py-5">
           <NavLink to="/" className="flex items-center">
-            <Image src={bg === "bg-white" ? LogoBlue : Logo} alt={"logo"} className={"w-[25px] h-[25px]"} />
-            <div className={`${bg === "bg-white" ? "text-[#075efd]" : "text-white"} font-bold text-3xl ml-2`}>
+            <Image
+              src={bg === "bg-white shadow-md" ? LogoBlue : Logo}
+              alt={"logo"}
+              className={"w-[25px] h-[25px]"}
+            />
+            <div
+              className={`${
+                bg === "bg-white shadow-md" ? "text-[#075efd]" : "text-white"
+              } font-bold text-3xl ml-2`}
+            >
               Travel.id
             </div>
           </NavLink>
@@ -30,9 +42,9 @@ function Navbar({ bg = "bg-transparent" }: any) {
               onClick={() => navigate("/register")}
               type={"button"}
               className={`${
-                bg === "bg-white"
+                bg === "bg-white shadow-md"
                   ? "text-black hover:text-white hover:bg-blue-700"
-                  : "text-white hover:bg-slate-700"
+                  : "text-white hover:bg-white hover:bg-opacity-20"
               } font-medium text-lg mr-5 py-2 px-4 rounded-md `}
               content={"Daftar Sekarang"}
             />
@@ -43,8 +55,8 @@ function Navbar({ bg = "bg-transparent" }: any) {
               content={"Masuk"}
             />
           </div>
-        </nav>
-      </section>
+        </div>
+      </nav>
     </>
   );
 }
