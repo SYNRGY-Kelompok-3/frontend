@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import Layouthome from "src/layout/Home";
 import Layoutpage from "src/layout/Page";
 import Layoutcheckout from "src/layout/Checkout";
@@ -10,6 +9,7 @@ import Checkout from "src/pages/Checkout";
 import Detailtiket from "src/pages/ListTiket/dummy";
 import ListSeat from "src/pages/ListSeat/dummy";
 import Login from "src/pages/Login";
+import Payment from "src/pages/Payment";
 
 function Router() {
   return (
@@ -24,6 +24,7 @@ function Router() {
             <Route path="/invoices" element={<Invoice />} />
             <Route path="/listseat" element={<ListSeat />} />
           </Route>
+          <Route path="/payment" element={<Payment />} />
           <Route element={<Layoutcheckout />}>
             <Route path="/checkout" element={<Checkout />} />
           </Route>
