@@ -1,11 +1,9 @@
 import { useState } from "react";
 
-import Navbar from "../../components/organisms/Navbar";
 import Nav from "../../components/organisms/Nav";
 import Button from "../../components/atoms/Button";
 import Steper from "../../components/atoms/Stepper";
 import AccordionComponent from "../../components/atoms/Accordion";
-import Footer from "../../components/organisms/Footer";
 import ConfirmPayment from "../../components/organisms/PopUp/confirmPayment";
 import Alert from "../../components/atoms/Alert";
 
@@ -22,7 +20,6 @@ function Payment() {
 
   return (
     <>
-      <Navbar />
       <Nav />
       <Steper />
       <Alert />
@@ -117,7 +114,6 @@ function Payment() {
           </div>
         </div>
       </div>
-      <Footer />
       {showModalConfirmPayment && <ConfirmPayment onClose={handleCloseClick2} />}
     </>
   );
