@@ -2,7 +2,11 @@ import { useState } from "react";
 import FormCheckout from "../Form";
 import SummaryOrder from "../Summary";
 
-function Order() {
+interface OrderProps {
+  modalHandler: () => void;
+}
+
+function Order({ modalHandler }: OrderProps) {
   const [checked, setChecked] = useState(false);
 
   return (
@@ -18,7 +22,7 @@ function Order() {
           checked={checked}
           setChecked={setChecked}
         />
-        <SummaryOrder />
+        <SummaryOrder modalHandler={modalHandler} />
       </div>
     </section>
   );

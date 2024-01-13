@@ -25,10 +25,11 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
   //   Saves the selected data to global state
   const handlePilihKursi = () => {
     dispatch(setSeats(selectedSeats));
+    onClose!();
   };
 
   return (
-    <div className="w-[698px] bg-white p-[20px] rounded-lg">
+    <div className="w-[698px] bg-white h-fit p-[20px] rounded-lg">
       <div className="relative w-full h-full">
         <div className="flex justify-end">
           <button onClick={onClose} className="text-black">

@@ -7,7 +7,6 @@ import Home from "src/pages/Home";
 import Invoice from "src/pages/Invoices";
 import Checkout from "src/pages/Checkout";
 import Detailtiket from "src/pages/ListTiket/dummy";
-import ListSeat from "src/pages/ListSeat/dummy";
 import Login from "src/pages/Login";
 import Payment from "src/pages/Payment";
 

@@ -6,7 +6,11 @@ import BurgerSoda from "../../../assets/BurgerSoda.svg";
 import ChairOffice from "../../../assets/ChairOffice.svg";
 import { dummy } from "../../../dummy";
 
-function SummaryOrder() {
+interface SummaryOrderProps {
+  modalHandler: () => void;
+}
+
+function SummaryOrder({ modalHandler }: SummaryOrderProps) {
   return (
     <>
       <div className="w-full flex flex-col mx-2.5">
@@ -15,56 +19,56 @@ function SummaryOrder() {
             <div key={id}>
               <div className="rounded-lg border border-[#EDEDED] p-5">
                 <details className="group" open>
-                  <summary className="flex cursor-pointer list-none items-center justify-between pb-5 text-base font-semibold">
+                  <summary className="flex items-center justify-between pb-5 text-base font-semibold list-none cursor-pointer">
                     Penerbangan Dari {from} Ke {to}
                     <div>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="currentColor"
-                        className="block h-5 w-5 group-open:hidden"
+                        className="block w-5 h-5 group-open:hidden"
                       >
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
                       </svg>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="currentColor"
-                        className="hidden h-5 w-5 group-open:block"
+                        className="hidden w-5 h-5 group-open:block"
                       >
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 15l-6-6-6 6" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M18 15l-6-6-6 6" />
                       </svg>
                     </div>
                   </summary>
                   <TimelineOrder />
                 </details>
                 <details className="group" open>
-                  <summary className="flex cursor-pointer list-none items-center justify-between py-5 text-base font-semibold">
+                  <summary className="flex items-center justify-between py-5 text-base font-semibold list-none cursor-pointer">
                     Fasilitas Penerbangan
                     <div>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="currentColor"
-                        className="block h-5 w-5 group-open:hidden"
+                        className="block w-5 h-5 group-open:hidden"
                       >
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
                       </svg>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="currentColor"
-                        className="hidden h-5 w-5 group-open:block"
+                        className="hidden w-5 h-5 group-open:block"
                       >
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 15l-6-6-6 6" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M18 15l-6-6-6 6" />
                       </svg>
                     </div>
                   </summary>
@@ -93,28 +97,28 @@ function SummaryOrder() {
               </div>
               <div>
                 <details className="group" open>
-                  <summary className="flex cursor-pointer list-none items-center justify-between py-5 text-base font-semibold">
+                  <summary className="flex items-center justify-between py-5 text-base font-semibold list-none cursor-pointer">
                     Fasilitas Tambahan
                     <div>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="currentColor"
-                        className="block h-5 w-5 group-open:hidden"
+                        className="block w-5 h-5 group-open:hidden"
                       >
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
                       </svg>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="currentColor"
-                        className="hidden h-5 w-5 group-open:block"
+                        className="hidden w-5 h-5 group-open:block"
                       >
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 15l-6-6-6 6" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M18 15l-6-6-6 6" />
                       </svg>
                     </div>
                   </summary>
@@ -132,6 +136,7 @@ function SummaryOrder() {
                           type="button"
                           className={"text-xs font-semibold text-blue-500"}
                           content={"Pilih Kursi"}
+                          onClick={modalHandler}
                         />
                       </li>
                     </ul>
