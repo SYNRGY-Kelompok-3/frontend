@@ -1,4 +1,3 @@
-import React from "react";
 import smallRect from "../../../assets/small-rectangle.svg";
 
 interface IconProps {
