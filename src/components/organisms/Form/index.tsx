@@ -10,6 +10,7 @@ interface Payload {
   lastName2: string;
   titel2: string;
   checked: boolean;
+  // eslint-disable-next-line no-unused-vars
   setChecked: (checked: boolean) => void;
 }
 

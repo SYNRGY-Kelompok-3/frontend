@@ -1,5 +1,3 @@
-import React from "react";
-
 interface RectangleProps {
   bgColor: string;
   priceTag: number;
