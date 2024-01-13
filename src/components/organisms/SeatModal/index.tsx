@@ -28,7 +28,7 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
   };
 
   return (
-    <div className="w-[698px] bg-white h-[990px] p-[20px] rounded-lg">
+    <div className="w-[698px] bg-white p-[20px] rounded-lg">
       <div className="relative w-full h-full">
         <div className="flex justify-end">
           <button onClick={onClose} className="text-black">
