@@ -9,6 +9,7 @@ import Checkout from "src/pages/Checkout";
 import Detailtiket from "src/pages/ListTiket/dummy";
 import Login from "src/pages/Login";
 import Payment from "src/pages/Payment";
+import FlightSearch from "src/pages/FlightSearch";
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
           </Route>
           <Route element={<Layoutpage />}>
             <Route path="/detailtiket" element={<Detailtiket />} />
+            <Route path="/flight/full-search" element={<FlightSearch />} />
             <Route path="/invoices" element={<Invoice />} />
             <Route path="/payment" element={<Payment />} />
           </Route>

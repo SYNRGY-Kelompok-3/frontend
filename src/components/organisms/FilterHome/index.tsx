@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
 import Image from "src/components/atoms/Img";
 import Button from "src/components/atoms/Button";
 
@@ -9,10 +7,10 @@ import Arrival from "src/assets/FilterHome/plane-arrival.png";
 import Passanger from "src/assets/FilterHome/user-friends.png";
 import Callendar from "src/assets/FilterHome/calendar-alt.png";
 import Class from "src/assets/FilterHome/chair-office.png";
+import { useSearchTicket } from "src/usecases/modules/home";
 
 function Filter() {
-  const navigate = useNavigate();
-
+  const { onSearchTicket } = useSearchTicket();
   return (
     <>
       <section>
@@ -128,8 +126,8 @@ function Filter() {
                 </div>
               </div>
               <Button
-                onSubmit={() => navigate("/tiket")}
-                type={"submit"}
+                onClick={onSearchTicket}
+                type={"button"}
                 content={"Cari Tiket"}
                 className={
                   "w-full flex justify-center items-center self-stretch pl-[3.4375rem] pr-[3.4375rem] p-5 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium text-lg"
