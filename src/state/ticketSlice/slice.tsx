@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import { axiosAuth } from "src/services/axios";
 export const fetchTicketList = createAsyncThunk("fetchTicketList", async () => {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/todos`);
-  return res?.json();
+  const res = await axiosAuth.get(`/todos`);
+  return res?.data;
 });
 
 export interface TicketState {
