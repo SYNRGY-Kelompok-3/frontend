@@ -21,10 +21,10 @@ function Router() {
           </Route>
           <Route element={<Layoutpage />}>
             <Route path="/detailtiket" element={<Detailtiket />} />
-            <Route path="/invoices" element={<Invoice />} />
             <Route path="/listseat" element={<ListSeat />} />
+            <Route path="/invoices" element={<Invoice />} />
+            <Route path="/payment" element={<Payment />} />
           </Route>
-          <Route path="/payment" element={<Payment />} />
           <Route element={<Layoutcheckout />}>
             <Route path="/checkout" element={<Checkout />} />
           </Route>
