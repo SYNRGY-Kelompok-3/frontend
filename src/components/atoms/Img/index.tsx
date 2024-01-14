@@ -1,5 +1,5 @@
 interface Image {
-  className: string;
+  className?: string;
   src: string;
   alt: string;
 }
