@@ -39,7 +39,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <select
                       id="kotaasal"
-                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full"
+                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
                       <option selected>Masukkan kota atau bandara</option>
                       <option>Jakarta</option>
@@ -65,7 +65,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <select
                       id="kotatujuan"
-                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full"
+                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
                       <option selected>Masukkan kota atau bandara</option>
                       <option>Jakarta</option>
@@ -87,11 +87,13 @@ function Filter({ isFilterMore }: IFilterHome) {
                   <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Passanger} alt={"Departure"} className="h-[15px] mr-2" />
-                      <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
+                      <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
+                        Jumlah Penumpang
+                      </div>
                     </div>
                     <select
                       id="jumlah"
-                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full"
+                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
                       <option selected>Masukkan Jumlah Penumpang</option>
                       <option>1</option>
@@ -106,7 +108,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <input
                       type="date"
-                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2"
+                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
                     />
                   </div>
                   <svg
@@ -127,7 +129,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <input
                       type="date"
-                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2"
+                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
                     />
                   </div>
                   <svg
@@ -148,7 +150,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <select
                       id="jumlah"
-                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full"
+                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
                       <option selected>Pilih Kelas Penerbangan</option>
                       <option>Economy</option>
@@ -184,7 +186,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <select
                       id="kotaasal"
-                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full"
+                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
                       <option selected>Masukkan kota atau bandara</option>
                       <option>Jakarta</option>
@@ -201,7 +203,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <select
                       id="kotaasal"
-                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full"
+                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
                       <option selected>Masukkan kota atau bandara</option>
                       <option>Jakarta</option>
@@ -227,7 +229,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <input
                       type="date"
-                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2"
+                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
                     />
                   </div>
                   <svg
@@ -248,7 +250,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <input
                       type="date"
-                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2"
+                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
                     />
                   </div>
 
