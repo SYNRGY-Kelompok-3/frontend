@@ -8,7 +8,7 @@ interface Ticket {
   title: string;
 }
 const FullSearchTickets: React.FC = () => {
-  const { ticketList } = useGetTickets();
+  const { ticketList, isLoading } = useGetTickets();
   const tickets: Ticket[] = ticketList as Ticket[];
   return (
     <>
@@ -32,11 +32,13 @@ const FullSearchTickets: React.FC = () => {
           </div>
           <div className="basis-[80%]">
             <h2 className="justify-self-end text-xl  font-medium my-2">Penerbangan Dari `A` ke `B`</h2>
-            {tickets.length &&
+            {!isLoading &&
               tickets.map((flight: { title: string }, idx: number) => {
                 return (
                   <>
-                    <CardTicket key={idx} title={flight.title} />
+                    <div key={idx}>
+                      <CardTicket title={flight.title} />
+                    </div>
                   </>
                 );
               })}
