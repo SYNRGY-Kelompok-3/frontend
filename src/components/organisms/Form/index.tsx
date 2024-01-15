@@ -52,7 +52,8 @@ function FormCheckout({ firstName, lastName, titel, checked, setChecked }: Paylo
       setValue("lastName2", watchlastName);
       setValue("titel2", watchtitel);
     }
-  }, [checkbox, setValue, watchfirstName, watchlastName, watchtitel]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -103,6 +104,7 @@ function FormCheckout({ firstName, lastName, titel, checked, setChecked }: Paylo
                 <option value="">Pilih Titel</option>
                 <option value="tuan">Tuan</option>
                 <option value="nyonya">Nyonya</option>
+                <option value="nona">Nona</option>
               </select>
               {errors.titel && <span className="text-[10px] text-red-500">This is required</span>}
             </div>
@@ -230,6 +232,7 @@ function FormCheckout({ firstName, lastName, titel, checked, setChecked }: Paylo
                   <option value="">Pilih Titel</option>
                   <option value="tuan">Tuan</option>
                   <option value="nyonya">Nyonya</option>
+                  <option value="nona">Nona</option>
                 </select>
               ) : (
                 <select
@@ -242,6 +245,7 @@ function FormCheckout({ firstName, lastName, titel, checked, setChecked }: Paylo
                   <option value="">Pilih Titel</option>
                   <option value="tuan">Tuan</option>
                   <option value="nyonya">Nyonya</option>
+                  <option value="nona">Nona</option>
                 </select>
               )}
               {errors.titel2 && <span className="text-[10px] text-red-500">This is required</span>}
