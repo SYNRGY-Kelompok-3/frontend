@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Logo from "src/assets/Logo.png";
 import Image from "src/components/atoms/Img";
 
+import Button from "src/components/atoms/Button";
+
 function Login() {
   return (
     <main>
@@ -75,14 +77,13 @@ function Login() {
                       Lupa Password?
                     </Link>
                   </div>
-                  <div className="text-center my-6">
-                    <button
-                      type="button"
-                      className="inline-block w-full px-16 py-3.5 mb-0 font-bold leading-normal text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
-                    >
-                      Masuk
-                    </button>
-                  </div>
+                  <Button
+                    content={"Masuk"}
+                    type={"button"}
+                    className={
+                      "inline-block w-full my-6 px-16 py-3.5 font-bold leading-normal text-lg text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
+                    }
+                  />
                 </form>
               </div>
             </div>

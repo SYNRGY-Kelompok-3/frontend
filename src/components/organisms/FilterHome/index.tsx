@@ -7,6 +7,7 @@ import Passanger from "src/assets/FilterHome/user-friends.png";
 import Callendar from "src/assets/FilterHome/calendar-alt.png";
 import Class from "src/assets/FilterHome/chair-office.png";
 import { useSearchTicket } from "src/usecases/modules/home";
+import { useState } from "react";
 
 interface IFilterHome {
   isFilterMore?: boolean;
@@ -14,6 +15,16 @@ interface IFilterHome {
 
 function Filter({ isFilterMore }: IFilterHome) {
   const { onSearchTicket } = useSearchTicket();
+  const [value, setValue] = useState(false);
+
+  const Switch = () => {
+    if (value === false) {
+      setValue(true);
+    } else {
+      setValue(false);
+    }
+  };
+
   return (
     <>
       <section>
@@ -21,12 +32,19 @@ function Filter({ isFilterMore }: IFilterHome) {
           <div
             className={`search flex flex-col justify-center items-start self-stretch p-5 rounded-xl bg-white/[.20] mx-[200px] my-[75px]`}
           >
-            <div className="flex items-start">
+            <div className="flex">
               <div className="flex gap-2.5 p-4 rounded-t-xl bg-white items-center">
                 <Image src={Globe} alt={"Globe"} className="h-[15px]" />
                 <div className="text-[#3e7bfa] text-center font-semibold leading-6">
                   Sekali Jalan/Pulang Pergi
                 </div>
+                <label
+                  htmlFor="check"
+                  className="flex bg-gray-100 relative cursor-pointer w-[40px] h-[20px] rounded-full items-center"
+                >
+                  <input type="checkbox" id="check" className="sr-only peer" onClick={Switch} />
+                  <span className="w-[35%] h-[70%] bg-blue-300 absolute rounded-full left-[3px] peer-checked:bg-blue-600 peer-checked:left-[23px] transition-all duration-500" />
+                </label>
               </div>
             </div>
             <div className="flex justify-center gap-2.5 self-stretch">
@@ -120,7 +138,11 @@ function Filter({ isFilterMore }: IFilterHome) {
                   >
                     <path opacity="0.1" d="M0.666504 0.5V50.5" stroke="#333333" strokeLinecap="round" />
                   </svg>
-                  <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
+                  <div
+                    className={`w-[33%] flex-col justify-start p-4 rounded-bl-xl bg-white ${
+                      !value ? "cursor-not-allowed opacity-50" : ""
+                    }`}
+                  >
                     <div className="flex items-center">
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
@@ -129,7 +151,9 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <input
                       type="date"
-                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
+                      className={`w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg ${
+                        !value ? "hidden" : ""
+                      }`}
                     />
                   </div>
                   <svg

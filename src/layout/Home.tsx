@@ -4,7 +4,7 @@ import Footer from "src/components/organisms/Footer";
 
 function Layout() {
   return (
-    <div className="bg-[url('/src/assets/bg.jpg')]">
+    <div className="bg-[url('/src/assets/bgnew.png')] bg-cover">
       <Navbar />
       <Outlet />
       <Footer />
