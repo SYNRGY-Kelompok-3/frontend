@@ -10,6 +10,7 @@ import Detailtiket from "src/pages/ListTiket/dummy";
 import Login from "src/pages/Login";
 import Payment from "src/pages/Payment";
 import FullSearchTickets from "src/pages/FullSearchTickets";
+import Detailartikel from "src/pages/Detailartikel";
 
 function Router() {
   return (
@@ -24,6 +25,7 @@ function Router() {
             <Route path="/flight/full-search" element={<FullSearchTickets />} />
             <Route path="/invoices" element={<Invoice />} />
             <Route path="/payment" element={<Payment />} />
+            <Route path="/artikel/:id" element={<Detailartikel />} />
           </Route>
           <Route element={<Layoutcheckout />}>
             <Route path="/checkout" element={<Checkout />} />
