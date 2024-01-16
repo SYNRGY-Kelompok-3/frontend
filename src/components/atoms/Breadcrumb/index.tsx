@@ -1,5 +1,5 @@
-import Image from "../Img";
-import ChevronRight from "../../../assets/ChevronRight.svg";
+import Image from "src/components/atoms/Img";
+import ChevronRight from "src/assets/ChevronRight.svg";
 import { Link } from "react-router-dom";
 
 interface BreadcrumbItem {
@@ -9,7 +9,7 @@ interface BreadcrumbItem {
 
 function Breadcrumb({ steps }: { steps: BreadcrumbItem[] }) {
   return (
-    <section className="container mx-auto mt-5 max-w-[78rem]">
+    <section className="container mx-28 mt-8 max-w-[78rem]">
       <nav className="text-sm" aria-label="Breadcrumb">
         <ol className="list-none p-0 inline-flex">
           {steps.map((step, index) => (
