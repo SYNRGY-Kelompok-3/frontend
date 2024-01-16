@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Nav from "../../components/organisms/Nav";
+import Breadcrumb from "src/components/atoms/Breadcrumb";
 import Button from "../../components/atoms/Button";
 import Steper from "../../components/atoms/Stepper";
 import AccordionComponent from "../../components/atoms/Accordion";
@@ -8,6 +8,12 @@ import ConfirmPayment from "../../components/organisms/PopUp/confirmPayment";
 import Alert from "../../components/atoms/Alert";
 
 function Payment() {
+  const breadcrumbSteps = [
+    { text: "Beranda", link: "#" },
+    { text: "Cari Tiket", link: "#" },
+    { text: "Checkout" },
+  ];
+
   const [showModalConfirmPayment, setShowModalConfirmPayment] = useState(false);
 
   const handleButtonClick2 = () => {
@@ -20,7 +26,7 @@ function Payment() {
 
   return (
     <>
-      <Nav />
+      <Breadcrumb steps={breadcrumbSteps} />
       <Steper />
       <Alert />
       <div className="container mx-auto">

@@ -1,4 +1,4 @@
-import Breadcrumb from "../../components/organisms/Breadcrumb";
+import Breadcrumb from "src/components/atoms/Breadcrumb";
 import StepsOrder from "../../components/organisms/Steps";
 import Order from "../../components/organisms/Order";
 import { useState } from "react";
@@ -12,6 +12,12 @@ function Checkout() {
     setShowModal(!showModalSeat);
   };
 
+  const breadcrumbSteps = [
+    { text: "Beranda", link: "#" },
+    { text: "Cari Tiket", link: "#" },
+    { text: "Checkout" },
+  ];
+
   return (
     <>
       {showModalSeat && (
@@ -19,7 +25,7 @@ function Checkout() {
           <SeatModal onClose={modalHandler} />
         </Backdrop>
       )}
-      <Breadcrumb />
+      <Breadcrumb steps={breadcrumbSteps} />
       <StepsOrder />
       <Order modalHandler={modalHandler} />
     </>
