@@ -36,7 +36,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
           <div className="flex gap-1">
             <Navmenu bg={bg} />
           </div>
-          <div>
+          <div className="flex gap-2">
             <Button
               onClick={() => navigate("/register")}
               type={"button"}
@@ -44,7 +44,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
                 bg === "bg-white shadow-md"
                   ? "text-black hover:text-white hover:bg-blue-700"
                   : "text-white hover:bg-white hover:bg-opacity-20"
-              } font-medium text-lg mr-5 py-2 px-4 rounded-md `}
+              } font-medium text-lg py-2 px-4 rounded-md `}
               content={"Daftar Sekarang"}
             />
             <Button

@@ -1,5 +1,6 @@
 import Image from "../Img";
 import ChevronRight from "../../../assets/ChevronRight.svg";
+import { Link } from "react-router-dom";
 
 interface BreadcrumbItem {
   text: string;
@@ -14,9 +15,9 @@ function Breadcrumb({ steps }: { steps: BreadcrumbItem[] }) {
           {steps.map((step, index) => (
             <li key={index} className="flex items-center">
               {step.link ? (
-                <a href={step.link} className="font-semibold text-black hover:underline">
-                  {step.text}
-                </a>
+                <Link to={step.link} className="font-semibold text-black">
+                  <div>{step.text}</div>
+                </Link>
               ) : (
                 <span className="font-semibold text-blue-500">{step.text}</span>
               )}
