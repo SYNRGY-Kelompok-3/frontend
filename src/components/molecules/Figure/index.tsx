@@ -4,15 +4,16 @@ interface FigureProps {
   src: string;
   className?: string;
   alt: string;
+  captionClass?: string;
   caption?: string;
 }
 
-function Figure({ src, className, alt, caption }: FigureProps) {
+function Figure({ src, className, alt, caption, captionClass }: FigureProps) {
   return (
     <>
       <figure>
         <Image src={src} alt={alt} className={className} />
-        <figcaption className="text-lg py-3 text-center">{caption}</figcaption>
+        <figcaption className={`text-xl ${captionClass}`}>{caption}</figcaption>
       </figure>
     </>
   );
