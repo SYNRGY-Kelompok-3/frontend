@@ -9,7 +9,7 @@ function Navmenu({ bg }: NavmenuProps) {
     <>
       <NavLink
         to="/"
-        className={({ isActive }) =>
+        className={({ isActive }): string =>
           `${
             isActive
               ? bg === "bg-transparent"
@@ -25,7 +25,7 @@ function Navmenu({ bg }: NavmenuProps) {
       </NavLink>
       <NavLink
         to="/tentang-kami"
-        className={({ isActive }) =>
+        className={({ isActive }): string =>
           `${
             isActive
               ? bg === "bg-transparent"
@@ -41,7 +41,7 @@ function Navmenu({ bg }: NavmenuProps) {
       </NavLink>
       <NavLink
         to="/artikel"
-        className={({ isActive }) =>
+        className={({ isActive }): string =>
           `${
             isActive
               ? bg === "bg-transparent"
@@ -57,7 +57,7 @@ function Navmenu({ bg }: NavmenuProps) {
       </NavLink>
       <NavLink
         to="/pusat-bantuan"
-        className={({ isActive }) =>
+        className={({ isActive }): string =>
           `${
             isActive
               ? bg === "bg-transparent"
