@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 import Logo from "src/assets/Logo.png";
 import Image from "src/components/atoms/Img";
@@ -6,6 +7,36 @@ import Image from "src/components/atoms/Img";
 import Button from "src/components/atoms/Button";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [passwordType, setPasswordType] = useState("password");
+  const [emailValidation, setEmailValidation] = useState(false);
+
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    if (re.test(email)) {
+      setEmailValidation(true);
+    } else {
+      setEmailValidation(false);
+    }
+  };
+
+  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
+  };
+
   return (
     <main>
       <div className="flex flex-row">
@@ -46,22 +77,51 @@ function Login() {
                 </div>
               </div>
               <div className="px-6">
-                <form role="form">
+                <form role="form" onSubmit={(e) => e.preventDefault()}>
                   <div className="">
                     <div className="py-2">Email</div>
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      className="focus:shadow-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    />
+                    <div className="flex items-center">
+                      <input
+                        type="email"
+                        placeholder="Email"
+                        onChange={handleEmail}
+                        value={email}
+                        className="focus:shadow-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
+                      />
+                      <div className="-ml-8">
+                        {email === "" ? (
+                          ""
+                        ) : emailValidation ? (
+                          <i className="fa-regular fa-circle-check text-lime-500"></i>
+                        ) : (
+                          <i className="fa-regular fa-circle-xmark"></i>
+                        )}
+                      </div>
+                    </div>
                   </div>
                   <div className="">
                     <div className="py-2">Password</div>
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      className="focus:shadow-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                    />
+                    <div className="flex items-center">
+                      <input
+                        type={passwordType}
+                        placeholder="Password"
+                        onChange={handlePassword}
+                        value={password}
+                        className="focus:shadow-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
+                      />
+                      <Button
+                        content={
+                          passwordType === "password" ? (
+                            <i className="fa-solid fa-eye"></i>
+                          ) : (
+                            <i className="fa-solid fa-eye-slash"></i>
+                          )
+                        }
+                        type={"button"}
+                        onClick={togglePassword}
+                        className={"-ml-8"}
+                      />
+                    </div>
                   </div>
                   <div className="pt-5 flex justify-between items-center text-left min-h-6 ">
                     <div className="flex items-center">
@@ -79,7 +139,7 @@ function Login() {
                   </div>
                   <Button
                     content={"Masuk"}
-                    type={"button"}
+                    type={"submit"}
                     className={
                       "inline-block w-full my-6 px-16 py-3.5 font-bold leading-normal text-lg text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
                     }
