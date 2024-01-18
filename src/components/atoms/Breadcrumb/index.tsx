@@ -1,7 +1,3 @@
-import Image from "src/components/atoms/Img";
-import ChevronRight from "src/assets/ChevronRight.svg";
-import { Link } from "react-router-dom";
-
 interface BreadcrumbItem {
   text: string;
   link?: string;
@@ -9,19 +5,30 @@ interface BreadcrumbItem {
 
 function Breadcrumb({ steps }: { steps: BreadcrumbItem[] }) {
   return (
-    <section className="container mx-4 mt-8 sm:mx-8 md:mx-16 lg:mx-28">
+    <section className="container mx-auto mt-8 max-w-[78rem]">
       <nav className="text-sm" aria-label="Breadcrumb">
         <ol className="inline-flex p-0 list-none">
           {steps.map((step, index) => (
             <li key={index} className="flex items-center">
               {step.link ? (
-                <Link to={step.link} className="font-semibold text-black">
-                  <div>{step.text}</div>
-                </Link>
+                <a href={step.link} className="font-semibold text-black hover:underline">
+                  {step.text}
+                </a>
               ) : (
                 <span className="font-semibold text-blue-500">{step.text}</span>
               )}
-              {index < steps.length - 1 && <Image src={ChevronRight} alt={"chevron"} className={""} />}
+              {index < steps.length - 1 && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="black"
+                  className="w-6 h-6 mx-2"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+              )}
             </li>
           ))}
         </ol>
