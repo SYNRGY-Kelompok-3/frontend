@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import * as dayjs from "dayjs";
 
 type TDate = string | number | Date | dayjs.Dayjs;
 
@@ -37,8 +37,16 @@ export const useDateFormatter = () => {
     return dayjs(date).format("dddd");
   };
 
+  const formatFlightDuration = (dateFrom: Date, dateTo: Date) => {
+    const x = dayjs(dateFrom);
+    const y = dayjs(dateTo);
+    const diffTime = x.diff(y);
+    return dayjs.duration(diffTime, "milliseconds").humanize();
+  };
+
   return {
     isValidDate,
+    formatFlightDuration,
     formatDayDateTime,
     formatDate,
     formatDayDate,

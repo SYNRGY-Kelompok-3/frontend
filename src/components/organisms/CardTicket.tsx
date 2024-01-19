@@ -14,7 +14,7 @@ type TProps = {
 const CardTicket = (data: TProps) => {
   const { ticketData } = data;
   const { onShowTicketDetail, showModalDetailTicket, onCloseTicketDetail } = useCardTicket();
-  const { formatDay, formatTime } = useDateFormatter();
+  const { formatDay, formatTime, formatFlightDuration } = useDateFormatter();
   return (
     <>
       <Card className="mb-3">
@@ -36,7 +36,9 @@ const CardTicket = (data: TProps) => {
                 <div className="justify-self-center">
                   <img src={transitIcon} alt="tes" />
                 </div>
-                <div className="justify-self-center">{ticketData.duration}</div>
+                <div className="justify-self-center">
+                  {formatFlightDuration(ticketData.arrivedTime, ticketData.flightTime)}
+                </div>
               </div>
               <div className="grid grid-rows-3">
                 <div className="justify-self-center">{formatDay(ticketData.arrivedTime)}</div>
