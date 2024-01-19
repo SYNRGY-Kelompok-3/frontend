@@ -2,7 +2,7 @@ import Breadcrumb from "src/components/atoms/Breadcrumb";
 import Figure from "src/components/molecules/Figure";
 
 const TentangKami = () => {
-  const breadcrumbSteps = [{ text: "Tentang Kami", link: "/tentang-kami" }];
+  const breadcrumbSteps = [{ text: "Tentang Kami" }];
 
   return (
     <>
