@@ -14,11 +14,11 @@ export const useDateFormatter = () => {
   };
 
   const formatDateTime = (date: Date) => {
-    return dayjs(date).format("DD MMM YYYY hh:mm A");
+    return dayjs(date).format("DD MMM YYYY hh:mm");
   };
 
   const formatTime = (date: Date) => {
-    return dayjs(date).format("hh:mm A");
+    return dayjs(date).format("hh:mm");
   };
 
   const formatDateMonthYear = (date: Date) => {
@@ -34,7 +34,7 @@ export const useDateFormatter = () => {
   };
 
   const formatDay = (date: Date) => {
-    return dayjs(date).format("dd");
+    return dayjs(date).format("dddd");
   };
 
   return {
