@@ -7,11 +7,11 @@ import Image from "src/components/atoms/Img";
 import Button from "src/components/atoms/Button";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
-  const [passwordType, setPasswordType] = useState("password");
-  const [emailValidation, setEmailValidation] = useState(false);
+  const [passwordType, setPasswordType] = useState<string>("password");
+  const [emailValidation, setEmailValidation] = useState<boolean>(false);
 
   const re =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

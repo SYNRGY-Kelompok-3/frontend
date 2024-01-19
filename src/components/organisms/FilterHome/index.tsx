@@ -30,7 +30,7 @@ function Filter({ isFilterMore }: IFilterHome) {
       <section>
         {!isFilterMore && (
           <div
-            className={`search flex flex-col justify-center items-start self-stretch p-5 rounded-xl bg-white/[.20] mx-[200px] my-[75px]`}
+            className={`search flex flex-col justify-center items-start self-stretch p-5 rounded-xl bg-white/[.20]  my-[75px] sm:mx-[40px] md:mx-[40px] lg:mx-[40px] xl:mx-[200px]`}
           >
             <div className="flex">
               <div className="flex gap-2.5 p-4 rounded-t-xl bg-white items-center">

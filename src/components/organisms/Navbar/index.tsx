@@ -17,8 +17,8 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
 
   return (
     <>
-      <nav className={bg}>
-        <div className="flex justify-between items-center px-28 py-5">
+      <nav className={`${bg} bg-cover`}>
+        <div className="sm:px-10 md:px-10 lg:px-10 xl:px-28 py-5 flex justify-between items-center">
           <NavLink to="/" className="flex items-center">
             <Image
               src={bg === "bg-white shadow-md" ? LogoBlue : Logo}
@@ -33,14 +33,14 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
               Travel.id
             </div>
           </NavLink>
-          <div className="flex gap-1">
+          <div className="items-center sm:hidden md:hidden lg:flex xl:flex gap-1">
             <Navmenu bg={bg} />
           </div>
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
             <Button
               onClick={() => navigate("/register")}
               type={"button"}
-              className={`${
+              className={`sm:hidden md:hidden lg:flex xl:flex ${
                 bg === "bg-white shadow-md"
                   ? "text-black hover:text-white hover:bg-blue-700"
                   : "text-white hover:bg-white hover:bg-opacity-20"
@@ -53,6 +53,22 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
               className={"bg-blue-600 text-white font-medium text-lg py-2 px-4 rounded-md hover:bg-blue-700"}
               content={"Masuk"}
             />
+            <div className="sm:flex md:flex lg:hidden xl:hidden items-center justify-end bg-white bg-opacity-20 rounded-md">
+              <input type="checkbox" name="hamburger" id="hamburger" className="sr-only peer" hidden />
+              <label
+                htmlFor="hamburger"
+                className="peer-checked:hamburger block relative z-20 py-4 px-3  rounded-full cursor-pointer lg:hidden"
+              >
+                <div
+                  aria-hidden="true"
+                  className="m-auto h-0.5 w-6 rounded bg-sky-900 transition duration-300"
+                ></div>
+                <div
+                  aria-hidden="true"
+                  className="m-auto mt-2 h-0.5 w-6 rounded bg-sky-900 transition duration-300"
+                ></div>
+              </label>
+            </div>
           </div>
         </div>
       </nav>
