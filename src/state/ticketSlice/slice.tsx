@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosAuth } from "src/services/axios";
 export const fetchTicketList = createAsyncThunk("fetchTicketList", async () => {
-  const res = await axiosAuth.get(`/todos`);
-  return res?.data;
+  const res = await axiosAuth.get(`/flight/listFlights?page=0&size=5`);
+  console.log(res, "hasil");
+  return res?.data?.data?.content;
 });
 
 export interface TicketState {
