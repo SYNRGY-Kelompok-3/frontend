@@ -1,6 +1,6 @@
 interface ButtonProps {
   className?: string;
-  content?: string;
+  content?: string | JSX.Element;
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
   onSubmit?: () => void;
