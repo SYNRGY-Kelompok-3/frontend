@@ -1,4 +1,4 @@
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 
 type TDate = string | number | Date | dayjs.Dayjs;
 
@@ -46,7 +46,6 @@ export const useDateFormatter = () => {
 
   return {
     isValidDate,
-    formatFlightDuration,
     formatDayDateTime,
     formatDate,
     formatDayDate,
@@ -54,5 +53,6 @@ export const useDateFormatter = () => {
     formatTime,
     formatDateMonthYear,
     formatDay,
+    formatFlightDuration,
   };
 };
