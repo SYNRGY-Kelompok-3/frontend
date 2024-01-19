@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Sidebar from "../../molecules/Sidebar";
-import Avatar from "../../../assets/Avatar.png";
+import Avatar from "../../../assets/Profile.png";
 
 function Profil() {
   const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
@@ -37,7 +37,7 @@ function Profil() {
     <div className="flex h-screen">
       <Sidebar activeTab={activeTab} onTabClick={handleTabClick} />
 
-      <div className="flex-1 py-4 px-4 border-2 rounded-md">
+      <div className="flex-1 py-4 px-4 border-2 rounded-md m-4 mb-36">
         <h1 className="text-2xl font-bold mb-4">Profil Akun</h1>
 
         {activeTab === "profil" && (
