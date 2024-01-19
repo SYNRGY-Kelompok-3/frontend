@@ -25,6 +25,7 @@ function Router() {
             <Route path="/detailtiket" element={<Detailtiket />} />
             <Route path="/flight/full-search" element={<FullSearchTickets />} />
             <Route path="/invoices" element={<Invoice />} />
+            <Route path="/profiles" element={<Invoice />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/tentang-kami" element={<TentangKami />} />
             <Route path="/artikel/:id" element={<Detailartikel />} />
