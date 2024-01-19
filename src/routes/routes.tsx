@@ -25,14 +25,14 @@ function Router() {
           <Route element={<Layoutpage />}>
             <Route path="/detailtiket" element={<Detailtiket />} />
             <Route path="/flight/full-search" element={<FullSearchTickets />} />
-            <Route path="/invoices" element={<Invoice />} />
-            <Route path="/profile" element={<Profile />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/tentang-kami" element={<TentangKami />} />
             <Route path="/artikel/:id" element={<Detailartikel />} />
           </Route>
           <Route element={<Layoutcheckout />}>
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/invoices" element={<Invoice />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
           <Route path="/login" element={<Login />} />
         </Routes>
