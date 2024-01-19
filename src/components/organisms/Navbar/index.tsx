@@ -18,7 +18,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
   return (
     <>
       <nav className={`${bg} bg-cover`}>
-        <div className="sm:px-10 md:px-10 lg:px-10 xl:px-28 py-5 flex justify-between items-center">
+        <div className="px-10 sm:px-10 md:px-10 lg:px-10 xl:px-28 py-5 flex justify-between items-center">
           <NavLink to="/" className="flex items-center">
             <Image
               src={bg === "bg-white shadow-md" ? LogoBlue : Logo}
@@ -33,14 +33,14 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
               Travel.id
             </div>
           </NavLink>
-          <div className="items-center sm:hidden md:hidden lg:flex xl:flex gap-1">
+          <div className="items-center hidden sm:hidden md:hidden lg:flex xl:flex gap-1">
             <Navmenu bg={bg} />
           </div>
           <div className="flex items-center gap-2">
             <Button
               onClick={() => navigate("/register")}
               type={"button"}
-              className={`sm:hidden md:hidden lg:flex xl:flex ${
+              className={`hidden sm:hidden md:hidden lg:flex xl:flex ${
                 bg === "bg-white shadow-md"
                   ? "text-black hover:text-white hover:bg-blue-700"
                   : "text-white hover:bg-white hover:bg-opacity-20"
