@@ -4,15 +4,17 @@ import transitIcon from "src/assets/no-transit-icon.svg";
 import DetailTiket from "src/components/organisms/PopUp/detailTicket";
 import Button from "src/components/atoms/Button";
 import { useCardTicket } from "src/usecases/modules/tickets";
-
-type Props = {
-  title: string;
+import { ITicket } from "src/state/ticketSlice/slice";
+import { priceFormatter } from "src/utils";
+import { useDateFormatter } from "src/usecases/common/useDateFormat";
+type TProps = {
+  ticketData: ITicket;
 };
 
-const CardTicket = (props: Props) => {
-  console.log(props);
+const CardTicket = (data: TProps) => {
+  const { ticketData } = data;
   const { onShowTicketDetail, showModalDetailTicket, onCloseTicketDetail } = useCardTicket();
-
+  const { formatDay, formatTime, formatFlightDuration } = useDateFormatter();
   return (
     <>
       <Card className="mb-3">
@@ -20,25 +22,30 @@ const CardTicket = (props: Props) => {
           <div className="basis-[25.00%] m-2">
             <Image src="https://placehold.co/400x200" alt="template" />
           </div>
-
           <div className="basis-[50.00%] m-2 px-5">
             <div className="grid grid-cols-3 ">
               <div className="grid grid-rows-3 ">
-                <div className="justify-self-center">Jumat</div>
-                <div className="justify-self-center font-semibold text-lg">19:50</div>
-                <div className="justify-self-center">YIA</div>
+                <div className="justify-self-center">{formatDay(ticketData.flightTime)}</div>
+                <div className="justify-self-center font-semibold text-lg">
+                  {formatTime(ticketData.flightTime)}
+                </div>
+                <div className="justify-self-center">{ticketData.originAirport}</div>
               </div>
               <div className="grid grid-rows-3 my-3">
-                <div className="justify-self-center text-green-600">Tanpa Transit</div>
+                <div className="justify-self-center text-green-600">{ticketData.transit}</div>
                 <div className="justify-self-center">
                   <img src={transitIcon} alt="tes" />
                 </div>
-                <div className="justify-self-center">2 Jam 30 Menit</div>
+                <div className="justify-self-center">
+                  {formatFlightDuration(ticketData.arrivedTime, ticketData.flightTime)}
+                </div>
               </div>
               <div className="grid grid-rows-3">
-                <div className="justify-self-center">Sabtu</div>
-                <div className="justify-self-center font-semibold text-lg">22:45</div>
-                <div className="justify-self-center">CGA</div>
+                <div className="justify-self-center">{formatDay(ticketData.arrivedTime)}</div>
+                <div className="justify-self-center font-semibold text-lg">
+                  {formatTime(ticketData.arrivedTime)}
+                </div>
+                <div className="justify-self-center">{ticketData.destinationAirport}</div>
               </div>
             </div>
             <div className="grid grid-cols-2 ">
@@ -52,8 +59,12 @@ const CardTicket = (props: Props) => {
           </div>
           <div className="basis-[25.00%] m-2">
             <div className="grid grid-rows-1 text-end">
-              <h4 className="justify-self-end text-md text-gray-500  text-end">Rp2.000.000</h4>
-              <h2 className="justify-self-end text-xl text-red-500 font-medium my-2">Rp1.500.000/pax</h2>
+              <h4 className="justify-self-end text-md text-gray-500  text-end">
+                {priceFormatter(ticketData.price)}
+              </h4>
+              <h2 className="justify-self-end text-xl text-red-500 font-medium my-2">
+                {priceFormatter(ticketData.discountPrice)}/pax
+              </h2>
 
               <Button
                 content={"Lihat Detail"}
