@@ -44,7 +44,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
                 bg === "bg-white shadow-md"
                   ? "text-black hover:text-white hover:bg-blue-700"
                   : "text-white hover:bg-white hover:bg-opacity-20"
-              } font-medium text-lg py-2 px-4 rounded-md `}
+              } font-medium text-lg py-2 px-4 rounded-md text-star`}
               content={"Daftar Sekarang"}
             />
             <Button

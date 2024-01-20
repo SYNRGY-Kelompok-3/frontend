@@ -18,7 +18,7 @@ function Navmenu({ bg }: NavmenuProps) {
               : bg === "bg-transparent"
               ? "text-white hover:bg-white hover:bg-opacity-20"
               : "text-black hover:bg-slate-100"
-          } py-2 px-3 rounded-md font-semibold text-lg`
+          } py-2 px-3 rounded-md font-semibold text-lg text-center`
         }
       >
         Beranda
@@ -34,7 +34,7 @@ function Navmenu({ bg }: NavmenuProps) {
               : bg === "bg-transparent"
               ? "text-white hover:bg-white hover:bg-opacity-20"
               : "text-black hover:bg-slate-100"
-          } py-2 px-3 rounded-md font-semibold text-lg`
+          } py-2 px-3 rounded-md font-semibold text-lg text-center`
         }
       >
         Tentang Kami
@@ -50,7 +50,7 @@ function Navmenu({ bg }: NavmenuProps) {
               : bg === "bg-transparent"
               ? "text-white hover:bg-white hover:bg-opacity-20"
               : "text-black hover:bg-slate-100"
-          } py-2 px-3 rounded-md font-semibold text-lg`
+          } py-2 px-3 rounded-md font-semibold text-lg text-center`
         }
       >
         Artikel
@@ -66,7 +66,7 @@ function Navmenu({ bg }: NavmenuProps) {
               : bg === "bg-transparent"
               ? "text-white hover:bg-white hover:bg-opacity-20"
               : "text-black hover:bg-slate-100"
-          } py-2 px-3 rounded-md font-semibold text-lg`
+          } py-2 px-3 rounded-md font-semibold text-lg text-center`
         }
       >
         Pusat Bantuan
