@@ -79,11 +79,11 @@ function Footer() {
             </div>
           </div>
           <div className="self-stretch h-px bg-[#ededed] my-[20px]" />
-          <div className="flex justify-between items-center">
-            <div className="text-black flex justify-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-center">
+            <div className="text-black flex justify-center md:justify-start">
               {new Date().getFullYear()} Travel Indonesia. All right reserved.
             </div>
-            <div className="flex items-center justify-end">
+            <div className="flex justify-center md:justify-end items-center">
               <div className="text-black mr-5">Pemberitahuan Privasi</div>
               <div className="text-black">Terms of Service</div>
             </div>
