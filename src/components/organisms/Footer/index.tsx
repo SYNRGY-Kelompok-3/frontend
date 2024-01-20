@@ -12,7 +12,7 @@ function Footer() {
   return (
     <section>
       <footer className="">
-        <div className="bg-white px-[40px] sm:px-[40px] md:px-[40px] lg:px-[40px] xl:px-[200px] py-[40px] sm:py-[40px] md:py-[40px] lg:py-[75px] xl:py-[75px]">
+        <div className="bg-white px-[40px] xl:px-[200px] py-[40px] lg:py-[75px]">
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-5">
             <div className="">
               <Link to="/" className="flex items-center">
@@ -39,7 +39,7 @@ function Footer() {
               </div>
             </div>
             <div className="">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-3">
                 <div className="">
                   <div>
                     <Link to="/" className="self-stretch text-[#075efd] font-semibold">

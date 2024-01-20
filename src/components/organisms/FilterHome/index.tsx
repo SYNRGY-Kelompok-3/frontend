@@ -30,7 +30,7 @@ function Filter({ isFilterMore }: IFilterHome) {
       <section>
         {!isFilterMore && (
           <div
-            className={`search flex flex-col justify-center items-start self-stretch p-5 rounded-xl bg-white/[.20] m-[20px] sm:m-[40px] md:m-[40px] lg:m-[40px] xl:mx-[200px]`}
+            className={`search flex flex-col justify-center items-start self-stretch p-5 rounded-xl bg-white/[.20] m-[20px] sm:m-[40px] xl:mx-[200px]`}
           >
             <div className="flex">
               <div className="flex gap-2.5 p-4 rounded-t-xl bg-white items-center">
@@ -49,7 +49,7 @@ function Filter({ isFilterMore }: IFilterHome) {
             </div>
             <div className="flex justify-center gap-2.5 self-stretch">
               <div className="w-full gap-3 self-stretch p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl bg-white">
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 items-center gap-2.5 self-stretch">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 items-center gap-2.5 self-stretch">
                   <div className="justify-start p-4 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Departure} alt={"Departure"} className="h-[15px] mr-2" />
@@ -227,7 +227,7 @@ function Filter({ isFilterMore }: IFilterHome) {
           >
             <div className="flex justify-center gap-2.5 self-stretch">
               <div className="w-full gap-3 self-stretch p-3 rounded-lg bg-white">
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 items-center gap-2.5 self-stretch">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 items-center gap-2.5 self-stretch">
                   <div className="justify-start p-4 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Departure} alt={"Departure"} className="h-[15px] mr-2" />
