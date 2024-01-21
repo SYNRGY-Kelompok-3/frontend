@@ -1,9 +1,9 @@
 function LoginHooks() {
-  const data = "haha";
-
-  return {
-    data,
+  const handlealert = () => {
+    alert("Login Success");
   };
+
+  return { handlealert };
 }
 
 export default LoginHooks;

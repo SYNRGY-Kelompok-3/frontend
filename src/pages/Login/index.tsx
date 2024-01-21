@@ -44,10 +44,10 @@ function Login() {
         <div className="hidden xl:flex">
           <div className="h-screen bg-[url('src/assets/bglogin.png')] bg-cover">
             <div className="h-full bg-violet-500 bg-opacity-20">
-              <div className="py-[160px]">
+              <div className="py-[160px] flex justify-center">
                 <Link to="/" className="flex justify-center items-center">
                   <Image src={Logo} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
-                  <div className="text-white font-bold text-3xl">Travel.id</div>
+                  <div className={`text-white font-bold text-3xl`}>Travel.id</div>
                 </Link>
               </div>
               <div className="text-center pt-[60px] pb-[400px] mx-36">
@@ -84,7 +84,7 @@ function Login() {
                 </div>
               </div>
               <div className="px-6">
-                <form role="form" onSubmit={handleSubmit}>
+                <form role="form">
                   <div className="">
                     <div className="py-2">Email</div>
                     <div className="flex items-center">
