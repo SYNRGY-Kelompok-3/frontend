@@ -4,12 +4,11 @@ import FilterFlightTicket from "src/components/organisms/FilterFlightTicket";
 import { useGetTickets } from "src/usecases/modules/tickets";
 import FilterHome from "src/components/organisms/FilterHome";
 import bgPrimary from "src/assets/bg-2.png";
-interface Ticket {
-  title: string;
-}
+import { ITicket } from "src/state/ticketSlice/slice";
+
 const FullSearchTickets: React.FC = () => {
   const { ticketList, isLoading } = useGetTickets();
-  const tickets: Ticket[] = ticketList as Ticket[];
+  const tickets: ITicket[] = ticketList as ITicket[];
   return (
     <>
       <div className="mx-auto mt-5">
@@ -32,11 +31,11 @@ const FullSearchTickets: React.FC = () => {
           <div className="basis-[80%]">
             <h2 className="justify-self-end text-xl  font-medium my-2">Penerbangan Dari `A` ke `B`</h2>
             {!isLoading &&
-              tickets.map((flight: { title: string }, idx: number) => {
+              tickets.map((ticket: ITicket) => {
                 return (
                   <>
-                    <div key={idx}>
-                      <CardTicket title={flight.title} />
+                    <div key={ticket.id}>
+                      <CardTicket ticketData={ticket} />
                     </div>
                   </>
                 );

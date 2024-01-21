@@ -11,3 +11,6 @@ export const STATUS_CODE: Record<StatusCode, string> = {
   503: "Service Unavailable",
   504: "Gateway Timeout",
 };
+
+export const PAGE_SIZE = 5;
+export const DEFAULT_CURRENCY = `Rp `;
