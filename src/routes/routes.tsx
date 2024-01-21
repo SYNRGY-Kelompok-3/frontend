@@ -11,6 +11,7 @@ import Login from "src/pages/Login";
 import Payment from "src/pages/Payment";
 import Profile from "src/pages/Profile";
 import FullSearchTickets from "src/pages/FullSearchTickets";
+import Artikel from "src/pages/Artikel";
 import Detailartikel from "src/pages/Detailartikel";
 import TentangKami from "src/pages/TentangKami";
 
@@ -27,6 +28,7 @@ function Router() {
             <Route path="/flight/full-search" element={<FullSearchTickets />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/tentang-kami" element={<TentangKami />} />
+            <Route path="/artikel" element={<Artikel />} />
             <Route path="/artikel/:id" element={<Detailartikel />} />
           </Route>
           <Route element={<Layoutcheckout />}>
