@@ -65,7 +65,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
               >
                 <div
                   aria-hidden="true"
-                  className="m-auto h-0.5 w-6 rounded bg-sky-900 transition duration-300"
+                  className="m-auto h-0.5 w-6 rounded bg-sky-900 transition duration-300 rotate"
                 ></div>
                 <div
                   aria-hidden="true"
@@ -87,7 +87,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
                     onClick={() => navigate("/register")}
                     type={"button"}
                     className={
-                      "w-full bg-blue-600 text-white font-medium text-xl my-8 mx-10 py-2 px-4 rounded-md hover:bg-blue-700"
+                      "w-full bg-gradient-to-r from-blue-500 to-sky-400 text-white font-medium text-xl my-8 mx-10 py-2 px-4 rounded-md hover:from-blue-600 hover:to-cyan-500 transition-all duration-500 ease-in-out hover:scale-[1.02]"
                     }
                     content={"Daftar Sekarang"}
                   />
