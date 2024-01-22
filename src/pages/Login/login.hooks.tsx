@@ -59,7 +59,7 @@ function LoginHooks() {
       // let config = {
       //   method: 'post',
       //   maxBodyLength: Infinity,
-      //   url: VITE_APP_API_URL,
+      //   url: `${VITE_APP_API_URL}/v1/user-login/login/`,
       //   headers: {
       //     'Content-Type': 'application/json'
       //   },
@@ -74,7 +74,7 @@ function LoginHooks() {
       //     console.log(error);
       //   });
 
-      const response = await axios.post(VITE_APP_API_URL, {
+      const response = await axios.post(`${VITE_APP_API_URL}/v1/user-login/login/`, {
         username: email,
         password: password,
       });
