@@ -5,6 +5,7 @@ import Avatar from "../../../assets/Avatar.png";
 import ChevronDown from "../../../assets/ChevronDown.svg";
 
 function DropdownMenu() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
   const iconRef = useRef<HTMLDivElement | null>(null);
@@ -40,7 +41,13 @@ function DropdownMenu() {
     };
   }, [isOpen]);
 
-  const navigate = useNavigate();
+  const handleLogout = () => {
+    const c = confirm("are you sure want to logout?");
+    if (c) {
+      localStorage.removeItem("token");
+      window.location.reload();
+    }
+  };
 
   return (
     <>
@@ -69,7 +76,7 @@ function DropdownMenu() {
                 Settings
               </li>
               <li
-                onClick={() => navigate("/")}
+                onClick={handleLogout}
                 className="text-red-500 cursor-pointer rounded hover:bg-red-500 hover:text-white"
               >
                 Logout
