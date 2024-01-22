@@ -6,6 +6,8 @@ interface ILogin {
   status?: string;
 }
 function LoginHooks() {
+  const { VITE_APP_API_URL } = import.meta.env;
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordType, setPasswordType] = useState<string>("password");
@@ -72,13 +74,10 @@ function LoginHooks() {
       //     console.log(error);
       //   });
 
-      const response = await axios.post(
-        "https://travelid-backend-java-dev.up.railway.app/v1/user-login/login/",
-        {
-          username: email,
-          password: password,
-        }
-      );
+      const response = await axios.post(VITE_APP_API_URL, {
+        username: email,
+        password: password,
+      });
 
       setLoginError({
         message: "Login Berhasil!",
