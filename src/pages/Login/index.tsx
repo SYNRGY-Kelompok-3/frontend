@@ -2,16 +2,17 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import Logo from "src/assets/Logo.png";
+import LogoBlue from "src/assets/LogoBlue.png";
 import Image from "src/components/atoms/Img";
 
 import Button from "src/components/atoms/Button";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
-  const [passwordType, setPasswordType] = useState("password");
-  const [emailValidation, setEmailValidation] = useState(false);
+  const [passwordType, setPasswordType] = useState<string>("password");
+  const [emailValidation, setEmailValidation] = useState<boolean>(false);
 
   const re =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -39,14 +40,14 @@ function Login() {
 
   return (
     <main>
-      <div className="flex flex-row">
-        <div className="basis-1/2">
+      <div className="grid grid-cols-1 xl:grid-cols-2">
+        <div className="hidden xl:flex">
           <div className="h-screen bg-[url('src/assets/bglogin.png')] bg-cover">
             <div className="h-full bg-violet-500 bg-opacity-20">
-              <div className="py-[160px]">
-                <Link to="/" className="flex justify-center">
+              <div className="py-[160px] flex justify-center">
+                <Link to="/" className="flex justify-center items-center">
                   <Image src={Logo} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
-                  <div className="text-white font-bold text-3xl">Travel.id</div>
+                  <div className={`text-white font-bold text-3xl`}>Travel.id</div>
                 </Link>
               </div>
               <div className="text-center pt-[60px] pb-[400px] mx-36">
@@ -59,9 +60,15 @@ function Login() {
             </div>
           </div>
         </div>
-        <div className="basis-1/2 m-4">
-          <div className="my-[200px] flex">
-            <div className="w-[100%] flex flex-col min-w-0 break-words bg-transparent border-0 lg:py4 dark:bg-gray-950 rounded-2xl bg-clip-border shadow">
+        <div className="bg-[url('src/assets/bglogin.png')] bg-cover xl:bg-none m-4">
+          <div className="flex justify-center xl:hidden mt-[100px]">
+            <Link to="/" className="flex justify-center items-center">
+              <Image src={LogoBlue} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
+              <div className="text-[#075efd] font-bold text-3xl">Travel.id</div>
+            </Link>
+          </div>
+          <div className="my-[100px] xl:my-[200px] flex justify-center">
+            <div className="w-[65%] xl:w-[100%] flex-col min-w-0 break-words bg-white xl:bg-transparent border-0 lg:py4 dark:bg-gray-950 rounded-2xl bg-clip-border shadow">
               <div className="p-6 pb-0 mb-0">
                 <div className="font-bold text-3xl">Masuk ke Akunmu</div>
                 <div className="py-3">
@@ -77,7 +84,7 @@ function Login() {
                 </div>
               </div>
               <div className="px-6">
-                <form role="form" onSubmit={(e) => e.preventDefault()}>
+                <form role="form">
                   <div className="">
                     <div className="py-2">Email</div>
                     <div className="flex items-center">

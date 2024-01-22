@@ -13,10 +13,9 @@ const FullSearchTickets: React.FC = () => {
     <>
       <div className="mx-auto mt-5">
         <div
-          className="w-10/12   mx-auto relative radius-lg  rounded-md px-5 pt-3"
+          className="w-10/12 mx-auto relative radius-lg rounded-md px-5 py-3"
           style={{
             backgroundImage: `url(${bgPrimary})`,
-            height: "190px",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
           }}
