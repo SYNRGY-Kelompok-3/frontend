@@ -43,7 +43,7 @@ function LoginHooks() {
 
       if (email === "" || password === "") {
         setLoginError({
-          message: "Email dan Password wajib diisi!",
+          message: "Email dan Password Wajib Diisi!",
           status: "empty",
         });
         return; // Stop execution if email or password is empty
