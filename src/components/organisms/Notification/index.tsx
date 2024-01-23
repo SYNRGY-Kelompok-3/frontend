@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import Image from "src/components/atoms/Img";
 import Bell from "src/assets/Bell.svg";
 
@@ -47,11 +48,19 @@ function Notification() {
         {isOpen && (
           <div
             ref={modalRef}
-            className="bg-white rounded-lg shadow-lg p-4 w-[200px] absolute top-[70px] right-[190px]"
+            className="bg-white rounded-lg shadow-lg w-[200px] absolute top-[70px] right-[190px]"
           >
-            <ul className="space-y-3">
-              <li className="cursor-pointer">Notification</li>
-            </ul>
+            <div className="p-4">
+              <ul className="space-y-3">
+                <li className="cursor-pointer">Notification</li>
+              </ul>
+            </div>
+            <Link
+              to="/notifikasi"
+              className="flex justify-center bg-sky-100 py-2 rounded-b-lg hover:text-white hover:bg-sky-600"
+            >
+              View More
+            </Link>
           </div>
         )}
       </div>
