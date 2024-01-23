@@ -25,8 +25,8 @@ function Login() {
   return (
     <PublicProvider>
       <main>
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          <div className="hidden lg:flex">
+        <div className="grid grid-cols-1 lg:flex lg:justify-between lg:items-center">
+          <div className="hidden lg:w-[50%] lg:flex h-screen">
             <div className="h-screen bg-[url('src/assets/bglogin.png')] bg-cover">
               <div className="h-full bg-violet-500 bg-opacity-20">
                 <div className="py-[160px] flex justify-center">
@@ -47,15 +47,15 @@ function Login() {
               </div>
             </div>
           </div>
-          <div className="bg-[url('src/assets/bglogin.png')] bg-cover lg:bg-none m-4">
-            <div className="flex justify-center xl:hidden mt-[100px]">
+          <div className="w-[100%] lg:w-[50%] bg-[url('src/assets/bglogin.png')] bg-cover lg:bg-none lg:m-4 h-screen lg:h-full">
+            <div className="flex justify-center lg:hidden mt-[100px]">
               <Link to="/" className="flex justify-center items-center">
                 <Image src={LogoBlue} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
                 <div className="text-[#075efd] font-bold text-3xl">Travel.id</div>
               </Link>
             </div>
-            <div className="my-[50px] xl:my-[200px] flex justify-center">
-              <div className="w-[90%] xl:w-[100%] flex-col min-w-0 break-words bg-white xl:bg-transparent border-0 lg:py4 dark:bg-gray-950 rounded-2xl bg-clip-border shadow-lg">
+            <div className="flex justify-center mt-[50px]">
+              <div className="w-[90%] lg:w-[100%] flex-col min-w-0 break-words bg-white xl:bg-transparent border-0 lg:py-4 dark:bg-gray-950 rounded-2xl bg-clip-border shadow-lg">
                 <div className="p-6 pb-0 mb-0">
                   <div className="font-bold text-2xl sm:text-3xl">Masuk ke Akunmu</div>
                   <div className="py-3">
