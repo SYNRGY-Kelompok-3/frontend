@@ -21,7 +21,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
   return (
     <>
       <nav className={`${bg} bg-cover`}>
-        <div className="px-10 xl:px-28 py-5 flex justify-between items-center">
+        <div className="px-8 sm:px-10 xl:px-28 py-5 flex justify-between items-center">
           <NavLink to="/" className="flex items-center z-20">
             <Image
               src={bg === "bg-white shadow-md" ? LogoBlue : Logo}
