@@ -14,3 +14,10 @@ export const STATUS_CODE: Record<StatusCode, string> = {
 
 export const PAGE_SIZE = 5;
 export const DEFAULT_CURRENCY = `Rp `;
+
+export const ARTICLE_FILTER = {
+  SEMUA: "Semua",
+  TERBARU: "Terbaru",
+  WISATA: "Wisata",
+  KULINER: "Kuliner",
+};

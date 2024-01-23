@@ -8,11 +8,12 @@ import Card from "src/assets/Artikel/card.jpg";
 import Gambar from "src/assets/Artikel/hero-bg.jpg";
 import Carousel from "src/assets/Artikel/carousel-img.jpg";
 import ChevronRight from "src/assets/ChevronRight.svg";
+import { ARTICLE_FILTER } from "src/constants";
 
 function Artikel() {
   const breadcrumbSteps = [{ text: "Artikel", link: "/artikel" }, { text: "" }];
 
-  const [activeFilter, setActiveFilter] = useState("Semua");
+  const [activeFilter, setActiveFilter] = useState(ARTICLE_FILTER.SEMUA);
 
   const totalSlides = 3;
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -54,37 +55,37 @@ function Artikel() {
             <div className="flex flex-col items-center justify-center mt-5 space-x-4 text-lg font-medium sm:flex-row sm:space-x-4">
               <button
                 className={`filter-button ${
-                  activeFilter === "Semua" &&
+                  activeFilter === ARTICLE_FILTER.SEMUA &&
                   "active-filter bg-white bg-opacity-20 px-3 py-2 rounded-md border-solid border-2 border-white "
                 }`}
-                onClick={() => handleFilterChange("Semua")}
+                onClick={() => handleFilterChange(ARTICLE_FILTER.SEMUA)}
               >
                 Semua
               </button>
               <button
                 className={`filter-button ${
-                  activeFilter === "Terbaru" &&
+                  activeFilter === ARTICLE_FILTER.TERBARU &&
                   "active-filter bg-white bg-opacity-20 px-3 py-2 rounded-md border-solid border-2 border-white "
                 }`}
-                onClick={() => handleFilterChange("Terbaru")}
+                onClick={() => handleFilterChange(ARTICLE_FILTER.TERBARU)}
               >
                 Terbaru
               </button>
               <button
                 className={`filter-button ${
-                  activeFilter === "Wisata" &&
+                  activeFilter === ARTICLE_FILTER.WISATA &&
                   "active-filter bg-white bg-opacity-20 px-3 py-2 rounded-md border-solid border-2 border-white "
                 }`}
-                onClick={() => handleFilterChange("Wisata")}
+                onClick={() => handleFilterChange(ARTICLE_FILTER.WISATA)}
               >
                 Wisata
               </button>
               <button
                 className={`filter-button ${
-                  activeFilter === "Kuliner" &&
+                  activeFilter === ARTICLE_FILTER.KULINER &&
                   "active-filter bg-white bg-opacity-20 px-3 py-2 rounded-md border-solid border-2 border-white "
                 }`}
-                onClick={() => handleFilterChange("Kuliner")}
+                onClick={() => handleFilterChange(ARTICLE_FILTER.KULINER)}
               >
                 Kuliner
               </button>
