@@ -6,22 +6,26 @@ const TentangKami = () => {
 
   return (
     <>
-      <main className="mx-auto mt-5 md:mx-8 lg:mx-28">
-        <Breadcrumb steps={breadcrumbSteps} />
-        <div className="relative">
+      <Breadcrumb steps={breadcrumbSteps} />
+      <main className="mx-4 md:mx-28">
+        <div className="relative w-full my-5 mb-5 overflow-hidden text-center rounded-xl">
           <Figure
-            src={"https://i.ibb.co/LzK5QZv/tentang-Kami-bg.jpg"}
+            src="https://i.ibb.co/LzK5QZv/tentang-Kami-bg.jpg"
             alt={"Thumbnail Tentang Kami"}
-            className={"w-full md:w-fit rounded-xl my-5 mx-auto text-center"}
+            className={"w-full h-[400px] sm:h-[580px] object-cover rounded-xl"}
+            caption={""}
+            captionClass={"text-center mb-5"}
           />
 
-          <div className="absolute hidden p-4 text-center text-white transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-20 top-1/2 left-1/2 rounded-xl md:w-2/3 sm:block">
-            <h2 className="mb-2 text-lg font-bold md:text-2xl lg:text-3xl sm:text-xl">
-              Perjalanan Travel Indonesia
-            </h2>
-            <p className="text-sm md:text-base lg:text-lg">
-              Mengenal orang dibalik layar travel indonesia dalam meraih pencapaian
-            </p>
+          <div className="absolute text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-xl md:w-2/3 sm:block">
+            <div className="p-4 bg-white bg-opacity-20">
+              <h2 className="mb-2 text-lg font-bold md:text-2xl lg:text-3xl sm:text-xl md:sm:text-2xl">
+                Perjalanan Travel Indonesia
+              </h2>
+              <p className="text-sm md:text-base lg:text-lg sm:text-sm md:sm:text-base lg:sm:text-lg">
+                Mengenal orang dibalik layar travel indonesia dalam meraih pencapaian
+              </p>
+            </div>
           </div>
         </div>
 
