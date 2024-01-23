@@ -1,4 +1,4 @@
-import Profiles from "../../components/organisms/Profil";
+import Profiles from "src/components/organisms/Profil";
 
 function Profile() {
   return (

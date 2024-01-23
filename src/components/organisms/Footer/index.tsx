@@ -16,8 +16,8 @@ function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-5">
             <div className="">
               <Link to="/" className="flex items-center">
-                <Image src={Logo} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
-                <div className="text-[#075efd] font-bold text-3xl">Travel.id</div>
+                <Image src={Logo} alt={"logo"} className={"w-[20px] h-[20px] md:w-[25px] md:h-[25px] mr-2"} />
+                <div className="text-[#075efd] font-bold text-2xl md:text-3xl">Travel.id</div>
               </Link>
               <div className="text-[#075efd] font-semibold mt-[30px]">Address:</div>
               <div className="text-black mt-1 mb-5">
@@ -39,7 +39,7 @@ function Footer() {
               </div>
             </div>
             <div className="">
-              <div className="grid grid-cols-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3">
                 <div className="">
                   <div>
                     <Link to="/" className="self-stretch text-[#075efd] font-semibold">

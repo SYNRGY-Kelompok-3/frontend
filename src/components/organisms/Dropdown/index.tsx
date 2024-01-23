@@ -57,27 +57,27 @@ function DropdownMenu() {
             <Image src={Avatar} alt={"avatar-img"} className={""} />
             <div className="absolute inset-0 rounded-full shadow-inner"></div>
           </div>
-          <p className="text-base font-normal ml-2">Hi, Charles</p>
+          <p className="hidden sm:block text-base font-normal ml-2">Hi, Charles</p>
           <Image src={ChevronDown} alt={"chevron"} className={"ml-2"} />
         </div>
         {isOpen && (
           <div ref={modalRef} className="bg-white rounded-lg shadow-lg p-4 w-40 absolute top-11">
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               <li
                 onClick={() => navigate("/profile")}
-                className="cursor-pointer rounded hover:bg-gray-300 hover:text-white"
+                className="cursor-pointer rounded py-2 px-3 hover:bg-gray-300 hover:text-white"
               >
                 Profile
               </li>
               <li
                 onClick={() => navigate("/settings")}
-                className="cursor-pointer rounded hover:bg-gray-300 hover:text-white"
+                className="cursor-pointer rounded py-2 px-3 hover:bg-gray-300 hover:text-white"
               >
                 Settings
               </li>
               <li
                 onClick={handleLogout}
-                className="text-red-500 cursor-pointer rounded hover:bg-red-500 hover:text-white"
+                className="text-red-500 py-2 px-3 cursor-pointer rounded hover:bg-red-500 hover:text-white hover:font-bold"
               >
                 Logout
               </li>

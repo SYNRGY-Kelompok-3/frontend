@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import Breadcrumb from "src/components/atoms/Breadcrumb";
-import Button from "../../components/atoms/Button";
-import Steper from "../../components/atoms/Stepper";
-import AccordionComponent from "../../components/atoms/Accordion";
-import ConfirmPayment from "../../components/organisms/PopUp/confirmPayment";
-import Alert from "../../components/atoms/Alert";
+import Button from "src/components/atoms/Button";
+import Steper from "src/components/atoms/Stepper";
+import AccordionComponent from "src/components/atoms/Accordion";
+import ConfirmPayment from "src/components/organisms/PopUp/confirmPayment";
+import Alert from "src/components/atoms/Alert";
 
 function Payment() {
   const breadcrumbSteps = [

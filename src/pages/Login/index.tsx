@@ -25,8 +25,8 @@ function Login() {
   return (
     <PublicProvider>
       <main>
-        <div className="grid grid-cols-1 xl:grid-cols-2">
-          <div className="hidden xl:flex">
+        <div className="grid grid-cols-1 lg:flex lg:justify-between lg:items-center">
+          <div className="hidden lg:w-[50%] lg:flex h-screen">
             <div className="h-screen bg-[url('src/assets/bglogin.png')] bg-cover">
               <div className="h-full bg-violet-500 bg-opacity-20">
                 <div className="py-[160px] flex justify-center">
@@ -47,19 +47,19 @@ function Login() {
               </div>
             </div>
           </div>
-          <div className="bg-[url('src/assets/bglogin.png')] bg-cover xl:bg-none m-4">
-            <div className="flex justify-center xl:hidden mt-[100px]">
+          <div className="w-[100%] lg:w-[50%] bg-[url('src/assets/bglogin.png')] bg-cover lg:bg-none lg:m-4 h-screen lg:h-full">
+            <div className="flex justify-center lg:hidden mt-[100px]">
               <Link to="/" className="flex justify-center items-center">
                 <Image src={LogoBlue} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
                 <div className="text-[#075efd] font-bold text-3xl">Travel.id</div>
               </Link>
             </div>
-            <div className="my-[100px] xl:my-[200px] flex justify-center">
-              <div className="w-[65%] xl:w-[100%] flex-col min-w-0 break-words bg-white xl:bg-transparent border-0 lg:py4 dark:bg-gray-950 rounded-2xl bg-clip-border shadow">
+            <div className="flex justify-center mt-[50px]">
+              <div className="w-[90%] lg:w-[100%] flex-col min-w-0 break-words bg-white xl:bg-transparent border-0 lg:py-4 dark:bg-gray-950 rounded-2xl bg-clip-border shadow-lg">
                 <div className="p-6 pb-0 mb-0">
-                  <div className="font-bold text-3xl">Masuk ke Akunmu</div>
+                  <div className="font-bold text-2xl sm:text-3xl">Masuk ke Akunmu</div>
                   <div className="py-3">
-                    <p className="leading-normal">
+                    <p className="leading-normal text-sm sm:text-md">
                       Nikmati perjalananmu bersama kami. Belum punya akun?
                       <Link
                         to="/register"
@@ -69,19 +69,9 @@ function Login() {
                       </Link>
                     </p>
                   </div>
-                  {loginError.status === "empty" ? (
+                  {loginError.status ? (
                     <div className="py-3">
-                      <p className="leading-normal text-red-600">Email dan Password tidak boleh Kosong!</p>
-                    </div>
-                  ) : null}
-                  {loginError.status === "success" ? (
-                    <div className="py-3">
-                      <p className="leading-normal text-lime-500">Login Berhasil!</p>
-                    </div>
-                  ) : null}
-                  {loginError.status === "error" ? (
-                    <div className="py-3">
-                      <p className="leading-normal text-red-500">Email atau Password Salah!</p>
+                      <p className="leading-normal text-lime-500">{loginError.message}</p>
                     </div>
                   ) : null}
                 </div>
@@ -134,14 +124,18 @@ function Login() {
                     </div>
                     <div className="pt-5 flex justify-between items-center text-left min-h-6 ">
                       <div className="flex items-center">
-                        <input id="rememberMe" className="w-5 h-5 mt-0.5 rounded" type="checkbox" />
-                        <label className="ml-2 font-normal cursor-pointer select-none text-slate-700">
+                        <input
+                          id="rememberMe"
+                          className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 rounded"
+                          type="checkbox"
+                        />
+                        <label className="text-sm sm:text-lg ml-2 font-normal cursor-pointer select-none text-slate-700">
                           Remember me
                         </label>
                       </div>
                       <Link
                         to="/lupa-password"
-                        className="font-semibold text-transparent bg-clip-text bg-gradient-to-tl from-blue-500 to-violet-500"
+                        className="text-sm sm:text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-tl from-blue-500 to-violet-500"
                       >
                         Lupa Password?
                       </Link>

@@ -13,7 +13,7 @@ function Figure({ src, className, alt, caption, captionClass }: FigureProps) {
     <>
       <figure>
         <Image src={src} alt={alt} className={className} />
-        <figcaption className={`text-xl ${captionClass}`}>{caption}</figcaption>
+        <figcaption className={`text-sm sm:text-xl ${captionClass}`}>{caption}</figcaption>
       </figure>
     </>
   );
