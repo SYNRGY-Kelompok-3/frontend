@@ -57,7 +57,7 @@ function DropdownMenu() {
             <Image src={Avatar} alt={"avatar-img"} className={""} />
             <div className="absolute inset-0 rounded-full shadow-inner"></div>
           </div>
-          <p className="text-base font-normal ml-2">Hi, Charles</p>
+          <p className="hidden sm:block text-base font-normal ml-2">Hi, Charles</p>
           <Image src={ChevronDown} alt={"chevron"} className={"ml-2"} />
         </div>
         {isOpen && (

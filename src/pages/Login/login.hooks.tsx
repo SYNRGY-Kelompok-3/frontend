@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
+
 import { axiosAuth } from "src/services/axios";
+import { STATUS_CODE } from "src/constants/common";
 
 interface ILogin {
   message?: string;
@@ -42,10 +44,10 @@ function LoginHooks() {
     try {
       console.log(email, password);
 
-      if (email === "" || password === "") {
+      if (!email || !password) {
         setLoginError({
           message: "Email dan Password Wajib Diisi!",
-          status: "error",
+          status: STATUS_CODE[400],
         });
         return; // Stop execution if email or password is empty
       }
@@ -53,7 +55,7 @@ function LoginHooks() {
       if (!re.test(email)) {
         setLoginError({
           message: "Email Tidak Valid!",
-          status: "error",
+          status: STATUS_CODE[400],
         });
         return;
       }
@@ -66,7 +68,7 @@ function LoginHooks() {
       // let config = {
       //   method: 'post',
       //   maxBodyLength: Infinity,
-      //   url: `${axiosAuth.defaults.baseURL}/v1/user-login/login/`,
+      //   url: `${axiosAuth.defaults.baseURL}v1/user-login/login/`,
       //   headers: {
       //     'Content-Type': 'application/json'
       //   },
@@ -81,7 +83,7 @@ function LoginHooks() {
       //     console.log(error);
       //   });
 
-      const response = await axios.post(`${axiosAuth.defaults.baseURL}/v1/user-login/login/`, {
+      const response = await axios.post(`${axiosAuth.defaults.baseURL}v1/user-login/login/`, {
         username: email,
         password: password,
       });
@@ -89,13 +91,13 @@ function LoginHooks() {
       if (response.data.access_token) {
         setLoginError({
           message: "Login Berhasil!",
-          status: "success",
+          status: STATUS_CODE[200],
         });
         localStorage.setItem("token", response?.data.access_token);
       } else {
         setLoginError({
           message: "Email atau Password Salah!",
-          status: "error",
+          status: STATUS_CODE[404],
         });
         return;
       }
@@ -103,13 +105,13 @@ function LoginHooks() {
       if (error instanceof AxiosError) {
         setLoginError({
           message: error.response?.data.message,
-          status: "error",
+          status: STATUS_CODE[500],
         });
       }
 
       setLoginError({
         message: "Login Gagal, Terjadi Kesalahan!",
-        status: "error",
+        status: STATUS_CODE[500],
       });
     }
   };

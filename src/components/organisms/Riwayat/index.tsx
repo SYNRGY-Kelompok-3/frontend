@@ -4,13 +4,14 @@ import ChevronRight from "src/assets/ChevronRight.svg";
 import Departure from "src/assets/FilterHome/plane-departure.png";
 
 import { useNavigate } from "react-router-dom";
+import { DEFAULT_CURRENCY } from "src/constants/common";
 
 function Riwayat() {
   const navigate = useNavigate();
 
   return (
     <>
-      <div className="flex-1 p-10 border-2 rounded-md m-4 xl:h-screen">
+      <div className="flex-1 p-10 border-2 rounded-md m-4 h-screen">
         <h1 className="text-2xl font-bold mb-4">Riwayat Transaksi</h1>
         <div className="">
           <div
@@ -37,7 +38,7 @@ function Riwayat() {
                 <div className="flex justify-start lg:justify-end ">
                   <p className="text-white w-fit bg-[#18AF5E] py-1 px-2 rounded-lg text-[18px]">Berhasil</p>
                 </div>
-                <p className="text-[#3E7BFA] text-[24px] font-semibold">Rp. 1.000.000</p>
+                <p className="text-[#3E7BFA] text-[24px] font-semibold">{DEFAULT_CURRENCY}. 1.000.000</p>
               </div>
               <div>
                 <Image src={ChevronRight} alt={"chevron"} className={"h-[40px]"} />

@@ -1,6 +1,6 @@
 import Breadcrumb from "src/components/atoms/Breadcrumb";
-import StepsOrder from "../../components/organisms/Steps";
-import Order from "../../components/organisms/Order";
+import StepsOrder from "src/components/organisms/Steps";
+import Order from "src/components/organisms/Order";
 import { useState } from "react";
 import Backdrop from "src/components/atoms/Backdrop";
 import SeatModal from "src/components/organisms/SeatModal";

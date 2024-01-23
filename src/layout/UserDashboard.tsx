@@ -3,7 +3,7 @@ import Sidebar from "src/components/molecules/Sidebar";
 
 function Layout() {
   return (
-    <div className="flex h-fit">
+    <div className="grid sm:flex h-fit">
       <Sidebar />
       <Outlet />
     </div>

@@ -5,7 +5,7 @@ function Home() {
     <>
       <main>
         <div className="flex justify-center align-center">
-          <h2 className="w-[80%] xl:w-[58%] text-white text-center font-semibold text-5xl md:text-6xl mt-[50px]">
+          <h2 className="w-[80%] xl:w-[58%] text-white text-center font-semibold text-4xl md:text-6xl mt-[30px] sm:mt-[50px]">
             Cari Tiket Murah dan Cepat Bersama Kami
           </h2>
         </div>

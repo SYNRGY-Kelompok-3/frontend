@@ -33,7 +33,7 @@ function Profil() {
 
   return (
     <>
-      <div className="flex-1 p-10 border-2 rounded-md m-4 xl:h-screen">
+      <div className="flex-1 p-10 border-2 rounded-md m-4 h-screen">
         <h1 className="text-2xl font-bold mb-4">Profil Akun</h1>
 
         <div className="col-span-12 mb-4 text-center">
