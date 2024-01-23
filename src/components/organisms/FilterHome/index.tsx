@@ -49,8 +49,8 @@ function Filter({ isFilterMore }: IFilterHome) {
             </div>
             <div className="flex justify-center gap-2.5 self-stretch">
               <div className="w-full gap-3 self-stretch p-4 rounded-tr-xl rounded-bl-xl rounded-br-xl bg-white">
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 items-center gap-5 self-stretch">
-                  <div className="justify-start py-1 sm:py-4 rounded-bl-xl bg-white">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 items-center gap-1 sm:gap-2 self-stretch">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Departure} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Dari</div>
@@ -67,7 +67,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                       <option value="bali">Bali</option>
                     </select>
                   </div>
-                  <div className="justify-start py-1 sm:py-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Arrival} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
@@ -84,7 +84,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                       <option value="bali">Bali</option>
                     </select>
                   </div>
-                  <div className="justify-start py-1 sm:py-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Passanger} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
@@ -99,7 +99,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                       <option value="1">1</option>
                     </select>
                   </div>
-                  <div className="justify-start py-1 sm:py-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
@@ -110,7 +110,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     />
                   </div>
                   <div
-                    className={`flex-col justify-start py-1 sm:py-4 rounded-bl-xl bg-white ${
+                    className={`flex-col justify-start py-1 lg:py-2 rounded-bl-xl bg-white ${
                       !value ? "cursor-not-allowed opacity-50" : ""
                     }`}
                   >
@@ -127,7 +127,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                       }`}
                     />
                   </div>
-                  <div className="justify-start py-1 sm:py-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Class} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
@@ -150,7 +150,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                   type={"button"}
                   content={"Cari Tiket"}
                   className={
-                    "w-full flex justify-center items-center self-stretch pl-[3.4375rem] pr-[3.4375rem] mt-2 sm:mt-0 py-2 sm:py-5 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium text-lg"
+                    "w-full flex justify-center items-center self-stretch pl-[3.4375rem] pr-[3.4375rem] mt-2 sm:mt-3 py-2 sm:py-5 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium text-lg"
                   }
                 />
               </div>
@@ -164,8 +164,8 @@ function Filter({ isFilterMore }: IFilterHome) {
           >
             <div className="flex justify-center gap-2.5 self-stretch">
               <div className="w-full gap-3 self-stretch p-4 rounded-lg bg-white">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 items-center gap-2.5 self-stretch">
-                  <div className="justify-start py-1 sm:py-4 rounded-bl-xl bg-white">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 items-center gap-1 sm:gap-2 self-stretch">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Departure} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Dari</div>
@@ -182,7 +182,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                       <option value="bali">Bali</option>
                     </select>
                   </div>
-                  <div className="justify-start py-1 sm:py-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Departure} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
@@ -199,7 +199,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                       <option value="bali">Bali</option>
                     </select>
                   </div>
-                  <div className="justify-start py-1 sm:py-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
@@ -209,7 +209,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                       className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
                     />
                   </div>
-                  <div className="justify-start py-1 sm:py-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
@@ -221,7 +221,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                       className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
                     />
                   </div>
-                  <div className="justify-start py-1 sm:py-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <Button
                       onClick={onSearchTicket}
                       type={"button"}
