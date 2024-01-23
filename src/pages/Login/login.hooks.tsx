@@ -1,13 +1,12 @@
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
+import { axiosAuth } from "src/services/axios";
 
 interface ILogin {
   message?: string;
   status?: string;
 }
 function LoginHooks() {
-  const { VITE_APP_API_URL } = import.meta.env;
-
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordType, setPasswordType] = useState<string>("password");
@@ -59,7 +58,7 @@ function LoginHooks() {
       // let config = {
       //   method: 'post',
       //   maxBodyLength: Infinity,
-      //   url: `${VITE_APP_API_URL}/v1/user-login/login/`,
+      //   url: `${axiosAuth.defaults.baseURL}/v1/user-login/login/`,
       //   headers: {
       //     'Content-Type': 'application/json'
       //   },
@@ -74,7 +73,7 @@ function LoginHooks() {
       //     console.log(error);
       //   });
 
-      const response = await axios.post(`${VITE_APP_API_URL}/v1/user-login/login/`, {
+      const response = await axios.post(`${axiosAuth.defaults.baseURL}/v1/user-login/login/`, {
         username: email,
         password: password,
       });
