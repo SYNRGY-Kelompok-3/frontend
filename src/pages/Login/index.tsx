@@ -69,19 +69,14 @@ function Login() {
                       </Link>
                     </p>
                   </div>
-                  {loginError.status === "empty" ? (
-                    <div className="py-3">
-                      <p className="leading-normal text-red-600">Email dan Password tidak boleh Kosong!</p>
-                    </div>
-                  ) : null}
                   {loginError.status === "success" ? (
                     <div className="py-3">
-                      <p className="leading-normal text-lime-500">Login Berhasil!</p>
+                      <p className="leading-normal text-lime-500">{loginError.message}</p>
                     </div>
                   ) : null}
                   {loginError.status === "error" ? (
                     <div className="py-3">
-                      <p className="leading-normal text-red-500">Email atau Password Salah!</p>
+                      <p className="leading-normal text-red-500">{loginError.message}</p>
                     </div>
                   ) : null}
                 </div>

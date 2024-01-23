@@ -45,14 +45,22 @@ function LoginHooks() {
       if (email === "" || password === "") {
         setLoginError({
           message: "Email dan Password Wajib Diisi!",
-          status: "empty",
+          status: "error",
         });
         return; // Stop execution if email or password is empty
       }
 
+      if (!re.test(email)) {
+        setLoginError({
+          message: "Email Tidak Valid!",
+          status: "error",
+        });
+        return;
+      }
+
       // let data = JSON.stringify({
-      //   "username": "ferdyansahalfariz@gmail.com",
-      //   "password": "Password1"
+      //   "username": email,
+      //   "password": password
       // });
 
       // let config = {
@@ -78,19 +86,31 @@ function LoginHooks() {
         password: password,
       });
 
-      setLoginError({
-        message: "Login Berhasil!",
-        status: "success",
-      });
-
-      localStorage.setItem("token", response?.data?.access_token);
+      if (response.data.access_token) {
+        setLoginError({
+          message: "Login Berhasil!",
+          status: "success",
+        });
+        localStorage.setItem("token", response?.data.access_token);
+      } else {
+        setLoginError({
+          message: "Email atau Password Salah!",
+          status: "error",
+        });
+        return;
+      }
     } catch (error) {
       if (error instanceof AxiosError) {
         setLoginError({
-          message: error.response?.data.message || "Login Gagal!",
+          message: error.response?.data.message,
           status: "error",
         });
       }
+
+      setLoginError({
+        message: "Login Gagal, Terjadi Kesalahan!",
+        status: "error",
+      });
     }
   };
 
