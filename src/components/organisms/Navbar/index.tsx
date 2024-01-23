@@ -97,16 +97,20 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
                     <Navmenu bg={"bg-white shadow-md"} className={"text-start text-xl"} />
                   </div>
                 </div>
-                <div className="flex w-full">
-                  <Button
-                    onClick={() => navigate("/register")}
-                    type={"button"}
-                    className={
-                      "w-full bg-gradient-to-r from-blue-500 to-sky-400 text-white font-medium text-xl my-8 mx-10 py-2 px-4 rounded-md hover:from-blue-600 hover:to-cyan-500 transition-all duration-500 ease-in-out hover:scale-[1.02]"
-                    }
-                    content={"Daftar Sekarang"}
-                  />
-                </div>
+                {token ? (
+                  <></>
+                ) : (
+                  <div className="flex w-full">
+                    <Button
+                      onClick={() => navigate("/register")}
+                      type={"button"}
+                      className={
+                        "w-full bg-gradient-to-r from-blue-500 to-sky-400 text-white font-medium text-xl my-8 mx-10 py-2 px-4 rounded-md hover:from-blue-600 hover:to-cyan-500 transition-all duration-500 ease-in-out hover:scale-[1.02]"
+                      }
+                      content={"Daftar Sekarang"}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
