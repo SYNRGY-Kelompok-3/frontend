@@ -49,7 +49,7 @@ function Filter({ isFilterMore }: IFilterHome) {
             </div>
             <div className="flex justify-center gap-2.5 self-stretch">
               <div className="w-full gap-3 self-stretch p-4 rounded-tr-xl rounded-bl-xl rounded-br-xl bg-white">
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 items-center gap-2.5 self-stretch">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 items-center gap-5 self-stretch">
                   <div className="justify-start py-1 sm:py-4 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Departure} alt={"Departure"} className="h-[15px] mr-2" />
