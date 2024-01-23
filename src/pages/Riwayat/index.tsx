@@ -1,14 +1,14 @@
 import PrivateProvider from "../PrivateProvider";
-import Profiles from "src/components/organisms/Profil";
+import Histories from "src/components/organisms/Riwayat";
 
-function Profile() {
+function Riwayat() {
   return (
     <>
       <PrivateProvider>
-        <Profiles />
+        <Histories />
       </PrivateProvider>
     </>
   );
 }
 
-export default Profile;
+export default Riwayat;
