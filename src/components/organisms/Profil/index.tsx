@@ -33,7 +33,7 @@ function Profil() {
 
   return (
     <>
-      <div className="flex-1 p-10 border-2 rounded-md m-4 mb-36">
+      <div className="flex-1 p-10 border-2 rounded-md m-4 mb-">
         <h1 className="text-2xl font-bold mb-4">Profil Akun</h1>
 
         <div className="col-span-12 mb-4 text-center">
@@ -69,8 +69,8 @@ function Profil() {
           />
         </div>
 
-        <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-6 mb-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="space-y-2">
             <label>
               Nama Depan<span className="text-red-500">*</span>
             </label>
@@ -80,7 +80,7 @@ function Profil() {
               className="border rounded p-2 w-full border-gray-300"
             />
           </div>
-          <div className="col-span-6 mb-4">
+          <div className="space-y-2">
             <label>Nama Belakang</label>
             <input
               type="text"
@@ -88,7 +88,7 @@ function Profil() {
               className="border rounded p-2 w-full border-gray-300"
             />
           </div>
-          <div className="col-span-6 mb-4">
+          <div className="space-y-2">
             <label>
               Nomor Handphone<span className="text-red-500">*</span>
             </label>
@@ -98,7 +98,7 @@ function Profil() {
               className="border rounded p-2 w-full border-gray-300"
             />
           </div>
-          <div className="col-span-6 mb-4">
+          <div className="space-y-2">
             <label>
               Email<span className="text-red-500">*</span>
             </label>
@@ -109,7 +109,7 @@ function Profil() {
               className="border rounded p-2 w-full text-gray-700 bg-gray-200 border-gray-300"
             />
           </div>
-          <div className="col-span-6 mb-4">
+          <div className="space-y-2">
             <label>
               Tanggal Lahir<span className="text-red-500">*</span>
             </label>
@@ -119,7 +119,7 @@ function Profil() {
               className="border rounded p-2 w-full border-gray-300"
             />
           </div>
-          <div className="col-span-6 mb-4">
+          <div className="space-y-2">
             <label>
               Jenis Kelamin<span className="text-red-500">*</span>
             </label>
@@ -128,12 +128,10 @@ function Profil() {
               <option value="Female">Perempuan</option>
             </select>
           </div>
-          <div className="col-span-12">
-            <button className="bg-blue-500 text-white py-4 px-4 rounded w-full" onClick={handleSubmit}>
-              Simpan
-            </button>
-          </div>
         </div>
+        <button className="bg-blue-500 text-white py-4 px-4 rounded w-full mt-10" onClick={handleSubmit}>
+          Simpan
+        </button>
       </div>
 
       {showPopup && <Popup onClose={closePopup} />}

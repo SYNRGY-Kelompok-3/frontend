@@ -11,7 +11,7 @@ const handleLogout = () => {
 function Sidebar() {
   return (
     <>
-      <aside className="w-1/4 p-4 ml-2 text-lg" style={{ paddingLeft: "6.5rem" }}>
+      <aside className="w-1/4 mt-4 ml-8 sm:ml-10 xl:ml-28 text-lg">
         <ul>
           <li>
             <NavLink
