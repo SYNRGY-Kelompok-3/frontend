@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layouthome from "src/layout/Home";
 import Layoutpage from "src/layout/Page";
-import Layoutcheckout from "src/layout/Checkout";
 
 import Home from "src/pages/Home";
 import Invoice from "src/pages/Invoices";
@@ -30,8 +29,6 @@ function Router() {
             <Route path="/tentang-kami" element={<TentangKami />} />
             <Route path="/artikel" element={<Artikel />} />
             <Route path="/artikel/:id" element={<Detailartikel />} />
-          </Route>
-          <Route element={<Layoutcheckout />}>
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/invoices" element={<Invoice />} />
             <Route path="/profile" element={<Profile />} />
