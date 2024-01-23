@@ -3,8 +3,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import Logo from "src/assets/Logo.png";
 import LogoBlue from "src/assets/LogoBlue.png";
+import Notification from "src/components/organisms/Notification";
+import DropdownMenu from "src/components/organisms/Dropdown";
 import Navmenu from "src/components/molecules/Navmenu";
-
 import Button from "src/components/atoms/Button";
 import Image from "src/components/atoms/Img";
 
@@ -14,6 +15,8 @@ interface NavmenuProps {
 
 function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
   const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
 
   return (
     <>
@@ -37,24 +40,36 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
             <Navmenu bg={bg} className={"text-center text-lg"} />
           </div>
           <div className="flex items-center gap-2">
-            <Button
-              onClick={() => navigate("/register")}
-              type={"button"}
-              className={`hidden lg:flex ${
-                bg === "bg-white shadow-md"
-                  ? "text-black hover:text-white hover:bg-blue-700"
-                  : "text-white hover:bg-white hover:bg-opacity-20"
-              } font-medium text-lg py-2 px-4 rounded-md text-star`}
-              content={"Daftar Sekarang"}
-            />
-            <Button
-              onClick={() => navigate("/login")}
-              type={"button"}
-              className={"bg-blue-600 text-white font-medium text-lg py-2 px-4 rounded-md hover:bg-blue-700"}
-              content={"Masuk"}
-            />
+            {token ? (
+              <div className="flex">
+                <Notification />
+                <DropdownMenu />
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <Button
+                  onClick={() => navigate("/register")}
+                  type={"button"}
+                  className={`hidden lg:flex ${
+                    bg === "bg-white shadow-md"
+                      ? "text-black hover:text-white hover:bg-blue-700"
+                      : "text-white hover:bg-white hover:bg-opacity-20"
+                  } font-medium text-lg py-2 px-4 rounded-md text-star`}
+                  content={"Daftar Sekarang"}
+                />
+                <Button
+                  onClick={() => navigate("/login")}
+                  type={"button"}
+                  className={
+                    "bg-blue-600 text-white font-medium text-lg py-2 px-4 rounded-md hover:bg-blue-700"
+                  }
+                  content={"Masuk"}
+                />
+              </div>
+            )}
+
             <div
-              className={`flex sm:flex lg:hidden items-center justify-end ${
+              className={`flex lg:hidden items-center justify-end ${
                 bg === "bg-white shadow-md" ? "bg-slate-100" : "bg-white bg-opacity-20"
               }  rounded-md`}
             >
