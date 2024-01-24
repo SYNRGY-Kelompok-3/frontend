@@ -1,4 +1,4 @@
-import Invoice from "../../components/organisms/Invoice";
+import Invoice from "src/components/organisms/Invoice";
 
 function Invoices() {
   return (

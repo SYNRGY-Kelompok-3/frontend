@@ -9,9 +9,9 @@ interface BreadcrumbItem {
 
 function Breadcrumb({ steps }: { steps: BreadcrumbItem[] }) {
   return (
-    <section className="container mx-28 mt-8 max-w-[78rem]">
+    <section className="container mx-[20px] mt-5 sm:mt-8 sm:mx-10 md:mx-10 lg:mx-10 xl:mx-28">
       <nav className="text-sm" aria-label="Breadcrumb">
-        <ol className="list-none p-0 inline-flex">
+        <ol className="inline-flex p-0 list-none">
           {steps.map((step, index) => (
             <li key={index} className="flex items-center">
               {step.link ? (

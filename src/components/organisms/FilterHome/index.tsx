@@ -30,7 +30,7 @@ function Filter({ isFilterMore }: IFilterHome) {
       <section>
         {!isFilterMore && (
           <div
-            className={`search flex flex-col justify-center items-start self-stretch p-5 rounded-xl bg-white/[.20] mx-[200px] my-[75px]`}
+            className={`search flex flex-col justify-center items-start self-stretch p-5 rounded-xl bg-white/[.20] m-[20px] sm:m-[40px] xl:mx-[200px]`}
           >
             <div className="flex">
               <div className="flex gap-2.5 p-4 rounded-t-xl bg-white items-center">
@@ -48,9 +48,9 @@ function Filter({ isFilterMore }: IFilterHome) {
               </div>
             </div>
             <div className="flex justify-center gap-2.5 self-stretch">
-              <div className="w-full gap-3 self-stretch p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl bg-white">
-                <div className="flex items-center gap-2.5 self-stretch">
-                  <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
+              <div className="w-full gap-3 self-stretch p-4 rounded-tr-xl rounded-bl-xl rounded-br-xl bg-white">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 items-center gap-1 sm:gap-2 self-stretch">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Departure} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Dari</div>
@@ -59,24 +59,15 @@ function Filter({ isFilterMore }: IFilterHome) {
                       id="kotaasal"
                       className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
-                      <option selected>Masukkan kota atau bandara</option>
-                      <option>Jakarta</option>
-                      <option>Bandung</option>
-                      <option>Surabaya</option>
-                      <option>Yogyakarta</option>
-                      <option>Bali</option>
+                      <option value="">Masukkan kota atau bandara</option>
+                      <option value="jakarta">Jakarta</option>
+                      <option value="bandung">Bandung</option>
+                      <option value="surabaya">Surabaya</option>
+                      <option value="yogyakarta">Yogyakarta</option>
+                      <option value="bali">Bali</option>
                     </select>
                   </div>
-                  <svg
-                    width={2}
-                    height={51}
-                    viewBox="0 0 2 51"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path opacity="0.1" d="M0.666504 0.5V50.5" stroke="#333333" strokeLinecap="round" />
-                  </svg>
-                  <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Arrival} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
@@ -85,24 +76,15 @@ function Filter({ isFilterMore }: IFilterHome) {
                       id="kotatujuan"
                       className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
-                      <option selected>Masukkan kota atau bandara</option>
-                      <option>Jakarta</option>
-                      <option>Bandung</option>
-                      <option>Surabaya</option>
-                      <option>Yogyakarta</option>
-                      <option>Bali</option>
+                      <option value="">Masukkan kota atau bandara</option>
+                      <option value="jakarta">Jakarta</option>
+                      <option value="bandung">Bandung</option>
+                      <option value="surabaya">Surabaya</option>
+                      <option value="yogyakarta">Yogyakarta</option>
+                      <option value="bali">Bali</option>
                     </select>
                   </div>
-                  <svg
-                    width={2}
-                    height={51}
-                    viewBox="0 0 2 51"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path opacity="0.1" d="M0.666504 0.5V50.5" stroke="#333333" strokeLinecap="round" />
-                  </svg>
-                  <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Passanger} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
@@ -114,12 +96,10 @@ function Filter({ isFilterMore }: IFilterHome) {
                       className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
                       <option selected>Masukkan Jumlah Penumpang</option>
-                      <option>1</option>
+                      <option value="1">1</option>
                     </select>
                   </div>
-                </div>
-                <div className="flex items-center gap-2.5 self-stretch">
-                  <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
@@ -129,17 +109,8 @@ function Filter({ isFilterMore }: IFilterHome) {
                       className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
                     />
                   </div>
-                  <svg
-                    width={2}
-                    height={51}
-                    viewBox="0 0 2 51"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path opacity="0.1" d="M0.666504 0.5V50.5" stroke="#333333" strokeLinecap="round" />
-                  </svg>
                   <div
-                    className={`w-[33%] flex-col justify-start p-4 rounded-bl-xl bg-white ${
+                    className={`flex-col justify-start py-1 lg:py-2 rounded-bl-xl bg-white ${
                       !value ? "cursor-not-allowed opacity-50" : ""
                     }`}
                   >
@@ -156,16 +127,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                       }`}
                     />
                   </div>
-                  <svg
-                    width={2}
-                    height={51}
-                    viewBox="0 0 2 51"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path opacity="0.1" d="M0.666504 0.5V50.5" stroke="#333333" strokeLinecap="round" />
-                  </svg>
-                  <div className="w-[33%] justify-start p-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Class} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
@@ -176,10 +138,10 @@ function Filter({ isFilterMore }: IFilterHome) {
                       id="jumlah"
                       className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
-                      <option selected>Pilih Kelas Penerbangan</option>
-                      <option>Economy</option>
-                      <option>Business</option>
-                      <option>First</option>
+                      <option value="">Pilih Kelas Penerbangan</option>
+                      <option value="ekonomi">Economy</option>
+                      <option value="business">Business</option>
+                      <option value="first">First</option>
                     </select>
                   </div>
                 </div>
@@ -188,7 +150,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                   type={"button"}
                   content={"Cari Tiket"}
                   className={
-                    "w-full flex justify-center items-center self-stretch pl-[3.4375rem] pr-[3.4375rem] p-5 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium text-lg"
+                    "w-full flex justify-center items-center self-stretch pl-[3.4375rem] pr-[3.4375rem] mt-2 sm:mt-3 py-2 sm:py-5 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium text-lg"
                   }
                 />
               </div>
@@ -201,9 +163,9 @@ function Filter({ isFilterMore }: IFilterHome) {
             className={`search flex flex-col justify-center items-start self-stretch p-5 rounded-xl bg-white/[.20]  `}
           >
             <div className="flex justify-center gap-2.5 self-stretch">
-              <div className="w-full gap-3 self-stretch p-3 rounded-lg bg-white">
-                <div className="flex items-center gap-2.5 self-stretch">
-                  <div className="w-[20%] justify-start p-4 rounded-bl-xl bg-white">
+              <div className="w-full gap-3 self-stretch p-4 rounded-lg bg-white">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 items-center gap-1 sm:gap-2 self-stretch">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Departure} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Dari</div>
@@ -212,15 +174,15 @@ function Filter({ isFilterMore }: IFilterHome) {
                       id="kotaasal"
                       className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
-                      <option selected>Masukkan kota atau bandara</option>
-                      <option>Jakarta</option>
-                      <option>Bandung</option>
-                      <option>Surabaya</option>
-                      <option>Yogyakarta</option>
-                      <option>Bali</option>
+                      <option value="">Masukkan kota atau bandara</option>
+                      <option value="jakarta">Jakarta</option>
+                      <option value="bandung">Bandung</option>
+                      <option value="surabaya">Surabaya</option>
+                      <option value="yogyakarta">Yogyakarta</option>
+                      <option value="bali">Bali</option>
                     </select>
                   </div>
-                  <div className="w-[20%] justify-start p-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Departure} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
@@ -229,24 +191,15 @@ function Filter({ isFilterMore }: IFilterHome) {
                       id="kotaasal"
                       className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
-                      <option selected>Masukkan kota atau bandara</option>
-                      <option>Jakarta</option>
-                      <option>Bandung</option>
-                      <option>Surabaya</option>
-                      <option>Yogyakarta</option>
-                      <option>Bali</option>
+                      <option value="">Masukkan kota atau bandara</option>
+                      <option value="jakarta">Jakarta</option>
+                      <option value="bandung">Bandung</option>
+                      <option value="surabaya">Surabaya</option>
+                      <option value="yogyakarta">Yogyakarta</option>
+                      <option value="bali">Bali</option>
                     </select>
                   </div>
-                  <svg
-                    width={2}
-                    height={51}
-                    viewBox="0 0 2 51"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path opacity="0.1" d="M0.666504 0.5V50.5" stroke="#333333" strokeLinecap="round" />
-                  </svg>
-                  <div className="w-[20%] justify-start p-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
@@ -256,16 +209,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                       className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
                     />
                   </div>
-                  <svg
-                    width={2}
-                    height={51}
-                    viewBox="0 0 2 51"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path opacity="0.1" d="M0.666504 0.5V50.5" stroke="#333333" strokeLinecap="round" />
-                  </svg>
-                  <div className="w-[20%] justify-start p-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
@@ -277,14 +221,13 @@ function Filter({ isFilterMore }: IFilterHome) {
                       className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
                     />
                   </div>
-
-                  <div className="w-[20%] justify-start p-4 rounded-bl-xl bg-white">
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <Button
                       onClick={onSearchTicket}
                       type={"button"}
                       content={"Cari Tiket"}
                       className={
-                        "w-full flex justify-center items-center self-stretch pl-[3.4375rem] pr-[3.4375rem] p-5 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium text-lg"
+                        "w-full flex justify-center items-center self-stretch pl-[3.4375rem] pr-[3.4375rem] py-2 sm:py-5 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium text-lg"
                       }
                     />
                   </div>
