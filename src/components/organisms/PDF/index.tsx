@@ -3,7 +3,33 @@ import BG1 from "../../../assets/Invoices/BG1.png";
 import BG2 from "../../../assets/Invoices/BG2.png";
 import styles from "./styles/style";
 
-export const MyDocument = () => (
+interface PDFProps {
+  orderNumber: number | string;
+  orderDate: string;
+  bankName: string;
+  accountName: string;
+  accountNumber: number | string;
+  fullName: string;
+  phoneNumber: number | string;
+  emailAddress: string;
+  orderPrice: number | string;
+  serviceFee: number | string;
+  totalPayment: number | string;
+}
+
+export const MyDocument = ({
+  orderNumber,
+  orderDate,
+  bankName,
+  accountName,
+  accountNumber,
+  fullName,
+  phoneNumber,
+  emailAddress,
+  orderPrice,
+  serviceFee,
+  totalPayment,
+}: PDFProps) => (
   <Document>
     <Page style={styles.page}>
       <View style={styles.headerContainer}>
@@ -22,8 +48,8 @@ export const MyDocument = () => (
           </View>
 
           <View style={styles.innerCaptionSecondary}>
-            <Text>1023123412</Text>
-            <Text>01 Januari 2024</Text>
+            <Text>{orderNumber}</Text>
+            <Text>{orderDate}</Text>
           </View>
         </View>
         <View style={styles.divider} />
@@ -38,9 +64,9 @@ export const MyDocument = () => (
           </View>
 
           <View style={styles.innerCaptionSecondary}>
-            <Text>Bank Mandiri</Text>
-            <Text>Charles Wilson</Text>
-            <Text>654234876321</Text>
+            <Text>{bankName}</Text>
+            <Text>{accountName}</Text>
+            <Text>{accountNumber}</Text>
           </View>
         </View>
         <View style={styles.divider} />
@@ -55,9 +81,9 @@ export const MyDocument = () => (
           </View>
 
           <View style={styles.innerCaptionSecondary}>
-            <Text>Tn. Charles Wilson</Text>
-            <Text>085310234121</Text>
-            <Text>travel@gmail.com</Text>
+            <Text>{fullName}</Text>
+            <Text>{phoneNumber}</Text>
+            <Text>{emailAddress}</Text>
           </View>
         </View>
         <View style={styles.divider} />
@@ -66,7 +92,7 @@ export const MyDocument = () => (
 
         <View style={styles.innerContainer}>
           <View style={styles.innerCaptionSpecial}>
-            <Text>Tn. Charles Wilson</Text>
+            <Text>{fullName}</Text>
           </View>
         </View>
         <View style={styles.divider} />
@@ -83,10 +109,10 @@ export const MyDocument = () => (
           </View>
 
           <View style={styles.innerCaptionSecondary}>
-            <Text>Rp1.500.000</Text>
-            <Text>Rp25.000</Text>
+            <Text>Rp. {orderPrice.toLocaleString()}</Text>
+            <Text>Rp. {serviceFee.toLocaleString()}</Text>
             <Text style={{ fontSize: "18px", fontFamily: "Helvetica-Bold", color: "#498cfc" }}>
-              Rp1.525.000
+              Rp. {totalPayment.toLocaleString()}
             </Text>
           </View>
         </View>

@@ -18,6 +18,20 @@ function Invoice() {
     { text: "Selesai", isActive: true },
   ];
 
+  const dummyData = {
+    orderNumber: 1023123412,
+    orderDate: "01 Januari 2024",
+    bankName: "Bank Mandiri",
+    accountName: "Charles Wilson",
+    accountNumber: 654234876321,
+    fullName: "Tn. Charles Wilson",
+    phoneNumber: "085310234121",
+    emailAddress: "travel@gmail.com",
+    orderPrice: 1500000,
+    serviceFee: 25000,
+    totalPayment: 1525000,
+  };
+
   return (
     <>
       <section className="bg-white">
@@ -103,11 +117,11 @@ function Invoice() {
             </div>
           </div>
           <div className="flex justify-between mt-2">
-            <BlobProvider document={<MyDocument />}>
+            <BlobProvider document={<MyDocument {...dummyData} />}>
               {({ url }) => (
                 <a
                   href={url!}
-                  target="_blank"
+                  download={"E-Ticket.pdf"}
                   rel="noopener noreferrer"
                   className={
                     "bg-blue-500 hover:bg-blue-600 text-white font-normal py-3 rounded w-full text-center"
