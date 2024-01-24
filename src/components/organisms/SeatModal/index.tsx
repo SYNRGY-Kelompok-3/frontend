@@ -1,6 +1,6 @@
 import { useState } from "react";
-// import CloseIcon from "../../atoms/Icon";
-import { X } from "lucide-react";
+import CloseIcon from "../../atoms/Icon";
+// import { X } from "lucide-react";
 import Rectangle from "../../atoms/Rectangle";
 import bgBody from "../../../assets/Body_Front.png";
 import SeatLists from "../SeatLists";
@@ -29,11 +29,11 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
   };
 
   return (
-    <div className="w-[698px] bg-white h-fit p-[20px] rounded-lg">
+    <div className="w-[698px] bg-white h-fit p-[20px] rounded-lg mt-[240px]">
       <div className="relative w-full h-full">
         <div className="flex justify-end">
           <button onClick={onClose} className="text-black">
-            <X size={24} />
+            <CloseIcon />
           </button>
         </div>
 
