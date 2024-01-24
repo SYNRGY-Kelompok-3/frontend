@@ -48,7 +48,7 @@ function Notification() {
         {isOpen && (
           <div
             ref={modalRef}
-            className="bg-white rounded-lg shadow-lg w-[200px] absolute top-[70px] right-[190px]"
+            className="bg-white rounded-lg shadow-lg w-[200px] absolute top-[70px] right-[190px] z-20"
           >
             <div className="p-4">
               <ul className="space-y-3">

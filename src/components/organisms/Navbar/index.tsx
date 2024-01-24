@@ -40,31 +40,29 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
     { text: "Pusat Bantuan", link: "/pusat-bantuan" },
   ];
 
-  const [isChecked, setIsChecked] = useState(false);
-  const checkboxRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    // Function to handle click outside the checkbox
-    const handleClickOutside = (event: MouseEvent) => {
-      if (checkboxRef.current && !checkboxRef.current.contains(event.target as Node)) {
-        // Clicked outside the checkbox, uncheck it
-        setIsChecked(false);
-      }
-    };
-
-    // Attach click event listener to the document
-    document.addEventListener("click", handleClickOutside);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
+  const checkboxRef = useRef<HTMLInputElement>(null);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
 
   const handleCheckboxChange = () => {
-    // Toggle the checkbox's checked status
     setIsChecked(!isChecked);
   };
+
+  const handleDocumentClick = (event: MouseEvent) => {
+    const target = event.target as Node;
+
+    // Check if the click is outside the card
+    if (checkboxRef.current && !checkboxRef.current?.contains(target)) {
+      setIsChecked(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
 
   return (
     <>
@@ -122,10 +120,10 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
               }  rounded-md`}
             >
               <input
+                type="checkbox"
                 checked={isChecked}
                 onChange={handleCheckboxChange}
                 ref={checkboxRef}
-                type="checkbox"
                 name="hamburger"
                 id="hamburger"
                 className="sr-only peer"

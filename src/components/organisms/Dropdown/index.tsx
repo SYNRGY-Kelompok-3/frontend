@@ -61,7 +61,7 @@ function DropdownMenu() {
           <Image src={ChevronDown} alt={"chevron"} className={"ml-2"} />
         </div>
         {isOpen && (
-          <div ref={modalRef} className="bg-white rounded-lg shadow-lg p-4 w-40 absolute top-11">
+          <div ref={modalRef} className="bg-white rounded-lg shadow-lg p-4 w-40 absolute top-11 z-20">
             <ul className="space-y-2">
               <li
                 onClick={() => navigate("/profile")}
