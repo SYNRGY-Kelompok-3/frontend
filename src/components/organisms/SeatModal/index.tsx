@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CloseIcon from "../../atoms/Icon";
+import CloseIcon from "src/components/atoms/Icon";
 // import { X } from "lucide-react";
 import Rectangle from "../../atoms/Rectangle";
 import bgBody from "../../../assets/Body_Front.png";

@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "src/assets/Logo.png";
 import LogoBlue from "src/assets/LogoBlue.png";
 import Notification from "src/components/organisms/Notification";
-import DropdownMenu from "src/components/organisms/Dropdown";
+import IconProfile from "src/components/organisms/Dropdown";
 import Navmenu from "src/components/molecules/Navmenu";
 import Button from "src/components/atoms/Button";
 import Image from "src/components/atoms/Img";
@@ -64,7 +64,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
             {token ? (
               <div className="hidden sm:flex">
                 <Notification />
-                <DropdownMenu />
+                <IconProfile />
               </div>
             ) : (
               <div className="flex items-center gap-2">
@@ -119,11 +119,19 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
                     <div className={`text-[#075efd] font-bold text-2xl md:text-3xl ml-2`}>Travel.id</div>
                   </NavLink>
                   <div className="mt-10 flex flex-col space-y-1">
-                    <Navmenu
-                      menu={SideMenu}
-                      bg={"bg-white shadow-md"}
-                      className={"px-5 text-start text-lg sm:text-xl"}
-                    />
+                    {token ? (
+                      <Navmenu
+                        menu={SideMenu}
+                        bg={"bg-white shadow-md"}
+                        className={"px-5 text-start text-lg sm:text-xl"}
+                      />
+                    ) : (
+                      <Navmenu
+                        menu={NavMenu}
+                        bg={"bg-white shadow-md"}
+                        className={"px-5 text-start text-lg sm:text-xl"}
+                      />
+                    )}
                   </div>
                 </div>
                 {token ? (
