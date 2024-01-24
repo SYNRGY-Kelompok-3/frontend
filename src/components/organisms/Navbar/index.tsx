@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NavLink, useNavigate } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
 
 import Logo from "src/assets/Logo.png";
 import LogoBlue from "src/assets/LogoBlue.png";
@@ -38,6 +39,32 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
     { text: "Artikel", link: "/artikel" },
     { text: "Pusat Bantuan", link: "/pusat-bantuan" },
   ];
+
+  const [isChecked, setIsChecked] = useState(false);
+  const checkboxRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    // Function to handle click outside the checkbox
+    const handleClickOutside = (event: MouseEvent) => {
+      if (checkboxRef.current && !checkboxRef.current.contains(event.target as Node)) {
+        // Clicked outside the checkbox, uncheck it
+        setIsChecked(false);
+      }
+    };
+
+    // Attach click event listener to the document
+    document.addEventListener("click", handleClickOutside);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const handleCheckboxChange = () => {
+    // Toggle the checkbox's checked status
+    setIsChecked(!isChecked);
+  };
 
   return (
     <>
@@ -94,7 +121,16 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
                 bg === "bg-white shadow-md" ? "bg-slate-100" : "bg-white bg-opacity-20"
               }  rounded-md`}
             >
-              <input type="checkbox" name="hamburger" id="hamburger" className="sr-only peer" hidden />
+              <input
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+                ref={checkboxRef}
+                type="checkbox"
+                name="hamburger"
+                id="hamburger"
+                className="sr-only peer"
+                hidden
+              />
               <label
                 htmlFor="hamburger"
                 className="peer-checked:hamburger block relative z-20 py-3 px-2 sm:py-4 sm:px-3  rounded-full cursor-pointer lg:hidden"
