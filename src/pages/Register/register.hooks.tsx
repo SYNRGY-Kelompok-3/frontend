@@ -1,6 +1,7 @@
 import { useState } from "react";
 // import axios, { AxiosError } from "axios";
 // import { axiosAuth } from "src/services/axios";
+import { STATUS_CODE } from "src/constants/common";
 
 interface IRegister {
   message?: string;
@@ -67,10 +68,10 @@ function RegisterHooks() {
     try {
       console.log(name, email, password, phoneNumber);
 
-      if (name === "" || email === "" || password === "" || phoneNumber === "") {
+      if (!name || !email || !password || !phoneNumber) {
         setRegisterError({
           message: "Pastikan semua data sudah terisi",
-          status: "empty",
+          status: STATUS_CODE[400],
         });
         return; // Stop execution if data is empty
       }
