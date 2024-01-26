@@ -13,10 +13,10 @@ const FilterFlightTicket = () => {
             </div>
             <div>
               <Checkbox checked={false} label="Garuda" />
-              <Checkbox checked={false} label="Lion" />
-              <Checkbox checked={false} label="Citylink" />
-              <Checkbox checked={false} label="Batik" />
-              <Checkbox checked={false} label="AirAsia" />
+              <Checkbox checked={false} label="Citilink" />
+              <Checkbox checked={false} label="Batik Air" />
+              <Checkbox checked={false} label="Lion Airlines" />
+              <Checkbox checked={false} label="Sriwijaya Air" />
             </div>
           </AccordionContent>
         </AccordionPanel>
