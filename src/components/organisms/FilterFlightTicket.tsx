@@ -58,8 +58,10 @@ const FilterFlightTicket = () => {
               <h1>Pilih Semua</h1>
             </div>
             <div>
-              <Checkbox checked={false} label="Bagasi & Kabin" />
-              <Checkbox checked={false} label="Gratis Makan" />
+              <Checkbox checked={false} label="00:00 - 08:00" />
+              <Checkbox checked={false} label="08:00 - 12:00" />
+              <Checkbox checked={false} label="12.00 - 18:00" />
+              <Checkbox checked={false} label="18:00 - 24:00" />
             </div>
           </AccordionContent>
         </AccordionPanel>
