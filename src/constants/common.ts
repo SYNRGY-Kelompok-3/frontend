@@ -21,3 +21,13 @@ export const ARTICLE_FILTER = {
   WISATA: "Wisata",
   KULINER: "Kuliner",
 };
+
+export const FORGOT_PWD_FLOW = {
+  EMAIL_INPUT: "EMAIL_INPUT",
+  CHECK_EMAIL: "CHECK_EMAIL",
+  INPUT_OTP: "INPUT_OTP",
+  RESET_PASSWORD: "RESET_PASSWORD",
+  END_FLOW: "END_FLOW",
+};
+
+export type TForgotPasswordFlow = "EMAIL_INPUT" | "CHECK_EMAIL" | "INPUT_OTP" | "RESET_PASSWORD" | "END_FLOW";

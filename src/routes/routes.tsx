@@ -20,6 +20,7 @@ import Register from "src/pages/Register";
 import Profile from "src/pages/Profile";
 import Riwayat from "src/pages/Riwayat";
 import Otp from "src/pages/OtpField";
+import ForgotPassword from "src/pages/ForgotPassword";
 
 function Router() {
   return (
@@ -50,6 +51,7 @@ function Router() {
           </Route>
           <Route element={<PublicProvider />}>
             <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
           </Route>
           <Route path="/register" element={<Register />} />
           <Route path="/register/otp" element={<Otp />} />
