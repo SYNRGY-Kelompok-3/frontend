@@ -44,13 +44,13 @@ const Otp: FC<Props> = (): JSX.Element => {
         <div className="hidden xl:flex">
           <div className="min-h-screen bg-[url('src/assets/bglogin.png')] bg-cover">
             <div className="h-full bg-gradient-to-b from-[#3E7BFACF] via-[#2148C0E5] to-[#3E7BFA8A] bg-opacity-20">
-              <div className="py-[160px] flex justify-center">
+              <div className="py-36 flex justify-center">
                 <Link to="/" className="flex justify-center items-center">
                   <Image src={Logo} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
                   <div className={`text-white font-bold text-3xl`}>Travel.id</div>
                 </Link>
               </div>
-              <div className="text-center pt-[60px] pb-[400px] mx-36">
+              <div className="text-center mx-36">
                 <h4 className="font-bold text-3xl text-white leading-10">"Kepuasan Anda Adalah Misi Kami"</h4>
                 <p className="text-white text-xl">
                   Travel.id akan memberikan layanan terbaik dalam menemani perjalanan karena kepuasan anda
@@ -103,7 +103,7 @@ const Otp: FC<Props> = (): JSX.Element => {
                 </div>
                 <div className="flex gap-1">
                   <p className="font-normal">Belum mendapatkan kode? </p>
-                  <Link to="/register/otp" className="text-[#CB3A31]">
+                  <Link to="/register/otp" className="text-[rgb(203,58,49)]">
                     Kirim Ulang
                   </Link>
                 </div>
