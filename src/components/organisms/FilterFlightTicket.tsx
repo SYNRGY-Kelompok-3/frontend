@@ -12,9 +12,9 @@ const FilterFlightTicket = () => {
               <h1>Pilih Semua</h1>
             </div>
             <div>
-              <Checkbox checked={false} label="Garuda Indonesia" />
+              <Checkbox checked={false} label="Garuda" />
               <Checkbox checked={false} label="Citilink" />
-              <Checkbox checked={false} label="Batik Air Indonesia" />
+              <Checkbox checked={false} label="Batik Air" />
               <Checkbox checked={false} label="Lion Airlines" />
               <Checkbox checked={false} label="Sriwijaya Air" />
             </div>
