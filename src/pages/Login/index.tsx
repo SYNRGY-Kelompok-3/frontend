@@ -134,7 +134,7 @@ function Login() {
                         </label>
                       </div>
                       <Link
-                        to="/lupa-password"
+                        to="/forgot-password"
                         className="text-sm sm:text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-tl from-blue-500 to-violet-500"
                       >
                         Lupa Password?

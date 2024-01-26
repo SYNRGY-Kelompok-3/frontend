@@ -18,6 +18,7 @@ import TentangKami from "src/pages/TentangKami";
 
 import Profile from "src/pages/Profile";
 import Riwayat from "src/pages/Riwayat";
+import ForgotPassword from "src/pages/ForgotPassword";
 
 function Router() {
   return (
@@ -47,6 +48,7 @@ function Router() {
           </Route>
           <Route element={<PublicProvider />}>
             <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
           </Route>
         </Routes>
       </BrowserRouter>
