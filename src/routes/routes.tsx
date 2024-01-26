@@ -15,9 +15,12 @@ import FullSearchTickets from "src/pages/FullSearchTickets";
 import Artikel from "src/pages/Artikel";
 import Detailartikel from "src/pages/Detailartikel";
 import TentangKami from "src/pages/TentangKami";
+import Register from "src/pages/Register";
 
 import Profile from "src/pages/Profile";
 import Riwayat from "src/pages/Riwayat";
+import Otp from "src/pages/OtpField";
+import ForgotPassword from "src/pages/ForgotPassword";
 
 function Router() {
   return (
@@ -33,6 +36,7 @@ function Router() {
             <Route path="/tentang-kami" element={<TentangKami />} />
             <Route path="/artikel" element={<Artikel />} />
             <Route path="/artikel/:id" element={<Detailartikel />} />
+
             <Route element={<PrivateProvider />}>
               <Route path="/payment" element={<Payment />} />
               <Route path="/checkout" element={<Checkout />} />
@@ -47,7 +51,10 @@ function Router() {
           </Route>
           <Route element={<PublicProvider />}>
             <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
           </Route>
+          <Route path="/register" element={<Register />} />
+          <Route path="/register/otp" element={<Otp />} />
         </Routes>
       </BrowserRouter>
     </>
