@@ -3,7 +3,6 @@ import Layouthome from "src/layout/Home";
 import Layoutpage from "src/layout/Page";
 import LayoutDashboard from "src/layout/UserDashboard";
 import PrivateProvider from "src/layout/PrivateProvider";
-import PublicProvider from "src/layout/PublicProvider";
 
 import Home from "src/pages/Home";
 import Invoice from "src/pages/Invoices";
@@ -36,7 +35,6 @@ function Router() {
             <Route path="/tentang-kami" element={<TentangKami />} />
             <Route path="/artikel" element={<Artikel />} />
             <Route path="/artikel/:id" element={<Detailartikel />} />
-
             <Route element={<PrivateProvider />}>
               <Route path="/payment" element={<Payment />} />
               <Route path="/checkout" element={<Checkout />} />
@@ -49,10 +47,12 @@ function Router() {
               </Route>
             </Route>
           </Route>
-          <Route element={<PublicProvider />}>
+          {/* <Route element={<PublicProvider />}>
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-          </Route>
+          </Route> */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/register/otp" element={<Otp />} />
         </Routes>

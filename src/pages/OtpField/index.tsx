@@ -40,8 +40,8 @@ const Otp: FC<Props> = (): JSX.Element => {
   }, [activeOtpIndex]);
   return (
     <main>
-      <div className="grid grid-cols-1 xl:grid-cols-2">
-        <div className="hidden xl:flex">
+      <div className="grid grid-cols-1 lg:flex lg:justify-between lg:items-center">
+        <div className="hidden lg:w-[50%] lg:flex h-screen">
           <div className="min-h-screen bg-[url('src/assets/bglogin.png')] bg-cover">
             <div className="h-full bg-gradient-to-b from-[#3E7BFACF] via-[#2148C0E5] to-[#3E7BFA8A] bg-opacity-20">
               <div className="py-36 flex justify-center">
@@ -60,24 +60,24 @@ const Otp: FC<Props> = (): JSX.Element => {
             </div>
           </div>
         </div>
-        <div className="bg-[url('src/assets/bglogin.png')] bg-cover xl:bg-none m-4">
-          <div className="flex justify-center xl:hidden mt-[100px]">
+        <div className="w-[100%] lg:w-[50%] bg-[url('src/assets/bglogin.png')] bg-cover lg:bg-none lg:m-4 h-screen lg:h-full">
+          <div className="flex justify-center lg:hidden mt-[100px]">
             <Link to="/" className="flex justify-center items-center">
               <Image src={LogoBlue} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
               <div className="text-[#075efd] font-bold text-3xl">Travel.id</div>
             </Link>
           </div>
-          <div className="my-[100px] xl:my-[150px] flex justify-center">
-            <div className="w-[65%] xl:w-[100%] flex-col min-w-0 break-words bg-white xl:bg-transparent border-0 lg:py4 dark:bg-gray-950 rounded-2xl bg-clip-border">
+          <div className="flex justify-center mt-[50px]">
+            <div className="w-[90%] lg:w-[100%] flex-col min-w-0 break-words bg-white xl:bg-transparent border-0 lg:py-4 dark:bg-gray-950 rounded-2xl bg-clip-border shadow-lg">
               <div className="p-6 pb-0 mb-0">
                 <div className="font-bold text-3xl flex gap-5 items-center">
-                  <Link to="/register">
+                  <Link to="/register" className="text-xl">
                     <i className="fa fa-arrow-left"></i>
                   </Link>
-                  <p>Masukkan Kode OTP</p>
+                  <p className="font-bold text-2xl sm:text-3xl">Masukkan Kode OTP</p>
                 </div>
                 <div className="py-3">
-                  <p className="leading-normal">
+                  <p className="leading-normal text-sm sm:text-md">
                     Kode OTP dikirim pada email <span className="text-[#3E7BFA]">travel@gmail.com</span>
                   </p>
                 </div>
@@ -91,7 +91,7 @@ const Otp: FC<Props> = (): JSX.Element => {
                         <input
                           ref={index === activeOtpIndex ? inputRef : null}
                           type="number"
-                          className="w-20 h-20 border-2 rounded-lg bg-white outline-none text-center font-bold text-xl spin-button-none border-[#E0E0E0] focus:border-gray-700 focus:text-gray-700 text-black transition spin-button-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          className="w-10 h-10 sm:w-20 sm:h-20 border-2 rounded-lg bg-white outline-none text-center font-bold text-xl spin-button-none border-[#E0E0E0] focus:border-gray-700 focus:text-gray-700 text-black transition spin-button-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                           onChange={handleOnChange}
                           value={otp[index]}
                           onKeyDown={(e) => handleOnKeyDown(e, index)}
