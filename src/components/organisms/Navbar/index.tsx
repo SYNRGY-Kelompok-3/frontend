@@ -64,6 +64,14 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
     };
   }, []);
 
+  const handleLogout = () => {
+    const c = confirm("are you sure want to logout?");
+    if (c) {
+      localStorage.removeItem("token");
+      window.location.reload();
+    }
+  };
+
   return (
     <>
       <nav className={`${bg} bg-cover`}>
@@ -142,7 +150,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
                   className="m-auto mt-2 h-0.5 w-6 rounded bg-sky-900 transition duration-300"
                 ></div>
               </label>
-              <div className="flex flex-col justify-between peer-checked:translate-x-0 z-20 fixed inset-0 w-[calc(80%-4.5rem)] translate-x-[-100%] bg-white border-r shadow-xl transition duration-500 lg:border-l-0 lg:w-auto lg:static lg:shadow-none lg:translate-x-0">
+              <div className="flex flex-col justify-between peer-checked:translate-x-0 z-20 fixed inset-0 w-[270px] translate-x-[-100%] bg-white border-r shadow-xl transition duration-500 lg:border-l-0 lg:w-auto lg:static lg:shadow-none lg:translate-x-0">
                 <div>
                   <NavLink to="/" className="py-5 px-5 flex items-center z-20">
                     <Image
@@ -169,7 +177,16 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
                   </div>
                 </div>
                 {token ? (
-                  <></>
+                  <div className="flex w-full">
+                    <Button
+                      onClick={handleLogout}
+                      type={"button"}
+                      className={
+                        "w-full bg-gradient-to-r from-red-500 to-pink-400 text-white font-medium text-lg sm:text-xl my-8 mx-5 py-2 px-4 rounded-md hover:from-red-600 hover:to-pink-500 transition-all duration-500 ease-in-out hover:scale-[1.02]"
+                      }
+                      content={"Log Out"}
+                    />
+                  </div>
                 ) : (
                   <div className="flex w-full">
                     <Button
