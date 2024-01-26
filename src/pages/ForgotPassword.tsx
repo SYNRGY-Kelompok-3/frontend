@@ -34,7 +34,6 @@ function ForgotPassword() {
           </div>
         </div>
       </div>
-      <ModalCheckEmail handleCheckEmailClick={handleCheckEmailClick} />
 
       {[FORGOT_PWD_FLOW.EMAIL_INPUT, FORGOT_PWD_FLOW.CHECK_EMAIL].includes(flow) && <EmailForm />}
       {flow === FORGOT_PWD_FLOW.CHECK_EMAIL && (
