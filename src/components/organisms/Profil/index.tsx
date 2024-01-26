@@ -1,36 +1,19 @@
-import { useState } from "react";
 import Avatar from "src/assets/Profile.png";
 import Image from "src/components/atoms/Img";
 import Popup from "src/components/organisms/PopUp/editprofileSuccess";
+import useAction from "./profile.hooks";
 
 function Profil() {
-  const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
-
-  const [showPopup, setShowPopup] = useState(false);
-
-  const showSuccessPopup = () => {
-    setShowPopup(true);
-  };
-
-  const handleSubmit = () => {
-    showSuccessPopup();
-  };
-
-  const closePopup = () => {
-    setShowPopup(false);
-  };
-
-  // Dummy user data
-  const userData = {
-    firstName: "John",
-    lastName: "Doe",
-    phoneNumber: "123-456-7890",
-    birthDate: "1990-01-01",
-    gender: "Male",
-    email: "john.doe@example.com",
-    profileImage: Avatar,
-  };
-
+  const {
+    user,
+    profileImageFile,
+    handleUploadPicture,
+    showPopup,
+    closePopup,
+    handleSubmit,
+    formValues,
+    setFormValues,
+  } = useAction();
   return (
     <>
       <div className="flex-1 p-10 border-2 rounded-md m-4 h-screen">
@@ -38,11 +21,13 @@ function Profil() {
 
         <div className="col-span-12 mb-4 text-center">
           <label htmlFor="profileImageInput" className="relative inline-block">
-            <Image
-              src={profileImageFile ? URL.createObjectURL(profileImageFile) : userData.profileImage}
-              alt={"Profile"}
-              className={"rounded-full h-32 w-32"}
-            />
+            {profileImageFile ? (
+              <Image src={profileImageFile} alt={"Profile"} className={"rounded-full h-32 w-32"} />
+            ) : user.profilePicture ? (
+              <Image src={user.profilePicture} alt={"Profile"} className={"rounded-full h-32 w-32"} />
+            ) : (
+              <Image src={Avatar} alt={"Profile"} className={"rounded-full h-32 w-32"} />
+            )}
             <div className="absolute bottom-0 right-0 p-1 bg-white border-2 border-blue-500 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -65,27 +50,21 @@ function Profil() {
             type="file"
             accept="image/*"
             className="hidden"
-            onChange={(e) => setProfileImageFile(e.target.files ? e.target.files[0] : null)}
+            onChange={handleUploadPicture}
           />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="space-y-2">
             <label>
-              Nama Depan<span className="text-red-500">*</span>
+              Nama<span className="text-red-500">*</span>
             </label>
             <input
               type="text"
-              value={userData.firstName}
-              className="border rounded p-2 w-full border-gray-300"
-            />
-          </div>
-          <div className="space-y-2">
-            <label>Nama Belakang</label>
-            <input
-              type="text"
-              value={userData.lastName}
-              className="border rounded p-2 w-full border-gray-300"
+              placeholder={user.name}
+              value={formValues.name}
+              onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
+              className="border rounded-lg p-2 w-full border-gray-300 "
             />
           </div>
           <div className="space-y-2">
@@ -94,8 +73,10 @@ function Profil() {
             </label>
             <input
               type="text"
-              value={userData.phoneNumber}
-              className="border rounded p-2 w-full border-gray-300"
+              placeholder={user.phoneNumber}
+              value={formValues.phoneNumber}
+              onChange={(e) => setFormValues({ ...formValues, phoneNumber: e.target.value })}
+              className="border rounded-lg p-2 w-full border-gray-300"
             />
           </div>
           <div className="space-y-2">
@@ -104,9 +85,11 @@ function Profil() {
             </label>
             <input
               type="text"
-              value={userData.email}
+              placeholder={user.email}
+              value={formValues.email}
+              onChange={(e) => setFormValues({ ...formValues, email: e.target.value })}
               readOnly
-              className="border rounded p-2 w-full text-gray-700 bg-gray-200 border-gray-300"
+              className="border rounded-lg p-2 w-full text-gray-700 bg-gray-200 border-gray-300"
             />
           </div>
           <div className="space-y-2">
@@ -115,21 +98,52 @@ function Profil() {
             </label>
             <input
               type="date"
-              value={userData.birthDate}
-              className="border rounded p-2 w-full border-gray-300"
+              placeholder={user.dateOfBirth}
+              value={formValues.dateOfBirth}
+              onChange={(e) => setFormValues({ ...formValues, dateOfBirth: e.target.value })}
+              className="border rounded-lg p-2 w-full border-gray-300"
             />
           </div>
           <div className="space-y-2">
             <label>
               Jenis Kelamin<span className="text-red-500">*</span>
             </label>
-            <select value={userData.gender} className="border rounded p-2 w-full border-gray-300">
-              <option value="Male">Laki-laki</option>
-              <option value="Female">Perempuan</option>
+            <select
+              onChange={(e) => setFormValues({ ...formValues, gender: e.target.value })}
+              className="border rounded-lg p-2 w-full border-gray-300"
+            >
+              {user.gender === null ? (
+                <>
+                  <option disabled selected>
+                    -- Choose Gender --
+                  </option>
+                  <option value="Male">Laki-laki</option>
+                  <option value="Female">Perempuan</option>
+                </>
+              ) : user.gender === "Male" ? (
+                <>
+                  <option disabled>-- Choose Gender --</option>
+                  <option value="Male" selected>
+                    Laki-laki
+                  </option>
+                  <option value="Female">Perempuan</option>
+                </>
+              ) : (
+                <>
+                  <option disabled>-- Choose Gender --</option>
+                  <option value="Male">Laki-laki</option>
+                  <option value="Female" selected>
+                    Perempuan
+                  </option>
+                </>
+              )}
             </select>
           </div>
         </div>
-        <button className="bg-blue-500 text-white py-4 px-4 rounded w-full mt-10" onClick={handleSubmit}>
+        <button
+          className="bg-blue-500 text-white py-4 px-4 rounded-lg w-full mt-10 text-xl"
+          onClick={handleSubmit}
+        >
           Simpan
         </button>
       </div>
