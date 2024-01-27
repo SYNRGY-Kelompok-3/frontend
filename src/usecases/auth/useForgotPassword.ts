@@ -18,6 +18,7 @@ export const useForgotPassword = () => {
   const { email, emailError, flow } = useSelector((state: RootState) => state.forgotPassword);
 
   const navigate = useNavigate();
+
   const handleCheckEmailClick = () => {
     dispatch(setFlow(FORGOT_PWD_FLOW.INPUT_OTP));
     window.open("https://mail.google.com", "_blank");
@@ -51,5 +52,14 @@ export const useForgotPassword = () => {
     handleCheckUserExistance();
   };
 
-  return { handleSubmit, inputRef, handleChange, emailError, flow, handleCheckEmailClick, onRedirectLogin };
+  return {
+    handleSubmit,
+    inputRef,
+    handleChange,
+    emailError,
+    flow,
+    handleCheckEmailClick,
+    onRedirectLogin,
+    email,
+  };
 };

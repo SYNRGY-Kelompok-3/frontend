@@ -14,7 +14,10 @@ const PopupConfirm: React.FC<IModalCheckEmail> = (props) => {
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md transform transition-all sm:w-auto">
         <img src={image} alt="tes" className="w-75 mx-auto" />
         <div className="text-sm mt-5 font-bold text-center text-blue-600 mb-4">{label}</div>
-        <div className="text-center text-gray-700 mb-6 text-xs">{desc}</div>
+        <div
+          className="text-center text-gray-700 mb-6 text-xs"
+          dangerouslySetInnerHTML={{ __html: desc }}
+        ></div>
         <button
           onClick={redirectAction}
           className="bg-blue-600 hover:bg-blue-700 text-white font-500 py-2 px-4 rounded w-full"

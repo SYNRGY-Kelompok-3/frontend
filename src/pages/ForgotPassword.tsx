@@ -14,7 +14,7 @@ import ImageConfirmEmail from "src/assets/images/image-confirm-email.svg";
 import ImageResetPasswordDone from "src/assets/images/image-reset-password-done.svg";
 
 function ForgotPassword() {
-  const { flow, handleCheckEmailClick, onRedirectLogin } = useForgotPassword();
+  const { flow, handleCheckEmailClick, onRedirectLogin, email } = useForgotPassword();
 
   return (
     <PublicProvider>
@@ -45,7 +45,7 @@ function ForgotPassword() {
             btnlabel="Cek Email"
             image={ImageConfirmEmail}
             label="Permintaan Atur Kata Sandi Terkirim!"
-            desc="Cek link atur ulang kata sandi pada email travel@gmail.com dan segera lakukan atur ulang kata sandi akunmu"
+            desc={`Cek link atur ulang kata sandi pada email <span style="color: #3E7BFA">${email}</span> dan segera lakukan atur ulang kata sandi akunmu`}
           />
         )}
         {flow === FORGOT_PWD_FLOW.INPUT_OTP && <InputOtp />}

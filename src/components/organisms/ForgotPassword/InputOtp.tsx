@@ -27,7 +27,7 @@ const OTPInput: React.FC = () => {
 };
 
 const InputOtp = () => {
-  const { handleValidateOtp, otpError } = useOtp();
+  const { handleValidateOtp, otpError, handleResendOtp, email } = useOtp();
   return (
     <div className="w-[100%] lg:w-[50%] bg-[url('src/assets/bglogin.png')] bg-cover lg:bg-none lg:m-4 h-screen lg:h-full">
       <div className="flex justify-center lg:hidden mt-[100px]">
@@ -42,7 +42,7 @@ const InputOtp = () => {
             <div className="font-bold text-2xl sm:text-3xl">Masukkan Kode OTP</div>
             <div className="py-3">
               <p className="leading-normal text-sm sm:text-md">
-                Kode OTP dikirim pada email travel@gmail.com
+                Kode OTP dikirim pada email <span className="text-[#3E7BFA]">{email}</span>
               </p>
             </div>
           </div>
@@ -50,7 +50,13 @@ const InputOtp = () => {
             <form role="form" onSubmit={handleValidateOtp}>
               <OTPInput />
               <p className="leading-normal text-sm sm:text-md text-red-500">{otpError}</p>
-              <p className="leading-normal text-sm sm:text-md">Belum mendapatkan kode? Kirim Ulang</p>
+              <p className="leading-normal text-sm sm:text-md">
+                Belum mendapatkan kode?
+                <span className="text-[rgb(203,58,49)] cursor-pointer" onClick={handleResendOtp}>
+                  {" "}
+                  Kirim Ulang
+                </span>
+              </p>
               <Button
                 content={"Kirim"}
                 type={"submit"}

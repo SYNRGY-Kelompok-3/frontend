@@ -6,14 +6,13 @@ import { useResetPassword } from "src/usecases/auth/useResetPassword";
 
 const ResetPasswordForm = () => {
   const {
+    state,
     handleResetNewPassword,
-    password,
-    confirmPassword,
-    passwordError,
-    confirmPasswordError,
+    onTogglePassword,
     handleChangeNewPassword,
     handleChangeConfirmNewPassword,
   } = useResetPassword();
+  const { password, confirmPassword, passwordError, confirmPasswordError } = state;
 
   return (
     <div className="w-[100%] lg:w-[50%] bg-[url('src/assets/bglogin.png')] bg-cover lg:bg-none lg:m-4 h-screen lg:h-full">
@@ -39,13 +38,26 @@ const ResetPasswordForm = () => {
                 <div className="py-2">Kata Sandi</div>
                 <div className="flex items-center">
                   <input
-                    placeholder="Password"
+                    name="newPassword"
+                    placeholder="New Password"
                     className={`focus:shadow-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid ${
                       passwordError ? "border-red-500" : "border-gray-300"
                     }  bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none`}
-                    type="password"
+                    type={state.passwordVisible ? "text" : "password"}
                     value={password}
                     onChange={handleChangeNewPassword}
+                  />
+                  <Button
+                    content={
+                      state.passwordVisible ? (
+                        <i className="fa-solid fa-eye"></i>
+                      ) : (
+                        <i className="fa-solid fa-eye-slash"></i>
+                      )
+                    }
+                    type={"button"}
+                    onClick={() => onTogglePassword("PASSWORD")}
+                    className={"-ml-8"}
                   />
                 </div>
                 <div className="py-2 text-red-500">{passwordError}</div>
@@ -55,13 +67,26 @@ const ResetPasswordForm = () => {
                 <div className="py-2">Konfirmasi Kata Sandi</div>
                 <div className="flex items-center">
                   <input
-                    placeholder="Password"
+                    name="confirmNewPassword"
+                    placeholder="Confirm New Password"
                     className={`focus:shadow-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid ${
                       confirmPasswordError ? "border-red-500" : "border-gray-300"
                     }  bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none`}
-                    type="password"
+                    type={state.confirmPasswordVisible ? "text" : "password"}
                     value={confirmPassword}
                     onChange={handleChangeConfirmNewPassword}
+                  />
+                  <Button
+                    content={
+                      state.confirmPasswordVisible ? (
+                        <i className="fa-solid fa-eye"></i>
+                      ) : (
+                        <i className="fa-solid fa-eye-slash"></i>
+                      )
+                    }
+                    type={"button"}
+                    onClick={() => onTogglePassword()}
+                    className={"-ml-8"}
                   />
                 </div>
                 <div className="py-2 text-red-500">{confirmPasswordError}</div>

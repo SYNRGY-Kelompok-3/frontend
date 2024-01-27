@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "src/state/store";
-import { handleValidateOtp as fetchHandleValidateOtp } from "src/state/authSlice/forgotPasswordFlow";
+import {
+  handleValidateOtp as fetchHandleValidateOtp,
+  handleCheckUserExistance as fetchHandleResendOtp,
+} from "src/state/authSlice/forgotPasswordFlow";
 
 export const useOtp = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const { flow, otpError } = useSelector((state: RootState) => state.forgotPassword);
+  const { flow, otpError, email } = useSelector((state: RootState) => state.forgotPassword);
 
   const [otpValues, setOtpValues] = useState<string[]>(Array(6).fill(""));
 
@@ -56,12 +59,18 @@ export const useOtp = () => {
     });
   };
 
+  const handleResendOtp = async () => {
+    dispatch(fetchHandleResendOtp(email));
+  };
+
   return {
-    handleChangeInputOtp,
-    otpError,
     flow,
-    handleValidateOtp,
+    otpError,
     otpValues,
+    email,
+    handleChangeInputOtp,
+    handleResendOtp,
+    handleValidateOtp,
     handleKeyUp,
   };
 };
