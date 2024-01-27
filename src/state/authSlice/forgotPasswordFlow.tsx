@@ -30,7 +30,7 @@ const initialState: ForgotPasswordState = {
   newPassword: "",
   confirmNewPassword: "",
   resetPasswordError: "",
-  flow: FORGOT_PWD_FLOW.EMAIL_INPUT,
+  flow: FORGOT_PWD_FLOW.INPUT_OTP,
   emailError: null,
   isLoading: false,
   isError: false,

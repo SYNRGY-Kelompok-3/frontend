@@ -8,17 +8,18 @@ const OTPInput: React.FC = () => {
   const { otpValues, handleKeyUp, handleChangeInputOtp } = useOtp();
 
   return (
-    <div id="otp" className="flex flex-row justify-center text-center px-2">
+    <div id="otp" className="flex flex-row justify-between text-center px-2 my-5">
       {otpValues.map((value, index) => (
         <input
           key={index}
-          className="m-5 border h-20 w-20 text-center form-control rounded"
+          name={`otpInput${index}`}
+          className="w-10 h-10 sm:w-20 sm:h-20 border-2 rounded-lg bg-white outline-none text-center font-bold text-xl  border-[#E0E0E0] focus:border-gray-700 focus:text-gray-700 text-black transition  "
           type="number"
-          id={`otpInput${index + 1}`}
+          id={`otpInput${index}`}
           maxLength={1}
           value={value}
           onChange={(e) => handleChangeInputOtp(e, index)}
-          onKeyUp={(event) => handleKeyUp(event, index)}
+          onKeyUp={(e) => handleKeyUp(e)}
         />
       ))}
     </div>
@@ -46,17 +47,18 @@ const InputOtp = () => {
             </div>
           </div>
           <div className="px-6">
-            <OTPInput />
-            <p className="leading-normal text-sm sm:text-md text-red-500">{otpError}</p>
-            <p className="leading-normal text-sm sm:text-md">Belum mendapatkan kode? Kirim Ulang</p>
-            <Button
-              onClick={handleValidateOtp}
-              content={"Kirim"}
-              type={"submit"}
-              className={
-                "inline-block w-full my-6 px-16 py-3.5 font-bold leading-normal text-lg text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
-              }
-            />
+            <form role="form" onSubmit={handleValidateOtp}>
+              <OTPInput />
+              <p className="leading-normal text-sm sm:text-md text-red-500">{otpError}</p>
+              <p className="leading-normal text-sm sm:text-md">Belum mendapatkan kode? Kirim Ulang</p>
+              <Button
+                content={"Kirim"}
+                type={"submit"}
+                className={
+                  "inline-block w-full my-6 px-16 py-3.5 font-bold leading-normal text-lg text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
+                }
+              />
+            </form>
           </div>
         </div>
       </div>

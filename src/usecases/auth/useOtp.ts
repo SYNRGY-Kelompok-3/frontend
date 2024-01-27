@@ -1,37 +1,37 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "src/state/store";
-import { handleValidateOtp as fetchHandleValidateOtp, setOtp } from "src/state/authSlice/forgotPasswordFlow";
+import { handleValidateOtp as fetchHandleValidateOtp } from "src/state/authSlice/forgotPasswordFlow";
 
 export const useOtp = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { otp, flow, otpError } = useSelector((state: RootState) => state.forgotPassword);
+
+  const { flow, otpError } = useSelector((state: RootState) => state.forgotPassword);
 
   const [otpValues, setOtpValues] = useState<string[]>(Array(6).fill(""));
 
-  const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const target = event.currentTarget;
+    const inputId = target.id;
+    const inputIndex = parseInt(inputId.split("otpInput")[1]);
     if (event.key === "Backspace") {
       setOtpValues((prevValues) => {
         const updatedValues = [...prevValues];
-        const lastNonEmptyIndex = updatedValues.findIndex((value) => value !== "");
-
-        if (lastNonEmptyIndex !== -1 && lastNonEmptyIndex > index) {
-          updatedValues[lastNonEmptyIndex] = "";
-          updatedValues.pop();
-          const nextInput = document.getElementById(`otpInput${lastNonEmptyIndex}`) as HTMLInputElement;
-          if (nextInput) {
-            nextInput.focus();
+        if (inputIndex > 0) {
+          updatedValues[inputIndex - 1] = "";
+          const prevInput = document.getElementById(`otpInput${inputIndex - 1}`) as HTMLInputElement;
+          if (prevInput) {
+            prevInput.focus();
           }
         }
-
         return updatedValues;
       });
     } else if (event.key.match(/^[0-9]$/)) {
       setOtpValues((prevValues) => {
         const updatedValues = [...prevValues];
-        if (updatedValues[index] === "") {
-          updatedValues[index] = event.key;
-          const nextInput = document.getElementById(`otpInput${index + 1}`) as HTMLInputElement;
+        if (updatedValues[inputIndex] !== "") {
+          updatedValues[inputIndex] = event.key;
+          const nextInput = document.getElementById(`otpInput${inputIndex + 1}`) as HTMLInputElement;
           if (nextInput) {
             nextInput.focus();
           }
@@ -41,8 +41,11 @@ export const useOtp = () => {
     }
   };
 
-  const handleValidateOtp = async () => {
-    dispatch(fetchHandleValidateOtp(otp));
+  const handleValidateOtp = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const otp = otpValues.map((_, index) => data.get(`otpInput${index}`) as string);
+    await dispatch(fetchHandleValidateOtp(otp.join("")));
   };
 
   const handleChangeInputOtp = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
@@ -51,8 +54,6 @@ export const useOtp = () => {
       updatedValues[index] = event.target.value;
       return updatedValues;
     });
-    dispatch(setOtp(otpValues.join("")));
-    console.log(otpValues.join(""), "nah nah");
   };
 
   return {

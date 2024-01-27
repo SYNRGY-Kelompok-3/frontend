@@ -3,14 +3,15 @@ import Logo from "src/assets/Logo.png";
 import Image from "src/components/atoms/Img";
 import { FORGOT_PWD_FLOW } from "src/constants";
 import { useForgotPassword } from "src/usecases/auth/useForgotPassword";
-
-import ModalCheckEmail from "src/components/organisms/ForgotPassword/ModalCheckEmail";
 import InputOtp from "src/components/organisms/ForgotPassword/InputOtp";
-import ModalResetPasswordComplete from "src/components/organisms/ForgotPassword/ModalResetPasswordComplete";
 import EmailForm from "src/components/organisms/ForgotPassword/EmailForm";
 import ResetPasswordForm from "src/components/organisms/ForgotPassword/ResetPasswordForm";
 
 import PublicProvider from "src/pages/PublicProvider";
+import PopupConfirm from "src/components/organisms/ForgotPassword/ModalPopupConfirm";
+
+import ImageConfirmEmail from "src/assets/images/image-confirm-email.svg";
+import ImageResetPasswordDone from "src/assets/images/image-reset-password-done.svg";
 
 function ForgotPassword() {
   const { flow, handleCheckEmailClick, onRedirectLogin } = useForgotPassword();
@@ -37,15 +38,26 @@ function ForgotPassword() {
             </div>
           </div>
         </div>
-
         {[FORGOT_PWD_FLOW.EMAIL_INPUT, FORGOT_PWD_FLOW.CHECK_EMAIL].includes(flow) && <EmailForm />}
         {flow === FORGOT_PWD_FLOW.CHECK_EMAIL && (
-          <ModalCheckEmail handleCheckEmailClick={handleCheckEmailClick} />
+          <PopupConfirm
+            redirectAction={handleCheckEmailClick}
+            btnlabel="Cek Email"
+            image={ImageConfirmEmail}
+            label="Permintaan Atur Kata Sandi Terkirim!"
+            desc="Cek link atur ulang kata sandi pada email travel@gmail.com dan segera lakukan atur ulang kata sandi akunmu"
+          />
         )}
         {flow === FORGOT_PWD_FLOW.INPUT_OTP && <InputOtp />}
         {[FORGOT_PWD_FLOW.RESET_PASSWORD, FORGOT_PWD_FLOW.END_FLOW].includes(flow) && <ResetPasswordForm />}
         {flow === FORGOT_PWD_FLOW.END_FLOW && (
-          <ModalResetPasswordComplete onRedirectLogin={onRedirectLogin} />
+          <PopupConfirm
+            redirectAction={onRedirectLogin}
+            btnlabel="Selesai"
+            image={ImageResetPasswordDone}
+            label="Kata Sandi Berhasil Diperbarui"
+            desc="Yeay, kamu sudah berhasil memperbarui kata sandi. Ingat dan jangan sampai lupa lagi yah"
+          />
         )}
       </div>
     </PublicProvider>
