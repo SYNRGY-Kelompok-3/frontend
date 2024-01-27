@@ -43,7 +43,7 @@ const resetPasswordReducer = (state: IState, action: Action) => {
 
 export const useResetPassword = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { otp, email } = useSelector((state: RootState) => state.forgotPassword);
+  const { otp, email, isLoading } = useSelector((state: RootState) => state.forgotPassword);
   const [state, dispatchAction] = useReducer<React.Reducer<IState, Action>>(resetPasswordReducer, {
     password: ``,
     confirmPassword: ``,
@@ -76,16 +76,19 @@ export const useResetPassword = () => {
     const newPassword = event.target.value;
     dispatchAction({ type: "SET_PASSWORD_VALUE", payload: newPassword });
     if (newPassword.length < 8) {
-      dispatchAction({ type: "SET_PASSWORD_ERROR", payload: "Password must be at least 8 characters long." });
+      dispatchAction({
+        type: "SET_PASSWORD_ERROR",
+        payload: "Kata sandi harus terdiri dari minimal 8 karakter.",
+      });
     } else if (!/[A-Z]/.test(newPassword)) {
       dispatchAction({
         type: "SET_PASSWORD_ERROR",
-        payload: "Password must contain at least one capital letter.",
+        payload: "Kata sandi harus mengandung minimal satu huruf kapital.",
       });
     } else if (!/[a-z]/.test(newPassword) || !/[0-9]/.test(newPassword)) {
       dispatchAction({
         type: "SET_PASSWORD_ERROR",
-        payload: "Password must contain at least one lowercase letter and one number.",
+        payload: "Kata sandi harus berisi minimal satu huruf kecil dan satu angka.",
       });
     } else {
       dispatchAction({
@@ -101,7 +104,7 @@ export const useResetPassword = () => {
     if (confirmPassword !== state.password) {
       dispatchAction({
         type: "SET_CONFIRM_PASSWORD_ERROR",
-        payload: "Passwords do not match.",
+        payload: "Sandi tidak cocok.",
       });
     } else {
       dispatchAction({
@@ -113,6 +116,7 @@ export const useResetPassword = () => {
 
   return {
     state,
+    isLoading,
     onTogglePassword,
     handleResetNewPassword,
     handleChangeNewPassword,

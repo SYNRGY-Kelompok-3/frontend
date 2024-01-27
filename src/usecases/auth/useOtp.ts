@@ -4,12 +4,13 @@ import { AppDispatch, RootState } from "src/state/store";
 import {
   handleValidateOtp as fetchHandleValidateOtp,
   handleCheckUserExistance as fetchHandleResendOtp,
+  setOtp,
 } from "src/state/authSlice/forgotPasswordFlow";
 
 export const useOtp = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const { flow, otpError, email } = useSelector((state: RootState) => state.forgotPassword);
+  const { flow, otpError, email, isLoading } = useSelector((state: RootState) => state.forgotPassword);
 
   const [otpValues, setOtpValues] = useState<string[]>(Array(6).fill(""));
 
@@ -48,6 +49,7 @@ export const useOtp = () => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const otp = otpValues.map((_, index) => data.get(`otpInput${index}`) as string);
+    dispatch(setOtp(otp.join("")));
     await dispatch(fetchHandleValidateOtp(otp.join("")));
   };
 
@@ -68,6 +70,7 @@ export const useOtp = () => {
     otpError,
     otpValues,
     email,
+    isLoading,
     handleChangeInputOtp,
     handleResendOtp,
     handleValidateOtp,
