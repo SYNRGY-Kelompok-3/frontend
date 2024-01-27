@@ -18,6 +18,7 @@ import Register from "src/pages/Register";
 
 import Profile from "src/pages/Profile";
 import Riwayat from "src/pages/Riwayat";
+import Notifikasi from "src/pages/Notification";
 import Otp from "src/pages/OtpField";
 import ForgotPassword from "src/pages/ForgotPassword";
 
@@ -43,7 +44,7 @@ function Router() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/riwayat-transaksi" element={<Riwayat />} />
                 <Route path="/riwayat-transaksi/:id" element={<Riwayat />} />
-                {/* <Route path="/notifikasi" element={<Notifikasi />} /> */}
+                <Route path="/notifikasi" element={<Notifikasi />} />
               </Route>
             </Route>
           </Route>

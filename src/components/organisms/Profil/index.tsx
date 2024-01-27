@@ -1,4 +1,3 @@
-import Avatar from "src/assets/Profile.png";
 import Image from "src/components/atoms/Img";
 import Popup from "src/components/organisms/PopUp/editprofileSuccess";
 import useAction from "./profile.hooks";
@@ -6,7 +5,7 @@ import useAction from "./profile.hooks";
 function Profil() {
   const {
     user,
-    profileImageFile,
+    ProfilePicture,
     handleUploadPicture,
     showPopup,
     closePopup,
@@ -16,18 +15,12 @@ function Profil() {
   } = useAction();
   return (
     <>
-      <div className="flex-1 p-10 border-2 rounded-md m-4 h-screen">
-        <h1 className="text-2xl font-bold mb-4">Profil Akun</h1>
+      <div className="flex-1 p-5 sm:p-8 border-2 rounded-lg m-4 h-fit sm:h-screen">
+        <h1 className="text-xl sm:text-2xl font-bold mb-4">Profil Akun</h1>
 
         <div className="col-span-12 mb-4 text-center">
           <label htmlFor="profileImageInput" className="relative inline-block">
-            {profileImageFile ? (
-              <Image src={profileImageFile} alt={"Profile"} className={"rounded-full h-32 w-32"} />
-            ) : user.profilePicture ? (
-              <Image src={user.profilePicture} alt={"Profile"} className={"rounded-full h-32 w-32"} />
-            ) : (
-              <Image src={Avatar} alt={"Profile"} className={"rounded-full h-32 w-32"} />
-            )}
+            <Image src={ProfilePicture} alt={"Profile"} className={"rounded-full h-32 w-32"} />
             <div className="absolute bottom-0 right-0 p-1 bg-white border-2 border-blue-500 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

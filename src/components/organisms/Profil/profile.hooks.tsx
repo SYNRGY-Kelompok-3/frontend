@@ -1,6 +1,7 @@
 import { axiosAuth, axiosUpload } from "src/services/axios";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Avatar from "src/assets/Profile.png";
 
 function ProfileHooks() {
   const [profileImageFile, setProfileImageFile] = useState();
@@ -74,6 +75,12 @@ function ProfileHooks() {
     }
   };
 
+  const ProfilePicture = profileImageFile
+    ? profileImageFile
+    : user.profilePicture
+    ? user.profilePicture
+    : Avatar;
+
   useEffect(() => {
     fetchUser();
   }, []);
@@ -81,8 +88,7 @@ function ProfileHooks() {
   console.log("user > ", user);
 
   return {
-    profileImageFile,
-    setProfileImageFile,
+    ProfilePicture,
     showPopup,
     setShowPopup,
     formValues,

@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
+import { axiosAuth } from "src/services/axios";
+import axios from "axios";
 
 import Logo from "src/assets/Logo.png";
 import LogoBlue from "src/assets/LogoBlue.png";
@@ -24,24 +26,20 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
 
   const token = localStorage.getItem("token");
 
-  const NavMenu: Menu[] = [
-    { text: "Beranda", link: "/" },
-    { text: "Tentang Kami", link: "/tentang-kami" },
-    { text: "Artikel", link: "/artikel" },
-    { text: "Pusat Bantuan", link: "/pusat-bantuan" },
-  ];
-
-  const SideMenu: Menu[] = [
+  const Menu: Menu[] = [
     { text: "Profile", link: "/profile" },
     { text: "Notifikasi", link: "/notifikasi" },
     { text: "Beranda", link: "/" },
     { text: "Tentang Kami", link: "/tentang-kami" },
     { text: "Artikel", link: "/artikel" },
     { text: "Pusat Bantuan", link: "/pusat-bantuan" },
+    { text: "Dashboard", link: "/admin-dashboard" },
   ];
 
   const checkboxRef = useRef<HTMLInputElement>(null);
   const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [user, setUser] = useState<any>({});
+  const [role, setRole] = useState<any>();
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -56,14 +54,6 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
     }
   };
 
-  useEffect(() => {
-    document.addEventListener("click", handleDocumentClick);
-
-    return () => {
-      document.removeEventListener("click", handleDocumentClick);
-    };
-  }, []);
-
   const handleLogout = () => {
     const c = confirm("are you sure want to logout?");
     if (c) {
@@ -71,6 +61,47 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
       window.location.reload();
     }
   };
+
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get(`${axiosAuth.defaults.baseURL}user/detail-profile/`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      setUser(response.data["data 2"]);
+      setRole(response.data["data 1"]["roles"][0].type);
+    } catch (error) {
+      console.log("error > ", error);
+    }
+  };
+
+  const sidemenuResult = token
+    ? role === "user_role"
+      ? Menu.filter((item) => item.text !== "Dashboard")
+      : Menu
+    : Menu.filter(
+        (item) => item.text !== "Dashboard" && item.text !== "Profile" && item.text !== "Notifikasi"
+      );
+
+  const navmenuResult = token
+    ? role === "user_role"
+      ? Menu.filter(
+          (item) => item.text !== "Dashboard" && item.text !== "Profile" && item.text !== "Notifikasi"
+        )
+      : Menu.filter((item) => item.text !== "Profile" && item.text !== "Notifikasi")
+    : Menu.filter(
+        (item) => item.text !== "Dashboard" && item.text !== "Profile" && item.text !== "Notifikasi"
+      );
+
+  useEffect(() => {
+    fetchUser();
+    document.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
 
   return (
     <>
@@ -91,13 +122,13 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
             </div>
           </NavLink>
           <div className="items-center hidden sm:hidden lg:flex gap-1">
-            <Navmenu menu={NavMenu} bg={bg} className={"px-3 text-center text-lg"} />
+            <Navmenu menu={navmenuResult} bg={bg} className={"px-3 text-center text-lg"} />
           </div>
           <div className="flex items-center gap-2">
             {token ? (
               <div className="hidden sm:flex">
                 <Notification />
-                <IconProfile />
+                <IconProfile name={user.name} picture={user.profilePicture} />
               </div>
             ) : (
               <div className="flex items-center gap-2">
@@ -161,19 +192,11 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
                     <div className={`text-[#075efd] font-bold text-2xl md:text-3xl ml-2`}>Travel.id</div>
                   </NavLink>
                   <div className="mt-10 flex flex-col space-y-1">
-                    {token ? (
-                      <Navmenu
-                        menu={SideMenu}
-                        bg={"bg-white shadow-md"}
-                        className={"px-5 text-start text-lg sm:text-xl"}
-                      />
-                    ) : (
-                      <Navmenu
-                        menu={NavMenu}
-                        bg={"bg-white shadow-md"}
-                        className={"px-5 text-start text-lg sm:text-xl"}
-                      />
-                    )}
+                    <Navmenu
+                      menu={sidemenuResult}
+                      bg={"bg-white shadow-md"}
+                      className={"px-5 text-start text-lg sm:text-xl"}
+                    />
                   </div>
                 </div>
                 {token ? (

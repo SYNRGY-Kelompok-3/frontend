@@ -4,15 +4,17 @@ import ChevronRight from "src/assets/ChevronRight.svg";
 import Departure from "src/assets/FilterHome/plane-departure.png";
 
 import { useNavigate } from "react-router-dom";
-import { DEFAULT_CURRENCY } from "src/constants/common";
 
 function Riwayat() {
   const navigate = useNavigate();
 
   return (
     <>
-      <div className="flex-1 p-5 sm:p-8 border-2 rounded-lg m-4 h-[500px] overflow-y-auto sm:h-screen">
-        <h1 className="text-xl sm:text-2xl font-bold mb-4">Riwayat Transaksi</h1>
+      <div className="flex-1 p-5 sm:p8 border-2 rounded-lg m-4 h-[500px] overflow-y-auto sm:h-screen">
+        <div className="flex justify-between items-center">
+          <h1 className="text-xl sm:text-2xl font-bold mb-4">Notifikasi</h1>
+          <h1 className="text-sm sm:text-md font-bold mb-4 text-sky-400">Mark All As Read</h1>
+        </div>
         <div className="">
           <div
             onClick={() => navigate(`/riwayat-transaksi/${1}`)}
@@ -26,24 +28,15 @@ function Riwayat() {
                 <div className="font-semibold text-sm lg:text-lg">Jakarta - Yogyakarta</div>
                 <div className="grid lg:flex items-center lg:gap-2">
                   <div className="text-slate-400 flex items-center text-sm sm:text-md">
-                    No. Pemesanan 1023123412{" "}
+                    Selesaikan pembayaran sebelum
                     <span className="hidden lg:flex h-[6px] w-[6px] rounded-full bg-slate-400 ml-2"></span>
                   </div>
-                  <div className="text-slate-400 text-sm sm:text-md">01 Januari 2022</div>
+                  <div className="text-slate-400 text-sm sm:text-md">01 Januari 2022, pukul 19.30</div>
                 </div>
+                <div className="text-slate-400 text-sm sm:text-md">1 menti yang lalu</div>
               </div>
             </div>
-            <div className="flex items-center justify-between gap-3 mt-3 lg:mt-0">
-              <div className="space-y-1 flex items-center sm:grid ">
-                <div className="flex justify-start lg:justify-end ">
-                  <p className="text-white w-fit bg-[#18AF5E] py-1 px-2 rounded-lg text-sm sm:text-lg">
-                    Berhasil
-                  </p>
-                </div>
-                <p className="text-[#3E7BFA] text-lg ml-3 sm:text-xl font-semibold">
-                  {DEFAULT_CURRENCY}. 1.000.000
-                </p>
-              </div>
+            <div className="items-center justify-between gap-3 mt-3 lg:mt-0 hidden lg:flex">
               <div>
                 <Image src={ChevronRight} alt={"chevron"} className={"h-[40px]"} />
               </div>

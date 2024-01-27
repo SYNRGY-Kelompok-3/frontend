@@ -11,15 +11,15 @@ const handleLogout = () => {
 function Sidebar() {
   return (
     <>
-      <aside className="w-full sm:w-1/4 mt-4 sm:ml-8 xl:ml-28 text-lg">
-        <ul className="flex justify-center items-center gap-10 sm:gap-0 sm:grid">
-          <li>
+      <aside className="w-full sm:w-1/4 mt-4 sm:ml-8 xl:ml-25 text-lg">
+        <ul className="flex justify-center items-center gap-6 sm:gap-0 sm:grid">
+          <li className="w-[50px] sm:w-[180px] lg:w-[250px]">
             <NavLink
               to="/profile"
               className={({ isActive }): string =>
-                `flex items-center ${
+                `flex justify-center sm:justify-start items-center ${
                   isActive
-                    ? "pl-2 font-bold text-blue-500 bg-blue-100 p-3 sm:py-5 border-l-4 border-blue-500 rounded-tr-xl rounded-br-xl"
+                    ? "w-full pl-2 font-bold text-blue-500 bg-blue-100 p-3 sm:py-5 border-l-4 border-blue-500 rounded-tr-xl rounded-br-xl"
                     : "text-black py-5"
                 }`
               }
@@ -40,11 +40,11 @@ function Sidebar() {
               <span className="hidden sm:block ml-2 text-lg">Profil</span>
             </NavLink>
           </li>
-          <li>
+          <li className="w-[50px] sm:w-[180px] lg:w-[250px]">
             <NavLink
               to="/notifikasi"
               className={({ isActive }): string =>
-                `flex items-center ${
+                `flex justify-center sm:justify-start items-center ${
                   isActive
                     ? "pl-2 font-bold text-blue-500 bg-blue-100 p-3 sm:py-5 border-l-4 border-blue-500 rounded-tr-xl rounded-br-xl"
                     : "text-black py-5"
@@ -67,11 +67,11 @@ function Sidebar() {
               <span className="hidden sm:block ml-2 text-lg">Notifikasi</span>
             </NavLink>
           </li>
-          <li>
+          <li className="w-[50px] sm:w-[180px] lg:w-[250px]">
             <NavLink
               to="/riwayat-transaksi"
               className={({ isActive }): string =>
-                `flex items-center ${
+                `flex justify-center sm:justify-start items-center ${
                   isActive
                     ? "pl-2 font-bold text-blue-500 bg-blue-100 p-3 sm:py-5 border-l-4 border-blue-500 rounded-tr-xl rounded-br-xl"
                     : "text-black py-5"
@@ -94,7 +94,7 @@ function Sidebar() {
               <span className="hidden sm:block ml-2 text-lg">Riwayat Transaksi</span>
             </NavLink>
           </li>
-          <li>
+          <li className="w-[50px] sm:w-[180px] lg:w-[250px]">
             <div
               onClick={handleLogout}
               className="flex items-center py-5 hover:text-red-500 cursor-pointer hover:font-bold"
