@@ -15,9 +15,10 @@ export const useForgotPassword = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const dispatch = useDispatch<AppDispatch>();
-  const { email, emailError, flow } = useSelector((state: RootState) => state.forgotPassword);
+  const { email, emailError, flow, isLoading } = useSelector((state: RootState) => state.forgotPassword);
 
   const navigate = useNavigate();
+
   const handleCheckEmailClick = () => {
     dispatch(setFlow(FORGOT_PWD_FLOW.INPUT_OTP));
     window.open("https://mail.google.com", "_blank");
@@ -37,7 +38,7 @@ export const useForgotPassword = () => {
     dispatch(setEmail(value));
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(value)) {
-      dispatch(setEmailError("Please enter a valid email address."));
+      dispatch(setEmailError("Mohon masukkan alamat email yang valid"));
     } else {
       dispatch(setEmailError(""));
     }
@@ -51,5 +52,15 @@ export const useForgotPassword = () => {
     handleCheckUserExistance();
   };
 
-  return { handleSubmit, inputRef, handleChange, emailError, flow, handleCheckEmailClick, onRedirectLogin };
+  return {
+    handleSubmit,
+    inputRef,
+    handleChange,
+    emailError,
+    flow,
+    isLoading,
+    handleCheckEmailClick,
+    onRedirectLogin,
+    email,
+  };
 };
