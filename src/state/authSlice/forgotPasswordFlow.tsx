@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { FORGOT_PWD_FLOW } from "src/constants";
 import { axiosAuth } from "src/services/axios";
-
+const BASE_PATH = `v1/forget-password`;
 const FORGOT_PWD_PATH_URL = {
-  CHECK_USER: "v1/forget-password/send",
-  VALIDATE_OTP: "v1/forget-password/validate",
-  CHANGE_PASSWORD: "v1/forget-password/change-password",
+  CHECK_USER: `${BASE_PATH}/send`,
+  VALIDATE_OTP: `${BASE_PATH}/validate`,
+  CHANGE_PASSWORD: `${BASE_PATH}/change-password`,
 };
 
 interface ForgotPasswordState {
