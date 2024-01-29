@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import Image from "src/components/atoms/Img";
 import LogoBlue from "src/assets/LogoBlue.png";
-function Sidebar() {
+function Sidebar({ modal }: { modal: React.RefObject<HTMLDivElement> }) {
   const handleLogout = () => {
     const c = confirm("are you sure want to logout?");
     if (c) {
@@ -13,6 +13,7 @@ function Sidebar() {
   return (
     <>
       <aside
+        ref={modal}
         className="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 m-4 overflow-y-auto antialiased transition-all duration-200 bg-white border-0 shadow-xl dark:shadow-none dark:bg-slate-850 xl:ml-6 max-w-64 ease-nav-brand z-990 rounded-2xl xl:left-0"
         aria-expanded="false"
       >

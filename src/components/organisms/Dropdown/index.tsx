@@ -25,10 +25,7 @@ function DropdownMenu({ name, picture }: { name: string | undefined; picture: st
     { text: "Notification", link: "/notification" },
   ];
 
-  const result =
-    role === "user_role"
-      ? Menu.filter((item) => item.text !== "Dashboard")
-      : Menu.filter((item) => item.text !== "Dashboard");
+  const result = role === "user_role" ? Menu.filter((item) => item.text !== "Dashboard") : Menu;
 
   const fetchUser = async () => {
     try {
@@ -91,12 +88,12 @@ function DropdownMenu({ name, picture }: { name: string | undefined; picture: st
             <Image
               src={picture ? picture : Avatar}
               alt={"avatar-img"}
-              className={"rounded-full h-[30px] w-[30px]"}
+              className={"rounded-full h-[40px] w-[40px]"}
             />
             <div className="absolute inset-0 rounded-full shadow-inner"></div>
           </div>
           <p className="hidden sm:block text-base font-normal ml-2 text-black">{name}</p>
-          <Image src={ChevronDown} alt={"chevron"} className={"ml-2"} />
+          <Image src={ChevronDown} alt={"chevron"} className={"ml-2 h-[30px]"} />
         </div>
         {isOpen && (
           <div

@@ -99,7 +99,7 @@ function Notification() {
     <>
       <div className="flex items-center mr-3">
         <div ref={iconRef} onClick={handleIconClick} className="relative cursor-pointer">
-          <Image src={Bell} alt={"bell"} className={"h-7"} />
+          <Image src={Bell} alt={"bell"} className={"h-10"} />
         </div>
         {isOpen && (
           <div

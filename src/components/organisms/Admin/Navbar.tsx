@@ -19,7 +19,7 @@ interface User {
   phoneNumber?: string;
 }
 
-function Navbar({ toggle }: { toggle: () => void }) {
+function Navbar({ toggle, icon }: { toggle: () => void; icon: React.RefObject<HTMLDivElement> }) {
   const [user, setUser] = useState<User>({});
   const fetchUser = async () => {
     try {
@@ -50,12 +50,12 @@ function Navbar({ toggle }: { toggle: () => void }) {
             {/* <!-- breadcrumb --> */}
             <ol className="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
               <li className="text-sm leading-normal">
-                <Link className="text-white" to={"/"}>
+                <Link className="text-white text-lg" to={"/"}>
                   Pages
                 </Link>
               </li>
               <li
-                className="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
+                className="text-lg pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
                 aria-current="page"
               >
                 Tiket
@@ -76,16 +76,18 @@ function Navbar({ toggle }: { toggle: () => void }) {
                                     placeholder="Type here..." />
                             </div>
                         </div> --> */}
-            <ul className="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
+            <ul className="flex flex-row justify-end pl-0 my-2 list-none md-max:w-full">
               <li>
-                <Notification />
+                <div>
+                  <Notification />
+                </div>
               </li>
               <li className="flex items-center">
                 <IconProfile name={user.name} picture={user.profilePicture} />
               </li>
               <li onClick={toggle} className="flex items-center pl-4 xl:hidden">
-                <a
-                  href="javascript:;"
+                <div
+                  ref={icon}
                   className="block p-0 text-sm text-white transition-all ease-nav-brand"
                   sidenav-trigger
                 >
@@ -94,7 +96,7 @@ function Navbar({ toggle }: { toggle: () => void }) {
                     <i className="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></i>
                     <i className="ease relative block h-0.5 rounded-sm bg-white transition-all"></i>
                   </div>
-                </a>
+                </div>
               </li>
             </ul>
           </div>
