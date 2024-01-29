@@ -21,7 +21,7 @@ function ForgotPassword() {
       <div className="grid grid-cols-1 lg:flex lg:justify-between lg:items-center">
         <div className="hidden lg:w-[50%] lg:flex h-screen">
           <div className="h-screen bg-[url('src/assets/bglogin.png')] bg-cover">
-            <div className="h-full bg-violet-500 bg-opacity-20">
+            <div className="h-full bg-violet-500 bg-opacity-70">
               <div className="py-[160px] flex justify-center">
                 <Link to="/" className="flex justify-center items-center">
                   <Image src={Logo} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
