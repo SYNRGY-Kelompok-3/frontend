@@ -15,29 +15,31 @@ function AdminProvider({ children }: PropsWithChildren) {
         },
       });
       setRole(response.data["data 1"]["roles"][0].type);
+
+      // Move the redirection logic here
+      if (response.data["data 1"]["roles"][0].type === "user_role") {
+        window.location.href = "/";
+      } else {
+        setShow(false);
+      }
     } catch (error) {
       console.log("error > ", error);
+      setShow(true);
     }
   };
 
   useEffect(() => {
     fetchUser();
-    if (role) {
-      if (role !== "user_role") {
-        window.location.href = "/";
-      } else {
-        setShow(true);
-      }
-    } else {
-      setShow(true);
+    if (!role) {
+      setShow(false);
     }
   }, [token, role]);
 
   if (show) {
     return children;
+  } else {
+    return <></>;
   }
-
-  return <></>;
 }
 
 export default AdminProvider;

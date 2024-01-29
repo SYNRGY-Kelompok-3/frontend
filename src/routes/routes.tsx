@@ -4,7 +4,6 @@ import Layoutpage from "src/layout/Page";
 import LayoutAdminDashboard from "src/layout/Dashboard";
 import LayoutUserDashboard from "src/layout/UserDashboard";
 import PrivateProvider from "src/layout/PrivateProvider";
-import AdminProvider from "src/layout/AdminProvider";
 
 import Home from "src/pages/Home";
 import Invoice from "src/pages/Invoices";
@@ -52,10 +51,8 @@ function Router() {
             </Route>
           </Route>
           <Route element={<PrivateProvider />}>
-            <Route element={<AdminProvider />}>
-              <Route element={<LayoutAdminDashboard />}>
-                <Route path="/dashboard/tiket" element={<Tiket />} />
-              </Route>
+            <Route element={<LayoutAdminDashboard />}>
+              <Route path="/dashboard/tiket" element={<Tiket />} />
             </Route>
           </Route>
           <Route path="/login" element={<Login />} />
