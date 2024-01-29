@@ -28,7 +28,7 @@ function Login() {
         <div className="grid grid-cols-1 lg:flex lg:justify-between lg:items-center">
           <div className="hidden lg:w-[50%] lg:flex h-screen">
             <div className="h-screen bg-[url('src/assets/bglogin.png')] bg-cover">
-              <div className="h-full bg-violet-500 bg-opacity-20">
+              <div className="h-full bg-violet-500 bg-opacity-70">
                 <div className="py-[160px] flex justify-center">
                   <Link to="/" className="flex justify-center items-center">
                     <Image src={Logo} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
@@ -144,7 +144,7 @@ function Login() {
                       content={"Masuk"}
                       type={"submit"}
                       className={
-                        "inline-block w-full my-6 px-16 py-3.5 font-bold leading-normal text-lg text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
+                        "inline-block w-full mt-5 mb-3 px-16 py-3.5 font-bold leading-normal text-lg text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
                       }
                     />
                   </form>
