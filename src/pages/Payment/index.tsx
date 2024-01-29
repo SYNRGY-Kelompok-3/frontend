@@ -6,6 +6,7 @@ import Steper from "src/components/atoms/Stepper";
 import AccordionComponent from "src/components/atoms/Accordion";
 import ConfirmPayment from "src/components/organisms/PopUp/confirmPayment";
 import Alert from "src/components/atoms/Alert";
+import KreditDebitIcon from "src/assets/images/kreditdebit.png";
 
 function Payment() {
   const breadcrumbSteps = [
@@ -29,16 +30,17 @@ function Payment() {
       <Breadcrumb steps={breadcrumbSteps} />
       <Steper />
       <Alert />
-      <div className="container mx-auto">
+      <div className="container mx-[20px] sm:mx-10 md:mx-10 lg:mx-10 xl:mx-28">
         <div className="flex flex-col md:flex-row">
           <div className="left-side">
             <div className="mt-10 mr-3 p-6 bg-white border rounded-lg shadow">
               <h2 className="font-bold mb-4">Metode Pembayaran</h2>
 
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center mb-4">
                 <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 p-2 rounded border border-blue-400">
                   Kartu Kredit/Debit
                 </span>
+                <img src={KreditDebitIcon} alt="credit card" />
               </div>
 
               <form className="flex flex-col">
@@ -113,8 +115,8 @@ function Payment() {
               </form>
             </div>
           </div>
-          <div className="right-side">
-            <div className="mt-10 ml-3 bg-white border">
+          <div className="right-side flex-grow">
+            <div className="mt-10 ml-1 w-full w-full h-full bg-white border">
               <AccordionComponent />
             </div>
           </div>
