@@ -17,14 +17,14 @@ function Sidebar({ modal }: { modal: React.RefObject<HTMLDivElement> }) {
         className="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 m-4 overflow-y-auto antialiased transition-all duration-200 bg-white border-0 shadow-xl dark:shadow-none dark:bg-slate-850 xl:ml-6 max-w-64 ease-nav-brand z-990 rounded-2xl xl:left-0"
         aria-expanded="false"
       >
-        <div className="flex justify-center items-center py-3">
+        <div className="flex justify-center items-center pt-5">
           <Link to="/" className="flex items-center z-20">
             <Image src={LogoBlue} alt={"logo"} className={"w-[20px] h-[20px] md:w-[25px] md:h-[25px]"} />
             <div className={`text-[#075efd] font-bold text-2xl sm:text-3xl ml-2`}>Travel.id</div>
           </Link>
         </div>
 
-        <hr className="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/100 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
+        <hr className="h-px my-5 bg-transparent bg-gradient-to-r from-transparent via-black/100 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
 
         <div className="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
           <ul className="flex flex-col pl-0 mb-0">
