@@ -24,7 +24,7 @@ function Login() {
 
   return (
     <PublicProvider>
-      <main>
+      <main className="overflow-x-auto">
         <div className="grid grid-cols-1 lg:flex lg:justify-between lg:items-center">
           <div className="hidden lg:w-[50%] lg:flex h-screen">
             <div className="h-screen bg-[url('src/assets/bglogin.png')] bg-cover">
@@ -71,7 +71,7 @@ function Login() {
                   </div>
                   {loginError.status ? (
                     <div className="py-3">
-                      <p className="leading-normal text-lime-500">{loginError.message}</p>
+                      <p className="leading-normal text-red-500">{loginError.message}</p>
                     </div>
                   ) : null}
                 </div>
@@ -93,7 +93,7 @@ function Login() {
                           ) : emailValidation ? (
                             <i className="fa-regular fa-circle-check text-lime-500"></i>
                           ) : (
-                            <i className="fa-regular fa-circle-xmark"></i>
+                            <i className="fa-regular fa-circle-xmark text-red-500"></i>
                           )}
                         </div>
                       </div>
