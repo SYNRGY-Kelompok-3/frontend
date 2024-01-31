@@ -2,9 +2,8 @@ import Notification from "src/components/organisms/Notification";
 import IconProfile from "src/components/organisms/Dropdown";
 
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { axiosAuth } from "src/services/axios";
+import { useEffect, useState, useCallback } from "react";
+import Api from "src/services/api";
 
 interface User {
   created_date?: string;
@@ -20,23 +19,21 @@ interface User {
 }
 
 function Navbar({ toggle, icon }: { toggle: () => void; icon: React.RefObject<HTMLDivElement> }) {
+  const { fetchProfile } = Api();
   const [user, setUser] = useState<User>({});
-  const fetchUser = async () => {
+
+  const fetchUser = useCallback(async () => {
     try {
-      const response = await axios.get(`${axiosAuth.defaults.baseURL}user/detail-profile/`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      setUser(response.data["data 2"]);
+      const response = await fetchProfile();
+      setUser(response["data 2"]);
     } catch (error) {
       console.log("error > ", error);
     }
-  };
+  }, [fetchProfile]);
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [fetchUser]);
 
   return (
     <>

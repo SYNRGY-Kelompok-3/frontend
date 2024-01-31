@@ -3,10 +3,9 @@ import ChevronRight from "src/assets/ChevronRight.svg";
 
 import Departure from "src/assets/FilterHome/plane-departure.png";
 
-import { useEffect, useState } from "react";
-import { axiosAuth } from "src/services/axios";
-import axios from "axios";
+import { useEffect, useState, useCallback } from "react";
 import { parseISO, format } from "date-fns";
+import Api from "src/services/api";
 
 interface User {
   created_date?: string;
@@ -28,44 +27,33 @@ interface Notification {
   timestamp?: string;
 }
 
-function Riwayat() {
+function Notification() {
+  const { fetchProfile, fetchNotif } = Api();
   const [user, setUser] = useState<User>({});
   const [notification, setNotification] = useState<Notification[]>([]);
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     try {
-      const response = await axios.get(`${axiosAuth.defaults.baseURL}user/detail-profile/`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      setUser(response.data["data 2"]);
+      const response = await fetchProfile();
+      setUser(response["data 2"]);
     } catch (error) {
       console.log("error > ", error);
     }
-  };
+  }, [fetchProfile]);
+
+  const fetchNotification = useCallback(async () => {
+    try {
+      const response = await fetchNotif();
+      setNotification((prevNotifications) => [...prevNotifications, ...response.data]);
+    } catch (error) {
+      console.log("error > ", error);
+    }
+  }, [fetchNotif]);
 
   useEffect(() => {
-    const fetchNotification = async () => {
-      try {
-        const response = await axios.get(
-          `${axiosAuth.defaults.baseURL}notification/getByCustomerId/${user.id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        console.log(response.data);
-        setNotification(response.data);
-      } catch (error) {
-        console.log("error > ", error);
-      }
-    };
-
     fetchUser();
     fetchNotification();
-  }, [user.id]);
+  }, [user.id, fetchUser, fetchNotification]);
 
   return (
     <>
@@ -114,4 +102,4 @@ function Riwayat() {
   );
 }
 
-export default Riwayat;
+export default Notification;

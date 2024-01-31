@@ -1,19 +1,29 @@
 import { useState } from "react";
-import axios, { AxiosError } from "axios";
-
-import { axiosAuth } from "src/services/axios";
+import { AxiosError } from "axios";
+import Api from "src/services/api";
 import { STATUS_CODE } from "src/constants/common";
 
-interface ILogin {
+interface ErrorLogin {
   message?: string;
   status?: string;
 }
+
+interface Login {
+  access_token?: string;
+  refresh_token?: string;
+  scope?: string;
+  token_type?: string;
+  expires_in?: number;
+  jti?: string;
+}
+
 function LoginHooks() {
+  const { fetchLogin } = Api();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordType, setPasswordType] = useState<string>("password");
   const [emailValidation, setEmailValidation] = useState<boolean>(false);
-  const [loginError, setLoginError] = useState<ILogin>({});
+  const [loginError, setLoginError] = useState<ErrorLogin>({});
 
   const re =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -42,8 +52,6 @@ function LoginHooks() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      console.log(email, password);
-
       if (!email || !password) {
         setLoginError({
           message: "Email dan Password Wajib Diisi!",
@@ -60,40 +68,14 @@ function LoginHooks() {
         return;
       }
 
-      // let data = JSON.stringify({
-      //   "username": email,
-      //   "password": password
-      // });
+      const response = (await fetchLogin(email, password)) as Login;
 
-      // let config = {
-      //   method: 'post',
-      //   maxBodyLength: Infinity,
-      //   url: `${axiosAuth.defaults.baseURL}v1/user-login/login/`,
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   data: data
-      // };
-
-      // await axios.request(config)
-      //   .then((response) => {
-      //     console.log(JSON.stringify(response.data));
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
-
-      const response = await axios.post(`${axiosAuth.defaults.baseURL}v1/user-login/login/`, {
-        username: email,
-        password: password,
-      });
-
-      if (response.data.access_token) {
+      if (response.access_token) {
         setLoginError({
           message: "Login Berhasil!",
           status: STATUS_CODE[200],
         });
-        localStorage.setItem("token", response?.data.access_token);
+        localStorage.setItem("token", response?.access_token);
       } else {
         setLoginError({
           message: "Email atau Password Salah!",
@@ -108,7 +90,6 @@ function LoginHooks() {
           status: STATUS_CODE[500],
         });
       }
-
       setLoginError({
         message: "Login Gagal, Terjadi Kesalahan!",
         status: STATUS_CODE[500],

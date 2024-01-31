@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Image from "src/components/atoms/Img";
 import Bell from "src/assets/Bell.svg";
-import { axiosAuth } from "src/services/axios";
-import axios from "axios";
+import Api from "src/services/api";
 
 interface User {
   created_date?: string;
@@ -26,6 +25,7 @@ interface Notification {
 }
 
 function Notification() {
+  const { fetchNotif, fetchProfile } = Api();
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
   const iconRef = useRef<HTMLDivElement | null>(null);
@@ -54,12 +54,8 @@ function Notification() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`${axiosAuth.defaults.baseURL}user/detail-profile/`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-        setUser(response.data["data 2"]);
+        const response = await fetchProfile();
+        setUser(response["data 2"]);
       } catch (error) {
         return error;
       }
@@ -67,15 +63,8 @@ function Notification() {
 
     const fetchNotification = async () => {
       try {
-        const response = await axios.get(
-          `${axiosAuth.defaults.baseURL}notification/getByCustomerId/${user.id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        setNotification(response.data);
+        const response = await fetchNotif();
+        setNotification(response);
       } catch (error) {
         return error;
       }
@@ -93,7 +82,7 @@ function Notification() {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [isOpen, user.id]);
+  }, [isOpen, user.id, fetchNotif, fetchProfile]);
 
   return (
     <>

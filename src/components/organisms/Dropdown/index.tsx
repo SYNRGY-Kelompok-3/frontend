@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { axiosAuth } from "src/services/axios";
-import axios from "axios";
+import Api from "src/services/api";
 
 import Image from "../../atoms/Img";
 import Avatar from "../../../assets/Avatar.png";
@@ -13,6 +12,7 @@ interface Menu {
 }
 
 function DropdownMenu({ name, picture }: { name: string | undefined; picture: string | null | undefined }) {
+  const { fetchProfile } = Api();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
@@ -27,18 +27,14 @@ function DropdownMenu({ name, picture }: { name: string | undefined; picture: st
 
   const result = role === "user_role" ? Menu.filter((item) => item.text !== "Dashboard") : Menu;
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     try {
-      const response = await axios.get(`${axiosAuth.defaults.baseURL}user/detail-profile/`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      setRole(response.data["data 1"]["roles"][0].type);
+      const response = await fetchProfile();
+      setRole(response["data 1"]["roles"][0].type);
     } catch (error) {
       return error;
     }
-  };
+  }, [fetchProfile]);
 
   const handleIconClick = () => {
     if (isOpen) {
@@ -70,7 +66,7 @@ function DropdownMenu({ name, picture }: { name: string | undefined; picture: st
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [isOpen]);
+  }, [isOpen, fetchUser]);
 
   const handleLogout = () => {
     const c = confirm("are you sure want to logout?");
