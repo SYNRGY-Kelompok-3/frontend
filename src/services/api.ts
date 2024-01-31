@@ -56,7 +56,6 @@ function Api() {
           };
         } else if (error.response?.data.error === "invalid_token") {
           localStorage.removeItem("token");
-          window.location.reload();
         } else {
           return error;
         }
