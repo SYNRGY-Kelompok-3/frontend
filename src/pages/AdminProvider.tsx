@@ -1,39 +1,38 @@
-import { PropsWithChildren, useEffect, useState } from "react";
-import { axiosAuth } from "src/services/axios";
-import axios from "axios";
+import { PropsWithChildren, useEffect, useState, useCallback } from "react";
+import Api from "src/services/api";
 
 function AdminProvider({ children }: PropsWithChildren) {
+  const { fetchProfile } = Api();
   const [show, setShow] = useState(false);
   const token = localStorage.getItem("token");
   const [role, setRole] = useState<string>("");
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     try {
-      const response = await axios.get(`${axiosAuth.defaults.baseURL}user/detail-profile/`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      setRole(response.data["data 1"]["roles"][0].type);
+      const response = await fetchProfile();
+      const userRole = response["data 1"]["roles"][0].type;
 
-      // Move the redirection logic here
-      if (response.data["data 1"]["roles"][0].type === "user_role") {
-        window.location.href = "/";
-      } else {
-        setShow(false);
-      }
+      setRole((prevRole) => {
+        if (userRole === "user_role") {
+          window.location.href = "/";
+          return prevRole; // No change if user_role
+        } else {
+          setShow(false);
+          return userRole; // Update role if not user_role
+        }
+      });
     } catch (error) {
       console.log("error > ", error);
       setShow(true);
     }
-  };
+  }, [fetchProfile]);
 
   useEffect(() => {
     fetchUser();
     if (!role) {
       setShow(false);
     }
-  }, [token, role]);
+  }, [token, role, fetchUser]);
 
   if (show) {
     return children;

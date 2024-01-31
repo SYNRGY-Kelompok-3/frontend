@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import Image from "src/components/atoms/Img";
 import LogoBlue from "src/assets/LogoBlue.png";
+
 function Sidebar({ modal }: { modal: React.RefObject<HTMLDivElement> }) {
   const handleLogout = () => {
     const c = confirm("are you sure want to logout?");

@@ -1,27 +1,27 @@
-import { useState, useRef, useEffect } from "react";
-import { axiosAuth } from "src/services/axios";
-import axios from "axios";
+import { useState, useRef, useEffect, useCallback } from "react";
+import Api from "src/services/api";
 
 interface Menu {
   text: string;
   link?: string;
 }
 
-function NavbarHooks() {
-  const token = localStorage.getItem("token");
+interface User {
+  created_date?: string;
+  updated_date?: string;
+  id?: number;
+  name?: string;
+  identityNumber?: string | null;
+  email?: string;
+  dateOfBirth?: string;
+  gender?: string | null;
+  profilePicture?: string | null;
+  phoneNumber?: string;
+}
 
-  interface User {
-    created_date?: string;
-    updated_date?: string;
-    id?: number;
-    name?: string;
-    identityNumber?: string | null;
-    email?: string;
-    dateOfBirth?: string;
-    gender?: string | null;
-    profilePicture?: string | null;
-    phoneNumber?: string;
-  }
+function NavbarHooks() {
+  const { fetchProfile } = Api();
+  const token = localStorage.getItem("token");
 
   const NavMenu: Menu[] = [
     { text: "Beranda", link: "/" },
@@ -51,8 +51,6 @@ function NavbarHooks() {
 
   const handleDocumentClick = (event: MouseEvent) => {
     const target = event.target as Node;
-
-    // Check if the click is outside the card
     if (checkboxRef.current && !checkboxRef.current?.contains(target)) {
       setIsChecked(false);
     }
@@ -66,19 +64,15 @@ function NavbarHooks() {
     }
   };
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     try {
-      const response = await axios.get(`${axiosAuth.defaults.baseURL}user/detail-profile/`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      setUser(response.data["data 2"]);
-      setRole(response.data["data 1"]["roles"][0].type);
+      const response = await fetchProfile();
+      setUser(response["data 2"]);
+      setRole(response["data 1"]["roles"][0].type);
     } catch (error) {
       console.log("error > ", error);
     }
-  };
+  }, [fetchProfile]);
 
   const sidemenuResult = token
     ? role === "user_role"
@@ -95,7 +89,7 @@ function NavbarHooks() {
     return () => {
       document.removeEventListener("click", handleDocumentClick);
     };
-  }, []);
+  }, [fetchUser]);
 
   return {
     NavMenu,
