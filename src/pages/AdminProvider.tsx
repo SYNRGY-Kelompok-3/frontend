@@ -10,17 +10,13 @@ function AdminProvider({ children }: PropsWithChildren) {
   const fetchUser = useCallback(async () => {
     try {
       const response = await fetchProfile();
-      const userRole = response["data 1"]["roles"][0].type;
+      setRole(response["data 1"]["roles"][0].type);
 
-      setRole((prevRole) => {
-        if (userRole === "user_role") {
-          window.location.href = "/";
-          return prevRole; // No change if user_role
-        } else {
-          setShow(false);
-          return userRole; // Update role if not user_role
-        }
-      });
+      if (response["data 1"]["roles"][0].type === "user_role") {
+        window.location.href = "/";
+      } else {
+        setShow(true);
+      }
     } catch (error) {
       console.log("error > ", error);
       setShow(true);
