@@ -8,8 +8,10 @@ import Button from "src/components/atoms/Button";
 
 import useAction from "./register.hooks";
 import Modal from "./modal";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [isNameFocused, setIsNameFocused] = useState(false);
   const [isEmailFocused, setIsEmailFocused] = useState(false);
@@ -17,7 +19,7 @@ function Register() {
 
   const handleCloseModal = () => {
     setShowModal(false);
-    window.location.href = "/register/otp";
+    navigate("/register/otp");
   };
   const {
     name,
@@ -93,7 +95,12 @@ function Register() {
                 ) : null}
               </div>
               <div className="px-6">
-                <form role="form" onSubmit={handleSubmit}>
+                <form
+                  role="form"
+                  onSubmit={(e) => {
+                    handleSubmit(e, () => setShowModal(true));
+                  }}
+                >
                   {/* nama lengkap */}
                   <div className="mt-3">
                     <label className="py-2">Nama Lengkap</label>
@@ -203,7 +210,6 @@ function Register() {
                   <button
                     type="submit"
                     className="inline-block w-full my-6 px-16 py-3.5 font-bold leading-normal text-lg text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
-                    onClick={() => setShowModal(true)}
                   >
                     Daftar
                   </button>
