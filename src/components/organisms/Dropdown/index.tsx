@@ -32,7 +32,7 @@ function DropdownMenu({ name, picture }: { name: string | undefined; picture: st
       const response = await fetchProfile();
       setRole(response["data 1"]["roles"][0].type);
     } catch (error) {
-      return error;
+      console.log(error);
     }
   }, [fetchProfile]);
 

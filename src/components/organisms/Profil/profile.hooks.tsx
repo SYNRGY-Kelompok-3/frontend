@@ -76,8 +76,6 @@ function ProfileHooks() {
     fetchUser();
   }, [fetchUser]); // Removed the dependency array
 
-  console.log("user > ", user);
-
   return {
     ProfilePicture,
     showPopup,

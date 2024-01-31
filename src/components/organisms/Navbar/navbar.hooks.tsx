@@ -19,24 +19,21 @@ interface User {
   phoneNumber?: string;
 }
 
-function NavbarHooks() {
+function useNavbarHooks() {
   const { fetchProfile } = Api();
   const token = localStorage.getItem("token");
 
-  const NavMenu: Menu[] = [
+  const navMenu: Menu[] = [
     { text: "Beranda", link: "/" },
     { text: "Tentang Kami", link: "/tentang-kami" },
     { text: "Artikel", link: "/artikel" },
     { text: "Pusat Bantuan", link: "/pusat-bantuan" },
   ];
 
-  const Menu: Menu[] = [
+  const menu: Menu[] = [
     { text: "Profile", link: "/profile" },
     { text: "Notifikasi", link: "/notifikasi" },
-    { text: "Beranda", link: "/" },
-    { text: "Tentang Kami", link: "/tentang-kami" },
-    { text: "Artikel", link: "/artikel" },
-    { text: "Pusat Bantuan", link: "/pusat-bantuan" },
+    ...navMenu,
     { text: "Dashboard", link: "/dashboard" },
   ];
 
@@ -45,24 +42,24 @@ function NavbarHooks() {
   const [user, setUser] = useState<User>({});
   const [role, setRole] = useState<string>();
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
+  const handleCheckboxChange = useCallback(() => {
+    setIsChecked((prev) => !prev);
+  }, []);
 
-  const handleDocumentClick = (event: MouseEvent) => {
+  const handleDocumentClick = useCallback((event: MouseEvent) => {
     const target = event.target as Node;
     if (checkboxRef.current && !checkboxRef.current?.contains(target)) {
       setIsChecked(false);
     }
-  };
+  }, []);
 
-  const handleLogout = () => {
-    const c = confirm("are you sure want to logout?");
+  const handleLogout = useCallback(() => {
+    const c = window.confirm("are you sure want to logout?");
     if (c) {
       localStorage.removeItem("token");
       window.location.reload();
     }
-  };
+  }, []);
 
   const fetchUser = useCallback(async () => {
     try {
@@ -70,15 +67,15 @@ function NavbarHooks() {
       setUser(response["data 2"]);
       setRole(response["data 1"]["roles"][0].type);
     } catch (error) {
-      console.log("error > ", error);
+      console.error(error);
     }
   }, [fetchProfile]);
 
   const sidemenuResult = token
     ? role === "user_role"
-      ? Menu.filter((item) => item.text !== "Dashboard")
-      : Menu
-    : Menu.filter(
+      ? menu.filter((item) => item.text !== "Dashboard")
+      : menu
+    : menu.filter(
         (item) => item.text !== "Dashboard" && item.text !== "Profile" && item.text !== "Notifikasi"
       );
 
@@ -89,10 +86,10 @@ function NavbarHooks() {
     return () => {
       document.removeEventListener("click", handleDocumentClick);
     };
-  }, [fetchUser]);
+  }, [fetchUser, handleDocumentClick]);
 
   return {
-    NavMenu,
+    navMenu,
     sidemenuResult,
     user,
     role,
@@ -104,4 +101,4 @@ function NavbarHooks() {
   };
 }
 
-export default NavbarHooks;
+export default useNavbarHooks;
