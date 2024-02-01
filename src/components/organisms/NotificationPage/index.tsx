@@ -3,7 +3,7 @@ import ChevronRight from "src/assets/ChevronRight.svg";
 
 import Departure from "src/assets/FilterHome/plane-departure.png";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { parseISO, format } from "date-fns";
 import Api from "src/services/api";
 
@@ -32,28 +32,28 @@ function Notification() {
   const [user, setUser] = useState<User>({});
   const [notification, setNotification] = useState<Notification[]>([]);
 
-  const fetchUser = useCallback(async () => {
-    try {
-      const response = await fetchProfile();
-      setUser(response["data 2"]);
-    } catch (error) {
-      console.log("error > ", error);
-    }
-  }, [fetchProfile]);
-
-  const fetchNotification = useCallback(async () => {
-    try {
-      const response = await fetchNotif();
-      setNotification((prevNotifications) => [...prevNotifications, ...response.data]);
-    } catch (error) {
-      console.log("error > ", error);
-    }
-  }, [fetchNotif]);
-
   useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetchProfile();
+        setUser(response["data 2"]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const fetchNotification = async () => {
+      try {
+        const response = await fetchNotif();
+        setNotification(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     fetchUser();
     fetchNotification();
-  }, [user.id, fetchUser, fetchNotification]);
+  }, [user.id, fetchNotif, fetchProfile]);
 
   return (
     <>
