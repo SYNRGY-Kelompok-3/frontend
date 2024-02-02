@@ -23,6 +23,7 @@ import Notifikasi from "src/pages/Notification";
 import Otp from "src/pages/OtpField";
 import ForgotPassword from "src/pages/ForgotPassword";
 import Tiket from "src/pages/Admin/Ticket";
+import Analitik from "src/pages/Admin/Analitik";
 
 function Router() {
   return (
@@ -53,6 +54,7 @@ function Router() {
           <Route element={<PrivateProvider />}>
             <Route element={<LayoutAdminDashboard />}>
               <Route path="/dashboard/tiket" element={<Tiket />} />
+              <Route path="/dashboard/analitik" element={<Analitik />} />
             </Route>
           </Route>
           <Route path="/login" element={<Login />} />
