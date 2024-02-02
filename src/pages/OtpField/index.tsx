@@ -1,43 +1,21 @@
 import { Link } from "react-router-dom";
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useState } from "react";
 import Logo from "src/assets/Logo.png";
 import LogoBlue from "src/assets/LogoBlue.png";
 import Image from "src/components/atoms/Img";
 import Button from "src/components/atoms/Button";
 import Modal from "./modal";
-import { handleOtpSubmit } from "./otp.hooks";
+import userAction from "./otp.hooks";
 
 interface Props {}
-let currentOtpIndex: number = 0;
 
 const Otp: FC<Props> = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => setShowModal(false);
 
-  const [otp, setOtp] = useState<string[]>(new Array(6).fill(""));
-  const [activeOtpIndex, setActiveOtpIndex] = useState<number>(0);
+  const { handleOtpSubmit, handleResendOtp, handleOnChange, handleOnKeyDown, otp, inputRef, activeOtpIndex } =
+    userAction();
 
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleOnChange = ({ target }: React.ChangeEvent<HTMLInputElement>): void => {
-    const { value } = target;
-    const newOtp: string[] = [...otp];
-    newOtp[currentOtpIndex] = value.substring(value.length - 1);
-
-    if (!value) setActiveOtpIndex(currentOtpIndex - 1);
-    else setActiveOtpIndex(currentOtpIndex + 1);
-
-    setOtp(newOtp);
-  };
-
-  const handleOnKeyDown = ({ key }: React.KeyboardEvent<HTMLInputElement>, index: number) => {
-    currentOtpIndex = index;
-    if (key === "Backspace") setActiveOtpIndex(currentOtpIndex - 1);
-  };
-
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, [activeOtpIndex]);
   return (
     <main>
       <div className="grid grid-cols-1 lg:flex lg:justify-between lg:items-center">
@@ -83,7 +61,13 @@ const Otp: FC<Props> = (): JSX.Element => {
                 </div>
               </div>
 
-              <form onSubmit={handleOtpSubmit} role="form" className="px-6 mt-6 flex flex-col gap-3">
+              <form
+                onSubmit={(e) => {
+                  handleOtpSubmit(e, () => setShowModal(true));
+                }}
+                role="form"
+                className="px-6 mt-6 flex flex-col gap-3"
+              >
                 <div className="flex justify-between items-center space-x-2">
                   {otp.map((_, index) => {
                     return (
@@ -103,16 +87,18 @@ const Otp: FC<Props> = (): JSX.Element => {
                 </div>
                 <div className="flex gap-1">
                   <p className="font-normal">Belum mendapatkan kode? </p>
-                  <Link to="/register/otp" className="text-[rgb(203,58,49)]">
-                    Kirim Ulang
-                  </Link>
+                  <Button
+                    type="button"
+                    content={"Kirim Ulang"}
+                    className="text-[rgb(203,58,49)]"
+                    onClick={() => handleResendOtp()}
+                  />
                 </div>
 
                 <Button
                   type="submit"
                   content={"Verifikasi"}
                   className="inline-block w-full my-6 px-16 py-3.5 font-semibold leading-normal text-lg text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
-                  onClick={() => setShowModal(true)}
                 />
               </form>
             </div>
