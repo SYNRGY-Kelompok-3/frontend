@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import ChartHooks from "./analitik.hooks";
 
 const Analitik: React.FC = () => {
-  const [selectedYear, setSelectedYear] = useState<string>("2024");
-
-  const handleYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedYear(event.target.value);
-  };
+  const [selectedDate, setSelectedDate] = useState({ year: "2024" });
+  const [selectedDate2, setSelectedDate2] = useState({ year: "2024", month: "2" });
+  const [selectedDate3, setSelectedDate3] = useState({ year: "2024" });
 
   return (
     <>
@@ -24,15 +22,81 @@ const Analitik: React.FC = () => {
                     <label htmlFor="year1" className="text-sm">
                       Select Year:
                     </label>
-                    <select id="yearSelect" value={selectedYear} onChange={handleYearChange}>
+                    <select
+                      id="yearSelect"
+                      value={selectedDate.year}
+                      onChange={(e) => setSelectedDate({ year: e.target.value })}
+                    >
                       <option value="2022">2022</option>
                       <option value="2023">2023</option>
                       <option value="2024">2024</option>
                     </select>
                   </div>
                   <div className="p-5">
-                    <ChartHooks selectedYear={selectedYear} chartId="revenueChart" />
+                    <ChartHooks selectedDate={selectedDate} chartId="chart1" />
                   </div>
+                </div>
+                <div className="flex-none w-1/2 pr-5 pt-2">
+                  <h4 className="ml-4">B. Laporan Pemasukan Bulanan</h4>{" "}
+                  <div className="m-3 flex items-center justify-end space-x-2">
+                    <label htmlFor="year2" className="text-sm">
+                      Select Year:
+                    </label>
+                    <select
+                      id="year2"
+                      value={selectedDate2.year}
+                      onChange={(e) => setSelectedDate2({ year: e.target.value, month: e.target.value })}
+                    >
+                      <option value="2022">2022</option>
+                      <option value="2023">2023</option>
+                      <option value="2024">2024</option>
+                    </select>
+
+                    <label htmlFor="month2" className="text-sm">
+                      Select Month:
+                    </label>
+                    <select
+                      id="month2"
+                      value={selectedDate2.month}
+                      onChange={(e) => setSelectedDate2({ year: e.target.value, month: e.target.value })}
+                    >
+                      <option value="1">January</option>
+                      <option value="2">February</option>
+                      <option value="3">March</option>
+                      <option value="4">April</option>
+                      <option value="5">May</option>
+                      <option value="6">June</option>
+                      <option value="7">July</option>
+                      <option value="8">August</option>
+                      <option value="9">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                    </select>
+                  </div>
+                  <div className="p-5">
+                    <ChartHooks selectedDate={selectedDate2} chartId="chart2" />
+                  </div>
+                </div>
+              </div>
+              <div className="w-1/2 pl-3 pt-2">
+                <h4 className="ml-4">C. Laporan Per Bulan dalam Tahun</h4>{" "}
+                <div className="m-3 flex items-center justify-end space-x-2">
+                  <label htmlFor="year3" className="text-sm">
+                    Select Year:
+                  </label>
+                  <select
+                    id="year3"
+                    value={selectedDate3.year}
+                    onChange={(e) => setSelectedDate3({ year: e.target.value })}
+                  >
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                  </select>
+                </div>
+                <div className="p-5">
+                  <ChartHooks selectedDate={selectedDate3} chartId="chart3" />
                 </div>
               </div>
             </div>
