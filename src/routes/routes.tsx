@@ -23,6 +23,7 @@ import Notifikasi from "src/pages/Notification";
 import Otp from "src/pages/OtpField";
 import ForgotPassword from "src/pages/ForgotPassword";
 import Tiket from "src/pages/Admin/Ticket";
+import PusatBantuan from "src/pages/PusatBantuan";
 
 function Router() {
   return (
@@ -37,6 +38,7 @@ function Router() {
             <Route path="/artikel" element={<Artikel />} />
             <Route path="/artikel/:id" element={<Detailartikel />} />
             <Route path="/detailtiket" element={<Detailtiket />} />
+            <Route path="/pusat-bantuan" element={<PusatBantuan />} />
             <Route path="/flight/full-search" element={<FullSearchTickets />} />
             <Route element={<PrivateProvider />}>
               <Route path="/payment" element={<Payment />} />
