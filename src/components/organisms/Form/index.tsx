@@ -69,13 +69,15 @@ function FormCheckout({ firstName, lastName, titel, checked, setChecked }: Paylo
                 <input
                   type="text"
                   id="firstName"
-                  {...register("firstName", { required: true })}
+                  {...register("firstName", { required: "Tidak boleh kosong" })}
                   className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${
                     errors.firstName && "focus:border-red-500 focus:ring-red-500 border-red-500"
                   }`}
                   placeholder="Masukkan Nama Depan"
                 />
-                {errors.firstName && <span className="text-[10px] text-red-500">This is required</span>}
+                {errors.firstName && errors.firstName.message && (
+                  <span className="text-[10px] text-red-500">Tidak boleh kosong</span>
+                )}
               </div>
               <div className="flex flex-col flex-1">
                 <label htmlFor="lastName" className="mb-2 text-xs font-medium">
@@ -96,7 +98,7 @@ function FormCheckout({ firstName, lastName, titel, checked, setChecked }: Paylo
               </label>
               <select
                 id="titel"
-                {...register("titel", { required: true })}
+                {...register("titel", { required: "Tidak boleh kosong" })}
                 className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-1 focus:ring-blue-700 focus:border-blue-700 placeholder:text-[#757575] ${
                   errors.titel && "focus:border-red-500 focus:ring-red-500 border-red-500"
                 }`}
@@ -106,7 +108,9 @@ function FormCheckout({ firstName, lastName, titel, checked, setChecked }: Paylo
                 <option value="nyonya">Nyonya</option>
                 <option value="nona">Nona</option>
               </select>
-              {errors.titel && <span className="text-[10px] text-red-500">This is required</span>}
+              {errors.titel && errors.titel.message && (
+                <span className="text-[10px] text-red-500">Tidak boleh kosong</span>
+              )}
             </div>
             <div className="mb-5 flex gap-2.5">
               <div className="flex flex-col flex-1">
@@ -116,13 +120,18 @@ function FormCheckout({ firstName, lastName, titel, checked, setChecked }: Paylo
                 <input
                   type="text"
                   id="phone"
-                  {...register("phone", { required: true })}
+                  {...register("phone", { required: "Tidak boleh kosong", pattern: /^[0-9]+$/i })}
                   className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${
                     errors.phone && "focus:border-red-500 focus:ring-red-500 border-red-500"
                   }`}
                   placeholder="Masukkan Nomor Handphone"
                 />
-                {errors.phone && <span className="text-[10px] text-red-500">This is required</span>}
+                {errors.phone && errors.phone.message && (
+                  <span className="text-[10px] text-red-500">Tidak boleh kosong</span>
+                )}
+                {errors.phone && errors.phone.type === "pattern" && (
+                  <span className="text-[10px] text-red-500">Nomor handphone tidak sesuai</span>
+                )}
               </div>
               <div className="flex flex-col flex-1">
                 <label htmlFor="email" className="mb-2 text-xs font-medium">
@@ -131,13 +140,18 @@ function FormCheckout({ firstName, lastName, titel, checked, setChecked }: Paylo
                 <input
                   type="text"
                   id="email"
-                  {...register("email", { required: true })}
+                  {...register("email", { required: "Tidak boleh kosong", pattern: /^\S+@\S+$/i })}
                   className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${
                     errors.email && "focus:border-red-500 focus:ring-red-500 border-red-500"
                   }`}
                   placeholder="Masukkan Email"
                 />
-                {errors.email && <span className="text-[10px] text-red-500">This is required</span>}
+                {errors.email && errors.email.message && (
+                  <span className="text-[10px] text-red-500">Tidak boleh kosong</span>
+                )}
+                {errors.email && errors.email.type === "pattern" && (
+                  <span className="text-[10px] text-red-500">Format email tidak sesuai</span>
+                )}
               </div>
             </div>
           </div>
@@ -183,14 +197,16 @@ function FormCheckout({ firstName, lastName, titel, checked, setChecked }: Paylo
                   <input
                     type="text"
                     id="firstName2"
-                    {...register("firstName2", { required: true })}
+                    {...register("firstName2", { required: "Tidak boleh kosong" })}
                     className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${
                       errors.firstName2 && "focus:border-red-500 focus:ring-red-500 border-red-500"
                     }`}
                     placeholder="Masukkan Nama Depan"
                   />
                 )}
-                {errors.firstName2 && <span className="text-[10px] text-red-500">This is required</span>}
+                {errors.firstName2 && errors.firstName2.message && (
+                  <span className="text-[10px] text-red-500">Tidak boleh kosong</span>
+                )}
               </div>
               <div className="flex flex-col flex-1">
                 <label htmlFor="lastName2" className="mb-2 text-xs font-medium">
@@ -237,7 +253,7 @@ function FormCheckout({ firstName, lastName, titel, checked, setChecked }: Paylo
               ) : (
                 <select
                   id="titel2"
-                  {...register("titel2", { required: true })}
+                  {...register("titel2", { required: "Tidak boleh kosong" })}
                   className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-1 focus:ring-blue-700 focus:border-blue-700 placeholder:text-[#757575] ${
                     errors.titel2 && "focus:border-red-500 focus:ring-red-500 border-red-500"
                   }`}
@@ -248,7 +264,9 @@ function FormCheckout({ firstName, lastName, titel, checked, setChecked }: Paylo
                   <option value="nona">Nona</option>
                 </select>
               )}
-              {errors.titel2 && <span className="text-[10px] text-red-500">This is required</span>}
+              {errors.titel2 && errors.titel2.message && (
+                <span className="text-[10px] text-red-500">Tidak boleh kosong</span>
+              )}
             </div>
           </div>
           <div className="mb-2 flex justify-between">
