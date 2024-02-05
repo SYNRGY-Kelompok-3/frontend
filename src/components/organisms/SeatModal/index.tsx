@@ -8,7 +8,7 @@ import Button from "../../atoms/Button";
 import { useDispatch } from "react-redux";
 import { setSeats } from "src/state/seatSlice/slice";
 
-interface SeatProps {
+export interface SeatProps {
   seat: string;
   row: string;
   price?: number;
@@ -53,7 +53,7 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
           </div>
 
           <div
-            className="h-[700px] bg-no-repeat bg-center"
+            className="h-[700px] bg-no-repeat bg-center bg-scroll overflow-y-scroll"
             style={{
               backgroundImage: `url(${bgBody})`,
               backgroundSize: "325px",
@@ -65,7 +65,7 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
         <div className="h-[48px] flex items-center justify-between mt-4">
           <div>
             <p className="font-semibold text-[12px] text-black">Total</p>
-            <p className="text-sm font-semibold text-blue-500">
+            <p className="text-sm font-semibold text-red-500">
               Rp{selectedSeats.reduce((total, seat) => total + (seat.price || 0), 0).toLocaleString()}{" "}
               <span className="font-bold text-black">|</span>{" "}
               <span className="text-slate-400">

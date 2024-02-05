@@ -1,6 +1,6 @@
 // Handles the state of seats and total price
 import { createSlice, PayloadAction } from "@reduxjs/toolkit/react";
-import { SeatProps } from "src/components/organisms/SeatLists";
+import { SeatProps } from "src/components/organisms/SeatModal";
 
 interface SeatState {
   totalPrice: number;

@@ -1,27 +1,68 @@
-const rows = ["1", "2", "3", "4", "5", "6"];
+import { flightId } from "src/components/atoms/Seat";
+import { axiosAuth } from "src/services/axios";
+import axios from "axios";
 
-const emptySeats = ["A1", "A2", "B3", "B5", "D6", "E4"];
+interface SeatAttribute {
+  seatBooked: string[];
+}
+
+const rows = 22;
+
+let emptySeats: string[] = [];
+
+export const fetchSeat = async () => {
+  try {
+    const response = await axios.get(`${axiosAuth.defaults.baseURL}seat/getByFlight/${flightId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    const seatData = response.data.data.map((seat: SeatAttribute) => seat.seatBooked);
+    emptySeats = seatData;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const blueSeats: string[] = [];
+const greenSeats: string[] = [];
+const yellowSeats: string[] = [];
+const purpleSeats: string[] = [];
+
+for (let i = 1; i <= rows; i++) {
+  ["A", "B", "C", "D", "E", "F"].map((seat) => {
+    if (i >= 1 && i <= 3) {
+      emptySeats.includes(`${seat}${i}`) ? "" : blueSeats.push(`${seat}${i}`);
+    } else if (i >= 4 && i <= 7) {
+      emptySeats.includes(`${seat}${i}`) ? "" : yellowSeats.push(`${seat}${i}`);
+    } else if (i > 7 && (seat === "B" || seat === "E")) {
+      emptySeats.includes(`${seat}${i}`) ? "" : purpleSeats.push(`${seat}${i}`);
+    } else {
+      emptySeats.includes(`${seat}${i}`) ? "" : greenSeats.push(`${seat}${i}`);
+    }
+  });
+}
 
 const seatPrice = {
   green: {
     price: 85000,
-    seats: ["A3", "A4", "A5", "A6", "C3", "C4", "C5", "C6", "D3", "D4", "D5", "F3", "F4", "F5", "F6"],
-    color: "bg-green-600",
+    seats: greenSeats,
+    color: "bg-green-500",
   },
   blue: {
     price: 250000,
-    seats: ["B1", "C1", "D1", "E1"],
+    seats: blueSeats,
     color: "bg-blue-500",
   },
   yellow: {
     price: 195000,
-    seats: ["B2", "C2", "D2", "E2", "F2"],
-    color: "bg-yellow-400",
+    seats: yellowSeats,
+    color: "bg-yellow-300",
   },
   purple: {
     price: 75000,
-    seats: ["B4", "B6", "E3", "E5", "E6"],
-    color: "bg-purple-500",
+    seats: purpleSeats,
+    color: "bg-purple-600",
   },
 };
 
