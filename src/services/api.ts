@@ -1,5 +1,5 @@
 import { axiosAuth, axiosApi, axiosUpload } from "src/services/axios";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse, AxiosError } from "axios";
 import { useState } from "react";
 
 interface User {
@@ -26,8 +26,9 @@ function Api() {
       });
       return response.data;
     } catch (error) {
-      console.log(error);
-      throw error;
+      const err = error as AxiosError;
+      console.log(err.response?.data);
+      throw err;
     }
   };
 
@@ -39,8 +40,10 @@ function Api() {
       setUser(response.data["data 2"]);
       return response.data;
     } catch (error) {
-      console.log(error);
-      throw error;
+      if (axios.isAxiosError(error)) {
+        localStorage.removeItem("token");
+        console.log(error.response?.data.error);
+      }
     }
   };
 
@@ -52,8 +55,9 @@ function Api() {
       );
       return response.data;
     } catch (error) {
-      console.log(error);
-      throw error;
+      if (axios.isAxiosError(error)) {
+        console.log(error.response?.data.error);
+      }
     }
   };
 
