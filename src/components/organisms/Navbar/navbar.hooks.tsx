@@ -64,6 +64,9 @@ function useNavbarHooks() {
   const fetchUser = useCallback(async () => {
     try {
       const response = await fetchProfile();
+      if (!response) {
+        return;
+      }
       setUser(response["data 2"]);
       setRole(response["data 1"]["roles"][0].type);
     } catch (error) {
