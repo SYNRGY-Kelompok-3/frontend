@@ -33,7 +33,7 @@ function ProfileHooks() {
   const fetchUser = useCallback(async () => {
     try {
       const response = await fetchProfile();
-      setUser((prevUser) => ({ ...prevUser, ...response["data 2"] }));
+      setUser(response["data 2"]);
     } catch (error) {
       console.log("error > ", error);
     }

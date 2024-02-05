@@ -32,16 +32,14 @@ function Api() {
   };
 
   const fetchProfile = async () => {
-    try {
-      const response: AxiosResponse = await axios.get(`${axiosApi.defaults.baseURL}user/detail-profile/`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
-      setUser(response.data["data 2"]);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      throw error;
+    const response: AxiosResponse = await axios.get(`${axiosApi.defaults.baseURL}user/detail-profile/`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    if (response.data.error == "invalid_token") {
+      localStorage.removeItem("token");
     }
+    setUser(response.data["data 2"]);
+    return response.data;
   };
 
   const fetchNotif = async () => {
