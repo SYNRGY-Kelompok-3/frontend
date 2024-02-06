@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Chart from "chart.js/auto";
 import axios from "axios";
+import { axiosApi } from "src/services/axios";
 
 interface ChartHooksProps {
   selectedDate: { year: string; month?: string };
@@ -99,14 +100,13 @@ const ChartHooks: React.FC<ChartHooksProps> = ({ selectedDate, chartId, chartInc
 
     const fetchChartData = async (airline: string, passengerClass: string) => {
       try {
-        let apiUrl = `https://travelid-backend-java-dev.up.railway.app/revenueReport/annual?year=${selectedDate.year}&airline=${airline}&passengerClass=${passengerClass}`;
+        let apiUrl = `${axiosApi.defaults.baseURL}revenueReport/annual?year=${selectedDate.year}&airline=${airline}&passengerClass=${passengerClass}`;
 
         if (selectedDate.month) {
-          apiUrl = `https://travelid-backend-java-dev.up.railway.app/revenueReport/monthly?year=${selectedDate.year}&month=${selectedDate.month}&airline=${airline}&passengerClass=${passengerClass}`;
+          apiUrl = `${axiosApi.defaults.baseURL}revenueReport/monthly?year=${selectedDate.year}&month=${selectedDate.month}&airline=${airline}&passengerClass=${passengerClass}`;
         }
 
-        const token =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsib2F1dGgyLXJlc291cmNlIl0sInVzZXJfbmFtZSI6ImFkbWluQG1haWwuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTcwNzIyNjY5NSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9TVVBFUlVTRVIiLCJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImp0aSI6IldXNUF6TGR1YTh6UVJlb25kU0pHOFZCeWk3ayIsImNsaWVudF9pZCI6Im15LWNsaWVudC13ZWIifQ.ELdp8veAJnbbYa9xCZ3kiyygRt9apFpM0deIS4aZ00c";
+        const token = localStorage.getItem("token");
 
         const headers = {
           Authorization: `Bearer ${token}`,
@@ -128,10 +128,9 @@ const ChartHooks: React.FC<ChartHooksProps> = ({ selectedDate, chartId, chartInc
 
     const fetchIncomeData = async () => {
       try {
-        const apiUrl = `https://travelid-backend-java-dev.up.railway.app/booking/incomeByMonthAndYear/${selectedDate.year}`;
+        const apiUrl = `${axiosApi.defaults.baseURL}booking/incomeByMonthAndYear/${selectedDate.year}`;
 
-        const token =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsib2F1dGgyLXJlc291cmNlIl0sInVzZXJfbmFtZSI6ImFkbWluQG1haWwuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTcwNzIyNjY5NSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9TVVBFUlVTRVIiLCJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImp0aSI6IldXNUF6TGR1YTh6UVJlb25kU0pHOFZCeWk3ayIsImNsaWVudF9pZCI6Im15LWNsaWVudC13ZWIifQ.ELdp8veAJnbbYa9xCZ3kiyygRt9apFpM0deIS4aZ00c";
+        const token = localStorage.getItem("token");
 
         const headers = {
           Authorization: `Bearer ${token}`,
