@@ -12,7 +12,7 @@ export const STATUS_CODE: Record<StatusCode, string> = {
   504: "Gateway Timeout",
 };
 
-export const PAGE_SIZE = 20;
+export const PAGE_SIZE = 10;
 export const DEFAULT_CURRENCY = `Rp `;
 
 export const ARTICLE_FILTER = {

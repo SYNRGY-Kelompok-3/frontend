@@ -8,7 +8,8 @@ import Callendar from "src/assets/FilterHome/calendar-alt.png";
 import Class from "src/assets/FilterHome/chair-office.png";
 import { useSearchTicket } from "src/usecases/modules/home";
 import { useState } from "react";
-
+import { Datepicker } from "flowbite-react";
+import { useDateFormatter } from "src/usecases/common/useDateFormat";
 interface IFilterHome {
   isFilterMore?: boolean;
 }
@@ -21,8 +22,12 @@ function Filter({ isFilterMore }: IFilterHome) {
     handleSelectDestinationCity,
     originCity,
     destinationCity,
-    handleSelectDate,
+    startDateStr,
+    endDateStr,
+    handleSelectStartDate,
+    handleSelectEndDate,
   } = useSearchTicket();
+  const { formatDateMonthYear, formatUTC } = useDateFormatter();
   const [isOneWay, setOneWayValue] = useState<boolean>(false);
   const setOneWay = () => {
     setOneWayValue(!isOneWay);
@@ -96,7 +101,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                       id="jumlah"
                       className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
-                      <option selected>Masukkan Jumlah Penumpang</option>
+                      <option value="">Masukkan Jumlah Penumpang</option>
                       <option value="1">1</option>
                       <option value="3">2</option>
                     </select>
@@ -106,10 +111,12 @@ function Filter({ isFilterMore }: IFilterHome) {
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
                     </div>
-                    <input
-                      type="date"
-                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSelectDate(true, e)}
+                    <Datepicker
+                      showClearButton={false}
+                      onSelectedDateChanged={(date: Date) => handleSelectStartDate(date)}
+                      minDate={new Date()}
+                      language="id-ID"
+                      value={formatDateMonthYear(startDateStr)}
                     />
                   </div>
                   <div
@@ -123,12 +130,13 @@ function Filter({ isFilterMore }: IFilterHome) {
                         Tanggal Pulang
                       </div>
                     </div>
-                    <input
-                      type="date"
-                      className={`w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg ${
-                        !isOneWay ? "hidden" : ""
-                      }`}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSelectDate(false, e)}
+                    <Datepicker
+                      showClearButton={false}
+                      onSelectedDateChanged={(date: Date) => handleSelectEndDate(date)}
+                      minDate={formatUTC(startDateStr)}
+                      language="id-ID"
+                      disabled={!isOneWay}
+                      value={formatDateMonthYear(endDateStr)}
                     />
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
@@ -205,10 +213,12 @@ function Filter({ isFilterMore }: IFilterHome) {
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
                     </div>
-                    <input
-                      type="date"
-                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSelectDate(true, e)}
+                    <Datepicker
+                      showClearButton={false}
+                      onSelectedDateChanged={(date: Date) => handleSelectStartDate(date)}
+                      minDate={new Date()}
+                      language="id-ID"
+                      value={formatDateMonthYear(startDateStr)}
                     />
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
@@ -218,10 +228,12 @@ function Filter({ isFilterMore }: IFilterHome) {
                         Tanggal Pulang
                       </div>
                     </div>
-                    <input
-                      type="date"
-                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSelectDate(false, e)}
+                    <Datepicker
+                      showClearButton={false}
+                      onSelectedDateChanged={(date: Date) => handleSelectEndDate(date)}
+                      minDate={formatUTC(startDateStr)}
+                      language="id-ID"
+                      value={formatDateMonthYear(endDateStr)}
                     />
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">

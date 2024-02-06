@@ -2,7 +2,7 @@ const CardSkeletonLoading = () => {
   return (
     <div
       role="status"
-      className="mb-5 space-y-8 skeleton md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center"
+      className="mb-5 space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center"
     >
       <div className="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
         <svg

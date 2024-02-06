@@ -5,24 +5,53 @@ import { PAGE_SIZE } from "src/constants";
 
 export interface ITicketState extends ITicketListParams {
   isLoading: boolean;
+  isLoadingDetail: boolean;
   isError: boolean;
   data: unknown | null | Array<ITicket>;
+  detailTicket: ITicket;
 }
 
 const initialState: ITicketState = {
   isLoading: false,
+  isLoadingDetail: false,
   isError: false,
   data: [] || null,
   page: 0,
   size: PAGE_SIZE,
-  startDateStr: ``,
-  endDateStr: ``,
+  startDateStr: "",
+  endDateStr: "",
   isDiscount: false,
   freeMeal: false,
-  transit: "langsung",
+  transit: "",
   originCity: "",
   destinationCity: "",
-  passengerClass: "economy",
+  passengerClass: "",
+  detailTicket: {
+    airlines: {
+      id: 0,
+      pathLogo: ``,
+      airline: ``,
+    },
+    arrivedTime: ``,
+    created_date: ``,
+    destinationAirport: ``,
+    destinationCity: ``,
+    discountPrice: ``,
+    duration: ``,
+    flightNumber: ``,
+    freeMeal: false,
+    flightTime: ``,
+    gate: ``,
+    id: 0,
+    isDiscount: false,
+    luggage: ``,
+    originAirport: ``,
+    originCity: ``,
+    passengerClass: ``,
+    price: 0,
+    transit: ``,
+    updated_date: ``,
+  },
 };
 
 // type Action =
@@ -60,20 +89,26 @@ const initialState: ITicketState = {
 // };
 
 export const fetchTicketList = createAsyncThunk("fetchTicketList", async (params: ITicketListParams) => {
-  const { page, size, startDateStr, endDateStr, originCity, destinationCity } = params;
-  const url: string = `/flight/listFlights?page=${page}&size=${size}&startDateStr=${startDateStr}&endDateStr=${endDateStr}&originCity=${originCity}&destinationCity=${destinationCity}`;
+  const { page, size, startDateStr, originCity, destinationCity } = params;
+  const url: string = `/flight/listFlights?page=${page}&size=${size}&startDateStr=${startDateStr}&endDateStr=&originCity=${originCity}&destinationCity=${destinationCity}`;
   const res = await axiosAuth.get(url);
   return res?.data?.data?.content;
+});
+
+export const fetchTicketDetail = createAsyncThunk("fetchTicketDetail", async (id: number) => {
+  const url: string = `/flight/${id}`;
+  const res = await axiosAuth.get(url);
+  return res?.data?.data;
 });
 
 const ticketSlice = createSlice({
   name: "ticket",
   initialState,
   reducers: {
-    setStartDate: (state, action: PayloadAction<string>) => {
+    setStartDate: (state, action: PayloadAction<Date | string>) => {
       state.startDateStr = action.payload;
     },
-    setEndDate: (state, action: PayloadAction<string>) => {
+    setEndDate: (state, action: PayloadAction<Date | string>) => {
       state.endDateStr = action.payload;
     },
     setTransit: (state, action: PayloadAction<TTransit>) => {
@@ -99,6 +134,18 @@ const ticketSlice = createSlice({
     });
     builder.addCase(fetchTicketList.rejected, (state) => {
       state.isError = true;
+      state.isLoading = false;
+    });
+    builder.addCase(fetchTicketDetail.pending, (state) => {
+      state.isLoadingDetail = true;
+    });
+    builder.addCase(fetchTicketDetail.fulfilled, (state, action) => {
+      state.isLoadingDetail = false;
+      state.detailTicket = action.payload;
+    });
+    builder.addCase(fetchTicketDetail.rejected, (state) => {
+      state.isError = true;
+      state.isLoadingDetail = false;
     });
   },
 });

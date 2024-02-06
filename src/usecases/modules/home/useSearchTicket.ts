@@ -19,11 +19,19 @@ export const useSearchTicket = () => {
     (state: RootState) => state.ticket
   );
 
-  const handleSelectDate = useCallback(
-    (isDateStart: boolean, event: React.ChangeEvent<HTMLInputElement>) => {
-      const date: Date = new Date(event.target.value);
+  const handleSelectStartDate = useCallback(
+    async (date: Date) => {
+      console.log(new Date());
       const dateISO = date.toISOString();
-      isDateStart ? dispatch(setStartDate(dateISO)) : dispatch(setEndDate(dateISO));
+      console.log(dateISO);
+      await dispatch(setStartDate(dateISO));
+    },
+    [dispatch]
+  );
+  const handleSelectEndDate = useCallback(
+    async (date: Date) => {
+      const dateISO = date.toISOString();
+      await dispatch(setEndDate(dateISO));
     },
     [dispatch]
   );
@@ -65,16 +73,17 @@ export const useSearchTicket = () => {
   };
 
   const onSearchTicket = async (): Promise<void> => {
-    const { page, size, startDateStr, endDateStr, originCity, destinationCity } = params;
+    const { page, size, startDateStr, originCity, destinationCity } = params;
     await navigate(
-      `/flight/full-search?page=${page}&size=${size}&startDateStr=${startDateStr}&endDateStr=${endDateStr}&originCity=${originCity}&destinationCity=${destinationCity}`
+      `/flight/full-search?page=${page}&size=${size}&startDateStr=${startDateStr}&endDateStr=&originCity=${originCity}&destinationCity=${destinationCity}`
     );
   };
   return {
     onSearchTicket,
     handleSelectClass,
     handleSelectOriginCity,
-    handleSelectDate,
+    handleSelectStartDate,
+    handleSelectEndDate,
     handleSelectDestinationCity,
     startDateStr,
     endDateStr,

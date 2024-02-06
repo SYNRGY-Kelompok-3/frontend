@@ -7,8 +7,8 @@ export interface ITicketListParams {
   size: string | number;
   isDiscount?: string | boolean | null;
   freeMeal?: string | boolean | null;
-  startDateStr?: string | null;
-  endDateStr?: string | null;
+  startDateStr?: Date | string;
+  endDateStr?: Date | string;
   originCity: TCity;
   destinationCity: TCity;
   passengerClass?: TPassengerClass;
@@ -21,15 +21,15 @@ export interface ITicket {
     pathLogo: string;
     airline: string;
   };
-  arrivedTime: Date;
-  created_date: Date;
+  arrivedTime: Date | null | string;
+  created_date: Date | null | string;
   destinationAirport: string;
   destinationCity: string;
   discountPrice: string;
   duration: string;
   flightNumber: string;
   freeMeal: string | boolean;
-  flightTime: Date;
+  flightTime: Date | null | string;
   gate: string;
   id: number;
   isDiscount: string | boolean;
@@ -39,5 +39,5 @@ export interface ITicket {
   passengerClass: string;
   price: number;
   transit: string;
-  updated_date: Date;
+  updated_date: Date | null | string;
 }

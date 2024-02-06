@@ -7,7 +7,7 @@ import { ITicketListParams, TCity, TTransit, PAGE_SIZE } from "src/constants";
 
 export const useGetTicketList = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { data, isLoading, originCity, destinationCity } = useSelector((state: RootState) => state.ticket);
+  const { data, isLoading } = useSelector((state: RootState) => state.ticket);
   const [searchParams] = useSearchParams();
 
   const params = useMemo<ITicketListParams>(() => {
@@ -15,8 +15,8 @@ export const useGetTicketList = () => {
     const size = searchParams.get("size") || PAGE_SIZE;
     const isDiscount = searchParams.get("isDiscount");
     const freeMeal = searchParams.get("freeMeal");
-    const startDateStr = searchParams.get("startDateStr");
-    const endDateStr = searchParams.get("endDateStr");
+    const startDateStr = searchParams.get("startDateStr") || new Date();
+    // const endDateStr = searchParams.get("endDateStr");
     const transit = searchParams.get("transit");
     const originCity = searchParams.get("originCity");
     const destinationCity = searchParams.get("destinationCity");
@@ -27,7 +27,7 @@ export const useGetTicketList = () => {
       isDiscount,
       freeMeal,
       startDateStr,
-      endDateStr,
+      // endDateStr,
       transit: transit as TTransit,
       originCity: originCity as TCity,
       destinationCity: destinationCity as TCity,
@@ -41,7 +41,6 @@ export const useGetTicketList = () => {
   return {
     ticketList: data,
     isLoading,
-    originCity,
-    destinationCity,
+    params,
   };
 };
