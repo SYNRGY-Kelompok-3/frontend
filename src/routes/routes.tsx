@@ -24,6 +24,7 @@ import Otp from "src/pages/OtpField";
 import ForgotPassword from "src/pages/ForgotPassword";
 import Tiket from "src/pages/Admin/Ticket";
 import PusatBantuan from "src/pages/PusatBantuan";
+import TermOfService from "src/pages/TermsOfService";
 
 function Router() {
   return (
@@ -34,6 +35,7 @@ function Router() {
             <Route path="/" element={<Home />} />
           </Route>
           <Route element={<Layoutpage />}>
+            <Route path="/terms-of-service" element={<TermOfService />} />
             <Route path="/tentang-kami" element={<TentangKami />} />
             <Route path="/artikel" element={<Artikel />} />
             <Route path="/artikel/:id" element={<Detailartikel />} />
