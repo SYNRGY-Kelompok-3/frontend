@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useCallback, useEffect, useState } from "react";
 import Avatar from "src/assets/Profile.png";
 import Api from "src/services/api";
@@ -16,7 +17,7 @@ interface User {
 }
 
 function ProfileHooks() {
-  const { fetchProfile, handleUpload, handleUpdate } = Api();
+  const { fetchProfile, handleUploadAndUpdate, handleUpdate } = Api();
   const [profileImageFile, setProfileImageFile] = useState<string>();
   const [showPopup, setShowPopup] = useState(false);
   const [formValues, setFormValues] = useState<User>({});
@@ -30,10 +31,19 @@ function ProfileHooks() {
     setShowPopup(false);
   };
 
+  const formatDate = (dateString: string) => {
+    const [year, month, day] = dateString.split("-");
+    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  };
+
   const fetchUser = useCallback(async () => {
     try {
       const response = await fetchProfile();
-      setUser((prevUser) => ({ ...prevUser, ...response["data 2"] }));
+      const userData = response["data 2"];
+      const formattedDateOfBirth = userData.dateOfBirth ? formatDate(userData.dateOfBirth) : "";
+
+      setUser((prevUser) => ({ ...prevUser, ...userData, dateOfBirth: formattedDateOfBirth }));
+      setFormValues((prevValues) => ({ ...prevValues, dateOfBirth: formattedDateOfBirth }));
     } catch (error) {
       console.log("error > ", error);
     }
@@ -46,9 +56,9 @@ function ProfileHooks() {
         const formData = new FormData();
         formData.append("profilePicture", files[0]);
 
-        const response = await handleUpload(formData);
-        setProfileImageFile(response);
-        console.log("imageURL > ", response.data.data.secure_url);
+        const imageUrl = await handleUploadAndUpdate(formData);
+        setProfileImageFile(imageUrl); // Menggunakan imageUrl langsung dari respons handleUploadAndUpdate
+        console.log("imageURL > ", imageUrl);
       } catch (error) {
         console.error("Error uploading profile picture:", error);
       }
