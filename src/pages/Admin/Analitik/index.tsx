@@ -3,7 +3,7 @@ import ChartHooks from "./analitik.hooks";
 
 const Analitik: React.FC = () => {
   const [selectedDate1, setSelectedDate1] = useState({ year: "2024" });
-  const [selectedDate2, setSelectedDate2] = useState({ year: "2024", month: "2" });
+  const [selectedDate2, setSelectedDate2] = useState({ year: "2024", month: "1" });
   const [selectedDate3, setSelectedDate3] = useState({ year: "2024" });
 
   return (
