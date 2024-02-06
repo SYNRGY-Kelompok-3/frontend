@@ -19,7 +19,7 @@ const TentangKami = () => {
 
           <div className="absolute text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-xl md:w-2/3 sm:block">
             <div className="p-4 bg-white bg-opacity-20">
-              <h2 className="mb-2 text-lg font-bold md:text-2xl lg:text-3xl sm:text-xl md:sm:text-2xl">
+              <h2 className="mb-2 text-lg font-bold text-white md:text-2xl lg:text-3xl sm:text-xl md:sm:text-2xl">
                 Perjalanan Travel Indonesia
               </h2>
               <p className="text-sm md:text-base lg:text-lg sm:text-sm md:sm:text-base lg:sm:text-lg">
