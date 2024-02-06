@@ -7,7 +7,7 @@ import { ITicketListParams, TCity, TTransit, PAGE_SIZE } from "src/constants";
 
 export const useGetTicketList = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { data, isLoading } = useSelector((state: RootState) => state.ticket);
+  const { data, isLoading, originCity, destinationCity } = useSelector((state: RootState) => state.ticket);
   const [searchParams] = useSearchParams();
 
   const params = useMemo<ITicketListParams>(() => {
@@ -41,5 +41,7 @@ export const useGetTicketList = () => {
   return {
     ticketList: data,
     isLoading,
+    originCity,
+    destinationCity,
   };
 };

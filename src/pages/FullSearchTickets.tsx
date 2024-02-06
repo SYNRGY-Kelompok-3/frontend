@@ -5,8 +5,10 @@ import { useGetTicketList } from "src/usecases/modules/tickets";
 import FilterHome from "src/components/organisms/FilterHome";
 import bgPrimary from "src/assets/bg-2.png";
 import { ITicket } from "src/constants";
+import CardSkeletonLoading from "src/components/atoms/CardSkeletonLoading";
+
 const FullSearchTickets: React.FC = () => {
-  const { ticketList, isLoading } = useGetTicketList();
+  const { ticketList, isLoading, originCity, destinationCity } = useGetTicketList();
   const tickets: ITicket[] = ticketList as ITicket[];
   return (
     <>
@@ -28,8 +30,13 @@ const FullSearchTickets: React.FC = () => {
             <FilterFlightTicket />
           </div>
           <div className="basis-[80%]">
-            <h2 className="justify-self-end text-xl  font-medium my-2">Penerbangan Dari `A` ke `B`</h2>
-            {isLoading && <h1>loading bentar</h1>}
+            <h2 className="justify-self-end text-xl  font-medium my-2">
+              Penerbangan Dari <span className="font-bold">`{originCity}` </span>
+              ke
+              <span className="font-bold">`{destinationCity}` </span>
+            </h2>
+            {isLoading && Array.from({ length: 5 }).map((_, index) => <CardSkeletonLoading key={index} />)}
+
             {!isLoading && tickets.length > 0 ? (
               tickets.map((ticket: ITicket) => {
                 return (
@@ -39,7 +46,7 @@ const FullSearchTickets: React.FC = () => {
                 );
               })
             ) : (
-              <h1>gak ada datanya</h1>
+              <h1>No Data Found!</h1>
             )}
           </div>
         </div>

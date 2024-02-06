@@ -20,8 +20,8 @@ const initialState: ITicketState = {
   isDiscount: false,
   freeMeal: false,
   transit: "langsung",
-  originCity: undefined,
-  destinationCity: undefined,
+  originCity: "",
+  destinationCity: "",
   passengerClass: "economy",
 };
 

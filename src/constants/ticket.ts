@@ -1,6 +1,6 @@
-export type TCity = "jakarta" | "bali";
-export type TPassengerClass = "economy" | "business";
-export type TTransit = "langsung" | "1_transit" | "2_transit";
+export type TCity = "jakarta" | "bali" | "";
+export type TPassengerClass = "economy" | "business" | "";
+export type TTransit = "langsung" | "1_transit" | "2_transit" | "";
 
 export interface ITicketListParams {
   page: string | number;
@@ -9,8 +9,8 @@ export interface ITicketListParams {
   freeMeal?: string | boolean | null;
   startDateStr?: string | null;
   endDateStr?: string | null;
-  originCity?: TCity;
-  destinationCity?: TCity;
+  originCity: TCity;
+  destinationCity: TCity;
   passengerClass?: TPassengerClass;
   transit?: TTransit;
 }
