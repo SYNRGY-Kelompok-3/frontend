@@ -1,7 +1,7 @@
 // Modify this file to configure store and reducer
 import { configureStore } from "@reduxjs/toolkit";
 import seatReducer from "./seatSlice/slice";
-import ticketReducer from "./ticketSlice/slice";
+import ticketReducer from "./ticketSlice/ticketList";
 import forgotPasswordReducer from "./authSlice/forgotPasswordFlow";
 export const store = configureStore({
   reducer: {
