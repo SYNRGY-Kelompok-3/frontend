@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layouthome from "src/layout/Home";
 import Layoutpage from "src/layout/Page";
-import LayoutDashboard from "src/layout/UserDashboard";
+import LayoutAdminDashboard from "src/layout/Dashboard";
+import LayoutUserDashboard from "src/layout/UserDashboard";
 import PrivateProvider from "src/layout/PrivateProvider";
 
 import Home from "src/pages/Home";
@@ -21,6 +22,8 @@ import Riwayat from "src/pages/Riwayat";
 import Notifikasi from "src/pages/Notification";
 import Otp from "src/pages/OtpField";
 import ForgotPassword from "src/pages/ForgotPassword";
+import Tiket from "src/pages/Admin/Ticket";
+import PusatBantuan from "src/pages/PusatBantuan";
 
 function Router() {
   return (
@@ -31,16 +34,17 @@ function Router() {
             <Route path="/" element={<Home />} />
           </Route>
           <Route element={<Layoutpage />}>
-            <Route path="/detailtiket" element={<Detailtiket />} />
-            <Route path="/flight/full-search" element={<FullSearchTickets />} />
             <Route path="/tentang-kami" element={<TentangKami />} />
             <Route path="/artikel" element={<Artikel />} />
             <Route path="/artikel/:id" element={<Detailartikel />} />
+            <Route path="/detailtiket" element={<Detailtiket />} />
+            <Route path="/pusat-bantuan" element={<PusatBantuan />} />
+            <Route path="/flight/full-search" element={<FullSearchTickets />} />
             <Route element={<PrivateProvider />}>
               <Route path="/payment" element={<Payment />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/invoices" element={<Invoice />} />
-              <Route element={<LayoutDashboard />}>
+              <Route element={<LayoutUserDashboard />}>
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/riwayat-transaksi" element={<Riwayat />} />
                 <Route path="/riwayat-transaksi/:id" element={<Riwayat />} />
@@ -48,10 +52,11 @@ function Router() {
               </Route>
             </Route>
           </Route>
-          {/* <Route element={<PublicProvider />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-          </Route> */}
+          <Route element={<PrivateProvider />}>
+            <Route element={<LayoutAdminDashboard />}>
+              <Route path="/dashboard/tiket" element={<Tiket />} />
+            </Route>
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />

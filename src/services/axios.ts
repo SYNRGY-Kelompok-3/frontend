@@ -1,6 +1,6 @@
 import axios, { Axios } from "axios";
 
-const jwt = localStorage.getItem("authKey");
+const jwt = localStorage.getItem("token");
 const { VITE_APP_API_URL, VITE_APP_API_UPLOAD } = import.meta.env;
 
 export const axiosAuth: Axios = axios.create({
@@ -12,7 +12,7 @@ export const axiosApi: Axios = axios.create({
   baseURL: VITE_APP_API_URL,
   timeout: 10000,
   headers: {
-    Authorization: `${jwt}`,
+    Authorization: `Bearer ${jwt}`,
   },
 });
 

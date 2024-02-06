@@ -1,10 +1,23 @@
-import { axiosAuth, axiosUpload } from "src/services/axios";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Avatar from "src/assets/Profile.png";
+import Api from "src/services/api";
+
+interface User {
+  created_date?: string;
+  updated_date?: string;
+  id?: number;
+  name?: string;
+  identityNumber?: string | null;
+  email?: string;
+  dateOfBirth?: string;
+  gender?: string | null;
+  profilePicture?: string | null;
+  phoneNumber?: string;
+}
 
 function ProfileHooks() {
-  const [profileImageFile, setProfileImageFile] = useState();
+  const { fetchProfile, handleUpload, handleUpdate } = Api();
+  const [profileImageFile, setProfileImageFile] = useState<string>();
   const [showPopup, setShowPopup] = useState(false);
   const [formValues, setFormValues] = useState<User>({});
   const [user, setUser] = useState<User>({});
@@ -17,31 +30,14 @@ function ProfileHooks() {
     setShowPopup(false);
   };
 
-  interface User {
-    created_date?: string;
-    updated_date?: string;
-    id?: number;
-    name?: string;
-    identityNumber?: string | null;
-    email?: string;
-    dateOfBirth?: string;
-    gender?: string | null;
-    profilePicture?: string | null;
-    phoneNumber?: string;
-  }
-
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     try {
-      const response = await axios.get(`${axiosAuth.defaults.baseURL}user/detail-profile/`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      setUser(response.data["data 2"]);
+      const response = await fetchProfile();
+      setUser((prevUser) => ({ ...prevUser, ...response["data 2"] }));
     } catch (error) {
       console.log("error > ", error);
     }
-  };
+  }, [fetchProfile]);
 
   const handleUploadPicture = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -50,9 +46,8 @@ function ProfileHooks() {
         const formData = new FormData();
         formData.append("profilePicture", files[0]);
 
-        const response = await axios.post(`${axiosUpload.defaults.baseURL}api/profil/upload`, formData);
-        const imageURL = response.data.data.secure_url;
-        setProfileImageFile(imageURL);
+        const response = await handleUpload(formData);
+        setProfileImageFile(response);
         console.log("imageURL > ", response.data.data.secure_url);
       } catch (error) {
         console.error("Error uploading profile picture:", error);
@@ -63,11 +58,7 @@ function ProfileHooks() {
   const handleSubmit = async () => {
     try {
       const payload = { id: user.id, ...formValues, profilePicture: profileImageFile };
-      const response = await axios.put(`${axiosAuth.defaults.baseURL}customers/update`, payload, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await handleUpdate(payload);
       console.log("response > ", response);
       showSuccessPopup();
     } catch (error) {
@@ -83,9 +74,7 @@ function ProfileHooks() {
 
   useEffect(() => {
     fetchUser();
-  }, []);
-
-  console.log("user > ", user);
+  }, [fetchUser]); // Removed the dependency array
 
   return {
     ProfilePicture,

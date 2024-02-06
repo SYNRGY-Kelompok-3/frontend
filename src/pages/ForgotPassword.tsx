@@ -18,48 +18,52 @@ function ForgotPassword() {
 
   return (
     <PublicProvider>
-      <div className="grid grid-cols-1 lg:flex lg:justify-between lg:items-center">
-        <div className="hidden lg:w-[50%] lg:flex h-screen">
-          <div className="h-screen bg-[url('src/assets/bglogin.png')] bg-cover">
-            <div className="h-full bg-violet-500 bg-opacity-20">
-              <div className="py-[160px] flex justify-center">
-                <Link to="/" className="flex justify-center items-center">
-                  <Image src={Logo} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
-                  <div className={`text-white font-bold text-3xl`}>Travel.id</div>
-                </Link>
-              </div>
-              <div className="text-center pt-[60px] pb-[400px] mx-36">
-                <h4 className="font-bold text-3xl text-white leading-10">"Kepuasan Anda Adalah Misi Kami"</h4>
-                <p className="text-white text-xl">
-                  Travel.id akan memberikan layanan terbaik dalam menemani perjalanan karena kepuasan anda
-                  adalah bagian dari kami.
-                </p>
+      <main className="overflow-x-auto">
+        <div className="grid grid-cols-1 lg:flex lg:justify-between lg:items-center">
+          <div className="hidden lg:w-[50%] lg:flex h-screen">
+            <div className="h-screen bg-[url('src/assets/bglogin.png')] bg-cover">
+              <div className="h-full bg-gradient-to-b from-[#3E7BFACF] via-[#2148C0E5] to-[#3E7BFA8A] bg-opacity-70">
+                <div className="py-[160px] flex justify-center">
+                  <Link to="/" className="flex justify-center items-center">
+                    <Image src={Logo} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
+                    <div className={`text-white font-bold text-3xl`}>Travel.id</div>
+                  </Link>
+                </div>
+                <div className="text-center pt-[60px] pb-[400px] mx-36">
+                  <h4 className="font-bold text-3xl text-white leading-10">
+                    "Kepuasan Anda Adalah Misi Kami"
+                  </h4>
+                  <p className="text-white text-xl">
+                    Travel.id akan memberikan layanan terbaik dalam menemani perjalanan karena kepuasan anda
+                    adalah bagian dari kami.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
+          {[FORGOT_PWD_FLOW.EMAIL_INPUT, FORGOT_PWD_FLOW.CHECK_EMAIL].includes(flow) && <EmailForm />}
+          {flow === FORGOT_PWD_FLOW.CHECK_EMAIL && (
+            <PopupConfirm
+              redirectAction={handleCheckEmailClick}
+              btnlabel="Cek Email"
+              image={ImageConfirmEmail}
+              label="Permintaan Atur Kata Sandi Terkirim!"
+              desc={`Cek link atur ulang kata sandi pada email <span style="color: #3E7BFA">${email}</span> dan segera lakukan atur ulang kata sandi akunmu`}
+            />
+          )}
+          {flow === FORGOT_PWD_FLOW.INPUT_OTP && <InputOtp />}
+          {[FORGOT_PWD_FLOW.RESET_PASSWORD, FORGOT_PWD_FLOW.END_FLOW].includes(flow) && <ResetPasswordForm />}
+          {flow === FORGOT_PWD_FLOW.END_FLOW && (
+            <PopupConfirm
+              redirectAction={onRedirectLogin}
+              btnlabel="Selesai"
+              image={ImageResetPasswordDone}
+              label="Kata Sandi Berhasil Diperbarui"
+              desc="Yeay, kamu sudah berhasil memperbarui kata sandi. Ingat dan jangan sampai lupa lagi yah"
+            />
+          )}
         </div>
-        {[FORGOT_PWD_FLOW.EMAIL_INPUT, FORGOT_PWD_FLOW.CHECK_EMAIL].includes(flow) && <EmailForm />}
-        {flow === FORGOT_PWD_FLOW.CHECK_EMAIL && (
-          <PopupConfirm
-            redirectAction={handleCheckEmailClick}
-            btnlabel="Cek Email"
-            image={ImageConfirmEmail}
-            label="Permintaan Atur Kata Sandi Terkirim!"
-            desc={`Cek link atur ulang kata sandi pada email <span style="color: #3E7BFA">${email}</span> dan segera lakukan atur ulang kata sandi akunmu`}
-          />
-        )}
-        {flow === FORGOT_PWD_FLOW.INPUT_OTP && <InputOtp />}
-        {[FORGOT_PWD_FLOW.RESET_PASSWORD, FORGOT_PWD_FLOW.END_FLOW].includes(flow) && <ResetPasswordForm />}
-        {flow === FORGOT_PWD_FLOW.END_FLOW && (
-          <PopupConfirm
-            redirectAction={onRedirectLogin}
-            btnlabel="Selesai"
-            image={ImageResetPasswordDone}
-            label="Kata Sandi Berhasil Diperbarui"
-            desc="Yeay, kamu sudah berhasil memperbarui kata sandi. Ingat dan jangan sampai lupa lagi yah"
-          />
-        )}
-      </div>
+      </main>
     </PublicProvider>
   );
 }

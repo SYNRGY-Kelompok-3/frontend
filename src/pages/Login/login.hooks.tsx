@@ -1,30 +1,38 @@
 import { useState } from "react";
-import axios, { AxiosError } from "axios";
-
-import { axiosAuth } from "src/services/axios";
+import { AxiosError } from "axios";
+import Api from "src/services/api";
 import { STATUS_CODE } from "src/constants/common";
 
-interface ILogin {
+interface ErrorLogin {
   message?: string;
+  color?: string;
   status?: string;
 }
-function LoginHooks() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [passwordType, setPasswordType] = useState<string>("password");
-  const [emailValidation, setEmailValidation] = useState<boolean>(false);
-  const [loginError, setLoginError] = useState<ILogin>({});
 
-  const re =
+interface Login {
+  access_token?: string;
+  refresh_token?: string;
+  scope?: string;
+  token_type?: string;
+  expires_in?: number;
+  jti?: string;
+}
+
+function LoginHooks() {
+  const { fetchLogin } = Api();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordType, setPasswordType] = useState("password");
+  const [emailValidation, setEmailValidation] = useState(false);
+  const [loginError, setLoginError] = useState<ErrorLogin>({});
+
+  const emailRegex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    if (re.test(email)) {
-      setEmailValidation(true);
-    } else {
-      setEmailValidation(false);
-    }
+    const { value } = e.target;
+    setEmail(value);
+    setEmailValidation(emailRegex.test(value));
   };
 
   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,87 +40,54 @@ function LoginHooks() {
   };
 
   const togglePassword = () => {
-    if (passwordType === "password") {
-      setPasswordType("text");
-      return;
-    }
-    setPasswordType("password");
+    setPasswordType((prevType) => (prevType === "password" ? "text" : "password"));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      console.log(email, password);
-
-      if (!email || !password) {
-        setLoginError({
-          message: "Email dan Password Wajib Diisi!",
-          status: STATUS_CODE[400],
-        });
-        return; // Stop execution if email or password is empty
-      }
-
-      if (!re.test(email)) {
-        setLoginError({
-          message: "Email Tidak Valid!",
-          status: STATUS_CODE[400],
-        });
-        return;
-      }
-
-      // let data = JSON.stringify({
-      //   "username": email,
-      //   "password": password
-      // });
-
-      // let config = {
-      //   method: 'post',
-      //   maxBodyLength: Infinity,
-      //   url: `${axiosAuth.defaults.baseURL}v1/user-login/login/`,
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   data: data
-      // };
-
-      // await axios.request(config)
-      //   .then((response) => {
-      //     console.log(JSON.stringify(response.data));
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
-
-      const response = await axios.post(`${axiosAuth.defaults.baseURL}v1/user-login/login/`, {
-        username: email,
-        password: password,
+    if (!email || !password) {
+      setLoginError({
+        message: "Email dan Password Wajib Diisi!",
+        color: "text-red-500",
+        status: STATUS_CODE[400],
       });
+      return;
+    }
 
-      if (response.data.access_token) {
+    if (!emailRegex.test(email)) {
+      setLoginError({
+        message: "Email Tidak Valid!",
+        color: "text-red-500",
+        status: STATUS_CODE[400],
+      });
+      return;
+    }
+
+    try {
+      const response = (await fetchLogin(email, password)) as Login;
+
+      if (response.access_token) {
         setLoginError({
           message: "Login Berhasil!",
+          color: "text-lime-500",
           status: STATUS_CODE[200],
         });
-        localStorage.setItem("token", response?.data.access_token);
+        localStorage.setItem("token", response?.access_token);
       } else {
         setLoginError({
           message: "Email atau Password Salah!",
+          color: "text-red-500",
           status: STATUS_CODE[404],
         });
-        return;
       }
     } catch (error) {
       if (error instanceof AxiosError) {
         setLoginError({
-          message: error.response?.data.message,
+          message: error.response?.data.message ?? "Login Gagal, Terjadi Kesalahan!",
+          color: "text-red-500",
           status: STATUS_CODE[500],
         });
       }
-
-      setLoginError({
-        message: "Login Gagal, Terjadi Kesalahan!",
-        status: STATUS_CODE[500],
-      });
     }
   };
 

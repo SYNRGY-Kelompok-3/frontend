@@ -126,7 +126,7 @@ export default function AccordionComponent() {
 
           <div className="flex items-center justify-between py-1">
             <p className="block text-xl font-bold">Harga Total</p>
-            <p className="block text-xl font-bold text-blue-600">Rp1.525.000</p>
+            <p className="block text-xl font-bold text-red-600">Rp1.525.000</p>
           </div>
         </Accordion.Content>
       </Accordion.Panel>

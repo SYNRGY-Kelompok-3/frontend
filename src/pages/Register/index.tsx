@@ -8,8 +8,10 @@ import Button from "src/components/atoms/Button";
 
 import useAction from "./register.hooks";
 import Modal from "./modal";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [isNameFocused, setIsNameFocused] = useState(false);
   const [isEmailFocused, setIsEmailFocused] = useState(false);
@@ -17,7 +19,7 @@ function Register() {
 
   const handleCloseModal = () => {
     setShowModal(false);
-    window.location.href = "/register/otp";
+    navigate("/register/otp");
   };
   const {
     name,
@@ -38,11 +40,11 @@ function Register() {
   } = useAction();
 
   return (
-    <main>
+    <main className="overflow-x-auto">
       <div className="grid grid-cols-1 lg:flex lg:justify-between lg:items-center">
         <div className="hidden lg:w-[50%] lg:flex h-screen">
           <div className="min-h-screen bg-[url('src/assets/bglogin.png')] bg-cover">
-            <div className="h-full bg-gradient-to-b from-[#3E7BFACF] via-[#2148C0E5] to-[#3E7BFA8A] bg-opacity-20">
+            <div className="h-full bg-gradient-to-b from-[#3E7BFACF] via-[#2148C0E5] to-[#3E7BFA8A] bg-opacity-70">
               <div className="py-[160px] flex justify-center">
                 <Link to="/" className="flex justify-center items-center">
                   <Image src={Logo} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
@@ -93,7 +95,12 @@ function Register() {
                 ) : null}
               </div>
               <div className="px-6">
-                <form role="form" onSubmit={handleSubmit}>
+                <form
+                  role="form"
+                  onSubmit={(e) => {
+                    handleSubmit(e, () => setShowModal(true));
+                  }}
+                >
                   {/* nama lengkap */}
                   <div className="mt-3">
                     <label className="py-2">Nama Lengkap</label>
@@ -203,7 +210,6 @@ function Register() {
                   <button
                     type="submit"
                     className="inline-block w-full my-6 px-16 py-3.5 font-bold leading-normal text-lg text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
-                    onClick={() => setShowModal(true)}
                   >
                     Daftar
                   </button>

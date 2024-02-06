@@ -19,7 +19,7 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
         <p className="text-[15px] sm:text-lg text-center w-[336px] sm:w-[404px]">
           Kamu sudah bisa memulai perjalananmu bersama kami. Nikmati fitur menarik dan seru lainnya
         </p>
-        <Link target="_blank" className="w-full" to="/login">
+        <Link className="w-full" to="/login">
           <Button
             content={"Selesai"}
             type={"button"}

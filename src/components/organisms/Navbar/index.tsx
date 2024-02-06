@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NavLink, useNavigate } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
-import { axiosAuth } from "src/services/axios";
-import axios from "axios";
 
 import Logo from "src/assets/Logo.png";
 import LogoBlue from "src/assets/LogoBlue.png";
@@ -11,97 +8,16 @@ import IconProfile from "src/components/organisms/Dropdown";
 import Navmenu from "src/components/molecules/Navmenu";
 import Button from "src/components/atoms/Button";
 import Image from "src/components/atoms/Img";
+import useAction from "./navbar.hooks";
 
 interface NavmenuProps {
   bg?: "bg-transparent" | "bg-opaque" | "bg-white shadow-md" | undefined;
 }
 
-interface Menu {
-  text: string;
-  link?: string;
-}
-
 function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
   const navigate = useNavigate();
-
-  const token = localStorage.getItem("token");
-
-  const Menu: Menu[] = [
-    { text: "Profile", link: "/profile" },
-    { text: "Notifikasi", link: "/notifikasi" },
-    { text: "Beranda", link: "/" },
-    { text: "Tentang Kami", link: "/tentang-kami" },
-    { text: "Artikel", link: "/artikel" },
-    { text: "Pusat Bantuan", link: "/pusat-bantuan" },
-    { text: "Dashboard", link: "/admin-dashboard" },
-  ];
-
-  const checkboxRef = useRef<HTMLInputElement>(null);
-  const [isChecked, setIsChecked] = useState<boolean>(false);
-  const [user, setUser] = useState<any>({});
-  const [role, setRole] = useState<any>();
-
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
-
-  const handleDocumentClick = (event: MouseEvent) => {
-    const target = event.target as Node;
-
-    // Check if the click is outside the card
-    if (checkboxRef.current && !checkboxRef.current?.contains(target)) {
-      setIsChecked(false);
-    }
-  };
-
-  const handleLogout = () => {
-    const c = confirm("are you sure want to logout?");
-    if (c) {
-      localStorage.removeItem("token");
-      window.location.reload();
-    }
-  };
-
-  const fetchUser = async () => {
-    try {
-      const response = await axios.get(`${axiosAuth.defaults.baseURL}user/detail-profile/`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      setUser(response.data["data 2"]);
-      setRole(response.data["data 1"]["roles"][0].type);
-    } catch (error) {
-      console.log("error > ", error);
-    }
-  };
-
-  const sidemenuResult = token
-    ? role === "user_role"
-      ? Menu.filter((item) => item.text !== "Dashboard")
-      : Menu
-    : Menu.filter(
-        (item) => item.text !== "Dashboard" && item.text !== "Profile" && item.text !== "Notifikasi"
-      );
-
-  const navmenuResult = token
-    ? role === "user_role"
-      ? Menu.filter(
-          (item) => item.text !== "Dashboard" && item.text !== "Profile" && item.text !== "Notifikasi"
-        )
-      : Menu.filter((item) => item.text !== "Profile" && item.text !== "Notifikasi")
-    : Menu.filter(
-        (item) => item.text !== "Dashboard" && item.text !== "Profile" && item.text !== "Notifikasi"
-      );
-
-  useEffect(() => {
-    fetchUser();
-    document.addEventListener("click", handleDocumentClick);
-
-    return () => {
-      document.removeEventListener("click", handleDocumentClick);
-    };
-  }, []);
+  const { navMenu, sidemenuResult, user, handleLogout, handleCheckboxChange, token, isChecked, checkboxRef } =
+    useAction();
 
   return (
     <>
@@ -122,7 +38,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
             </div>
           </NavLink>
           <div className="items-center hidden sm:hidden lg:flex gap-1">
-            <Navmenu menu={navmenuResult} bg={bg} className={"px-3 text-center text-lg"} />
+            <Navmenu menu={navMenu} bg={bg} className={"px-3 text-center text-lg"} />
           </div>
           <div className="flex items-center gap-2">
             {token ? (
@@ -181,7 +97,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
                   className="m-auto mt-2 h-0.5 w-6 rounded bg-sky-900 transition duration-300"
                 ></div>
               </label>
-              <div className="flex flex-col justify-between peer-checked:translate-x-0 z-20 fixed inset-0 w-[270px] translate-x-[-100%] bg-white border-r shadow-xl transition duration-500 lg:border-l-0 lg:w-auto lg:static lg:shadow-none lg:translate-x-0">
+              <div className="flex flex-col justify-between overflow-y-auto peer-checked:translate-x-0 z-20 fixed inset-0 w-[270px] translate-x-[-100%] bg-white border-r shadow-xl transition duration-500 lg:border-l-0 lg:w-auto lg:static lg:shadow-none lg:translate-x-0">
                 <div>
                   <NavLink to="/" className="py-5 px-5 flex items-center z-20">
                     <Image
