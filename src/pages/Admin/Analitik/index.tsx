@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ChartHooks from "./analitik.hooks";
 
 const Analitik: React.FC = () => {
-  const [selectedDate, setSelectedDate] = useState({ year: "2024" });
+  const [selectedDate1, setSelectedDate1] = useState({ year: "2024" });
   const [selectedDate2, setSelectedDate2] = useState({ year: "2024", month: "2" });
   const [selectedDate3, setSelectedDate3] = useState({ year: "2024" });
 
@@ -23,9 +23,9 @@ const Analitik: React.FC = () => {
                       Select Year:
                     </label>
                     <select
-                      id="yearSelect"
-                      value={selectedDate.year}
-                      onChange={(e) => setSelectedDate({ year: e.target.value })}
+                      id="yearSelect1"
+                      value={selectedDate1.year}
+                      onChange={(e) => setSelectedDate1({ year: e.target.value })}
                     >
                       <option value="2022">2022</option>
                       <option value="2023">2023</option>
@@ -33,7 +33,7 @@ const Analitik: React.FC = () => {
                     </select>
                   </div>
                   <div className="p-5">
-                    <ChartHooks selectedDate={selectedDate} chartId="chart1" />
+                    <ChartHooks selectedDate={selectedDate1} chartId="chart1" />
                   </div>
                 </div>
                 <div className="flex-none w-1/2 pr-5 pt-2">
@@ -45,7 +45,7 @@ const Analitik: React.FC = () => {
                     <select
                       id="year2"
                       value={selectedDate2.year}
-                      onChange={(e) => setSelectedDate2({ year: e.target.value, month: e.target.value })}
+                      onChange={(e) => setSelectedDate2({ ...selectedDate2, year: e.target.value })}
                     >
                       <option value="2022">2022</option>
                       <option value="2023">2023</option>
@@ -58,7 +58,7 @@ const Analitik: React.FC = () => {
                     <select
                       id="month2"
                       value={selectedDate2.month}
-                      onChange={(e) => setSelectedDate2({ year: e.target.value, month: e.target.value })}
+                      onChange={(e) => setSelectedDate2({ ...selectedDate2, month: e.target.value })}
                     >
                       <option value="1">January</option>
                       <option value="2">February</option>
@@ -96,7 +96,7 @@ const Analitik: React.FC = () => {
                   </select>
                 </div>
                 <div className="p-5">
-                  <ChartHooks selectedDate={selectedDate3} chartId="chart3" />
+                  <ChartHooks selectedDate={selectedDate3} chartIncomeId="chart3-income" />{" "}
                 </div>
               </div>
             </div>

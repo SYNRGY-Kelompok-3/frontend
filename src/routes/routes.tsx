@@ -53,11 +53,9 @@ function Router() {
               </Route>
             </Route>
           </Route>
-          <Route element={<PrivateProvider />}>
-            <Route element={<LayoutAdminDashboard />}>
-              <Route path="/dashboard/tiket" element={<Tiket />} />
-              <Route path="/dashboard/analitik" element={<Analitik />} />
-            </Route>
+          <Route element={<LayoutAdminDashboard />}>
+            <Route path="/dashboard/tiket" element={<Tiket />} />
+            <Route path="/dashboard/analitik" element={<Analitik />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
