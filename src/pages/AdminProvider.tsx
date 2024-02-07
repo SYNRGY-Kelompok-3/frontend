@@ -13,6 +13,7 @@ function AdminProvider({ children }: PropsWithChildren) {
       setRole(response["data 1"]["roles"][0].type);
 
       if (response["data 1"]["roles"][0].type === "user_role") {
+        setShow(false);
         window.location.href = "/";
       } else {
         setShow(true);
