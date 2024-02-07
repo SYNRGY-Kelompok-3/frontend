@@ -1,7 +1,7 @@
 import Notification from "src/components/organisms/Notification";
 import IconProfile from "src/components/organisms/Dropdown";
 
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import Api from "src/services/api";
 
@@ -35,6 +35,8 @@ function Navbar({ toggle, icon }: { toggle: () => void; icon: React.RefObject<HT
     fetchUser();
   }, [fetchUser]);
 
+  const location = useLocation();
+
   return (
     <>
       <nav
@@ -55,7 +57,7 @@ function Navbar({ toggle, icon }: { toggle: () => void; icon: React.RefObject<HT
                 className="text-lg pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
                 aria-current="page"
               >
-                Tiket
+                {location.pathname.split("/").pop()} {/* Display the last part of the path */}
               </li>
             </ol>
             {/* <!-- <h6 className="mb-0 font-bold text-white capitalize">Tables</h6> --> */}
