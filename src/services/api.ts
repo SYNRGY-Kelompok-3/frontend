@@ -38,6 +38,7 @@ function Api() {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setUser(response.data["data 2"]);
+
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -61,15 +62,25 @@ function Api() {
     }
   };
 
-  const handleUpload = async (formData: FormData) => {
+  const handleUploadAndUpdate = async (formData: FormData) => {
     try {
-      const response: AxiosResponse = await axios.post(
+      console.log("Uploading image to Cloudinary...");
+      const uploadResponse: AxiosResponse = await axios.post(
         `${axiosUpload.defaults.baseURL}api/profil/upload`,
         formData
       );
-      return response.data.data.secure_url;
+
+      if (uploadResponse.data && uploadResponse.data.data.secure_url) {
+        const imageUrl = uploadResponse.data.data.secure_url;
+        const updatedUser: User = { ...user, profilePicture: imageUrl };
+        await handleUpdate(updatedUser);
+        return imageUrl;
+      } else {
+        console.error("Invalid response from Cloudinary:", uploadResponse);
+        throw new Error("Invalid response from Cloudinary");
+      }
     } catch (error) {
-      console.log(error);
+      console.error("Error uploading profile picture:", error);
       throw error;
     }
   };
@@ -92,7 +103,7 @@ function Api() {
     fetchLogin,
     fetchProfile,
     fetchNotif,
-    handleUpload,
+    handleUploadAndUpdate,
     handleUpdate,
   };
 }

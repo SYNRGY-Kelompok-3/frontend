@@ -35,7 +35,7 @@ function OtpHooks() {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `${axiosAuth.defaults.baseURL}/v1/user-register/register-confirm-otp/${otp.join("")}`
+        `${axiosAuth.defaults.baseURL}v1/user-register/register-confirm-otp/${otp.join("")}`
       );
 
       if (response.status === 200) {
@@ -52,7 +52,7 @@ function OtpHooks() {
 
   const handleResendOtp = async () => {
     try {
-      const response = await axios.post(`${axiosAuth.defaults.baseURL}/v1/user-register/send-otp`, {
+      const response = await axios.post(`${axiosAuth.defaults.baseURL}v1/user-register/send-otp`, {
         username: useUserData.getState().userData.username,
       });
 
