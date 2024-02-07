@@ -41,7 +41,6 @@ function Dashboard() {
     };
   }, [isSidebarOpen]);
 
-  console.log(isSidebarOpen);
   return (
     <AdminProvider>
       <div className="m-0 text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500">

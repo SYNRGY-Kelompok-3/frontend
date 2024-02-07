@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Image from "src/components/atoms/Img";
 import LogoBlue from "src/assets/LogoBlue.png";
 
@@ -10,6 +10,8 @@ function Sidebar({ modal }: { modal: React.RefObject<HTMLDivElement> }) {
       window.location.reload();
     }
   };
+
+  const location = useLocation();
 
   return (
     <>
@@ -41,7 +43,11 @@ function Sidebar({ modal }: { modal: React.RefObject<HTMLDivElement> }) {
                 to={"/dashboard/tiket"}
               >
                 <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                  <i className="fa-solid fa-ticket text-lime-500"></i>
+                  <i
+                    className={`fa-solid fa-ticket ${
+                      location.pathname === "/dashboard/tiket" ? "text-lime-500" : "text-gray-500"
+                    }`}
+                  ></i>
                 </div>
                 <span className="ml-1 duration-300 opacity-100 pointer-events-none ease">Tiket</span>
               </NavLink>
@@ -58,7 +64,11 @@ function Sidebar({ modal }: { modal: React.RefObject<HTMLDivElement> }) {
                 to={"/dashboard/bandara"}
               >
                 <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                  <i className="fa-solid fa-building"></i>
+                  <i
+                    className={`fa-solid fa-building ${
+                      location.pathname === "/dashboard/bandara" ? "text-lime-500" : "text-gray-500"
+                    }`}
+                  ></i>
                 </div>
                 <span className="ml-1 duration-300 opacity-100 pointer-events-none ease">Bandara</span>
               </NavLink>
@@ -75,7 +85,11 @@ function Sidebar({ modal }: { modal: React.RefObject<HTMLDivElement> }) {
                 to={"/dashboard/maskapai"}
               >
                 <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                  <i className="fa-solid fa-plane"></i>
+                  <i
+                    className={`fa-solid fa-plane ${
+                      location.pathname === "/dashboard/maskapai" ? "text-lime-500" : "text-gray-500"
+                    }`}
+                  ></i>
                 </div>
                 <span className="ml-1 duration-300 opacity-100 pointer-events-none ease">Maskapai</span>
               </NavLink>
@@ -92,7 +106,11 @@ function Sidebar({ modal }: { modal: React.RefObject<HTMLDivElement> }) {
                 to={"/dashboard/analitik"}
               >
                 <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                  <i className="fa-solid fa-chart-simple"></i>
+                  <i
+                    className={`fa-solid fa-chart-simple ${
+                      location.pathname === "/dashboard/analitik" ? "text-lime-500" : "text-gray-500"
+                    }`}
+                  ></i>
                 </div>
                 <span className="ml-1 duration-300 opacity-100 pointer-events-none ease">Analitik</span>
               </NavLink>

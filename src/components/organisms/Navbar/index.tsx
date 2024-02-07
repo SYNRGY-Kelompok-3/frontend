@@ -16,7 +16,7 @@ interface NavmenuProps {
 
 function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
   const navigate = useNavigate();
-  const { NavMenu, sidemenuResult, user, handleLogout, handleCheckboxChange, token, isChecked, checkboxRef } =
+  const { navMenu, sidemenuResult, user, handleLogout, handleCheckboxChange, token, isChecked, checkboxRef } =
     useAction();
 
   return (
@@ -38,7 +38,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
             </div>
           </NavLink>
           <div className="items-center hidden sm:hidden lg:flex gap-1">
-            <Navmenu menu={NavMenu} bg={bg} className={"px-3 text-center text-lg"} />
+            <Navmenu menu={navMenu} bg={bg} className={"px-3 text-center text-lg"} />
           </div>
           <div className="flex items-center gap-2">
             {token ? (

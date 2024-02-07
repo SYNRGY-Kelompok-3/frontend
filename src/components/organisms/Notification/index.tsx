@@ -57,7 +57,7 @@ function Notification() {
         const response = await fetchProfile();
         setUser(response["data 2"]);
       } catch (error) {
-        return error;
+        console.log(error);
       }
     };
 
@@ -66,7 +66,7 @@ function Notification() {
         const response = await fetchNotif();
         setNotification(response);
       } catch (error) {
-        return error;
+        console.log(error);
       }
     };
 

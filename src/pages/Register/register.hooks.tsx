@@ -1,7 +1,8 @@
 import { useState } from "react";
-// import axios, { AxiosError } from "axios";
-// import { axiosAuth } from "src/services/axios";
+import axios, { AxiosError } from "axios";
+import { axiosAuth } from "src/services/axios";
 import { STATUS_CODE } from "src/constants/common";
+import { useUserData } from "src/state/userSlice/userData.store";
 
 interface IRegister {
   message?: string;
@@ -63,7 +64,7 @@ function RegisterHooks() {
     setPasswordType("password");
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, callback?: () => void) => {
     e.preventDefault();
     try {
       console.log(name, email, password, phoneNumber);
@@ -75,8 +76,39 @@ function RegisterHooks() {
         });
         return; // Stop execution if data is empty
       }
+
+      const res = await axios.post(`${axiosAuth.defaults.baseURL}v1/user-register/register`, {
+        fullname: name,
+        username: email,
+        password,
+        phoneNumber,
+      });
+
+      if (res.status === 201 || res.status === 200) {
+        setRegisterError({
+          message: res.data.message,
+          status: STATUS_CODE[201],
+        });
+
+        useUserData.setState({
+          userData: {
+            username: email,
+            fullname: name,
+            phoneNumber,
+          },
+        });
+
+        callback && callback();
+      }
+
+      return;
     } catch (error) {
-      console.log(error);
+      if (error instanceof AxiosError) {
+        setRegisterError({
+          message: error.response?.data.message,
+          status: STATUS_CODE[500],
+        });
+      }
     }
   };
 
