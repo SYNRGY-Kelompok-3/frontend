@@ -77,7 +77,7 @@ function RegisterHooks() {
         return; // Stop execution if data is empty
       }
 
-      const res = await axios.post(`${axiosAuth.defaults.baseURL}/v1/user-register/register`, {
+      const res = await axios.post(`${axiosAuth.defaults.baseURL}v1/user-register/register`, {
         fullname: name,
         username: email,
         password,
