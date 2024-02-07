@@ -8,21 +8,29 @@ import Callendar from "src/assets/FilterHome/calendar-alt.png";
 import Class from "src/assets/FilterHome/chair-office.png";
 import { useSearchTicket } from "src/usecases/modules/home";
 import { useState } from "react";
-
+import { Datepicker } from "flowbite-react";
+import { useDateFormatter } from "src/usecases/common/useDateFormat";
 interface IFilterHome {
   isFilterMore?: boolean;
 }
 
 function Filter({ isFilterMore }: IFilterHome) {
-  const { onSearchTicket } = useSearchTicket();
-  const [value, setValue] = useState(false);
-
-  const Switch = () => {
-    if (value === false) {
-      setValue(true);
-    } else {
-      setValue(false);
-    }
+  const {
+    onSearchTicket,
+    handleSelectClass,
+    handleSelectOriginCity,
+    handleSelectDestinationCity,
+    originCity,
+    destinationCity,
+    startDateStr,
+    endDateStr,
+    handleSelectStartDate,
+    handleSelectEndDate,
+  } = useSearchTicket();
+  const { formatDateMonthYear, formatUTC } = useDateFormatter();
+  const [isOneWay, setOneWayValue] = useState<boolean>(false);
+  const setOneWay = () => {
+    setOneWayValue(!isOneWay);
   };
 
   return (
@@ -42,7 +50,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                   htmlFor="check"
                   className="flex bg-gray-100 relative cursor-pointer w-[40px] h-[20px] rounded-full items-center"
                 >
-                  <input type="checkbox" id="check" className="sr-only peer" onClick={Switch} />
+                  <input type="checkbox" id="check" className="sr-only peer" onClick={setOneWay} />
                   <span className="w-[35%] h-[70%] bg-blue-300 absolute rounded-full left-[3px] peer-checked:bg-blue-600 peer-checked:left-[23px] transition-all duration-500" />
                 </label>
               </div>
@@ -58,12 +66,11 @@ function Filter({ isFilterMore }: IFilterHome) {
                     <select
                       id="kotaasal"
                       className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      onChange={(e) => handleSelectOriginCity(e)}
+                      value={originCity}
                     >
-                      <option value="">Masukkan kota atau bandara</option>
+                      <option value="">Masukkan Kota Asal</option>
                       <option value="jakarta">Jakarta</option>
-                      <option value="bandung">Bandung</option>
-                      <option value="surabaya">Surabaya</option>
-                      <option value="yogyakarta">Yogyakarta</option>
                       <option value="bali">Bali</option>
                     </select>
                   </div>
@@ -75,12 +82,11 @@ function Filter({ isFilterMore }: IFilterHome) {
                     <select
                       id="kotatujuan"
                       className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      onChange={(e) => handleSelectDestinationCity(e)}
+                      value={destinationCity}
                     >
-                      <option value="">Masukkan kota atau bandara</option>
+                      <option value="">Masukkan Kota Tujuan</option>
                       <option value="jakarta">Jakarta</option>
-                      <option value="bandung">Bandung</option>
-                      <option value="surabaya">Surabaya</option>
-                      <option value="yogyakarta">Yogyakarta</option>
                       <option value="bali">Bali</option>
                     </select>
                   </div>
@@ -95,8 +101,9 @@ function Filter({ isFilterMore }: IFilterHome) {
                       id="jumlah"
                       className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
-                      <option selected>Masukkan Jumlah Penumpang</option>
+                      <option value="">Masukkan Jumlah Penumpang</option>
                       <option value="1">1</option>
+                      <option value="3">2</option>
                     </select>
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
@@ -104,14 +111,17 @@ function Filter({ isFilterMore }: IFilterHome) {
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
                     </div>
-                    <input
-                      type="date"
-                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
+                    <Datepicker
+                      showClearButton={false}
+                      onSelectedDateChanged={(date: Date) => handleSelectStartDate(date)}
+                      minDate={new Date()}
+                      language="id-ID"
+                      value={formatDateMonthYear(startDateStr)}
                     />
                   </div>
                   <div
                     className={`flex-col justify-start py-1 lg:py-2 rounded-bl-xl bg-white ${
-                      !value ? "cursor-not-allowed opacity-50" : ""
+                      !isOneWay ? "cursor-not-allowed opacity-50" : ""
                     }`}
                   >
                     <div className="flex items-center">
@@ -120,11 +130,13 @@ function Filter({ isFilterMore }: IFilterHome) {
                         Tanggal Pulang
                       </div>
                     </div>
-                    <input
-                      type="date"
-                      className={`w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg ${
-                        !value ? "hidden" : ""
-                      }`}
+                    <Datepicker
+                      showClearButton={false}
+                      onSelectedDateChanged={(date: Date) => handleSelectEndDate(date)}
+                      minDate={formatUTC(startDateStr)}
+                      language="id-ID"
+                      disabled={!isOneWay}
+                      value={formatDateMonthYear(endDateStr)}
                     />
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
@@ -137,11 +149,10 @@ function Filter({ isFilterMore }: IFilterHome) {
                     <select
                       id="jumlah"
                       className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      onChange={handleSelectClass}
                     >
-                      <option value="">Pilih Kelas Penerbangan</option>
                       <option value="ekonomi">Economy</option>
                       <option value="business">Business</option>
-                      <option value="first">First</option>
                     </select>
                   </div>
                 </div>
@@ -173,12 +184,11 @@ function Filter({ isFilterMore }: IFilterHome) {
                     <select
                       id="kotaasal"
                       className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      onChange={(e) => handleSelectOriginCity(e)}
+                      value={originCity}
                     >
-                      <option value="">Masukkan kota atau bandara</option>
+                      <option value="">Masukkan Kota Asal</option>
                       <option value="jakarta">Jakarta</option>
-                      <option value="bandung">Bandung</option>
-                      <option value="surabaya">Surabaya</option>
-                      <option value="yogyakarta">Yogyakarta</option>
                       <option value="bali">Bali</option>
                     </select>
                   </div>
@@ -188,14 +198,13 @@ function Filter({ isFilterMore }: IFilterHome) {
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
                     </div>
                     <select
-                      id="kotaasal"
+                      id="kotatujuan"
                       className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      onChange={(e) => handleSelectDestinationCity(e)}
+                      value={destinationCity}
                     >
-                      <option value="">Masukkan kota atau bandara</option>
+                      <option value="">Masukkan Kota Tujuan</option>
                       <option value="jakarta">Jakarta</option>
-                      <option value="bandung">Bandung</option>
-                      <option value="surabaya">Surabaya</option>
-                      <option value="yogyakarta">Yogyakarta</option>
                       <option value="bali">Bali</option>
                     </select>
                   </div>
@@ -204,9 +213,12 @@ function Filter({ isFilterMore }: IFilterHome) {
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
                     </div>
-                    <input
-                      type="date"
-                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
+                    <Datepicker
+                      showClearButton={false}
+                      onSelectedDateChanged={(date: Date) => handleSelectStartDate(date)}
+                      minDate={new Date()}
+                      language="id-ID"
+                      value={formatDateMonthYear(startDateStr)}
                     />
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
@@ -216,9 +228,12 @@ function Filter({ isFilterMore }: IFilterHome) {
                         Tanggal Pulang
                       </div>
                     </div>
-                    <input
-                      type="date"
-                      className="w-full bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 border-slate-200 rounded-lg"
+                    <Datepicker
+                      showClearButton={false}
+                      onSelectedDateChanged={(date: Date) => handleSelectEndDate(date)}
+                      minDate={formatUTC(startDateStr)}
+                      language="id-ID"
+                      value={formatDateMonthYear(endDateStr)}
                     />
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
