@@ -2,6 +2,7 @@ import { Briefcase, ChevronDown, ChevronUp, Circle, X, Minus, Sandwich } from "l
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { axiosAuth } from "src/services/axios";
+import { useNavigate } from "react-router-dom";
 
 interface FlightData {
   created_date: string;
@@ -32,9 +33,10 @@ interface FlightData {
 
 interface DetailTiketProps {
   onClose: () => void;
+  ticketId: number;
 }
 
-function DetailTiket({ onClose }: DetailTiketProps) {
+function DetailTiket({ onClose, ticketId }: DetailTiketProps) {
   function formatDate(dateString: string | undefined) {
     if (!dateString) return "";
     const options: Intl.DateTimeFormatOptions = {
@@ -57,14 +59,18 @@ function DetailTiket({ onClose }: DetailTiketProps) {
 
   const [accordionOpen, setAccordionOpen] = useState(false);
   const [flightData, setFlightData] = useState<FlightData | null>(null);
+  const navigate = useNavigate();
 
+  const handleCheckout = () => {
+    navigate(`/checkout/${flightData?.id}/${flightData?.passengerClass}/${flightData?.airlines?.airline}`);
+  };
   useEffect(() => {
-    fetchFlightData();
-  }, []);
+    fetchFlightData(ticketId);
+  }, [ticketId]);
 
-  const fetchFlightData = async () => {
+  const fetchFlightData = async (ticketId: number) => {
     try {
-      const response = await axios.get(`${axiosAuth.defaults.baseURL}flight/1`);
+      const response = await axios.get(`${axiosAuth.defaults.baseURL}flight/${ticketId}`);
       const data = response.data;
       setFlightData(data.data);
     } catch (error) {
@@ -119,7 +125,7 @@ function DetailTiket({ onClose }: DetailTiketProps) {
               <div className="flex items-center w-full mt-2 border-2 rounded-md border-slate-200">
                 <div className="mr-2">
                   <img
-                    src={`https://travelid-backend-java-dev.up.railway.app/${flightData?.airlines.pathLogo}`}
+                    src={`${axiosAuth.defaults.baseURL}showFile/${flightData?.airlines.pathLogo}`}
                     alt={flightData?.airlines.airline}
                     className="object-contain w-20 h-12"
                   />
@@ -177,7 +183,7 @@ function DetailTiket({ onClose }: DetailTiketProps) {
                     Kabin dan Bagasi
                   </div>
                   <p className="font-semibold text-slate-500" style={{ fontSize: "12px" }}>
-                    {flightData?.luggage}
+                    Maksimal Kabin 7 kg dan Bagasi {flightData?.luggage}.
                   </p>
                 </div>
               </div>
@@ -194,7 +200,7 @@ function DetailTiket({ onClose }: DetailTiketProps) {
                   </div>
                   <p className="font-semibold text-slate-500" style={{ fontSize: "12px" }}>
                     {flightData?.freeMeal
-                      ? "Sudah termasuk gratis makan."
+                      ? "Sudah termasuk gratis makan. Pembelian makanan tambahan tidak tersedia di halaman pemesanan."
                       : "Pembelian makanan tambahan tersedia."}
                   </p>
                 </div>
@@ -218,7 +224,9 @@ function DetailTiket({ onClose }: DetailTiketProps) {
               <p className="font-bold text-black sm:ml-2">/pax</p>
             </div>
           </div>
-          <button className="px-5 py-3 text-white bg-blue-500 rounded">Pesan Tiket</button>
+          <button className="px-5 py-3 text-white bg-blue-500 rounded" onClick={handleCheckout}>
+            Pesan Tiket
+          </button>
         </div>
       </div>
     </div>

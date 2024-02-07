@@ -45,7 +45,7 @@ function Router() {
             <Route path="/flight/full-search" element={<FullSearchTickets />} />
             <Route element={<PrivateProvider />}>
               <Route path="/payment" element={<Payment />} />
-              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/checkout/:id/:id/:id" element={<Checkout />} />
               <Route path="/invoices" element={<Invoice />} />
               <Route element={<LayoutUserDashboard />}>
                 <Route path="/profile" element={<Profile />} />

@@ -9,8 +9,8 @@ export const useCardTicket = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { detailTicket } = useSelector((state: RootState) => state.ticket);
 
-  const onShowTicketDetail = async () => {
-    await dispatch(fetchTicketDetail(1));
+  const onShowTicketDetail = async (ticketId: number) => {
+    await dispatch(fetchTicketDetail(ticketId));
     await setShowModalDetailTicket(true);
   };
   const onCloseTicketDetail = async () => {
