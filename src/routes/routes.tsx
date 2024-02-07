@@ -35,7 +35,7 @@ function Router() {
             <Route path="/" element={<Home />} />
           </Route>
           <Route element={<Layoutpage />}>
-            <Route path="/terms-of-service" element={<TermOfService />} />
+            <Route path="/ketentuan-layanan" element={<TermOfService />} />
             <Route path="/tentang-kami" element={<TentangKami />} />
             <Route path="/artikel" element={<Artikel />} />
             <Route path="/artikel/:id" element={<Detailartikel />} />
