@@ -12,7 +12,7 @@ function AdminProvider({ children }: PropsWithChildren) {
       const response = await fetchProfile();
       setRole(response["data 1"]["roles"][0].type);
 
-      if (response["data 1"]["roles"][0].type === "user_role") {
+      if (response["data 1"]["roles"][0].name === "ROLE_USER") {
         setShow(false);
         window.location.href = "/";
       } else {

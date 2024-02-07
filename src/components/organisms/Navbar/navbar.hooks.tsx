@@ -68,14 +68,14 @@ function useNavbarHooks() {
         return;
       }
       setUser(response["data 2"]);
-      setRole(response["data 1"]["roles"][0].type);
+      setRole(response["data 1"]["roles"][0].name);
     } catch (error) {
       console.error(error);
     }
   }, [fetchProfile]);
 
   const sidemenuResult = token
-    ? role === "user_role"
+    ? role === "USER_ROLE"
       ? menu.filter((item) => item.text !== "Dashboard")
       : menu
     : menu.filter(

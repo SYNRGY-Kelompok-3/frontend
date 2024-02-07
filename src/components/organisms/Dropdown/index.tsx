@@ -25,12 +25,12 @@ function DropdownMenu({ name, picture }: { name: string | undefined; picture: st
     { text: "Notification", link: "/notification" },
   ];
 
-  const result = role === "user_role" ? Menu.filter((item) => item.text !== "Dashboard") : Menu;
+  const result = role === "ROLE_USER" ? Menu.filter((item) => item.text !== "Dashboard") : Menu;
 
   const fetchUser = useCallback(async () => {
     try {
       const response = await fetchProfile();
-      setRole(response["data 1"]["roles"][0].type);
+      setRole(response["data 1"]["roles"][0].name);
     } catch (error) {
       console.log(error);
     }
