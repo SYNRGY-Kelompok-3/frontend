@@ -4,7 +4,7 @@ import transitIcon from "src/assets/no-transit-icon.svg";
 import DetailTiket from "src/components/organisms/PopUp/detailTicket";
 import Button from "src/components/atoms/Button";
 import { useCardTicket } from "src/usecases/modules/tickets";
-import { ITicket } from "src/state/ticketSlice/slice";
+import { ITicket } from "src/constants";
 import { priceFormatter } from "src/utils";
 import { useDateFormatter } from "src/usecases/common/useDateFormat";
 type TProps = {

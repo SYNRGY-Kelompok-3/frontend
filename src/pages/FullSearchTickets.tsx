@@ -1,13 +1,14 @@
 import React from "react";
 import CardTicket from "src/components/organisms/CardTicket";
 import FilterFlightTicket from "src/components/organisms/FilterFlightTicket";
-import { useGetTickets } from "src/usecases/modules/tickets";
+import { useGetTicketList } from "src/usecases/modules/tickets";
 import FilterHome from "src/components/organisms/FilterHome";
 import bgPrimary from "src/assets/bg-2.png";
-import { ITicket } from "src/state/ticketSlice/slice";
+import { ITicket } from "src/constants";
+import CardSkeletonLoading from "src/components/atoms/CardSkeletonLoading";
 
 const FullSearchTickets: React.FC = () => {
-  const { ticketList, isLoading } = useGetTickets();
+  const { ticketList, isLoading, params } = useGetTicketList();
   const tickets: ITicket[] = ticketList as ITicket[];
   return (
     <>
@@ -29,17 +30,22 @@ const FullSearchTickets: React.FC = () => {
             <FilterFlightTicket />
           </div>
           <div className="basis-[80%]">
-            <h2 className="justify-self-end text-xl  font-medium my-2">Penerbangan Dari `A` ke `B`</h2>
-            {!isLoading &&
-              tickets.map((ticket: ITicket) => {
-                return (
-                  <>
+            <h2 className="justify-self-end text-xl  font-medium my-2">
+              Penerbangan Dari <span className="font-bold">`{params.originCity}` </span>
+              ke
+              <span className="font-bold">`{params.destinationCity}` </span>
+            </h2>
+            {isLoading && Array.from({ length: 5 }).map((_, index) => <CardSkeletonLoading key={index} />)}
+
+            {!isLoading && tickets.length > 0
+              ? tickets.map((ticket: ITicket) => {
+                  return (
                     <div key={ticket.id}>
                       <CardTicket ticketData={ticket} />
                     </div>
-                  </>
-                );
-              })}
+                  );
+                })
+              : tickets.length <= 0 && <h1>No Data Found!</h1>}
           </div>
         </div>
       </div>
