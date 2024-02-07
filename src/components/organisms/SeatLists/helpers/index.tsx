@@ -1,4 +1,3 @@
-import { flightId } from "src/components/atoms/Seat";
 import { axiosAuth } from "src/services/axios";
 import axios from "axios";
 
@@ -10,7 +9,7 @@ const rows = 22;
 
 let emptySeats: string[] = [];
 
-export const fetchSeat = async () => {
+export const fetchSeat = async (flightId: number) => {
   try {
     const response = await axios.get(`${axiosAuth.defaults.baseURL}seat/getByFlight/${flightId}`, {
       headers: {
@@ -20,7 +19,7 @@ export const fetchSeat = async () => {
     const seatData = response.data.data.map((seat: SeatAttribute) => seat.seatBooked);
     emptySeats = seatData;
   } catch (error) {
-    console.log(error);
+    return null;
   }
 };
 

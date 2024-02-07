@@ -36,7 +36,7 @@ const SeatLists = ({ selectedSeats, setSelectedSeats }: seatStateProps) => {
 
   //   Renders empty seats
   const renderEmptySeat = (key: string) => (
-    <div className="w-[41px] h-[41px] mr-2 bg-gray-300 rounded-lg" key={key} />
+    <div className="w-[41px] h-[41px] mr-2 bg-gray-300 rounded-lg border-2px]" key={key} />
   );
 
   //   Renders seat according to its category
@@ -49,8 +49,8 @@ const SeatLists = ({ selectedSeats, setSelectedSeats }: seatStateProps) => {
       return (
         <div
           className={`w-[41px] h-[41px] mr-2 justify-center ${
-            isSelected ? "bg-gray-300 border-blue-300 border-2" : data.color
-          } rounded-lg flex items-center cursor-pointer hover:scale-105 transition duration-150`}
+            isSelected ? "bg-white border-blue-300 border-2" : data.color
+          } rounded-lg flex items-center cursor-pointer hover:scale-105 transition duration-150 border-[2px]`}
           key={key}
           onClick={() => handleClick(key[0], key.substring(1))}
         >

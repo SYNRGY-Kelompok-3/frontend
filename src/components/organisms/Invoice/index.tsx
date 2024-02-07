@@ -5,6 +5,8 @@ import BG1 from "../../../assets/Invoices/BG1.png";
 import BG2 from "../../../assets/Invoices/BG2.png";
 import { MyDocument } from "../PDF";
 import { BlobProvider } from "@react-pdf/renderer";
+import { useParams } from "react-router-dom";
+
 function Invoice() {
   const breadcrumbSteps = [
     { text: "Beranda", link: "#" },
@@ -18,18 +20,32 @@ function Invoice() {
     { text: "Selesai", isActive: true },
   ];
 
-  const dummyData = {
-    orderNumber: 1023123412,
-    orderDate: "01 Januari 2024",
-    bankName: "Bank Mandiri",
-    accountName: "Charles Wilson",
-    accountNumber: 654234876321,
-    fullName: "Tn. Charles Wilson",
-    phoneNumber: "085310234121",
-    emailAddress: "travel@gmail.com",
-    orderPrice: 1500000,
-    serviceFee: 25000,
-    totalPayment: 1525000,
+  const {
+    orderNumber,
+    orderDate,
+    bankName,
+    accountName,
+    accountNumber,
+    fullName,
+    phoneNumber,
+    emailAddress,
+    orderPrice,
+    serviceFee,
+    totalPayment,
+  } = useParams();
+
+  const paymentData = {
+    orderNumber: orderNumber ?? 1023123412,
+    orderDate: orderDate ?? "01 Januari 2024",
+    bankName: bankName ?? "Bank Mandiri",
+    accountName: accountName ?? "Charles Wilson",
+    accountNumber: accountNumber ?? 654234876321,
+    fullName: fullName ?? "Tn. Charles Wilson",
+    phoneNumber: phoneNumber ?? "085310234121",
+    emailAddress: emailAddress ?? "travel@gmail.com",
+    orderPrice: orderPrice ?? 1500000,
+    serviceFee: serviceFee ?? 25000,
+    totalPayment: totalPayment ?? 1525000,
   };
 
   return (
@@ -72,7 +88,7 @@ function Invoice() {
             </div>
             <div className="text-right">
               <br />
-              <p className="my-3 font-semibold text-black">Bank Mandiri</p>
+              <p className="my-3 font-semibold text-black">{paymentData.bankName}</p>
               <p className="my-3 font-semibold text-black">Charles Wilson</p>
               <p className="my-3 font-semibold text-black">654234876321</p>
             </div>
@@ -117,7 +133,7 @@ function Invoice() {
             </div>
           </div>
           <div className="flex justify-between mt-2">
-            <BlobProvider document={<MyDocument {...dummyData} />}>
+            <BlobProvider document={<MyDocument {...paymentData} />}>
               {({ url }) => (
                 <a
                   href={url!}

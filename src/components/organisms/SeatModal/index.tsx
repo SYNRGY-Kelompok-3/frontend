@@ -7,6 +7,7 @@ import SeatLists from "../SeatLists";
 import Button from "../../atoms/Button";
 import { useDispatch } from "react-redux";
 import { setSeats } from "src/state/seatSlice/slice";
+import { useParams } from "react-router-dom";
 
 export interface SeatProps {
   seat: string;
@@ -28,6 +29,35 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
     onClose!();
   };
 
+  const { passengerClass, airline } = useParams();
+
+  const renderTag = () => {
+    if (passengerClass === "business") {
+      return (
+        <>
+          <Rectangle bgColor="bg-white" priceTag={"Tersedia"} />
+          <Rectangle bgColor="bg-gray-300" priceTag={"Tidak Tersedia"} />
+        </>
+      );
+    } else if (passengerClass === "economy" && airline === "Garuda") {
+      return (
+        <>
+          <Rectangle bgColor="bg-green-600" priceTag={85000} />
+          <Rectangle bgColor="bg-purple-600" priceTag={75000} />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Rectangle bgColor="bg-blue-500" priceTag={250000} />
+          <Rectangle bgColor="bg-yellow-400" priceTag={195000} />
+          <Rectangle bgColor="bg-green-600" priceTag={85000} />
+          <Rectangle bgColor="bg-purple-600" priceTag={75000} />
+        </>
+      );
+    }
+  };
+
   return (
     <div className="w-[698px] bg-white h-fit p-[20px] rounded-lg mt-[240px]">
       <div className="relative w-full h-full">
@@ -45,12 +75,7 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
             </p>
           </div>
 
-          <div className="flex items-center justify-center w-full h-20 gap-[20px]">
-            <Rectangle bgColor="bg-blue-500" priceTag={250000} />
-            <Rectangle bgColor="bg-yellow-400" priceTag={195000} />
-            <Rectangle bgColor="bg-green-600" priceTag={85000} />
-            <Rectangle bgColor="bg-purple-600" priceTag={75000} />
-          </div>
+          <div className="flex items-center justify-center w-full h-20 gap-[20px]">{renderTag()}</div>
 
           <div
             className="h-[700px] bg-no-repeat bg-center bg-scroll overflow-y-scroll"
