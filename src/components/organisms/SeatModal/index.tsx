@@ -69,7 +69,7 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
 
         <div className="pt-[40px] space-y-[20px]">
           <div className="text-center">
-            <h1 className="text-sm font-medium text-black">Silahkan memilih nomor kursi</h1>
+            <h1 className="text-sm font-medium tracking-wide text-black">Silahkan memilih nomor kursi</h1>
             <p className="text-[12px] text-slate-400">
               Harga nomor kursi sesuai dengan warna yang tertera dibawah ini:
             </p>
