@@ -54,6 +54,7 @@ function Profil() {
               Nama<span className="text-red-500">*</span>
             </label>
             <input
+              id="name"
               type="text"
               placeholder={user.name}
               value={formValues.name || ""}
@@ -66,6 +67,7 @@ function Profil() {
               Nomor Handphone<span className="text-red-500">*</span>
             </label>
             <input
+              id="phone"
               type="text"
               placeholder={user.phoneNumber}
               value={formValues.phoneNumber || ""}
@@ -78,6 +80,7 @@ function Profil() {
               Email<span className="text-red-500">*</span>
             </label>
             <input
+              id="email"
               type="text"
               placeholder={user.email}
               value={formValues.email || ""}
@@ -91,6 +94,7 @@ function Profil() {
               Tanggal Lahir<span className="text-red-500">*</span>
             </label>
             <input
+              id="birthdate"
               type="date"
               value={formValues.dateOfBirth || ""}
               onChange={(e) => setFormValues({ ...formValues, dateOfBirth: e.target.value })}
@@ -102,6 +106,7 @@ function Profil() {
               Jenis Kelamin<span className="text-red-500">*</span>
             </label>
             <select
+              id="gender"
               onChange={(e) => setFormValues({ ...formValues, gender: e.target.value })}
               className="w-full p-2 border border-gray-300 rounded-lg"
             >

@@ -3,7 +3,7 @@ import ChevronRight from "src/assets/ChevronRight.svg";
 
 import Departure from "src/assets/FilterHome/plane-departure.png";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { parseISO, format } from "date-fns";
 import Api from "src/services/api";
 
@@ -31,29 +31,37 @@ function Notification() {
   const { fetchProfile, fetchNotif } = Api();
   const [user, setUser] = useState<User>({});
   const [notification, setNotification] = useState<Notification[]>([]);
+  const id = user.id as number;
+
+  const fetchUser = useCallback(async () => {
+    try {
+      const response = await fetchProfile();
+      setUser(response["data 2"]);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [fetchProfile]);
+
+  const fetchNotification = useCallback(async () => {
+    try {
+      const response = await fetchNotif();
+      setNotification(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [fetchNotif]);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetchProfile();
-        setUser(response["data 2"]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    const interval = setInterval(() => {
+      fetchUser();
+      fetchNotification();
+    }, 10000); // Adjust the interval as needed (in milliseconds)
 
-    const fetchNotification = async () => {
-      try {
-        const response = await fetchNotif();
-        setNotification(response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    // Clean up interval on component unmount
+    return () => clearInterval(interval);
+  }, [id, fetchUser, fetchNotification]);
 
-    fetchUser();
-    fetchNotification();
-  }, [user.id, fetchNotif, fetchProfile]);
+  console.log(user.id);
 
   return (
     <>
@@ -63,7 +71,7 @@ function Notification() {
           <h1 className="text-sm sm:text-md font-bold mb-4 text-sky-400">Mark All As Read</h1>
         </div>
         <div className="">
-          {notification.length > 0 ? (
+          {notification ? (
             notification.map((item: Notification, index: number) => (
               <div
                 key={index}

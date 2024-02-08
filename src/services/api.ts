@@ -14,6 +14,7 @@ interface User {
   profilePicture?: string | null;
   phoneNumber?: string;
 }
+const token = localStorage.getItem("token");
 
 function Api() {
   const [user, setUser] = useState<User>({});
@@ -35,14 +36,13 @@ function Api() {
   const fetchProfile = async () => {
     try {
       const response: AxiosResponse = await axios.get(`${axiosApi.defaults.baseURL}user/detail-profile/`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${token}` },
       });
       setUser(response.data["data 2"]);
 
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        localStorage.removeItem("token");
         console.log(error.response?.data.error);
       }
     }
@@ -52,7 +52,7 @@ function Api() {
     try {
       const response: AxiosResponse = await axios.get(
         `${axiosAuth.defaults.baseURL}notification/getByCustomerId/${user.id}`,
-        { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       return response.data;
     } catch (error) {
@@ -91,7 +91,7 @@ function Api() {
       const response: AxiosResponse = await axios.put(
         `${axiosApi.defaults.baseURL}customers/update`,
         payload,
-        { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       return response;
     } catch (error) {

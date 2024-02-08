@@ -24,6 +24,8 @@ function LoginHooks() {
   const [password, setPassword] = useState("");
   const [passwordType, setPasswordType] = useState("password");
   const [emailValidation, setEmailValidation] = useState(false);
+  const [passwordValidation, setPasswordValidation] = useState<boolean>(false);
+  const [passwordMessage, setPasswordMessage] = useState<string>("");
   const [loginError, setLoginError] = useState<ErrorLogin>({});
 
   const emailRegex =
@@ -37,6 +39,13 @@ function LoginHooks() {
 
   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+    if (e.target.value.length === 0) {
+      setPasswordValidation(false);
+      setPasswordMessage("Password Wajib Diisi!");
+    } else {
+      setPasswordValidation(true);
+      setPasswordMessage("");
+    }
   };
 
   const togglePassword = () => {
@@ -100,6 +109,10 @@ function LoginHooks() {
     setPasswordType,
     emailValidation,
     setEmailValidation,
+    passwordValidation,
+    setPasswordValidation,
+    passwordMessage,
+    setPasswordMessage,
     loginError,
     setLoginError,
     handleEmail,

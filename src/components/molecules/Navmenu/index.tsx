@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 interface Menu {
   text?: string;
   link?: string | any;
+  id?: string;
 }
 interface NavmenuProps {
   bg?: "bg-transparent" | "bg-opaque" | "bg-white shadow-md" | undefined;
@@ -17,6 +18,7 @@ function Navmenu({ bg, className, menu }: NavmenuProps) {
       {menu.map((menu: Menu, index) => (
         <NavLink
           key={index}
+          id={menu.id}
           to={menu.link}
           className={({ isActive }): string =>
             `${

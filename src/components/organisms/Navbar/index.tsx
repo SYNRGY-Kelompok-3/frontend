@@ -23,7 +23,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
     <>
       <nav className={`${bg} bg-cover`}>
         <div className="px-[20px] sm:px-10 xl:px-28 py-5 flex justify-between items-center">
-          <NavLink to="/" className="flex items-center z-20">
+          <NavLink id="logo" to="/" className="flex items-center z-20">
             <Image
               src={bg === "bg-white shadow-md" ? LogoBlue : Logo}
               alt={"logo"}
@@ -49,6 +49,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
             ) : (
               <div className="flex items-center gap-2">
                 <Button
+                  id={"register"}
                   onClick={() => navigate("/register")}
                   type={"button"}
                   className={`hidden lg:flex ${
@@ -59,6 +60,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
                   content={"Daftar Sekarang"}
                 />
                 <Button
+                  id={"login"}
                   onClick={() => navigate("/login")}
                   type={"button"}
                   className={
@@ -99,7 +101,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
               </label>
               <div className="flex flex-col justify-between overflow-y-auto peer-checked:translate-x-0 z-20 fixed inset-0 w-[270px] translate-x-[-100%] bg-white border-r shadow-xl transition duration-500 lg:border-l-0 lg:w-auto lg:static lg:shadow-none lg:translate-x-0">
                 <div>
-                  <NavLink to="/" className="py-5 px-5 flex items-center z-20">
+                  <NavLink id="logo" to="/" className="py-5 px-5 flex items-center z-20">
                     <Image
                       src={LogoBlue}
                       alt={"logo"}
@@ -118,6 +120,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
                 {token ? (
                   <div className="flex w-full">
                     <Button
+                      id={"logout"}
                       onClick={handleLogout}
                       type={"button"}
                       className={
@@ -129,6 +132,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
                 ) : (
                   <div className="flex w-full">
                     <Button
+                      id={"register"}
                       onClick={() => navigate("/register")}
                       type={"button"}
                       className={
