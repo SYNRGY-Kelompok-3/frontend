@@ -68,12 +68,14 @@ function Footer() {
                   <div className="citilink self-stretch text-black my-3">Citilink</div>
                   <div className="batik_air_indonesia self-stretch text-black my-3">Batik Air Indonesia</div>
                   <div className="lion_airlines text-black my-3">Lion Airlines</div>
-                  <div className="airasia self-stretch text-black ">AirAsia</div>
+                  <div className="airasia self-stretch text-black ">Sriwijaya Air</div>
                 </div>
                 <div className="">
                   <div className="self-stretch text-[#075efd] font-semibold mt-3 sm:mt-0">Kontak</div>
-                  <div className="_62_085-232-521 self-stretch text-black my-3">+62 085-232-521</div>
-                  <div className="travel_gmail_com self-stretch text-black my-3">travel@gmail.com</div>
+                  <div className="_62_085-232-521 self-stretch text-black my-3">+62852-6730-1444</div>
+                  <div className="travel_gmail_com self-stretch text-black my-3">
+                    travelidcenter@gmail.com
+                  </div>
                 </div>
               </div>
             </div>
@@ -84,8 +86,12 @@ function Footer() {
               {new Date().getFullYear()} Travel Indonesia. All right reserved.
             </div>
             <div className="flex justify-center md:justify-end items-center">
-              <div className="text-black mr-5">Pemberitahuan Privasi</div>
-              <div className="text-black">Terms of Service</div>
+              <Link to="/pemberitahuan-privasi" className="text-black mr-5">
+                Pemberitahuan Privasi
+              </Link>
+              <Link to="/ketentuan-layanan" className="text-black">
+                Syarat dan Ketentuan
+              </Link>
             </div>
           </div>
         </div>
