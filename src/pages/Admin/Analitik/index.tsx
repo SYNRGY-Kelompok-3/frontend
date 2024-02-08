@@ -26,6 +26,7 @@ const Analitik: React.FC = () => {
                       id="yearSelect1"
                       value={selectedDate1.year}
                       onChange={(e) => setSelectedDate1({ year: e.target.value })}
+                      className="rounded-lg"
                     >
                       <option value="2022">2022</option>
                       <option value="2023">2023</option>
@@ -46,6 +47,7 @@ const Analitik: React.FC = () => {
                       id="year2"
                       value={selectedDate2.year}
                       onChange={(e) => setSelectedDate2({ ...selectedDate2, year: e.target.value })}
+                      className="rounded-lg"
                     >
                       <option value="2022">2022</option>
                       <option value="2023">2023</option>
@@ -59,6 +61,7 @@ const Analitik: React.FC = () => {
                       id="month2"
                       value={selectedDate2.month}
                       onChange={(e) => setSelectedDate2({ ...selectedDate2, month: e.target.value })}
+                      className="rounded-lg"
                     >
                       <option value="1">January</option>
                       <option value="2">February</option>
@@ -89,6 +92,7 @@ const Analitik: React.FC = () => {
                     id="year3"
                     value={selectedDate3.year}
                     onChange={(e) => setSelectedDate3({ year: e.target.value })}
+                    className="rounded-lg"
                   >
                     <option value="2022">2022</option>
                     <option value="2023">2023</option>

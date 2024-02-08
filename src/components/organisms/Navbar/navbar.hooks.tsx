@@ -4,6 +4,7 @@ import Api from "src/services/api";
 interface Menu {
   text: string;
   link?: string;
+  id: string;
 }
 
 interface User {
@@ -24,17 +25,17 @@ function useNavbarHooks() {
   const token = localStorage.getItem("token");
 
   const navMenu: Menu[] = [
-    { text: "Beranda", link: "/" },
-    { text: "Tentang Kami", link: "/tentang-kami" },
-    { text: "Artikel", link: "/artikel" },
-    { text: "Pusat Bantuan", link: "/pusat-bantuan" },
+    { text: "Beranda", link: "/", id: "beranda" },
+    { text: "Tentang Kami", link: "/tentang-kami", id: "tentang-kami" },
+    { text: "Artikel", link: "/artikel", id: "artikel" },
+    { text: "Pusat Bantuan", link: "/pusat-bantuan", id: "pusat-bantuan" },
   ];
 
   const menu: Menu[] = [
-    { text: "Profile", link: "/profile" },
-    { text: "Notifikasi", link: "/notifikasi" },
+    { text: "Profile", link: "/profile", id: "profile" },
+    { text: "Notifikasi", link: "/notifikasi", id: "notifikasi" },
     ...navMenu,
-    { text: "Dashboard", link: "/dashboard" },
+    { text: "Dashboard", link: "/dashboard", id: "dashboard" },
   ];
 
   const checkboxRef = useRef<HTMLInputElement>(null);

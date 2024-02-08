@@ -146,6 +146,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                   </div>
                 </div>
                 <Button
+                  id={"search"}
                   onClick={onSearchTicket}
                   type={"button"}
                   content={"Cari Tiket"}
@@ -223,6 +224,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <Button
+                      id={"search"}
                       onClick={onSearchTicket}
                       type={"button"}
                       content={"Cari Tiket"}
