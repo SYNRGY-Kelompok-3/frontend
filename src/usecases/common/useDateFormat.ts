@@ -17,11 +17,11 @@ export const useDateFormatter = () => {
     return dayjs(date).format("DD MMM YYYY hh:mm");
   };
 
-  const formatTime = (date: Date) => {
+  const formatTime = (date: Date | string | null) => {
     return dayjs(date).format("hh:mm");
   };
 
-  const formatDateMonthYear = (date: Date) => {
+  const formatDateMonthYear = (date: Date | undefined | string) => {
     return dayjs(date).format("DD MMM YYYY");
   };
 
@@ -33,18 +33,23 @@ export const useDateFormatter = () => {
     return dayjs(date).format("ddd, DD MMM YYYY - hh:mm");
   };
 
-  const formatDay = (date: Date) => {
+  const formatDay = (date: Date | string | null) => {
     return dayjs(date).format("dddd");
   };
 
-  const formatFlightDuration = (dateFrom: Date, dateTo: Date) => {
+  const formatFlightDuration = (dateFrom: Date | string | null, dateTo: Date | string | null) => {
     const x = dayjs(dateFrom);
     const y = dayjs(dateTo);
     const diffTime = x.diff(y);
     return dayjs.duration(diffTime, "milliseconds").humanize();
   };
 
+  const formatUTC = (date: Date | undefined | string) => {
+    return dayjs(date).toDate();
+  };
+
   return {
+    formatUTC,
     isValidDate,
     formatDayDateTime,
     formatDate,

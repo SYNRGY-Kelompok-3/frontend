@@ -1,2 +1,3 @@
-export * from "./useGetTickets";
+export * from "./useGetTicketList";
 export * from "./useCardTicket";
+export * from "./useFilterTicket";
