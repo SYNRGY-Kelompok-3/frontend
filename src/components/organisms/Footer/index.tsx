@@ -72,10 +72,8 @@ function Footer() {
                 </div>
                 <div className="">
                   <div className="self-stretch text-[#075efd] font-semibold mt-3 sm:mt-0">Kontak</div>
-                  <div className="_62_085-232-521 self-stretch text-black my-3">+62852-6730-1444</div>
-                  <div className="travel_gmail_com self-stretch text-black my-3">
-                    travelidcenter@gmail.com
-                  </div>
+                  <div className="self-stretch text-black my-3">+62852-6730-1444</div>
+                  <div className="self-stretch text-black my-3 truncate">travelidcenter@gmail.com</div>
                 </div>
               </div>
             </div>
