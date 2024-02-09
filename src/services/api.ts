@@ -72,6 +72,8 @@ function Api() {
 
       if (uploadResponse.data && uploadResponse.data.data.secure_url) {
         const imageUrl = uploadResponse.data.data.secure_url;
+        const updatedUser: User = { ...user, profilePicture: imageUrl };
+        await handleUpdate(updatedUser);
         return imageUrl;
       } else {
         console.error("Invalid response from Cloudinary:", uploadResponse);
