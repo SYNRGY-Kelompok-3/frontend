@@ -144,6 +144,7 @@ function Profil() {
           </div>
         </div>
         <button
+          id="simpan-profil"
           className="w-full px-4 py-4 mt-10 text-xl text-white bg-blue-500 rounded-lg"
           onClick={handleSubmit}
         >
