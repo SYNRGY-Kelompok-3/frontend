@@ -8,16 +8,16 @@ import { parseISO, format } from "date-fns";
 import Api from "src/services/api";
 
 interface User {
-  created_date?: string;
-  updated_date?: string;
-  id?: number;
-  name?: string;
-  identityNumber?: string | null;
-  email?: string;
-  dateOfBirth?: string;
-  gender?: string | null;
-  profilePicture?: string | null;
-  phoneNumber?: string;
+  created_date: string;
+  updated_date: string;
+  id: number;
+  name: string;
+  identityNumber: string | null;
+  email: string;
+  dateOfBirth: string;
+  gender: string | null;
+  profilePicture: string | null;
+  phoneNumber: string;
 }
 
 interface Notification {
@@ -29,14 +29,13 @@ interface Notification {
 
 function Notification() {
   const { fetchProfile, fetchNotif } = Api();
-  const [user, setUser] = useState<User>({});
+  // const [user, setUser] = useState<User>({});
   const [notification, setNotification] = useState<Notification[]>([]);
-  const id = user.id as number;
 
   const fetchUser = useCallback(async () => {
     try {
       const response = await fetchProfile();
-      setUser(response["data 2"]);
+      return response["data 2"];
     } catch (error) {
       console.log(error);
     }
@@ -52,16 +51,9 @@ function Notification() {
   }, [fetchNotif]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      fetchUser();
-      fetchNotification();
-    }, 10000); // Adjust the interval as needed (in milliseconds)
-
-    // Clean up interval on component unmount
-    return () => clearInterval(interval);
-  }, [id, fetchUser, fetchNotification]);
-
-  console.log(user.id);
+    fetchUser();
+    fetchNotification();
+  }, [fetchUser, fetchNotification]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import Image from "src/components/atoms/Img";
 import Bell from "src/assets/Bell.svg";
@@ -51,25 +51,25 @@ function Notification() {
     }
   };
 
+  const fetchUser = useCallback(async () => {
+    try {
+      const response = await fetchProfile();
+      setUser(response["data 2"]);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [fetchProfile]);
+
+  const fetchNotification = useCallback(async () => {
+    try {
+      const response = await fetchNotif();
+      setNotification(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [fetchNotif]);
+
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetchProfile();
-        setUser(response["data 2"]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const fetchNotification = async () => {
-      try {
-        const response = await fetchNotif();
-        setNotification(response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchUser();
     fetchNotification();
 
@@ -82,7 +82,7 @@ function Notification() {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [isOpen, user.id, fetchNotif, fetchProfile]);
+  }, [isOpen, user.id, fetchNotification, fetchUser]);
 
   return (
     <>

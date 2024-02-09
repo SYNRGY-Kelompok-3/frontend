@@ -2,7 +2,6 @@
 import { useEffect, useState, useCallback } from "react";
 import Avatar from "src/assets/Profile.png";
 import Api from "src/services/api";
-import { AxiosResponse } from "axios";
 
 interface User {
   created_date?: string;
@@ -39,8 +38,8 @@ function ProfileHooks() {
 
   const fetchUser = useCallback(async () => {
     try {
-      const response: AxiosResponse = await fetchProfile();
-      const userData = response.data["data 2"];
+      const response = await fetchProfile();
+      const userData = response["data 2"];
       const formattedDateOfBirth = userData.dateOfBirth ? formatDate(userData.dateOfBirth) : "";
 
       setUser((prevUser) => ({ ...prevUser, ...userData, dateOfBirth: formattedDateOfBirth }));
