@@ -13,7 +13,7 @@ function Sidebar() {
     <>
       <aside className="w-full sm:w-1/4 mt-4 sm:ml-8 xl:ml-25 text-lg">
         <ul className="flex justify-center items-center gap-6 sm:gap-0 sm:grid">
-          <li className="w-[50px] sm:w-[180px] lg:w-[250px]">
+          <li id="profil" className="w-[50px] sm:w-[180px] lg:w-[250px]">
             <NavLink
               to="/profile"
               className={({ isActive }): string =>
@@ -40,7 +40,7 @@ function Sidebar() {
               <span className="hidden sm:block ml-2 text-lg">Profil</span>
             </NavLink>
           </li>
-          <li className="w-[50px] sm:w-[180px] lg:w-[250px]">
+          <li id="notifikasi" className="w-[50px] sm:w-[180px] lg:w-[250px]">
             <NavLink
               to="/notifikasi"
               className={({ isActive }): string =>
@@ -67,7 +67,7 @@ function Sidebar() {
               <span className="hidden sm:block ml-2 text-lg">Notifikasi</span>
             </NavLink>
           </li>
-          <li className="w-[50px] sm:w-[180px] lg:w-[250px]">
+          <li id="riwayat" className="w-[50px] sm:w-[180px] lg:w-[250px]">
             <NavLink
               to="/riwayat-transaksi"
               className={({ isActive }): string =>
@@ -94,7 +94,7 @@ function Sidebar() {
               <span className="hidden sm:block ml-2 text-lg">Riwayat Transaksi</span>
             </NavLink>
           </li>
-          <li className="w-[50px] sm:w-[180px] lg:w-[250px]">
+          <li id="keluar" className="w-[50px] sm:w-[180px] lg:w-[250px]">
             <div
               onClick={handleLogout}
               className="flex items-center py-5 hover:text-red-500 cursor-pointer hover:font-bold"
