@@ -88,7 +88,7 @@ function Notification() {
     <>
       <div className="flex items-center mr-3">
         <div ref={iconRef} onClick={handleIconClick} className="relative cursor-pointer">
-          <Image src={Bell} alt={"bell"} className={"h-10"} />
+          <Image id={"notification-icon"} src={Bell} alt={"bell"} className={"h-10"} />
         </div>
         {isOpen && (
           <div
@@ -109,6 +109,7 @@ function Notification() {
               </ul>
             </div>
             <Link
+              id="view-more"
               to="/notifikasi"
               className="flex justify-center bg-sky-100 py-2 rounded-b-lg hover:text-white hover:bg-sky-600"
             >

@@ -21,7 +21,12 @@ function Profil() {
 
         <div className="col-span-12 mb-4 text-center">
           <label htmlFor="profileImageInput" className="relative inline-block">
-            <Image src={ProfilePicture} alt={"Profile"} className={"rounded-full h-32 w-32"} />
+            <Image
+              id={"profile-image"}
+              src={ProfilePicture}
+              alt={"Profile"}
+              className={"rounded-full h-32 w-32"}
+            />
             <div className="absolute bottom-0 right-0 p-1 bg-white border-2 border-blue-500 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
