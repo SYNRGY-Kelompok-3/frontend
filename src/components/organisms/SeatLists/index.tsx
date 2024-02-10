@@ -2,12 +2,7 @@ import React from "react";
 import Check from "../../atoms/Icon/Check";
 import Seat from "../../atoms/Seat";
 import { rows, emptySeats, seatPrice } from "./helpers";
-
-export interface SeatProps {
-  seat: string;
-  row: string;
-  price?: number;
-}
+import { SeatProps } from "../SeatModal";
 
 interface seatStateProps {
   selectedSeats: SeatProps[];
@@ -24,7 +19,7 @@ const SeatLists = ({ selectedSeats, setSelectedSeats }: seatStateProps) => {
 
   // To filter the selected seats
   const handleClick = (seat: string, row: string) => {
-    const seatCategory = getSeatCategory(seat, row);
+    const seatCategory = getSeatCategory(seat, row.toString());
     const isSelected = selectedSeats.some(
       (selectedSeat) => selectedSeat.seat === seat && selectedSeat.row === row
     );
@@ -41,7 +36,7 @@ const SeatLists = ({ selectedSeats, setSelectedSeats }: seatStateProps) => {
 
   //   Renders empty seats
   const renderEmptySeat = (key: string) => (
-    <div className="w-[41px] h-[41px] mr-2 bg-gray-300 rounded-lg" key={key} />
+    <div className="w-[41px] h-[41px] mr-2 bg-gray-300 rounded-lg border-2px]" key={key} />
   );
 
   //   Renders seat according to its category
@@ -54,10 +49,20 @@ const SeatLists = ({ selectedSeats, setSelectedSeats }: seatStateProps) => {
       return (
         <div
           className={`w-[41px] h-[41px] mr-2 justify-center ${
-            isSelected ? "bg-gray-300 border-blue-300 border-2" : data.color
-          } rounded-lg flex items-center cursor-pointer hover:scale-105 transition duration-150`}
+            isSelected ? "bg-white border-blue-300 border-2" : data.color
+          } rounded-lg flex items-center cursor-pointer hover:scale-105 transition duration-150 border-[2px]`}
           key={key}
-          onClick={() => handleClick(key[0], key[1])}
+          onClick={() => handleClick(key[0], key.substring(1))}
+        >
+          {isSelected ? <Check /> : key}
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className={`w-[41px] h-[41px] mr-2 justify-center rounded-lg flex items-center cursor-pointer hover:scale-105 transition duration-150`}
+          key={key}
+          onClick={() => handleClick(key[0], key.substring(1))}
         >
           {isSelected ? <Check /> : key}
         </div>
@@ -78,7 +83,7 @@ const SeatLists = ({ selectedSeats, setSelectedSeats }: seatStateProps) => {
 
   return (
     <div className="flex justify-center">
-      <Seat renderSeat={renderSeat} rows={rows} />
+      <Seat renderSeat={({ seat, row }) => renderSeat({ seat, row: row.toString() })} rows={rows} />
     </div>
   );
 };
