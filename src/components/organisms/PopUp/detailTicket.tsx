@@ -1,12 +1,82 @@
-import { Briefcase, ChevronDown, ChevronUp, Circle, Minus, Sandwich, X } from "lucide-react";
-import { useState } from "react";
+import { Briefcase, ChevronDown, ChevronUp, Circle, X, Minus, Sandwich } from "lucide-react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { axiosAuth } from "src/services/axios";
+import { useNavigate } from "react-router-dom";
+
+interface FlightData {
+  created_date: string;
+  updated_date: string;
+  id: number;
+  airlines: {
+    id: number;
+    airline: string;
+    pathLogo: string;
+  };
+  passengerClass: string;
+  originAirport: string;
+  destinationAirport: string;
+  flightNumber: string;
+  originCity: string;
+  destinationCity: string;
+  gate: string;
+  flightTime: string;
+  arrivedTime: string;
+  duration: string;
+  transit: string;
+  luggage: string;
+  freeMeal: boolean;
+  price: number;
+  discountPrice: number;
+  isDiscount: boolean;
+}
 
 interface DetailTiketProps {
   onClose: () => void;
+  ticketId: number;
 }
 
-function DetailTiket({ onClose }: DetailTiketProps) {
+function DetailTiket({ onClose, ticketId }: DetailTiketProps) {
+  function formatDate(dateString: string | undefined) {
+    if (!dateString) return "";
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const date = new Date(dateString);
+    const formattedDate = date.toLocaleDateString("id-ID", options);
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    return formattedDate + " - " + hours + "." + minutes;
+  }
+
+  function formatPrice(price: number | undefined): string {
+    if (!price) return "";
+    return price.toLocaleString("id-ID", { style: "currency", currency: "IDR" });
+  }
+
   const [accordionOpen, setAccordionOpen] = useState(false);
+  const [flightData, setFlightData] = useState<FlightData | null>(null);
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    navigate(`/checkout/${flightData?.id}/${flightData?.passengerClass}/${flightData?.airlines?.airline}`);
+  };
+  useEffect(() => {
+    fetchFlightData(ticketId);
+  }, [ticketId]);
+
+  const fetchFlightData = async (ticketId: number) => {
+    try {
+      const response = await axios.get(`${axiosAuth.defaults.baseURL}flight/${ticketId}`);
+      const data = response.data;
+      setFlightData(data.data);
+    } catch (error) {
+      console.error("Error fetching flight data:", error);
+    }
+  };
 
   const toggleAccordion = () => {
     setTimeout(() => {
@@ -19,7 +89,9 @@ function DetailTiket({ onClose }: DetailTiketProps) {
       <div className="p-4 bg-white rounded-lg sm:p-8 md:p-12 lg:w-[700px] xl:w-[800px]">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-xl font-semibold text-black">Penerbangan Dari Jakarta ke Yogyakarta</h1>
+          <h1 className="text-xl font-semibold text-black">
+            Penerbangan Dari {flightData?.originCity} ke {flightData?.destinationCity}
+          </h1>
           <button onClick={onClose} className="text-black">
             <X size={24} />
           </button>
@@ -42,10 +114,10 @@ function DetailTiket({ onClose }: DetailTiketProps) {
               {/* Teks pertama */}
               <div className="mb-2">
                 <p className="font-medium text-black" style={{ fontSize: "14px" }}>
-                  Selasa, 02 Januari 2024 - 19.50
+                  {formatDate(flightData?.flightTime)}
                 </p>
                 <p className="font-semibold text-slate-500" style={{ fontSize: "12px" }}>
-                  Yogyakarta Kulon Progo - YIA
+                  {flightData?.originCity} - {flightData?.originAirport}
                 </p>
               </div>
 
@@ -53,8 +125,8 @@ function DetailTiket({ onClose }: DetailTiketProps) {
               <div className="flex items-center w-full mt-2 border-2 rounded-md border-slate-200">
                 <div className="mr-2">
                   <img
-                    src="https://i.ibb.co/pwDQ2gQ/Citilink-logo.png"
-                    alt="Citilink"
+                    src={`${axiosAuth.defaults.baseURL}showFile/${flightData?.airlines.pathLogo}`}
+                    alt={flightData?.airlines.airline}
                     className="object-contain w-20 h-12"
                   />
                 </div>
@@ -65,10 +137,10 @@ function DetailTiket({ onClose }: DetailTiketProps) {
                 {/* Kolom Kedua */}
                 <div className="flex flex-col ms-2">
                   <p className="font-medium text-black" style={{ fontSize: "14px" }}>
-                    Citilink
+                    {flightData?.airlines.airline}
                   </p>
                   <p className="font-semibold text-slate-500" style={{ fontSize: "12px" }}>
-                    QC-660 • Ekonomi • 2 Jam 30 Menit
+                    {flightData?.flightNumber} • {flightData?.passengerClass} • {flightData?.duration}
                   </p>
                 </div>
               </div>
@@ -76,10 +148,10 @@ function DetailTiket({ onClose }: DetailTiketProps) {
               {/* Teks kedua */}
               <div className="mt-2">
                 <p className="mt-2 font-medium text-black" style={{ fontSize: "14px" }}>
-                  Selasa, 02 Januari 2024 - 23.20
+                  {formatDate(flightData?.arrivedTime)}
                 </p>
                 <p className="font-semibold text-slate-500" style={{ fontSize: "12px" }}>
-                  Soekarno Hatta - CGK
+                  {flightData?.destinationCity} - {flightData?.destinationAirport}
                 </p>
               </div>
             </div>
@@ -111,8 +183,7 @@ function DetailTiket({ onClose }: DetailTiketProps) {
                     Kabin dan Bagasi
                   </div>
                   <p className="font-semibold text-slate-500" style={{ fontSize: "12px" }}>
-                    Maksimal kabin 7 kg dan Bagasi 20 kg. Anda dapat melakukan pembelian bagasi tambahan
-                    tersedia di halaman pemesanan.
+                    Maksimal Kabin 7 kg dan Bagasi {flightData?.luggage}.
                   </p>
                 </div>
               </div>
@@ -128,8 +199,9 @@ function DetailTiket({ onClose }: DetailTiketProps) {
                     Gratis Makan
                   </div>
                   <p className="font-semibold text-slate-500" style={{ fontSize: "12px" }}>
-                    Sudah termasuk gratis makan. Pembelian makanan tambahan tidak tersedia di halaman
-                    pemesanan.
+                    {flightData?.freeMeal
+                      ? "Sudah termasuk gratis makan. Pembelian makanan tambahan tidak tersedia di halaman pemesanan."
+                      : "Pembelian makanan tambahan tersedia."}
                   </p>
                 </div>
               </div>
@@ -144,11 +216,17 @@ function DetailTiket({ onClose }: DetailTiketProps) {
           <div>
             <p className="font-bold text-black text-md sm:text-sm">Total</p>
             <div className="flex flex-col text-lg font-bold text-blue-500 sm:text-md sm:flex-row">
-              <p>Rp 1.500.000 </p>
+              <p>
+                {flightData?.isDiscount
+                  ? formatPrice(flightData?.discountPrice)
+                  : formatPrice(flightData?.price)}
+              </p>
               <p className="font-bold text-black sm:ml-2">/pax</p>
             </div>
           </div>
-          <button className="px-5 py-3 text-white bg-blue-500 rounded">Pesan Tiket</button>
+          <button className="px-5 py-3 text-white bg-blue-500 rounded" onClick={handleCheckout}>
+            Pesan Tiket
+          </button>
         </div>
       </div>
     </div>

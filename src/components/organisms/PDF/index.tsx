@@ -12,6 +12,7 @@ interface PDFProps {
   fullName: string;
   phoneNumber: number | string;
   emailAddress: string;
+  orderName: string;
   orderPrice: number | string;
   serviceFee: number | string;
   totalPayment: number | string;
@@ -26,6 +27,7 @@ export const MyDocument = ({
   fullName,
   phoneNumber,
   emailAddress,
+  orderName,
   orderPrice,
   serviceFee,
   totalPayment,
@@ -101,7 +103,7 @@ export const MyDocument = ({
 
         <View style={styles.innerContainer}>
           <View style={styles.innerCaption}>
-            <Text>Citilink (Dewasa) x1</Text>
+            <Text>{orderName}</Text>
             <Text>Biaya Layanan</Text>
             <Text style={{ fontSize: "18px", fontFamily: "Helvetica-Bold", color: "#000000" }}>
               Harga Total
@@ -109,10 +111,10 @@ export const MyDocument = ({
           </View>
 
           <View style={styles.innerCaptionSecondary}>
-            <Text>Rp. {orderPrice.toLocaleString()}</Text>
-            <Text>Rp. {serviceFee.toLocaleString()}</Text>
+            <Text>Rp. {Number(orderPrice).toLocaleString()}</Text>
+            <Text>Rp. {Number(serviceFee).toLocaleString()}</Text>
             <Text style={{ fontSize: "18px", fontFamily: "Helvetica-Bold", color: "#498cfc" }}>
-              Rp. {totalPayment.toLocaleString()}
+              Rp. {Number(totalPayment).toLocaleString()}
             </Text>
           </View>
         </View>
