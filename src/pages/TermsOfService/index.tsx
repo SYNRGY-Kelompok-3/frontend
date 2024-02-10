@@ -3,7 +3,7 @@ import Figure from "src/components/molecules/Figure";
 import Head from "src/assets/Head.png";
 
 const TermOfService = () => {
-  const breadcrumbSteps = [{ text: "Beranda" }, { text: "Ketentuan Layanan" }];
+  const breadcrumbSteps = [{ text: "Beranda", link: "/" }, { text: "Ketentuan Layanan" }];
 
   return (
     <>

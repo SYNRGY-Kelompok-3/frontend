@@ -26,6 +26,7 @@ import Tiket from "src/pages/Admin/Ticket";
 import Analitik from "src/pages/Admin/Analitik";
 import PusatBantuan from "src/pages/PusatBantuan";
 import TermOfService from "src/pages/TermsOfService";
+import PemberitahuanPrivasi from "src/pages/PemberitahuanPrivasi";
 
 function Router() {
   return (
@@ -37,6 +38,7 @@ function Router() {
           </Route>
           <Route element={<Layoutpage />}>
             <Route path="/ketentuan-layanan" element={<TermOfService />} />
+            <Route path="/pemberitahuan-privasi" element={<PemberitahuanPrivasi />} />
             <Route path="/tentang-kami" element={<TentangKami />} />
             <Route path="/artikel" element={<Artikel />} />
             <Route path="/artikel/:id" element={<Detailartikel />} />
