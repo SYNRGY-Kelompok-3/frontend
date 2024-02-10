@@ -2,6 +2,29 @@ import { axiosAuth, axiosApi, axiosUpload } from "src/services/axios";
 import axios, { AxiosResponse } from "axios";
 import { useState } from "react";
 
+interface Id {
+  id: number;
+}
+
+interface Ticket {
+  passengerClass: string;
+  originAirport: string;
+  destinationAirport: string;
+  airlines: Id;
+  flightNumber: string;
+  originCity: string;
+  destinationCity: string;
+  gate: string;
+  flightTime: string;
+  arrivedTime: string;
+  duration: string;
+  transit: string;
+  freeMeal: boolean;
+  price: number;
+  discountPrice: number;
+  isDiscount: boolean;
+}
+
 interface User {
   created_date?: string;
   updated_date?: string;
@@ -101,12 +124,27 @@ function Api() {
     }
   };
 
+  const handleTicket = async (payload: Ticket) => {
+    try {
+      const response: AxiosResponse = await axios.post(`${axiosApi.defaults.baseURL}flight/save`, payload, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return response;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log(error.response?.data.error);
+        return error;
+      }
+    }
+  };
+
   return {
     fetchLogin,
     fetchProfile,
     fetchNotif,
     handleUploadAndUpdate,
     handleUpdate,
+    handleTicket,
   };
 }
 

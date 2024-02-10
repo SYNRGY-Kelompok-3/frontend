@@ -1,15 +1,31 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Image from "src/components/atoms/Img";
 import Button from "src/components/atoms/Button";
+import Modal from "../Ticket/modal";
 function Tiket() {
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <div className="flex flex-wrap -mx-3">
         <div className="flex-none w-full max-w-full px-3">
           <div className="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-            <div className="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+            <div className="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent flex justify-between items-center">
               <h6 className="dark:text-white font-semibold">Tickets</h6>
+              <Button
+                id="add-ticket"
+                onClick={() => setShowModal(true)}
+                type={"button"}
+                className={
+                  "bg-lime-500 px-2.5 text-md rounded-1.8 py-2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
+                }
+                content={"Add Ticket"}
+              />
             </div>
             <div className="flex-auto px-0 pt-0 pb-2">
               <div className="p-0 overflow-x-auto">
@@ -75,6 +91,7 @@ function Tiket() {
                       <td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                         <div className="flex items-center justify-center gap-3">
                           <Button
+                            id="edit"
                             onClick={() => navigate(`/edit-ticket/${1}`)}
                             type={"button"}
                             className={
@@ -83,6 +100,7 @@ function Tiket() {
                             content={"Edit"}
                           />
                           <Button
+                            id="delete"
                             onClick={() => navigate(`/detail-ticket/${1}`)}
                             type={"button"}
                             className={
@@ -100,6 +118,7 @@ function Tiket() {
           </div>
         </div>
       </div>
+      <Modal visible={showModal} onClose={handleCloseModal} />
     </>
   );
 }

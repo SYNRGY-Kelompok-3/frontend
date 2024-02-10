@@ -57,8 +57,9 @@ function Router() {
           </Route>
           <Route element={<PrivateProvider />}>
             <Route element={<LayoutAdminDashboard />}>
-              <Route path="/dashboard/tiket" element={<Tiket />} />
-              <Route path="/dashboard/analitik" element={<Analitik />} />
+              {/* <Route path="/dashboard" element={<Tiket />} /> */}
+              <Route path="/tiket" element={<Tiket />} />
+              <Route path="/analitik" element={<Analitik />} />
             </Route>
           </Route>
           <Route path="/login" element={<Login />} />
