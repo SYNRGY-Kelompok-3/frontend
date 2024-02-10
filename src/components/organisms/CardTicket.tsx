@@ -69,13 +69,13 @@ const CardTicket = (data: TProps) => {
               <Button
                 content={"Lihat Detail"}
                 className={"  self-stretch p-3 rounded bg-[#3e7bfa]"}
-                onClick={onShowTicketDetail}
+                onClick={() => onShowTicketDetail(ticketData.id)}
               />
             </div>
           </div>
         </div>
       </Card>
-      {showModalDetailTicket && <DetailTiket onClose={onCloseTicketDetail} />}
+      {showModalDetailTicket && <DetailTiket onClose={onCloseTicketDetail} ticketId={ticketData.id} />}
     </>
   );
 };
