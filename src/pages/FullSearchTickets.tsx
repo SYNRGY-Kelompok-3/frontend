@@ -5,6 +5,8 @@ import { useGetTicketList } from "src/usecases/modules/tickets";
 import FilterHome from "src/components/organisms/FilterHome";
 import bgPrimary from "src/assets/bg-2.png";
 import { ITicket } from "src/constants";
+import Image from "src/components/atoms/Img";
+import NotFound from "../assets/Frame 1171276352.png";
 import CardSkeletonLoading from "src/components/atoms/CardSkeletonLoading";
 
 const FullSearchTickets: React.FC = () => {
@@ -45,7 +47,7 @@ const FullSearchTickets: React.FC = () => {
                     </div>
                   );
                 })
-              : tickets.length <= 0 && <h1>No Data Found!</h1>}
+              : tickets.length <= 0 && <Image id={"not-found"} src={NotFound} alt={"Data Not Found"} />}
           </div>
         </div>
       </div>
