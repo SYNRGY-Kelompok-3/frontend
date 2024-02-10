@@ -8,13 +8,18 @@ import Button from "src/components/atoms/Button";
 
 import useAction from "./login.hooks";
 import PublicProvider from "src/pages/PublicProvider";
+import { useState } from "react";
 
 function Login() {
+  const [isEmailFocused, setIsEmailFocused] = useState<boolean>(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState<boolean>(false);
   const {
     email,
     password,
     passwordType,
     emailValidation,
+    passwordValidation,
+    passwordMessage,
     loginError,
     handleEmail,
     handlePassword,
@@ -30,7 +35,7 @@ function Login() {
             <div className="h-screen bg-[url('src/assets/bglogin.png')] bg-cover">
               <div className="h-full bg-gradient-to-b from-[#3E7BFACF] via-[#2148C0E5] to-[#3E7BFA8A] bg-opacity-70">
                 <div className="py-[160px] flex justify-center">
-                  <Link to="/" className="flex justify-center items-center">
+                  <Link id="logo" to="/" className="flex justify-center items-center">
                     <Image src={Logo} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
                     <div className={`text-white font-bold text-3xl`}>Travel.id</div>
                   </Link>
@@ -49,7 +54,7 @@ function Login() {
           </div>
           <div className="w-[100%] lg:w-[50%] bg-[url('src/assets/bglogin.png')] bg-cover lg:bg-none lg:m-4 h-screen lg:h-full">
             <div className="flex justify-center lg:hidden mt-[100px]">
-              <Link to="/" className="flex justify-center items-center">
+              <Link id="logo" to="/" className="flex justify-center items-center">
                 <Image src={LogoBlue} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
                 <div className="text-[#075efd] font-bold text-3xl">Travel.id</div>
               </Link>
@@ -62,6 +67,7 @@ function Login() {
                     <p className="leading-normal text-sm sm:text-md">
                       Nikmati perjalananmu bersama kami. Belum punya akun?
                       <Link
+                        id="register"
                         to="/register"
                         className="font-semibold text-transparent bg-clip-text bg-gradient-to-tl from-blue-500 to-violet-500 mx-1"
                       >
@@ -81,10 +87,13 @@ function Login() {
                       <div className="py-2">Email</div>
                       <div className="flex items-center">
                         <input
+                          id="email"
                           type="email"
                           placeholder="Email"
                           onChange={handleEmail}
                           value={email}
+                          onFocus={() => setIsEmailFocused(true)}
+                          onBlur={() => setIsEmailFocused(false)}
                           className="focus:shadow-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
                         />
                         <div className="-ml-8">
@@ -97,18 +106,25 @@ function Login() {
                           )}
                         </div>
                       </div>
+                      {!emailValidation && isEmailFocused && (
+                        <p className="text-[#CB3A31] mt-1 text-xs">Email harus diisi dengan sesuai</p>
+                      )}
                     </div>
                     <div className="">
                       <div className="py-2">Password</div>
                       <div className="flex items-center">
                         <input
+                          id="password"
                           type={passwordType}
                           placeholder="Password"
                           onChange={handlePassword}
                           value={password}
+                          onFocus={() => setIsPasswordFocused(true)}
+                          onBlur={() => setIsPasswordFocused(false)}
                           className="focus:shadow-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
                         />
                         <Button
+                          id={"toggle-password"}
                           content={
                             passwordType === "password" ? (
                               <i className="fa-solid fa-eye"></i>
@@ -121,6 +137,9 @@ function Login() {
                           className={"-ml-8"}
                         />
                       </div>
+                      {!passwordValidation && isPasswordFocused && (
+                        <p className="text-[#CB3A31] mt-1 text-xs">{passwordMessage}</p>
+                      )}
                     </div>
                     <div className="pt-5 flex justify-between items-center text-left min-h-6 ">
                       <div className="flex items-center">
@@ -134,6 +153,7 @@ function Login() {
                         </label>
                       </div>
                       <Link
+                        id="forgot-password"
                         to="/forgot-password"
                         className="text-sm sm:text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-tl from-blue-500 to-violet-500"
                       >
@@ -141,6 +161,7 @@ function Login() {
                       </Link>
                     </div>
                     <Button
+                      id={"login"}
                       content={"Masuk"}
                       type={"submit"}
                       className={

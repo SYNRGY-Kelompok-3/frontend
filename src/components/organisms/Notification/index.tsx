@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import Image from "src/components/atoms/Img";
 import Bell from "src/assets/Bell.svg";
@@ -51,25 +51,25 @@ function Notification() {
     }
   };
 
+  const fetchUser = useCallback(async () => {
+    try {
+      const response = await fetchProfile();
+      setUser(response["data 2"]);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [fetchProfile]);
+
+  const fetchNotification = useCallback(async () => {
+    try {
+      const response = await fetchNotif();
+      setNotification(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [fetchNotif]);
+
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetchProfile();
-        setUser(response["data 2"]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const fetchNotification = async () => {
-      try {
-        const response = await fetchNotif();
-        setNotification(response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchUser();
     fetchNotification();
 
@@ -82,13 +82,13 @@ function Notification() {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [isOpen, user.id, fetchNotif, fetchProfile]);
+  }, [isOpen, user.id, fetchNotification, fetchUser]);
 
   return (
     <>
       <div className="flex items-center mr-3">
         <div ref={iconRef} onClick={handleIconClick} className="relative cursor-pointer">
-          <Image src={Bell} alt={"bell"} className={"h-10"} />
+          <Image id={"notification-icon"} src={Bell} alt={"bell"} className={"h-10"} />
         </div>
         {isOpen && (
           <div
@@ -109,6 +109,7 @@ function Notification() {
               </ul>
             </div>
             <Link
+              id="view-more"
               to="/notifikasi"
               className="flex justify-center bg-sky-100 py-2 rounded-b-lg hover:text-white hover:bg-sky-600"
             >

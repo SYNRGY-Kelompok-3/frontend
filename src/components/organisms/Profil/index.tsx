@@ -16,12 +16,17 @@ function Profil() {
 
   return (
     <>
-      <div className="flex-1 p-5 m-4 border-2 rounded-lg sm:p-8 h-fit sm:h-screen">
+      <div className="flex-1 p-5 m-4 border-2 rounded-lg sm:p-8 overflow-y-auto h-fit sm:h-screen">
         <h1 className="mb-4 text-xl font-bold sm:text-2xl">Profil Akun</h1>
 
         <div className="col-span-12 mb-4 text-center">
           <label htmlFor="profileImageInput" className="relative inline-block">
-            <Image src={ProfilePicture} alt={"Profile"} className={"rounded-full h-32 w-32"} />
+            <Image
+              id={"profile-image"}
+              src={ProfilePicture}
+              alt={"Profile"}
+              className={"rounded-full h-32 w-32"}
+            />
             <div className="absolute bottom-0 right-0 p-1 bg-white border-2 border-blue-500 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +59,7 @@ function Profil() {
               Nama<span className="text-red-500">*</span>
             </label>
             <input
+              id="name"
               type="text"
               placeholder={user.name}
               value={formValues.name || ""}
@@ -66,6 +72,7 @@ function Profil() {
               Nomor Handphone<span className="text-red-500">*</span>
             </label>
             <input
+              id="phone"
               type="text"
               placeholder={user.phoneNumber}
               value={formValues.phoneNumber || ""}
@@ -78,6 +85,7 @@ function Profil() {
               Email<span className="text-red-500">*</span>
             </label>
             <input
+              id="email"
               type="text"
               placeholder={user.email}
               value={formValues.email || ""}
@@ -91,6 +99,7 @@ function Profil() {
               Tanggal Lahir<span className="text-red-500">*</span>
             </label>
             <input
+              id="birthdate"
               type="date"
               value={formValues.dateOfBirth || ""}
               onChange={(e) => setFormValues({ ...formValues, dateOfBirth: e.target.value })}
@@ -102,6 +111,7 @@ function Profil() {
               Jenis Kelamin<span className="text-red-500">*</span>
             </label>
             <select
+              id="gender"
               onChange={(e) => setFormValues({ ...formValues, gender: e.target.value })}
               className="w-full p-2 border border-gray-300 rounded-lg"
             >
@@ -134,6 +144,7 @@ function Profil() {
           </div>
         </div>
         <button
+          id="simpan-profil"
           className="w-full px-4 py-4 mt-10 text-xl text-white bg-blue-500 rounded-lg"
           onClick={handleSubmit}
         >

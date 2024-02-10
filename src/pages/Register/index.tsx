@@ -46,7 +46,7 @@ function Register() {
           <div className="min-h-screen bg-[url('src/assets/bglogin.png')] bg-cover">
             <div className="h-full bg-gradient-to-b from-[#3E7BFACF] via-[#2148C0E5] to-[#3E7BFA8A] bg-opacity-70">
               <div className="py-[160px] flex justify-center">
-                <Link to="/" className="flex justify-center items-center">
+                <Link id="logo" to="/" className="flex justify-center items-center">
                   <Image src={Logo} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
                   <div className={`text-white font-bold text-3xl`}>Travel.id</div>
                 </Link>
@@ -63,7 +63,7 @@ function Register() {
         </div>
         <div className="w-[100%] lg:w-[50%] bg-[url('src/assets/bglogin.png')] bg-cover lg:bg-none lg:m-4 h-screen lg:h-full">
           <div className="flex justify-center xl:hidden mt-[100px]">
-            <Link to="/" className="flex justify-center items-center">
+            <Link id="logo" to="/" className="flex justify-center items-center">
               <Image src={LogoBlue} alt={"logo"} className={"w-[25px] h-[25px] mr-2"} />
               <div className="text-[#075efd] font-bold text-3xl">Travel.id</div>
             </Link>
@@ -81,6 +81,7 @@ function Register() {
                   <p className="leading-normal text-sm sm:text-md">
                     Nikmati perjalananmu bersama kami. Sudah punya akun?
                     <Link
+                      id="login"
                       to="/login"
                       className="font-semibold text-transparent bg-clip-text bg-gradient-to-tl from-blue-500 to-violet-500 mx-1"
                     >
@@ -106,6 +107,7 @@ function Register() {
                     <label className="py-2">Nama Lengkap</label>
                     <div className="flex items-center">
                       <input
+                        id="name"
                         type="text"
                         placeholder="Masukkan nama lengkap"
                         onChange={handleName}
@@ -133,6 +135,7 @@ function Register() {
                     <label className="py-2">Email</label>
                     <div className="flex items-center">
                       <input
+                        id="email"
                         type="email"
                         placeholder="Email"
                         onChange={handleEmail}
@@ -160,6 +163,7 @@ function Register() {
                     <label className="py-2">No. Handphone</label>
                     <div className="flex items-center">
                       <input
+                        id="phone"
                         type="string"
                         placeholder="Masukkan no. handphone"
                         onChange={handlePhoneNumber}
@@ -187,6 +191,7 @@ function Register() {
                     <label className="py-2">Kata Sandi</label>
                     <div className="flex items-center">
                       <input
+                        id="password"
                         type={passwordType}
                         placeholder="Masukkan kata sandi"
                         onChange={handlePassword}
@@ -194,6 +199,7 @@ function Register() {
                         className="focus:shadow-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
                       />
                       <Button
+                        id={"toggle-password"}
                         content={
                           passwordType === "password" ? (
                             <i className="fa-solid fa-eye"></i>
@@ -208,6 +214,7 @@ function Register() {
                     </div>
                   </div>
                   <button
+                    id="submit"
                     type="submit"
                     className="inline-block w-full my-6 px-16 py-3.5 font-bold leading-normal text-lg text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
                   >

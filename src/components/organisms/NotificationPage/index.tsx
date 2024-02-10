@@ -3,21 +3,21 @@ import ChevronRight from "src/assets/ChevronRight.svg";
 
 import Departure from "src/assets/FilterHome/plane-departure.png";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { parseISO, format } from "date-fns";
 import Api from "src/services/api";
 
 interface User {
-  created_date?: string;
-  updated_date?: string;
-  id?: number;
-  name?: string;
-  identityNumber?: string | null;
-  email?: string;
-  dateOfBirth?: string;
-  gender?: string | null;
-  profilePicture?: string | null;
-  phoneNumber?: string;
+  created_date: string;
+  updated_date: string;
+  id: number;
+  name: string;
+  identityNumber: string | null;
+  email: string;
+  dateOfBirth: string;
+  gender: string | null;
+  profilePicture: string | null;
+  phoneNumber: string;
 }
 
 interface Notification {
@@ -29,31 +29,31 @@ interface Notification {
 
 function Notification() {
   const { fetchProfile, fetchNotif } = Api();
-  const [user, setUser] = useState<User>({});
+  // const [user, setUser] = useState<User>({});
   const [notification, setNotification] = useState<Notification[]>([]);
 
+  const fetchUser = useCallback(async () => {
+    try {
+      const response = await fetchProfile();
+      return response["data 2"];
+    } catch (error) {
+      console.log(error);
+    }
+  }, [fetchProfile]);
+
+  const fetchNotification = useCallback(async () => {
+    try {
+      const response = await fetchNotif();
+      setNotification(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [fetchNotif]);
+
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetchProfile();
-        setUser(response["data 2"]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const fetchNotification = async () => {
-      try {
-        const response = await fetchNotif();
-        setNotification(response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchUser();
     fetchNotification();
-  }, [user.id, fetchNotif, fetchProfile]);
+  }, [fetchUser, fetchNotification]);
 
   return (
     <>
@@ -63,7 +63,7 @@ function Notification() {
           <h1 className="text-sm sm:text-md font-bold mb-4 text-sky-400">Mark All As Read</h1>
         </div>
         <div className="">
-          {notification.length > 0 ? (
+          {notification ? (
             notification.map((item: Notification, index: number) => (
               <div
                 key={index}

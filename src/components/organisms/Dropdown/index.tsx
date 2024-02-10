@@ -9,6 +9,7 @@ import ChevronDown from "../../../assets/ChevronDown.svg";
 interface Menu {
   text: string;
   link?: string;
+  id: string;
 }
 
 function DropdownMenu({ name, picture }: { name: string | undefined; picture: string | null | undefined }) {
@@ -20,17 +21,17 @@ function DropdownMenu({ name, picture }: { name: string | undefined; picture: st
   const [role, setRole] = useState<string>();
 
   const Menu: Menu[] = [
-    { text: "Profile", link: "/profile" },
-    { text: "Dashboard", link: "/dashboard" },
-    { text: "Notification", link: "/notification" },
+    { text: "Profile", link: "/profile", id: "profile" },
+    { text: "Dashboard", link: "/dashboard", id: "dashboard" },
+    { text: "Notification", link: "/notification", id: "notification" },
   ];
 
-  const result = role === "user_role" ? Menu.filter((item) => item.text !== "Dashboard") : Menu;
+  const result = role === "ROLE_USER" ? Menu.filter((item) => item.text !== "Dashboard") : Menu;
 
   const fetchUser = useCallback(async () => {
     try {
       const response = await fetchProfile();
-      setRole(response["data 1"]["roles"][0].type);
+      setRole(response["data 1"]["roles"][0].name);
     } catch (error) {
       console.log(error);
     }
@@ -99,6 +100,7 @@ function DropdownMenu({ name, picture }: { name: string | undefined; picture: st
             <ul className="space-y-2">
               {result.map((item, index) => (
                 <li
+                  id={item.id}
                   key={index}
                   onClick={() => navigate(`${item.link}`)}
                   className="cursor-pointer rounded py-2 px-3 hover:bg-gray-300 hover:text-white"

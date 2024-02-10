@@ -4,6 +4,7 @@ import Api from "src/services/api";
 interface Menu {
   text: string;
   link?: string;
+  id: string;
 }
 
 interface User {
@@ -24,17 +25,17 @@ function useNavbarHooks() {
   const token = localStorage.getItem("token");
 
   const navMenu: Menu[] = [
-    { text: "Beranda", link: "/" },
-    { text: "Tentang Kami", link: "/tentang-kami" },
-    { text: "Artikel", link: "/artikel" },
-    { text: "Pusat Bantuan", link: "/pusat-bantuan" },
+    { text: "Beranda", link: "/", id: "beranda" },
+    { text: "Tentang Kami", link: "/tentang-kami", id: "tentang-kami" },
+    { text: "Artikel", link: "/artikel", id: "artikel" },
+    { text: "Pusat Bantuan", link: "/pusat-bantuan", id: "pusat-bantuan" },
   ];
 
   const menu: Menu[] = [
-    { text: "Profile", link: "/profile" },
-    { text: "Notifikasi", link: "/notifikasi" },
+    { text: "Profile", link: "/profile", id: "profile" },
+    { text: "Notifikasi", link: "/notifikasi", id: "notifikasi" },
     ...navMenu,
-    { text: "Dashboard", link: "/dashboard" },
+    { text: "Dashboard", link: "/dashboard", id: "dashboard" },
   ];
 
   const checkboxRef = useRef<HTMLInputElement>(null);
@@ -64,15 +65,18 @@ function useNavbarHooks() {
   const fetchUser = useCallback(async () => {
     try {
       const response = await fetchProfile();
+      if (!response) {
+        return;
+      }
       setUser(response["data 2"]);
-      setRole(response["data 1"]["roles"][0].type);
+      setRole(response["data 1"]["roles"][0].name);
     } catch (error) {
       console.error(error);
     }
   }, [fetchProfile]);
 
   const sidemenuResult = token
-    ? role === "user_role"
+    ? role === "USER_ROLE"
       ? menu.filter((item) => item.text !== "Dashboard")
       : menu
     : menu.filter(
