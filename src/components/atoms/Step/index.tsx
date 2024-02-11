@@ -16,17 +16,15 @@ function Steps({ steps }: { steps: Step[] }) {
             )}
             <button
               key={index}
-              className={`flex items-center rounded-full py-1 pl-2 pr-3 ${
-                step.isActive ? "bg-blue-500 text-white" : "bg-green-500 text-white"
-              } ${index < steps.length - 1 ? "" : ""}`}
+              className={`flex items-center rounded-full py-1 pl-2 pr-3 ${step.isActive ? "bg-blue-500 text-white" : "bg-green-500 text-white"
+                } ${index < steps.length - 1 ? "" : ""}`}
               disabled={!step.isActive}
             >
               <button
-                className={`w-8 h-8 flex items-center justify-center border-2 rounded-full ${
-                  step.isActive
+                className={`w-8 h-8 flex items-center justify-center border-2 rounded-full ${step.isActive
                     ? "border-blue-500 text-blue-500 bg-white"
                     : "border-green-500 text-green-500 bg-white"
-                }`}
+                  }`}
                 disabled={!step.isActive}
               >
                 {step.isActive ? (
@@ -45,9 +43,8 @@ function Steps({ steps }: { steps: Step[] }) {
                 )}
               </button>
               <span
-                className={`text-sm ml-2 ${
-                  step.isActive ? "font-semibold text-white" : "font-normal text-white"
-                }`}
+                className={`text-sm ml-2 ${step.isActive ? "font-semibold text-white" : "font-normal text-white"
+                  }`}
               >
                 {step.text}
               </span>

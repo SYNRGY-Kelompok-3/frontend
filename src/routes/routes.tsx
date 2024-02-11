@@ -9,7 +9,6 @@ import Home from "src/pages/Home";
 import Invoice from "src/pages/Invoices";
 import Checkout from "src/pages/Checkout";
 import Login from "src/pages/Login";
-import Payment from "src/pages/Payment";
 import FullSearchTickets from "src/pages/FullSearchTickets";
 import Artikel from "src/pages/Artikel";
 import Detailartikel from "src/pages/Detailartikel";
@@ -44,11 +43,14 @@ function Router() {
             <Route path="/pusat-bantuan" element={<PusatBantuan />} />
             <Route path="/flight/full-search" element={<FullSearchTickets />} />
             <Route element={<PrivateProvider />}>
-              <Route path="/payment" element={<Payment />} />
-              // <Route path="/checkout/:id/:id/:id" element={<Checkout />} />
+              {/* // <Route path="/checkout/:id/:id/:id" element={<Checkout />} /> */}
               <Route path="/checkout/:flightId/:passengerClass/:airline" element={<Checkout />} />
               <Route
                 path="/invoices/:orderNumber/:orderDate/:bankName/:accountName/:accountNumber/:fullName/:phoneNumber/:emailAddress/:orderName/:orderPrice/:serviceFee/:totalPayment"
+                element={<Invoice />}
+              />
+              <Route
+                path="/invoices"
                 element={<Invoice />}
               />
               <Route element={<LayoutUserDashboard />}>
