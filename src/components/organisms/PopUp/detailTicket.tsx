@@ -4,7 +4,9 @@ import axios from "axios";
 import { axiosAuth } from "src/services/axios";
 import { useNavigate } from "react-router-dom";
 import Loading from "src/components/organisms/Loading";
-
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "src/state/store";
+import { setDetailTicket } from "src/state/ticketSlice/ticketList";
 interface FlightData {
   created_date: string;
   updated_date: string;
@@ -38,6 +40,7 @@ interface DetailTiketProps {
 }
 
 function DetailTiket({ onClose, ticketId }: DetailTiketProps) {
+  const dispatch = useDispatch<AppDispatch>();
   function formatDate(dateString: string | undefined) {
     if (!dateString) return "";
     const options: Intl.DateTimeFormatOptions = {
@@ -68,7 +71,9 @@ function DetailTiket({ onClose, ticketId }: DetailTiketProps) {
     setIsLoading(true);
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000)); // Delay for visibility (1s)
-      navigate(`/checkout/${flightData?.id}/${flightData?.passengerClass}/${flightData?.airlines?.airline}`);
+      navigate(
+        `/checkout?flightId=${flightData?.id}&flightClass=${flightData?.passengerClass}&airlinesId=${flightData?.airlines?.id}`
+      );
     } catch (error) {
       console.log(error);
     } finally {
@@ -77,12 +82,14 @@ function DetailTiket({ onClose, ticketId }: DetailTiketProps) {
   };
   useEffect(() => {
     fetchFlightData(ticketId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ticketId]);
 
   const fetchFlightData = async (ticketId: number) => {
     try {
       const response = await axios.get(`${axiosAuth.defaults.baseURL}flight/${ticketId}`);
       const data = response.data;
+      await dispatch(setDetailTicket(data.data));
       setFlightData(data.data);
     } catch (error) {
       console.error("Error fetching flight data:", error);

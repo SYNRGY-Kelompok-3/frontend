@@ -131,7 +131,8 @@ function ProfileHooks() {
 
   useEffect(() => {
     fetchUser();
-  }, [fetchUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setAllInputsFilled(Object.keys(inputErrors).length === 0);

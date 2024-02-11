@@ -1,17 +1,21 @@
 import { Card } from "flowbite-react";
+import { memo } from 'react'
 import Image from "src/components/atoms/Img";
 import transitIcon from "src/assets/no-transit-icon.svg";
 import DetailTiket from "src/components/organisms/PopUp/detailTicket";
 import Button from "src/components/atoms/Button";
 import { useCardTicket } from "src/usecases/modules/tickets";
-import { ITicket } from "src/constants";
+import { ITicket, TTransit, transitText } from "src/constants";
 import { priceFormatter } from "src/utils";
 import { useDateFormatter } from "src/usecases/common/useDateFormat";
+
 type TProps = {
   ticketData: ITicket;
 };
 
-const CardTicket = (data: TProps) => {
+const { VITE_APP_API_URL } = import.meta.env;
+
+const CardTicket = memo((data: TProps) => {
   const { ticketData } = data;
   const { onShowTicketDetail, showModalDetailTicket, onCloseTicketDetail } = useCardTicket();
   const { formatDay, formatTime, formatFlightDuration } = useDateFormatter();
@@ -20,7 +24,7 @@ const CardTicket = (data: TProps) => {
       <Card className="mb-3">
         <div className="flex flex-row  items-center ">
           <div className="basis-[25.00%] m-2">
-            <Image src="https://placehold.co/400x200" alt="template" />
+            <Image src={`${VITE_APP_API_URL}showFile/${ticketData.airlines.pathLogo}`} alt="template" />
           </div>
           <div className="basis-[50.00%] m-2 px-5">
             <div className="grid grid-cols-3 ">
@@ -32,7 +36,7 @@ const CardTicket = (data: TProps) => {
                 <div className="justify-self-center">{ticketData.originAirport}</div>
               </div>
               <div className="grid grid-rows-3 my-3">
-                <div className="justify-self-center text-green-600">{ticketData.transit}</div>
+                <div className="justify-self-center text-green-600">{transitText[ticketData.transit as TTransit]}</div>
                 <div className="justify-self-center">
                   <img src={transitIcon} alt="tes" />
                 </div>
@@ -78,6 +82,6 @@ const CardTicket = (data: TProps) => {
       {showModalDetailTicket && <DetailTiket onClose={onCloseTicketDetail} ticketId={ticketData.id} />}
     </>
   );
-};
+})
 
-export default CardTicket;
+export default (CardTicket);

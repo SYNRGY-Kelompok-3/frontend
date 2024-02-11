@@ -30,4 +30,12 @@ export const FORGOT_PWD_FLOW = {
   END_FLOW: "END_FLOW",
 };
 
+export const CHECKOUT_FLOW = {
+  FILL_IDENTITY: 1,
+  FILL_PAYMENT_METHOD: 2,
+  INVOICE_SUMMARY: 3,
+  END_FLOW: 4,
+};
+
 export type TForgotPasswordFlow = "EMAIL_INPUT" | "CHECK_EMAIL" | "INPUT_OTP" | "RESET_PASSWORD" | "END_FLOW";
+export type TCheckoutFlow = "FILL_IDENTITY" | "INVOICE_SUMMARY" | "FILL_PAYMENT_METHOD" | "END_FLOW";

@@ -41,3 +41,10 @@ export interface ITicket {
   transit: string;
   updated_date: Date | null | string;
 }
+
+export const transitText: Record<TTransit, string> = {
+  langsung: "Langsung",
+  "1_transit": "1x Transit",
+  "2_transit": "2x Transit",
+  "": "",
+};

@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import CardTicket from "src/components/organisms/CardTicket";
 import FilterFlightTicket from "src/components/organisms/FilterFlightTicket";
 import { useGetTicketList } from "src/usecases/modules/tickets";
@@ -9,9 +9,10 @@ import Image from "src/components/atoms/Img";
 import NotFound from "../assets/Frame 1171276352.png";
 import CardSkeletonLoading from "src/components/atoms/CardSkeletonLoading";
 
-const FullSearchTickets: React.FC = () => {
+const FullSearchTickets: FC = () => {
   const { ticketList, isLoading, params } = useGetTicketList();
   const tickets: ITicket[] = ticketList as ITicket[];
+
   return (
     <>
       <div className="mx-auto mt-5">
