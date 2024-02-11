@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "src/components/atoms/Button";
 import Modal from "../Ticket/modal";
 import useAction from "./ticket.hooks";
+import { parseISO, format } from "date-fns";
 function Tiket() {
   const navigate = useNavigate();
   const {
@@ -133,12 +134,12 @@ function Tiket() {
                         </td>
                         <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                           <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
-                            {data.flightTime}
+                            {format(parseISO(data.flightTime as string), "yyyy-MM-dd HH:mm:ss")}
                           </span>
                         </td>
                         <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                           <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
-                            {data.arrivedTime}
+                            {format(parseISO(data.arrivedTime as string), "yyyy-MM-dd HH:mm:ss")}
                           </span>
                         </td>
                         <td className="p-2 text-center leading-normal align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
