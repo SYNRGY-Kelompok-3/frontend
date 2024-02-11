@@ -28,9 +28,8 @@ const Analitik: React.FC = () => {
                       onChange={(e) => setSelectedDate1({ year: e.target.value })}
                       className="rounded-lg"
                     >
-                      <option value="2022">2022</option>
-                      <option value="2023">2023</option>
                       <option value="2024">2024</option>
+                      <option value="2025">2025</option>
                     </select>
                   </div>
                   <div className="p-5">
@@ -49,9 +48,8 @@ const Analitik: React.FC = () => {
                       onChange={(e) => setSelectedDate2({ ...selectedDate2, year: e.target.value })}
                       className="rounded-lg"
                     >
-                      <option value="2022">2022</option>
-                      <option value="2023">2023</option>
                       <option value="2024">2024</option>
+                      <option value="2025">2025</option>
                     </select>
 
                     <label htmlFor="month2" className="text-sm">
