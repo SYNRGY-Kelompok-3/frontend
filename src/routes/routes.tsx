@@ -43,10 +43,9 @@ function Router() {
             <Route path="/pusat-bantuan" element={<PusatBantuan />} />
             <Route path="/flight/full-search" element={<FullSearchTickets />} />
             <Route element={<PrivateProvider />}>
-              {/* // <Route path="/checkout/:id/:id/:id" element={<Checkout />} /> */}
               <Route path="/checkout/:flightId/:passengerClass/:airline" element={<Checkout />} />
               <Route
-                path="/invoices/:orderNumber/:orderDate/:bankName/:accountName/:accountNumber/:fullName/:phoneNumber/:emailAddress/:orderName/:orderPrice/:serviceFee/:totalPayment"
+                path="/invoice/:orderNumber/:orderDate/:bankName/:accountName/:accountNumber/:fullName/:phoneNumber/:emailAddress/:orderName/:orderPrice/:serviceFee/:totalPayment"
                 element={<Invoice />}
               />
               <Route
@@ -57,14 +56,15 @@ function Router() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/riwayat-transaksi" element={<Riwayat />} />
                 <Route path="/riwayat-transaksi/:id" element={<Riwayat />} />
-                <Route path="/notifikasi" element={<Notifikasi />} />
+                <Route path="/notification" element={<Notifikasi />} />
               </Route>
             </Route>
           </Route>
           <Route element={<PrivateProvider />}>
             <Route element={<LayoutAdminDashboard />}>
-              <Route path="/dashboard/tiket" element={<Tiket />} />
-              <Route path="/dashboard/analitik" element={<Analitik />} />
+              {/* <Route path="/dashboard" element={<Tiket />} /> */}
+              <Route path="/tiket" element={<Tiket />} />
+              <Route path="/analitik" element={<Analitik />} />
             </Route>
           </Route>
           <Route path="/login" element={<Login />} />

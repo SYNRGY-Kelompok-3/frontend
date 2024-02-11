@@ -42,7 +42,7 @@ function Sidebar() {
           </li>
           <li id="notifikasi" className="w-[50px] sm:w-[180px] lg:w-[250px]">
             <NavLink
-              to="/notifikasi"
+              to="/notification"
               className={({ isActive }): string =>
                 `flex justify-center sm:justify-start items-center ${
                   isActive
