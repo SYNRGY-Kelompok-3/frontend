@@ -70,8 +70,8 @@ function Notification() {
   }, [fetchNotif]);
 
   useEffect(() => {
-    fetchUser();
-    fetchNotification();
+    // fetchUser();
+    // fetchNotification();
 
     if (isOpen) {
       document.addEventListener("mousedown", handleOutsideClick);

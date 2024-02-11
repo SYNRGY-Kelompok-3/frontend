@@ -26,7 +26,7 @@ function Sidebar() {
 
         <hr className="h-px my-5 bg-transparent bg-gradient-to-r from-transparent via-black/100 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
 
-        <div className="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
+        <div className="items-center block w-auto max-h-screen h-sidenav grow basis-full">
           <ul className="flex flex-col pl-0 mb-0">
             <li className="mt-0.5 w-full">
               <NavLink

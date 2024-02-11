@@ -65,7 +65,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <select
                       id="kotaasal"
-                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      className="flex h-[42px] bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                       onChange={(e) => handleSelectOriginCity(e)}
                       value={originCity}
                     >
@@ -81,7 +81,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <select
                       id="kotatujuan"
-                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      className="flex h-[42px] bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                       onChange={(e) => handleSelectDestinationCity(e)}
                       value={destinationCity}
                     >
@@ -99,7 +99,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <select
                       id="jumlah"
-                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      className="flex h-[42px] bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
                       <option value="">Masukkan Jumlah Penumpang</option>
                       <option value="1">1</option>
@@ -107,7 +107,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </select>
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
-                    <div className="flex items-center">
+                    <div className="flex items-center mb-2">
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
                     </div>
@@ -117,6 +117,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                       minDate={new Date()}
                       language="id-ID"
                       value={formatDateMonthYear(startDateStr)}
+                      className="bg-white"
                     />
                   </div>
                   <div
@@ -124,7 +125,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                       !isOneWay ? "cursor-not-allowed opacity-50" : ""
                     }`}
                   >
-                    <div className="flex items-center">
+                    <div className="flex items-center mb-2">
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
                         Tanggal Pulang
@@ -148,7 +149,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <select
                       id="jumlah"
-                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      className="flex h-[42px] bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                       onChange={handleSelectClass}
                     >
                       <option value="ekonomi">Economy</option>
@@ -184,7 +185,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <select
                       id="kotaasal"
-                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      className="flex h-[42px] bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                       onChange={(e) => handleSelectOriginCity(e)}
                       value={originCity}
                     >
@@ -200,7 +201,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </div>
                     <select
                       id="kotatujuan"
-                      className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      className="flex h-[42px] bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                       onChange={(e) => handleSelectDestinationCity(e)}
                       value={destinationCity}
                     >
@@ -210,7 +211,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     </select>
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
-                    <div className="flex items-center">
+                    <div className="flex items-center mb-2">
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
                     </div>
@@ -223,7 +224,7 @@ function Filter({ isFilterMore }: IFilterHome) {
                     />
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
-                    <div className="flex items-center">
+                    <div className="flex items-center mb-2">
                       <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
                       <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
                         Tanggal Pulang

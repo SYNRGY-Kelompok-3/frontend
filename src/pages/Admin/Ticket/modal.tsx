@@ -123,7 +123,7 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
               >
                 <option value="">Masukkan Transit</option>
                 {[1, 2, 3].map((item, index) => (
-                  <option key={index} value={`${item} Transit`}>
+                  <option key={index} value={`${item}_transit`}>
                     {item} Transit
                   </option>
                 ))}

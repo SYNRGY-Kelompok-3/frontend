@@ -1,6 +1,6 @@
 import Api from "src/services/api";
 import { useState } from "react";
-import { parseISO, formatISO } from "date-fns";
+// import { parseISO, formatISO } from "date-fns";
 
 interface Id {
   id: number;
@@ -34,10 +34,11 @@ function TicketHooks() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, callback?: () => void) => {
     try {
       e.preventDefault();
-      const departure = formatISO(parseISO(departureDate), { representation: "complete" });
-      const arrival = formatISO(parseISO(arrivalDate), { representation: "complete" });
+      const departure = `${departureDate}:00.000+0700`;
+      const arrival = `${arrivalDate}:00.000+0700`;
       const payload = { ...formValues, flightTime: departure, arrivedTime: arrival };
       const response = await handleTicket(payload);
+      console.log(payload);
       console.log(departure);
       console.log(arrival);
       console.log("response >", response);
