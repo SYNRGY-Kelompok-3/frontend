@@ -11,9 +11,9 @@ function Tiket() {
     handleCloseModal,
     handleNextPage,
     handlePreviousPage,
-    page,
-    totalPage,
-    tiket,
+    currentPage,
+    totalPages,
+    tickets,
   } = useAction();
 
   return (
@@ -90,7 +90,7 @@ function Tiket() {
                     </tr>
                   </thead>
                   <tbody>
-                    {tiket.map((data, index) => (
+                    {tickets.map((data, index) => (
                       <tr key={index}>
                         <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                           <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
@@ -201,7 +201,7 @@ function Tiket() {
               </div>
             </div>
             <div className="flex justify-end items-center p-3 gap-3">
-              <div className={`${page === 0 ? "hidden" : ""}`}>
+              <div className={`${currentPage === 0 ? "hidden" : ""}`}>
                 <Button
                   id="prev-ticket"
                   onClick={() => handlePreviousPage()}
@@ -210,8 +210,8 @@ function Tiket() {
                   content={<i className="fa-solid fa-arrow-left"></i>}
                 />
               </div>
-              <div>{page + 1}</div>
-              <div className={`${totalPage === page + 1 ? "hidden" : ""}`}>
+              <div>{currentPage + 1}</div>
+              <div className={`${totalPages === currentPage + 1 ? "hidden" : ""}`}>
                 <Button
                   id="next-page"
                   onClick={() => handleNextPage()}

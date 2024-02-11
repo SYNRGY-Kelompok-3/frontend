@@ -1,6 +1,7 @@
 import Api from "src/services/api";
-import { useEffect, useState, useCallback } from "react";
-// import { parseISO, formatISO } from "date-fns";
+import { useEffect, useState } from "react";
+import { axiosApi } from "src/services/axios";
+import axios, { AxiosResponse } from "axios";
 
 interface Id {
   id: number;
@@ -28,27 +29,33 @@ interface Ticket {
 }
 
 function TicketHooks() {
-  const { handleTicket, showTicket } = Api();
+  const { handleTicket } = Api();
   const [formValues, setFormValues] = useState<Ticket>({} as Ticket);
   const [departureDate, setDepartureDate] = useState("");
   const [arrivalDate, setArrivalDate] = useState("");
-  const [tiket, setTiket] = useState<Ticket[]>([]);
+  const [tickets, setTickets] = useState<Ticket[]>([]);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [totalPage, setTotalPage] = useState<number>(0);
-  const [page, setPage] = useState<number>(0);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(0);
 
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
   const handleNextPage = () => {
-    setPage(page + 1);
-    fetchTicket(page);
+    if (currentPage < totalPages - 1) {
+      const nextPage = currentPage + 1;
+      setCurrentPage(nextPage);
+      fetchTicket(nextPage);
+    }
   };
 
   const handlePreviousPage = () => {
-    setPage(page - 1);
-    fetchTicket(page);
+    if (currentPage > 0) {
+      const prevPage = currentPage - 1;
+      setCurrentPage(prevPage);
+      fetchTicket(prevPage);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, callback?: () => void) => {
@@ -65,22 +72,21 @@ function TicketHooks() {
     }
   };
 
-  const fetchTicket = useCallback(
-    async (page: number) => {
-      try {
-        const response = await showTicket(page, 10);
-        setTiket(response.content);
-        setTotalPage(response.totalPages);
-      } catch (error) {
-        console.log("error > ", error);
-      }
-    },
-    [showTicket]
-  );
+  const fetchTicket = async (page: number) => {
+    try {
+      const response: AxiosResponse = await axios.get(
+        `${axiosApi.defaults.baseURL}flight/listFlights?page=${page}&size=${10}`
+      );
+      setTickets(response.data.data.content);
+      setTotalPages(response.data.data.totalPages);
+    } catch (error) {
+      console.log("error > ", error);
+    }
+  };
 
   useEffect(() => {
-    fetchTicket(page);
-  }, [page, fetchTicket]);
+    fetchTicket(currentPage);
+  }, [currentPage]);
 
   return {
     showModal,
@@ -92,9 +98,9 @@ function TicketHooks() {
     setDepartureDate,
     setArrivalDate,
     fetchTicket,
-    tiket,
-    totalPage,
-    page,
+    tickets,
+    totalPages,
+    currentPage,
     handleNextPage,
     handlePreviousPage,
   };
