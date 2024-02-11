@@ -43,15 +43,12 @@ function Router() {
             <Route path="/pusat-bantuan" element={<PusatBantuan />} />
             <Route path="/flight/full-search" element={<FullSearchTickets />} />
             <Route element={<PrivateProvider />}>
-              <Route path="/checkout/:flightId/:passengerClass/:airline" element={<Checkout />} />
+              <Route path="/checkout" element={<Checkout />} />
               <Route
                 path="/invoice/:orderNumber/:orderDate/:bankName/:accountName/:accountNumber/:fullName/:phoneNumber/:emailAddress/:orderName/:orderPrice/:serviceFee/:totalPayment"
                 element={<Invoice />}
               />
-              <Route
-                path="/invoices"
-                element={<Invoice />}
-              />
+              <Route path="/invoices" element={<Invoice />} />
               <Route element={<LayoutUserDashboard />}>
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/riwayat-transaksi" element={<Riwayat />} />

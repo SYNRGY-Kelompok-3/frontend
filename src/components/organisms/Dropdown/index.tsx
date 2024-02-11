@@ -67,7 +67,8 @@ function DropdownMenu({ name, picture }: { name: string | undefined; picture: st
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [isOpen, fetchUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
 
   const handleLogout = () => {
     const c = confirm("are you sure want to logout?");

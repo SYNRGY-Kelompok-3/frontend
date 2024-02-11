@@ -25,11 +25,11 @@ interface Notification {
 }
 
 function Notification() {
-  const { fetchNotif, fetchProfile } = Api();
+  const { fetchNotif } = Api();
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
   const iconRef = useRef<HTMLDivElement | null>(null);
-  const [user, setUser] = useState<User>({});
+  const [user] = useState<User>({});
   const [notification, setNotification] = useState<Notification[]>([]);
 
   const handleIconClick = () => {
@@ -50,15 +50,6 @@ function Notification() {
       setIsOpen(false);
     }
   };
-
-  const fetchUser = useCallback(async () => {
-    try {
-      const response = await fetchProfile();
-      setUser(response["data 2"]);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [fetchProfile]);
 
   const fetchNotification = useCallback(async () => {
     try {
@@ -82,7 +73,7 @@ function Notification() {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [isOpen, user.id, fetchNotification, fetchUser]);
+  }, [isOpen, user.id, fetchNotification]);
 
   return (
     <>

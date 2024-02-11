@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { axiosAuth } from "src/services/axios";
+import { axiosApi } from "src/services/axios";
 import { CHECKOUT_FLOW } from "src/constants/";
 type TTitle = "Tuan" | "Nyonya" | "Nona" | "";
 
-interface detailCheckout {
+interface ICheckout {
   firstName: string;
   lastName: string;
   title: TTitle;
@@ -20,7 +20,24 @@ interface detailCheckout {
   flow: number;
 }
 
-const initialState: detailCheckout = {
+interface IBookingDetail {
+  flight: {
+    id: number;
+  };
+  customerName: string;
+  identityNumber: string;
+  seatNumber?: string;
+  totalSeatPrice?: number;
+  category: "adult" | "child" | "infant";
+}
+export interface IBooking {
+  customer: {
+    id: number;
+  };
+  listBookingDetail: IBookingDetail[];
+}
+
+const initialState: ICheckout = {
   firstName: ``,
   lastName: ``,
   title: `Tuan`,
@@ -36,43 +53,10 @@ const initialState: detailCheckout = {
   flow: CHECKOUT_FLOW.FILL_IDENTITY,
 };
 
-export const handleCheckoutPayment = createAsyncThunk(
-  "handleCheckoutPayment",
-  async (payload: {
-    flight: {
-      id: number;
-    };
-    booking: {
-      id: number;
-    };
-    customerName: string;
-    identityNumber: string;
-    seatNumber: string;
-    luggage: string;
-  }) => {
-    const res = await axiosAuth.post(`bookingDetail/save`, payload);
-    return res.data;
-  }
-);
-
-export const handleProcessPayment = createAsyncThunk(
-  "handleProcessPayment",
-  async (payload: {
-    flight: {
-      id: number;
-    };
-    booking: {
-      id: number;
-    };
-    customerName: string;
-    identityNumber: string;
-    seatNumber: string;
-    luggage: string;
-  }) => {
-    const res = await axiosAuth.post(`bookingDetail/save`, payload);
-    return res.data;
-  }
-);
+export const handleCheckout = createAsyncThunk("handleCheckout", async (payload: IBooking) => {
+  const res = await axiosApi.post(`booking/saveWithDetails`, payload);
+  return res.data;
+});
 
 const checkoutSlice = createSlice({
   name: "checkoutSlice",
@@ -105,30 +89,22 @@ const checkoutSlice = createSlice({
     setTitlePassenger: (state, action: PayloadAction<TTitle>) => {
       state.titlePassenger = action.payload;
     },
+    setFlow: (state, action: PayloadAction<number>) => {
+      state.flow = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(handleCheckoutPayment.pending, (state) => {
+      .addCase(handleCheckout.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(handleCheckoutPayment.fulfilled, (state) => {
+      .addCase(handleCheckout.fulfilled, (state) => {
         state.flow = CHECKOUT_FLOW.FILL_PAYMENT_METHOD;
         state.isLoading = false;
         state.isError = false;
       })
-      .addCase(handleCheckoutPayment.rejected, (state) => {
-        state.isError = true;
-        state.isLoading = false;
-      })
-      .addCase(handleProcessPayment.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(handleProcessPayment.fulfilled, (state) => {
-        state.flow = CHECKOUT_FLOW.INVOICE_SUMMARY;
-        state.isLoading = false;
-        state.isError = false;
-      })
-      .addCase(handleProcessPayment.rejected, (state) => {
+      .addCase(handleCheckout.rejected, (state) => {
+        state.flow = CHECKOUT_FLOW.FILL_PAYMENT_METHOD;
         state.isError = true;
         state.isLoading = false;
       });
@@ -145,6 +121,7 @@ export const {
   setFirstNamePassenger,
   setLastNamePassenger,
   setTitlePassenger,
+  setFlow,
 } = checkoutSlice.actions;
 
 export default checkoutSlice.reducer;

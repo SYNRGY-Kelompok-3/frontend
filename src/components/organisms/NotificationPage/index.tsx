@@ -53,7 +53,8 @@ function Notification() {
   useEffect(() => {
     fetchUser();
     fetchNotification();
-  }, [fetchUser, fetchNotification]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchNotification]);
 
   return (
     <>

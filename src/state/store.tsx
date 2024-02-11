@@ -14,7 +14,8 @@ import storage from "redux-persist/lib/storage";
 import seatReducer from "./seatSlice/slice";
 import ticketReducer from "./ticketSlice/ticketList";
 import forgotPasswordReducer from "./authSlice/forgotPasswordFlow";
-import checkoutReducer from './checkoutSlice/checkout'
+import checkoutReducer from "./checkoutSlice/checkout";
+import paymentReducer from "./checkoutSlice/payment";
 const persistConfig = {
   key: "root",
   version: 1,
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   ticket: ticketReducer,
   forgotPassword: forgotPasswordReducer,
   checkout: checkoutReducer,
+  payment: paymentReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

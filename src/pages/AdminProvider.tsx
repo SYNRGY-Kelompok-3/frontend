@@ -29,7 +29,8 @@ function AdminProvider({ children }: PropsWithChildren) {
     if (!role) {
       setShow(false);
     }
-  }, [token, role, fetchUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token, role]);
 
   if (show) {
     return children;

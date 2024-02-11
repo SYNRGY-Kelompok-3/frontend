@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "src/state/store";
 import {
-  handleCheckoutPayment as fetchHandleCheckoutPayment,
+  handleCheckout as fetchHandleCheckout,
   setFirstName,
   setLastName,
   setTitle,
@@ -11,6 +11,7 @@ import {
   setFirstNamePassenger,
   setLastNamePassenger,
   setTitlePassenger,
+  IBooking,
 } from "src/state/checkoutSlice/checkout";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
@@ -39,7 +40,24 @@ export const useOrderForm = () => {
   const watchTitlePassenger = watch("titlePassenger");
 
   const handleCheckoutPayment = handleSubmit(async () => {
-    // await dispatch(fetchHandleCheckoutPayment());
+    const payload: IBooking = {
+      customer: {
+        id: 8,
+      },
+      listBookingDetail: [
+        {
+          flight: {
+            id: 5,
+          },
+          customerName: checkoutState.firstName,
+          identityNumber: "tes",
+          seatNumber: "tes",
+          totalSeatPrice: 2000,
+          category: "adult",
+        },
+      ],
+    };
+    await dispatch(fetchHandleCheckout(payload));
   });
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {

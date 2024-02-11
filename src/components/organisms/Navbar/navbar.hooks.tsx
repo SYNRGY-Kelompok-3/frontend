@@ -90,7 +90,8 @@ function useNavbarHooks() {
     return () => {
       document.removeEventListener("click", handleDocumentClick);
     };
-  }, [fetchUser, handleDocumentClick]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [handleDocumentClick]);
 
   return {
     navMenu,

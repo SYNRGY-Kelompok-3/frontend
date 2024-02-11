@@ -33,7 +33,8 @@ function Navbar({ toggle, icon }: { toggle: () => void; icon: React.RefObject<HT
 
   useEffect(() => {
     fetchUser();
-  }, [fetchUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const location = useLocation();
 

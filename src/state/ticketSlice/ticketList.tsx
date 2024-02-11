@@ -123,6 +123,9 @@ const ticketSlice = createSlice({
     setPassengerClass: (state, action: PayloadAction<TPassengerClass>) => {
       state.passengerClass = action.payload;
     },
+    setDetailTicket: (state, action: PayloadAction<ITicket>) => {
+      state.detailTicket = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchTicketList.pending, (state) => {
@@ -149,6 +152,13 @@ const ticketSlice = createSlice({
     });
   },
 });
-export const { setStartDate, setEndDate, setTransit, setOriginCity, setDestinationCity, setPassengerClass } =
-  ticketSlice.actions;
+export const {
+  setStartDate,
+  setEndDate,
+  setTransit,
+  setOriginCity,
+  setDestinationCity,
+  setPassengerClass,
+  setDetailTicket,
+} = ticketSlice.actions;
 export default ticketSlice.reducer;
