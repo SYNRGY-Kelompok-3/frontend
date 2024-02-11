@@ -50,12 +50,12 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
                 className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-400 rounded-lg"
               >
                 <option value="">Masukkan Asal Airport</option>
-                <option value="PLM">Palembang</option>
-                <option value="CGK">Jakarta</option>
-                <option value="DPS">Denpasar</option>
-                <option value="SUB">Surabaya</option>
-                <option value="BDO">Bandung</option>
-                <option value="JOG">Yogyakarta</option>
+                <option value="PLM">PLM</option>
+                <option value="CGK">CGK</option>
+                <option value="DPS">DPS</option>
+                <option value="SUB">SUB</option>
+                <option value="BDO">BDO</option>
+                <option value="JOG">JOG</option>
               </select>
             </div>
             <div className="flex flex-col">
@@ -76,12 +76,12 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
                 className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-400 rounded-lg"
               >
                 <option value="">Masukkan Asal Airport</option>
-                <option value="PLM">Palembang</option>
-                <option value="CGK">Jakarta</option>
-                <option value="DPS">Denpasar</option>
-                <option value="SUB">Surabaya</option>
-                <option value="BDO">Bandung</option>
-                <option value="JOG">Yogyakarta</option>
+                <option value="PLM">PLM</option>
+                <option value="CGK">CGK</option>
+                <option value="DPS">DPS</option>
+                <option value="SUB">SUB</option>
+                <option value="BDO">BDO</option>
+                <option value="JOG">JOG</option>
               </select>
             </div>
             <div className="flex flex-col">
@@ -122,6 +122,7 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
                 className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-400 rounded-lg"
               >
                 <option value="">Masukkan Transit</option>
+                <option value="langsung">Langsung</option>
                 {[1, 2, 3].map((item, index) => (
                   <option key={index} value={`${item}_transit`}>
                     {item} Transit
