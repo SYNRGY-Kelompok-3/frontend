@@ -10,6 +10,7 @@ interface Id {
 }
 
 interface Ticket {
+  id: number;
   passengerClass: string;
   originAirport: string;
   destinationAirport: string;
@@ -40,6 +41,7 @@ function TicketHooks() {
 
   const handleCloseModal = () => {
     setShowModal(false);
+    fetchTicket(currentPage);
   };
 
   const handleNextPage = () => {
@@ -59,14 +61,29 @@ function TicketHooks() {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, callback?: () => void) => {
+    e.preventDefault();
     try {
-      e.preventDefault();
       const departure = `${departureDate}:00.000+0700`;
       const arrival = `${arrivalDate}:00.000+0700`;
       const payload = { ...formValues, flightTime: departure, arrivedTime: arrival };
       const response = await handleTicket(payload);
+      fetchTicket(currentPage);
       console.log(response);
       callback && callback();
+    } catch (error) {
+      console.log("error >", error);
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    try {
+      const payload = { id: id };
+      const response: AxiosResponse = await axios.delete(`${axiosApi.defaults.baseURL}flight/delete`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        data: payload,
+      });
+      fetchTicket(currentPage);
+      console.log(response);
     } catch (error) {
       console.log("error >", error);
     }
@@ -103,6 +120,7 @@ function TicketHooks() {
     currentPage,
     handleNextPage,
     handlePreviousPage,
+    handleDelete,
   };
 }
 

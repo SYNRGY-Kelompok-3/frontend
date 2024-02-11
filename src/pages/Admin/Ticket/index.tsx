@@ -3,17 +3,20 @@ import Button from "src/components/atoms/Button";
 import Modal from "../Ticket/modal";
 import useAction from "./ticket.hooks";
 import { parseISO, format } from "date-fns";
+
 function Tiket() {
   const navigate = useNavigate();
   const {
     showModal,
     setShowModal,
+    handleDelete,
     handleCloseModal,
     handleNextPage,
     handlePreviousPage,
     currentPage,
     totalPages,
     tickets,
+    fetchTicket,
   } = useAction();
 
   return (
@@ -23,15 +26,26 @@ function Tiket() {
           <div className="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
             <div className="p-6 border-b-0 border-b-solid rounded-t-2xl border-b-transparent flex justify-between items-center">
               <h6 className="dark:text-white font-semibold">Tickets</h6>
-              <Button
-                id="add-ticket"
-                onClick={() => setShowModal(true)}
-                type={"button"}
-                className={
-                  "bg-lime-500 px-2.5 text-md rounded-1.8 py-2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
-                }
-                content={"Add Ticket"}
-              />
+              <div className="flex gap-3">
+                <Button
+                  id="add-ticket"
+                  onClick={() => fetchTicket(currentPage)}
+                  type={"button"}
+                  className={
+                    "bg-lime-500 px-2.5 text-md rounded-1.8 py-2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
+                  }
+                  content={<i className="fa-solid fa-arrows-rotate"></i>}
+                />
+                <Button
+                  id="add-ticket"
+                  onClick={() => setShowModal(true)}
+                  type={"button"}
+                  className={
+                    "bg-lime-500 px-2.5 text-md rounded-1.8 py-2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
+                  }
+                  content={"Add Ticket"}
+                />
+              </div>
             </div>
             <div className="flex-auto px-6">
               <div className="p-0 overflow-x-auto">
@@ -185,7 +199,7 @@ function Tiket() {
                             />
                             <Button
                               id="delete"
-                              onClick={() => navigate(`/detail-ticket/${1}`)}
+                              onClick={() => handleDelete(data.id)}
                               type={"button"}
                               className={
                                 "bg-red-500 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
