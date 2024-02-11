@@ -60,15 +60,15 @@ function TicketHooks() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, callback?: () => void) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, page: number, callback?: () => void) => {
     e.preventDefault();
     try {
       const departure = `${departureDate}:00.000+0700`;
       const arrival = `${arrivalDate}:00.000+0700`;
       const payload = { ...formValues, flightTime: departure, arrivedTime: arrival };
       const response = await handleTicket(payload);
-      fetchTicket(currentPage);
       console.log(response);
+      fetchTicket(page);
       callback && callback();
     } catch (error) {
       console.log("error >", error);

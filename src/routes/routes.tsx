@@ -55,7 +55,7 @@ function Router() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/riwayat-transaksi" element={<Riwayat />} />
                 <Route path="/riwayat-transaksi/:id" element={<Riwayat />} />
-                <Route path="/notifikasi" element={<Notifikasi />} />
+                <Route path="/notification" element={<Notifikasi />} />
               </Route>
             </Route>
           </Route>

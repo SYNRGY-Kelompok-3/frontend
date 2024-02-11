@@ -110,7 +110,7 @@ function Notification() {
             </div>
             <Link
               id="view-more"
-              to="/notifikasi"
+              to="/notification"
               className="flex justify-center bg-sky-100 py-2 rounded-b-lg hover:text-white hover:bg-sky-600"
             >
               View More

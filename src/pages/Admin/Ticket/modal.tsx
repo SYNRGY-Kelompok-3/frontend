@@ -7,7 +7,8 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
-  const { handleSubmit, formValues, setFormValues, setArrivalDate, setDepartureDate } = useAction();
+  const { handleSubmit, formValues, setFormValues, setArrivalDate, setDepartureDate, currentPage } =
+    useAction();
 
   if (!visible) return null;
   return (
@@ -16,7 +17,7 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
         <i className="fa fa-times self-end hover:cursor-pointer" onClick={onClose}></i>
         <form
           onSubmit={(e) => {
-            handleSubmit(e, onClose);
+            handleSubmit(e, currentPage, onClose);
           }}
         >
           <div className="grid grid-cols-2 gap-4">
