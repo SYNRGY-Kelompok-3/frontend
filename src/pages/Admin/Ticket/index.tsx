@@ -1,14 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import Image from "src/components/atoms/Img";
 import Button from "src/components/atoms/Button";
 import Modal from "../Ticket/modal";
+import useAction from "./ticket.hooks";
 function Tiket() {
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState<boolean>(false);
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
+  const {
+    showModal,
+    setShowModal,
+    handleCloseModal,
+    handleNextPage,
+    handlePreviousPage,
+    page,
+    totalPage,
+    tiket,
+  } = useAction();
 
   return (
     <>
@@ -32,87 +37,189 @@ function Tiket() {
                 <table className="items-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500">
                   <thead className="align-bottom">
                     <tr>
-                      <th className="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                        Author
+                      <th className="px-6 py-3 font-bold center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Passanger Class
                       </th>
-                      <th className="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                        Function
-                      </th>
-                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                        Status
+                      <th className="px-6 py-3 font-bold center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Origin Airport
                       </th>
                       <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                        Employed
+                        Destination Airport
+                      </th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Airlines
+                      </th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Flight Number
+                      </th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Origin City
+                      </th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Destination City
+                      </th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Gate
+                      </th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Flight Time
+                      </th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Arrival Time
+                      </th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Duration
+                      </th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Transit
+                      </th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Free Meal
+                      </th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Price
+                      </th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Discount Price
+                      </th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                        Discount
                       </th>
                       <th className="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none dark:border-white/40 dark:text-white tracking-none whitespace-nowrap text-slate-400 opacity-70"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <div className="flex px-2 py-1">
-                          <div>
-                            <Image
-                              src={"../assets/img/team-2.jpg"}
+                    {tiket.map((data, index) => (
+                      <tr key={index}>
+                        <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.passengerClass}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.originAirport}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center leading-normal align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.destinationAirport}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.airlines.airline}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.flightNumber}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.originCity}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center leading-normal align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.destinationCity}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.gate}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.flightTime}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.arrivedTime}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center leading-normal align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.duration}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.transit}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.freeMeal}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.price}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center leading-normal align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.discountPrice}
+                          </span>
+                        </td>
+                        <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+                            {data.isDiscount}
+                          </span>
+                        </td>
+                        <td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <div className="flex items-center justify-center gap-3">
+                            <Button
+                              id="edit"
+                              onClick={() => navigate(`/edit-ticket/${1}`)}
+                              type={"button"}
                               className={
-                                "inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl"
+                                "bg-lime-500 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
                               }
-                              alt={"user1"}
+                              content={"Edit"}
+                            />
+                            <Button
+                              id="delete"
+                              onClick={() => navigate(`/detail-ticket/${1}`)}
+                              type={"button"}
+                              className={
+                                "bg-red-500 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
+                              }
+                              content={"Delete"}
                             />
                           </div>
-                          <div className="flex flex-col justify-center">
-                            <h6 className="mb-0 text-sm leading-normal dark:text-white font-semibold">
-                              John Michael
-                            </h6>
-                            <p className="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">
-                              john@creative-tim.com
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <p className="mb-0 text-sm font-semibold leading-tight dark:text-white dark:opacity-80">
-                          Manager
-                        </p>
-                        <p className="mb-0 text-sm leading-tight dark:text-white dark:opacity-80 text-slate-400">
-                          Organization
-                        </p>
-                      </td>
-                      <td className="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <span className="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
-                          Online
-                        </span>
-                      </td>
-                      <td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
-                          23/04/18
-                        </span>
-                      </td>
-                      <td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <div className="flex items-center justify-center gap-3">
-                          <Button
-                            id="edit"
-                            onClick={() => navigate(`/edit-ticket/${1}`)}
-                            type={"button"}
-                            className={
-                              "bg-lime-500 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
-                            }
-                            content={"Edit"}
-                          />
-                          <Button
-                            id="delete"
-                            onClick={() => navigate(`/detail-ticket/${1}`)}
-                            type={"button"}
-                            className={
-                              "bg-red-500 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
-                            }
-                            content={"Delete"}
-                          />
-                        </div>
-                      </td>
-                    </tr>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
+              </div>
+            </div>
+            <div className="flex justify-end items-center p-3 gap-3">
+              <div className={`${page === 0 ? "hidden" : ""}`}>
+                <Button
+                  id="prev-ticket"
+                  onClick={() => handlePreviousPage()}
+                  type={"button"}
+                  className={`bg-lime-500 px-2.5 text-md rounded-1.8 py-2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white`}
+                  content={<i className="fa-solid fa-arrow-left"></i>}
+                />
+              </div>
+              <div>{page + 1}</div>
+              <div className={`${totalPage === page + 1 ? "hidden" : ""}`}>
+                <Button
+                  id="next-page"
+                  onClick={() => handleNextPage()}
+                  type={"button"}
+                  className={
+                    "bg-lime-500 px-2.5 text-md rounded-1.8 py-2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
+                  }
+                  content={<i className="fa-solid fa-arrow-right"></i>}
+                />
               </div>
             </div>
           </div>

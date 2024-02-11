@@ -138,6 +138,19 @@ function Api() {
     }
   };
 
+  const showTicket = async (page: number, size: number) => {
+    try {
+      const response: AxiosResponse = await axios.get(
+        `${axiosApi.defaults.baseURL}flight/listFlights?page=${page}&size=${size}`
+      );
+      return response.data.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log(error.response?.data.error);
+      }
+    }
+  };
+
   return {
     fetchLogin,
     fetchProfile,
@@ -145,6 +158,7 @@ function Api() {
     handleUploadAndUpdate,
     handleUpdate,
     handleTicket,
+    showTicket,
   };
 }
 
