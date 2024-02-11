@@ -48,7 +48,7 @@ function Router() {
               // <Route path="/checkout/:id/:id/:id" element={<Checkout />} />
               <Route path="/checkout/:flightId/:passengerClass/:airline" element={<Checkout />} />
               <Route
-                path="/invoices/:orderNumber/:orderDate/:bankName/:accountName/:accountNumber/:fullName/:phoneNumber/:emailAddress/:orderName/:orderPrice/:serviceFee/:totalPayment"
+                path="/invoice/:orderNumber/:orderDate/:bankName/:accountName/:accountNumber/:fullName/:phoneNumber/:emailAddress/:orderName/:orderPrice/:serviceFee/:totalPayment"
                 element={<Invoice />}
               />
               <Route element={<LayoutUserDashboard />}>
