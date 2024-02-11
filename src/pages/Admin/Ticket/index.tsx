@@ -21,7 +21,7 @@ function Tiket() {
       <div className="flex flex-wrap -mx-3">
         <div className="flex-none w-full max-w-full px-3">
           <div className="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-            <div className="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent flex justify-between items-center">
+            <div className="p-6 border-b-0 border-b-solid rounded-t-2xl border-b-transparent flex justify-between items-center">
               <h6 className="dark:text-white font-semibold">Tickets</h6>
               <Button
                 id="add-ticket"
@@ -33,7 +33,7 @@ function Tiket() {
                 content={"Add Ticket"}
               />
             </div>
-            <div className="flex-auto px-0 pt-0 pb-2">
+            <div className="flex-auto px-6">
               <div className="p-0 overflow-x-auto">
                 <table className="items-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500">
                   <thead className="align-bottom">
@@ -200,7 +200,7 @@ function Tiket() {
                 </table>
               </div>
             </div>
-            <div className="flex justify-end items-center p-3 gap-3">
+            <div className="flex justify-end items-center p-6 gap-3">
               <div className={`${currentPage === 0 ? "hidden" : ""}`}>
                 <Button
                   id="prev-ticket"
