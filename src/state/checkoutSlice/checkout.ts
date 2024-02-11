@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { axiosAuth } from "src/services/axios";
-import { CHECKOUT_FLOW, TCheckoutFlow } from "src/constants/";
+import { CHECKOUT_FLOW } from "src/constants/";
 type TTitle = "Tuan" | "Nyonya" | "Nona" | "";
 
 interface detailCheckout {
