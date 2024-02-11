@@ -1,13 +1,14 @@
 interface RectangleProps {
   bgColor: string;
-  priceTag: number;
+  priceTag: number | string;
 }
 
 const Rectangle = ({ bgColor, priceTag }: RectangleProps) => {
+  const dataTag = typeof priceTag === "number" ? `Rp.${priceTag.toLocaleString()}` : priceTag;
   return (
     <div className="flex flex-col items-center gap-2">
-      <div className={`w-[41px] h-[41px] ${bgColor} rounded-lg`} />
-      <p className="text-[10px] text-black font-medium">Rp.{priceTag.toLocaleString()}</p>
+      <div className={`w-[41px] h-[41px] ${bgColor} rounded-lg border-[2px]`} />
+      <p className="text-[10px] text-black font-medium">{dataTag}</p>
     </div>
   );
 };

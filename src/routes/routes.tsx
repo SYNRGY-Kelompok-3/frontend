@@ -8,7 +8,6 @@ import PrivateProvider from "src/layout/PrivateProvider";
 import Home from "src/pages/Home";
 import Invoice from "src/pages/Invoices";
 import Checkout from "src/pages/Checkout";
-import Detailtiket from "src/pages/ListTiket/dummy";
 import Login from "src/pages/Login";
 import Payment from "src/pages/Payment";
 import FullSearchTickets from "src/pages/FullSearchTickets";
@@ -26,6 +25,7 @@ import Tiket from "src/pages/Admin/Ticket";
 import Analitik from "src/pages/Admin/Analitik";
 import PusatBantuan from "src/pages/PusatBantuan";
 import TermOfService from "src/pages/TermsOfService";
+import PemberitahuanPrivasi from "src/pages/PemberitahuanPrivasi";
 
 function Router() {
   return (
@@ -37,16 +37,20 @@ function Router() {
           </Route>
           <Route element={<Layoutpage />}>
             <Route path="/ketentuan-layanan" element={<TermOfService />} />
+            <Route path="/pemberitahuan-privasi" element={<PemberitahuanPrivasi />} />
             <Route path="/tentang-kami" element={<TentangKami />} />
             <Route path="/artikel" element={<Artikel />} />
             <Route path="/artikel/:id" element={<Detailartikel />} />
-            <Route path="/detailtiket" element={<Detailtiket />} />
             <Route path="/pusat-bantuan" element={<PusatBantuan />} />
             <Route path="/flight/full-search" element={<FullSearchTickets />} />
             <Route element={<PrivateProvider />}>
               <Route path="/payment" element={<Payment />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/invoices" element={<Invoice />} />
+              // <Route path="/checkout/:id/:id/:id" element={<Checkout />} />
+              <Route path="/checkout/:flightId/:passengerClass/:airline" element={<Checkout />} />
+              <Route
+                path="/invoices/:orderNumber/:orderDate/:bankName/:accountName/:accountNumber/:fullName/:phoneNumber/:emailAddress/:orderName/:orderPrice/:serviceFee/:totalPayment"
+                element={<Invoice />}
+              />
               <Route element={<LayoutUserDashboard />}>
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/riwayat-transaksi" element={<Riwayat />} />

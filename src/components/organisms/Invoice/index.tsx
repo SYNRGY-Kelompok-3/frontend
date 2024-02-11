@@ -5,6 +5,8 @@ import BG1 from "../../../assets/Invoices/BG1.png";
 import BG2 from "../../../assets/Invoices/BG2.png";
 import { MyDocument } from "../PDF";
 import { BlobProvider } from "@react-pdf/renderer";
+import { useParams } from "react-router-dom";
+
 function Invoice() {
   const breadcrumbSteps = [
     { text: "Beranda", link: "#" },
@@ -18,18 +20,54 @@ function Invoice() {
     { text: "Selesai", isActive: true },
   ];
 
-  const dummyData = {
-    orderNumber: 1023123412,
-    orderDate: "01 Januari 2024",
-    bankName: "Bank Mandiri",
-    accountName: "Charles Wilson",
-    accountNumber: 654234876321,
-    fullName: "Tn. Charles Wilson",
-    phoneNumber: "085310234121",
-    emailAddress: "travel@gmail.com",
-    orderPrice: 1500000,
-    serviceFee: 25000,
-    totalPayment: 1525000,
+  const formatDate = (dateString: string) => {
+    const months = [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember",
+    ];
+    const [day, month, year] = dateString.split("-");
+    const monthIndex = parseInt(month) - 1;
+    return `${parseInt(day)} ${months[monthIndex]} ${year}`;
+  };
+
+  const {
+    orderNumber,
+    orderDate,
+    bankName,
+    accountName,
+    accountNumber,
+    fullName,
+    phoneNumber,
+    emailAddress,
+    orderName,
+    orderPrice,
+    serviceFee,
+    totalPayment,
+  } = useParams();
+
+  const paymentData = {
+    orderNumber: orderNumber ?? "Undefined Param",
+    orderDate: orderDate ? formatDate(orderDate!) : "Undefined Param",
+    bankName: bankName ?? "Undefined Param",
+    accountName: accountName ?? "Undefined Param",
+    accountNumber: accountNumber ?? "Undefined Param",
+    fullName: fullName ?? "Undefined Param",
+    phoneNumber: phoneNumber ?? "Undefined Param",
+    emailAddress: emailAddress ?? "Undefined Param",
+    orderName: orderName ?? "Undefined Param",
+    orderPrice: orderPrice ?? "Undefined Param",
+    serviceFee: serviceFee ?? "Undefined Param",
+    totalPayment: totalPayment ?? "Undefined Param",
   };
 
   return (
@@ -58,8 +96,8 @@ function Invoice() {
             </div>
             <div className="text-right">
               <br />
-              <p className="my-3 font-semibold text-black">1023123412</p>
-              <p className="my-3 font-semibold text-black">01 Januari 2024</p>
+              <p className="my-3 font-semibold text-black">{paymentData.orderNumber}</p>
+              <p className="my-3 font-semibold text-black">{paymentData.orderDate}</p>
             </div>
           </div>
           <hr className="my-3" />
@@ -72,9 +110,9 @@ function Invoice() {
             </div>
             <div className="text-right">
               <br />
-              <p className="my-3 font-semibold text-black">Bank Mandiri</p>
-              <p className="my-3 font-semibold text-black">Charles Wilson</p>
-              <p className="my-3 font-semibold text-black">654234876321</p>
+              <p className="my-3 font-semibold text-black">{paymentData.bankName}</p>
+              <p className="my-3 font-semibold text-black">{paymentData.accountName}</p>
+              <p className="my-3 font-semibold text-black">{paymentData.accountNumber}</p>
             </div>
           </div>
           <hr className="my-3" />
@@ -87,9 +125,9 @@ function Invoice() {
             </div>
             <div className="text-right">
               <br />
-              <p className="my-3 font-semibold text-black">Tn. Charles Wilson</p>
-              <p className="my-3 font-semibold text-black">085310234121</p>
-              <p className="my-3 font-semibold text-black">travel@gmail.com</p>
+              <p className="my-3 font-semibold text-black">{paymentData.fullName}</p>
+              <p className="my-3 font-semibold text-black">{paymentData.phoneNumber}</p>
+              <p className="my-3 font-semibold text-black">{paymentData.emailAddress}</p>
             </div>
           </div>
           <hr className="my-3" />
@@ -97,7 +135,7 @@ function Invoice() {
             <div>
               <p className="text-base font-semibold text-black">Detail Pemesanan</p>
               <p className="px-2 py-2 my-3 text-blue-500 bg-blue-100" style={{ width: "76.8rem" }}>
-                Tn. Charles Wilson
+                {paymentData.fullName}
               </p>
             </div>
           </div>
@@ -105,19 +143,25 @@ function Invoice() {
           <div className="flex justify-between mt-4">
             <div>
               <p className="text-base font-semibold text-black">Detail Pembelian</p>
-              <p className="my-3 text-gray-500">Citilink (Dewasa) x1</p>
+              <p className="my-3 text-gray-500">{paymentData.orderName}</p>
               <p className="my-3 text-gray-500">Biaya Layanan</p>
               <p className="my-3 text-2xl font-semibold text-black">Harga Total</p>
             </div>
             <div className="text-right">
               <br />
-              <p className="my-3 font-semibold text-black">Rp1.500.000</p>
-              <p className="my-3 font-semibold text-black">Rp25.000</p>
-              <p className="my-3 text-2xl font-semibold text-blue-500">Rp1.525.000</p>
+              <p className="my-3 font-semibold text-black">
+                Rp. {Number(paymentData.orderPrice).toLocaleString()}
+              </p>
+              <p className="my-3 font-semibold text-black">
+                Rp. {Number(paymentData.serviceFee).toLocaleString()}
+              </p>
+              <p className="my-3 text-2xl font-semibold text-blue-500">
+                Rp. {Number(paymentData.totalPayment).toLocaleString()}
+              </p>
             </div>
           </div>
           <div className="flex justify-between mt-2">
-            <BlobProvider document={<MyDocument {...dummyData} />}>
+            <BlobProvider document={<MyDocument {...paymentData} />}>
               {({ url }) => (
                 <a
                   href={url!}
