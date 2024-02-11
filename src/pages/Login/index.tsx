@@ -29,7 +29,7 @@ function Login() {
 
   return (
     <PublicProvider>
-      <main className="overflow-x-auto">
+      <main className="h-fit overflow-y-hidden">
         <div className="grid grid-cols-1 lg:flex lg:justify-between lg:items-center">
           <div className="hidden lg:w-[50%] lg:flex h-screen">
             <div className="h-screen bg-[url('src/assets/bglogin.png')] bg-cover">

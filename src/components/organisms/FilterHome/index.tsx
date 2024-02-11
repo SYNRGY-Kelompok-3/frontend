@@ -93,28 +93,39 @@ function Filter({ isFilterMore }: IFilterHome) {
                         <option value="bali">Bali</option>
                       </select>
                     </div>
-                    <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
-                      <div className="flex items-center">
-                        <Image src={Arrival} alt={"Departure"} className="h-[15px] mr-2" />
-                        <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
-                      </div>
-                      <select
-                        id="kotatujuan"
-                        className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
-                        onChange={(e) => handleSelectDestinationCity(e)}
-                        value={destinationCity}
-                      >
-                        <option value="">Masukkan Kota Tujuan</option>
-                        <option value="jakarta">Jakarta</option>
-                        <option value="bali">Bali</option>
-                      </select>
+                    <select
+                      id="kotaasal"
+                      className="flex h-[42px] bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      onChange={(e) => handleSelectOriginCity(e)}
+                      value={originCity}
+                    >
+                      <option value="">Masukkan Kota Asal</option>
+                      <option value="jakarta">Jakarta</option>
+                      <option value="bali">Bali</option>
+                    </select>
+                  </div>
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
+                    <div className="flex items-center">
+                      <Image src={Arrival} alt={"Departure"} className="h-[15px] mr-2" />
+                      <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
                     </div>
-                    <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
-                      <div className="flex items-center">
-                        <Image src={Passanger} alt={"Departure"} className="h-[15px] mr-2" />
-                        <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
-                          Jumlah Penumpang
-                        </div>
+                    <select
+                      id="kotatujuan"
+                      className="flex h-[42px] bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      onChange={(e) => handleSelectDestinationCity(e)}
+                      value={destinationCity}
+                    >
+                      <option value="">Masukkan Kota Tujuan</option>
+                      <option value="jakarta">Jakarta</option>
+                      <option value="bali">Bali</option>
+                    </select>
+                  </div>
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
+                    <div className="flex items-center">
+                      <Image src={Passanger} alt={"Departure"} className="h-[15px] mr-2" />
+                      <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
+                        Jumlah Penumpang
+
                       </div>
                       <select
                         id="jumlah"
@@ -125,31 +136,38 @@ function Filter({ isFilterMore }: IFilterHome) {
                         <option value="3">2</option>
                       </select>
                     </div>
-                    <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
-                      <div className="flex items-center">
-                        <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
-                        <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
-                          Tanggal Pergi
-                        </div>
-                      </div>
-                      <Datepicker
-                        showClearButton={false}
-                        onSelectedDateChanged={(date: Date) => handleSelectStartDate(date)}
-                        minDate={new Date()}
-                        language="id-ID"
-                        value={formatDateMonthYear(startDateStr)}
-                      />
-                    </div>
-                    <div
-                      className={`flex-col justify-start py-1 lg:py-2 rounded-bl-xl bg-white ${
-                        !isOneWay ? "cursor-not-allowed opacity-50" : ""
-                      }`}
+                    <select
+                      id="jumlah"
+                      className="flex h-[42px] bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
                     >
-                      <div className="flex items-center">
-                        <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
-                        <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
-                          Tanggal Pulang
-                        </div>
+                      <option value="">Masukkan Jumlah Penumpang</option>
+                      <option value="1">1</option>
+                      <option value="3">2</option>
+                    </select>
+                  </div>
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
+                    <div className="flex items-center mb-2">
+                      <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
+                      <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
+                    </div>
+                    <Datepicker
+                      showClearButton={false}
+                      onSelectedDateChanged={(date: Date) => handleSelectStartDate(date)}
+                      minDate={new Date()}
+                      language="id-ID"
+                      value={formatDateMonthYear(startDateStr)}
+                      className="bg-white"
+                    />
+                  </div>
+                  <div
+                    className={`flex-col justify-start py-1 lg:py-2 rounded-bl-xl bg-white ${
+                      !isOneWay ? "cursor-not-allowed opacity-50" : ""
+                    }`}
+                  >
+                    <div className="flex items-center mb-2">
+                      <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
+                      <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
+                        Tanggal Pulang
                       </div>
                       <Datepicker
                         showClearButton={false}
@@ -176,6 +194,14 @@ function Filter({ isFilterMore }: IFilterHome) {
                         <option value="business">Business</option>
                       </select>
                     </div>
+                    <select
+                      id="jumlah"
+                      className="flex h-[42px] bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      onChange={handleSelectClass}
+                    >
+                      <option value="ekonomi">Economy</option>
+                      <option value="business">Business</option>
+                    </select>
                   </div>
                   <Button
                     id={"search"}
@@ -214,43 +240,51 @@ function Filter({ isFilterMore }: IFilterHome) {
                         <option value="bali">Bali</option>
                       </select>
                     </div>
-                    <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
-                      <div className="flex items-center">
-                        <Image src={Departure} alt={"Departure"} className="h-[15px] mr-2" />
-                        <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
-                      </div>
-                      <select
-                        id="kotatujuan"
-                        className="flex bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
-                        onChange={(e) => handleSelectDestinationCity(e)}
-                        value={destinationCity}
-                      >
-                        <option value="">Masukkan Kota Tujuan</option>
-                        <option value="jakarta">Jakarta</option>
-                        <option value="bali">Bali</option>
-                      </select>
+                    <select
+                      id="kotaasal"
+                      className="flex h-[42px] bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      onChange={(e) => handleSelectOriginCity(e)}
+                      value={originCity}
+                    >
+                      <option value="">Masukkan Kota Asal</option>
+                      <option value="jakarta">Jakarta</option>
+                      <option value="bali">Bali</option>
+                    </select>
+                  </div>
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
+                    <div className="flex items-center">
+                      <Image src={Departure} alt={"Departure"} className="h-[15px] mr-2" />
+                      <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Ke</div>
                     </div>
-                    <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
-                      <div className="flex items-center">
-                        <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
-                        <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
-                          Tanggal Pergi
-                        </div>
-                      </div>
-                      <Datepicker
-                        showClearButton={false}
-                        onSelectedDateChanged={(date: Date) => handleSelectStartDate(date)}
-                        minDate={new Date()}
-                        language="id-ID"
-                        value={formatDateMonthYear(startDateStr)}
-                      />
+                    <select
+                      id="kotatujuan"
+                      className="flex h-[42px] bg-transparent self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
+                      onChange={(e) => handleSelectDestinationCity(e)}
+                      value={destinationCity}
+                    >
+                      <option value="">Masukkan Kota Tujuan</option>
+                      <option value="jakarta">Jakarta</option>
+                      <option value="bali">Bali</option>
+                    </select>
+                  </div>
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
+                    <div className="flex items-center mb-2">
+                      <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
+                      <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">Tanggal Pergi</div>
                     </div>
-                    <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
-                      <div className="flex items-center">
-                        <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
-                        <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
-                          Tanggal Pulang
-                        </div>
+                    <Datepicker
+                      showClearButton={false}
+                      onSelectedDateChanged={(date: Date) => handleSelectStartDate(date)}
+                      minDate={new Date()}
+                      language="id-ID"
+                      value={formatDateMonthYear(startDateStr)}
+                    />
+                  </div>
+                  <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
+                    <div className="flex items-center mb-2">
+                      <Image src={Callendar} alt={"Departure"} className="h-[15px] mr-2" />
+                      <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
+                        Tanggal Pulang
                       </div>
                       <Datepicker
                         showClearButton={false}
