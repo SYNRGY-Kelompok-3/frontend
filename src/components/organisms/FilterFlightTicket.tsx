@@ -3,8 +3,8 @@ import { Accordion, AccordionContent, AccordionPanel, AccordionTitle } from "flo
 
 const FilterFlightTicket = () => {
   return (
-    <div>
-      <Accordion>
+    <div className="space-y-3">
+      <Accordion style={{ borderRadius: "12px" }}>
         <AccordionPanel>
           <AccordionTitle>Maskapai</AccordionTitle>
           <AccordionContent style={{ border: "none !important" }}>
@@ -21,7 +21,7 @@ const FilterFlightTicket = () => {
           </AccordionContent>
         </AccordionPanel>
       </Accordion>
-      <Accordion>
+      <Accordion style={{ borderRadius: "12px" }}>
         <AccordionPanel>
           <AccordionTitle>Jumlah Transit</AccordionTitle>
           <AccordionContent>
@@ -36,7 +36,7 @@ const FilterFlightTicket = () => {
           </AccordionContent>
         </AccordionPanel>
       </Accordion>
-      <Accordion>
+      <Accordion style={{ borderRadius: "12px" }}>
         <AccordionPanel>
           <AccordionTitle>Fasilitas Penerbangan </AccordionTitle>
           <AccordionContent>
@@ -50,7 +50,7 @@ const FilterFlightTicket = () => {
           </AccordionContent>
         </AccordionPanel>
       </Accordion>
-      <Accordion>
+      <Accordion style={{ borderRadius: "12px" }}>
         <AccordionPanel>
           <AccordionTitle>Waktu Penerbangan</AccordionTitle>
           <AccordionContent>

@@ -27,12 +27,12 @@ const FullSearchTickets: FC = () => {
           <FilterHome isFilterMore={true} />
         </div>
 
-        <div className="flex  w-10/12 mx-auto mt-5">
-          <div className="basis-[20%]">
+        <div className="flex sm:px-10 xl:px-28 mx-auto mt-5">
+          <div className="w-[400px]">
             <h2 className="justify-self-end text-xl  font-medium my-2">Filter</h2>
             <FilterFlightTicket />
           </div>
-          <div className="basis-[80%]">
+          <div className="w-fit ml-5">
             <h2 className="justify-self-end text-xl  font-medium my-2">
               Penerbangan Dari <span className="font-bold">`{params.originCity}` </span>
               ke

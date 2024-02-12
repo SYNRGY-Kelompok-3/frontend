@@ -1,5 +1,5 @@
 import { Card } from "flowbite-react";
-import { memo } from 'react'
+import { memo } from "react";
 import Image from "src/components/atoms/Img";
 import transitIcon from "src/assets/no-transit-icon.svg";
 import DetailTiket from "src/components/organisms/PopUp/detailTicket";
@@ -21,7 +21,7 @@ const CardTicket = memo((data: TProps) => {
   const { formatDay, formatTime, formatFlightDuration } = useDateFormatter();
   return (
     <>
-      <Card className="mb-3">
+      <Card className="mb-3 rounded-xl">
         <div className="flex flex-row  items-center ">
           <div className="basis-[25.00%] m-2">
             <Image src={`${VITE_APP_API_URL}showFile/${ticketData.airlines.pathLogo}`} alt="template" />
@@ -36,7 +36,9 @@ const CardTicket = memo((data: TProps) => {
                 <div className="justify-self-center">{ticketData.originAirport}</div>
               </div>
               <div className="grid grid-rows-3 my-3">
-                <div className="justify-self-center text-green-600">{transitText[ticketData.transit as TTransit]}</div>
+                <div className="justify-self-center text-green-600">
+                  {transitText[ticketData.transit as TTransit]}
+                </div>
                 <div className="justify-self-center">
                   <img src={transitIcon} alt="tes" />
                 </div>
@@ -62,17 +64,16 @@ const CardTicket = memo((data: TProps) => {
             </div>
           </div>
           <div className="basis-[25.00%] m-2">
-            <div className="grid grid-rows-1 text-end">
+            <div className="flex flex-col justify-between text-end">
               <h4 className="justify-self-end text-md text-gray-500  text-end">
                 {priceFormatter(ticketData.price)}
               </h4>
               <h2 className="justify-self-end text-xl text-red-500 font-medium my-2">
                 {priceFormatter(ticketData.discountPrice)}/pax
               </h2>
-
               <Button
                 content={"Lihat Detail"}
-                className={"  self-stretch p-3 rounded bg-[#3e7bfa]"}
+                className={"self-stretch w-full py-1 px-5 rounded-lg bg-[#3e7bfa] text-white"}
                 onClick={() => onShowTicketDetail(ticketData.id)}
               />
             </div>
@@ -82,6 +83,6 @@ const CardTicket = memo((data: TProps) => {
       {showModalDetailTicket && <DetailTiket onClose={onCloseTicketDetail} ticketId={ticketData.id} />}
     </>
   );
-})
+});
 
-export default (CardTicket);
+export default CardTicket;
