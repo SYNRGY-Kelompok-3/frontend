@@ -48,7 +48,6 @@ function Router() {
                 path="/invoice/:orderNumber/:orderDate/:bankName/:accountName/:accountNumber/:fullName/:phoneNumber/:emailAddress/:orderName/:orderPrice/:serviceFee/:totalPayment"
                 element={<Invoice />}
               />
-              <Route path="/invoices" element={<Invoice />} />
               <Route element={<LayoutUserDashboard />}>
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/riwayat-transaksi" element={<Riwayat />} />
