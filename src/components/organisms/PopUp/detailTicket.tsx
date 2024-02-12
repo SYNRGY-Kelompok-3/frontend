@@ -72,7 +72,7 @@ function DetailTiket({ onClose, ticketId }: DetailTiketProps) {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000)); // Delay for visibility (1s)
       navigate(
-        `/checkout?flightId=${flightData?.id}&flightClass=${flightData?.passengerClass}&airlinesId=${flightData?.airlines?.id}`
+        `/checkout?flightId=${flightData?.id}&flightClass=${flightData?.passengerClass}&airlinesId=${flightData?.airlines?.id}&airline=${flightData?.airlines?.airline}`
       );
     } catch (error) {
       console.log(error);
