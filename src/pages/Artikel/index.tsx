@@ -3,12 +3,25 @@ import Figure from "src/components/molecules/Figure";
 import { Link } from "react-router-dom";
 import Logo from "src/assets/LogoBlue.png";
 import Image from "src/components/atoms/Img";
-import { SetStateAction, useState } from "react";
-import Card from "src/assets/Artikel/card.jpg";
+import { SetStateAction, useEffect, useState } from "react";
 import Gambar from "src/assets/Artikel/hero-bg.jpg";
-import Carousel from "src/assets/Artikel/carousel-img.jpg";
 import ChevronRight from "src/assets/ChevronRight.svg";
 import { ARTICLE_FILTER } from "src/constants";
+
+import axios from "axios";
+import { formatDistanceToNow } from "date-fns";
+
+const API_ARTICLE = "https://api-artikel.fly.dev/v1/artikel";
+
+interface Probs {
+  id: number;
+  title: string;
+  category: string;
+  content: string;
+  image_url: string;
+  created_at: string;
+  updated_at: string;
+}
 
 function Artikel() {
   const breadcrumbSteps = [{ text: "Artikel", link: "/artikel" }, { text: "" }];
@@ -17,6 +30,11 @@ function Artikel() {
 
   const totalSlides = 3;
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const [data, setData] = useState<Probs[]>([]);
+  const [terbaru, setTerbaru] = useState<Probs[]>([]);
+  const [wisata, setWisata] = useState<Probs[]>([]);
+  const [kuliner, setKuliner] = useState<Probs[]>([]);
 
   const handleFilterChange = (filter: SetStateAction<string>) => {
     setActiveFilter(filter);
@@ -29,6 +47,23 @@ function Artikel() {
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
+
+  const convertDate = (date: string) => {
+    return formatDistanceToNow(new Date(date));
+  };
+
+  useEffect(() => {
+    axios.get<Probs[]>(API_ARTICLE).then((res) => {
+      const currentDate = new Date();
+      const filterTerbaru = res.data.filter((item) => new Date(item.updated_at) <= currentDate);
+      const filterWisata = res.data.filter((item) => item.category === "Wisata");
+      const filterKuliner = res.data.filter((item) => item.category === "Kuliner");
+      setData(res.data);
+      setTerbaru(filterTerbaru);
+      setWisata(filterWisata);
+      setKuliner(filterKuliner);
+    });
+  }, [data, terbaru, wisata, kuliner]);
 
   return (
     <>
@@ -111,132 +146,144 @@ function Artikel() {
           </div>
 
           {/* Konten slider 1 */}
-          <div className="flex flex-col md:flex-row">
-            {currentSlide === 0 && (
-              <div className="md:w-1/2">
-                <Figure
-                  src={Carousel}
-                  alt={"Thumbnail Artikel"}
-                  className={"w-full md:w-[90%] h-[355px] md:h-[355px] overflow-hidden rounded-xl"}
-                  caption={""}
-                  captionClass={"text-center mb-5"}
-                />
-              </div>
-            )}
+          <div>
+            {data.slice(0, 1).map(({ id, title, category, content, image_url, updated_at }) => {
+              return (
+                <div key={id} className="flex flex-col md:flex-row">
+                  {currentSlide === 0 && (
+                    <div className="md:w-1/2">
+                      <Figure
+                        src={image_url}
+                        alt={"Thumbnail Artikel"}
+                        className={"w-full md:w-[90%] h-[355px] md:h-[355px] overflow-hidden rounded-xl"}
+                        caption={""}
+                        captionClass={"text-center mb-5"}
+                      />
+                    </div>
+                  )}
 
-            <div className="flex flex-col md:w-1/2 md:ml-4">
-              {currentSlide === 0 && (
-                <>
-                  <div className="flex items-center my-3 text-lg gap-x-2">
-                    <Link to={"/"} className="flex items-center gap-x-2 text-[#075efd]">
-                      <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
-                      <div className="font-bold">Travel.id</div>
-                    </Link>
-                    <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                    <span className="text-[#1C1C1E]">10 minutes ago</span>
+                  <div className="flex flex-col md:w-1/2 md:ml-4">
+                    {currentSlide === 0 && (
+                      <>
+                        <div className="flex items-center my-3 text-lg gap-x-2">
+                          <Link to={"/"} className="flex items-center gap-x-2 text-[#075efd]">
+                            <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
+                            <div className="font-bold">Travel.id</div>
+                          </Link>
+                          <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                          <span className="text-[#1C1C1E]">{convertDate(updated_at)} ago</span>
+                        </div>
+                        <div className="my-5 text-2xl font-bold md:text-4xl">
+                          <Link to={`/artikel/${id}`}>{title}</Link>
+                        </div>
+                        <div className="text-[#64748B] leading-6 md:leading-8">
+                          {content.substr(0, 210)}...
+                        </div>
+                        <div className="flex items-center mt-4 md:mt-16 gap-x-2">
+                          <span className="text-[#3E7BFA]">{category}</span>
+                          <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                          <span className="text-[#1C1C1E]">10 min Read</span>
+                        </div>
+                      </>
+                    )}
                   </div>
-                  <div className="my-5 text-2xl font-bold md:text-4xl">
-                    10 Rekomendasi Tempat Wisata Di Jawa Timur
-                  </div>
-                  <div className="text-[#64748B] leading-6 md:leading-8">
-                    Kami memahami pentingnya kualitas dan efisiensi produksi untuk mencapai tujuan bisnis.
-                    Kami menyediakan solusi teknologi yang terkini dan berorientasi pada klien untuk
-                    meningkatkan produktivitas dan mengurangi biaya produksi.
-                  </div>
-                  <div className="flex items-center mt-4 md:mt-16 gap-x-2">
-                    <span className="text-[#3E7BFA]">Wisata</span>
-                    <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                    <span className="text-[#1C1C1E]">10 min Read</span>
-                  </div>
-                </>
-              )}
-            </div>
+                </div>
+              );
+            })}
           </div>
 
           {/* Konten slider 2 */}
-          <div className="flex flex-col md:flex-row">
-            {currentSlide === 1 && (
-              <div className="md:w-1/2">
-                <Figure
-                  src={Carousel}
-                  alt={"Thumbnail Artikel"}
-                  className={"w-full md:w-[90%] h-[355px] md:h-[355px] overflow-hidden rounded-xl"}
-                  caption={""}
-                  captionClass={"text-center mb-5"}
-                />
-              </div>
-            )}
+          <div>
+            {data.slice(1, 2).map(({ id, title, category, content, image_url, updated_at }) => {
+              return (
+                <div key={id} className="flex flex-col md:flex-row">
+                  {currentSlide === 1 && (
+                    <div className="md:w-1/2">
+                      <Figure
+                        src={image_url}
+                        alt={"Thumbnail Artikel"}
+                        className={"w-full md:w-[90%] h-[355px] md:h-[355px] overflow-hidden rounded-xl"}
+                        caption={""}
+                        captionClass={"text-center mb-5"}
+                      />
+                    </div>
+                  )}
 
-            <div className="flex flex-col md:w-1/2 md:ml-4">
-              {currentSlide === 1 && (
-                <>
-                  <div className="flex items-center my-3 text-lg gap-x-2">
-                    <Link to={"/"} className="flex items-center gap-x-2 text-[#075efd]">
-                      <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
-                      <div className="font-bold">Travel.id</div>
-                    </Link>
-                    <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                    <span className="text-[#1C1C1E]">10 minutes ago</span>
+                  <div className="flex flex-col md:w-1/2 md:ml-4">
+                    {currentSlide === 1 && (
+                      <>
+                        <div className="flex items-center my-3 text-lg gap-x-2">
+                          <Link to={"/"} className="flex items-center gap-x-2 text-[#075efd]">
+                            <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
+                            <div className="font-bold">Travel.id</div>
+                          </Link>
+                          <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                          <span className="text-[#1C1C1E]">{convertDate(updated_at)} ago</span>
+                        </div>
+                        <div className="my-5 text-2xl font-bold md:text-4xl">
+                          <Link to={`/artikel/${id}`}>{title}</Link>
+                        </div>
+                        <div className="text-[#64748B] leading-6 md:leading-8">
+                          {content.substr(0, 210)}...
+                        </div>
+                        <div className="flex items-center mt-4 md:mt-16 gap-x-2">
+                          <span className="text-[#3E7BFA]">{category}</span>
+                          <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                          <span className="text-[#1C1C1E]">10 min Read</span>
+                        </div>
+                      </>
+                    )}
                   </div>
-                  <div className="my-5 text-2xl font-bold md:text-4xl">
-                    11 Rekomendasi Tempat Wisata Di Jawa Timur
-                  </div>
-                  <div className="text-[#64748B] leading-6 md:leading-8">
-                    Kami memahami pentingnya kualitas dan efisiensi produksi untuk mencapai tujuan bisnis.
-                    Kami menyediakan solusi teknologi yang terkini dan berorientasi pada klien untuk
-                    meningkatkan produktivitas dan mengurangi biaya produksi.
-                  </div>
-                  <div className="flex items-center mt-4 md:mt-16 gap-x-2">
-                    <span className="text-[#3E7BFA]">Wisata</span>
-                    <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                    <span className="text-[#1C1C1E]">10 min Read</span>
-                  </div>
-                </>
-              )}
-            </div>
+                </div>
+              );
+            })}
           </div>
 
           {/* Konten slider 3 */}
-          <div className="flex flex-col md:flex-row">
-            {currentSlide === 2 && (
-              <div className="md:w-1/2">
-                <Figure
-                  src={Carousel}
-                  alt={"Thumbnail Artikel"}
-                  className={"w-full md:w-[90%] h-[355px] md:h-[355px] overflow-hidden rounded-xl"}
-                  caption={""}
-                  captionClass={"text-center mb-5"}
-                />
-              </div>
-            )}
+          <div>
+            {data.slice(3, 4).map(({ id, title, category, content, image_url, updated_at }) => {
+              return (
+                <div key={id} className="flex flex-col md:flex-row">
+                  {currentSlide === 2 && (
+                    <div className="md:w-1/2">
+                      <Figure
+                        src={image_url}
+                        alt={"Thumbnail Artikel"}
+                        className={"w-full md:w-[90%] h-[355px] md:h-[355px] overflow-hidden rounded-xl"}
+                        caption={""}
+                        captionClass={"text-center mb-5"}
+                      />
+                    </div>
+                  )}
 
-            <div className="flex flex-col md:w-1/2 md:ml-4">
-              {currentSlide === 2 && (
-                <>
-                  <div className="flex items-center my-3 text-lg gap-x-2">
-                    <Link to={"/"} className="flex items-center gap-x-2 text-[#075efd]">
-                      <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
-                      <div className="font-bold">Travel.id</div>
-                    </Link>
-                    <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                    <span className="text-[#1C1C1E]">10 minutes ago</span>
+                  <div className="flex flex-col md:w-1/2 md:ml-4">
+                    {currentSlide === 2 && (
+                      <>
+                        <div className="flex items-center my-3 text-lg gap-x-2">
+                          <Link to={"/"} className="flex items-center gap-x-2 text-[#075efd]">
+                            <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
+                            <div className="font-bold">Travel.id</div>
+                          </Link>
+                          <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                          <span className="text-[#1C1C1E]">{convertDate(updated_at)} ago</span>
+                        </div>
+                        <div className="my-5 text-2xl font-bold md:text-4xl">
+                          <Link to={`/artikel/${id}`}>{title}</Link>
+                        </div>
+                        <div className="text-[#64748B] leading-6 md:leading-8">
+                          {content.substr(0, 210)}...
+                        </div>
+                        <div className="flex items-center mt-4 md:mt-16 gap-x-2">
+                          <span className="text-[#3E7BFA]">{category}</span>
+                          <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                          <span className="text-[#1C1C1E]">10 min Read</span>
+                        </div>
+                      </>
+                    )}
                   </div>
-                  <div className="my-5 text-2xl font-bold md:text-4xl">
-                    12 Rekomendasi Tempat Wisata Di Jawa Timur
-                  </div>
-                  <div className="text-[#64748B] leading-6 md:leading-8">
-                    Kami memahami pentingnya kualitas dan efisiensi produksi untuk mencapai tujuan bisnis.
-                    Kami menyediakan solusi teknologi yang terkini dan berorientasi pada klien untuk
-                    meningkatkan produktivitas dan mengurangi biaya produksi.
-                  </div>
-                  <div className="flex items-center mt-4 md:mt-16 gap-x-2">
-                    <span className="text-[#3E7BFA]">Wisata</span>
-                    <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                    <span className="text-[#1C1C1E]">10 min Read</span>
-                  </div>
-                </>
-              )}
-            </div>
+                </div>
+              );
+            })}
           </div>
         </article>
 
@@ -244,85 +291,108 @@ function Artikel() {
         <article>
           <div className="flex items-center justify-between mt-5 mb-5">
             <div className="text-2xl font-bold">Postingan Terbaru</div>
-            <div className="text-xl font bold text-[#3E7BFA]">Lihat lainnya</div>
+            <div className="text-xl font bold text-[#3E7BFA]">
+              <Link to={"/artikel/terbaru"}>Lihat lainnya</Link>
+            </div>
           </div>
           <div className="flex flex-wrap justify-around w-full gap-6 sm:gap-x-8">
             <div className="flex-[1] rounded-lg flex flex-col">
-              <Figure
-                src={Card}
-                alt={"Thumbnail Artikel"}
-                className={"rounded-md w-full h-[250px] overflow-hidden"}
-                caption={""}
-                captionClass={"text-center mb-5"}
-              />
-              <div className="flex items-center mb-3 gap-x-2">
-                <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
-                <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <div className="font-normal text-[#757575]">10 minutes read</div>
-              </div>
-              <div className="mb-3 text-2xl font-bold">10 Rekomendasi Tempat Wisata Di Jawa Timur</div>
-              <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
-                Kami memahami pentingnya kualitas dan efisiensi produksi untuk mencapai tujuan bisnis. Kami
-                menyediakan solusi teknologi yang terkini dan berorientasi pada klien
-              </div>
-              <div className="flex items-center font-medium gap-x-2">
-                <span className="text-[#3E7BFA]">Wisata</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <span className="text-[#1C1C1E]">10 min Read</span>
-              </div>
+              {terbaru.slice(0, 1).map(({ id, title, category, content, image_url, updated_at }) => {
+                return (
+                  <div key={id}>
+                    <Figure
+                      src={image_url}
+                      alt={"Thumbnail Artikel"}
+                      className={"rounded-md w-full h-[250px] overflow-hidden"}
+                      caption={""}
+                      captionClass={"text-center mb-5"}
+                    />
+                    <div className="flex items-center mb-3 gap-x-2">
+                      <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
+                      <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <div className="font-normal text-[#757575]">{convertDate(updated_at)} ago</div>
+                    </div>
+                    <div className="mb-3 text-2xl font-bold">
+                      <Link to={`/artikel/${id}`}>{title}</Link>
+                    </div>
+                    <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
+                      {content.substr(0, 160)}...
+                    </div>
+                    <div className="flex items-center font-medium gap-x-2">
+                      <span className="text-[#3E7BFA]">{category}</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <span className="text-[#1C1C1E]">10 min Read</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="flex-[1] rounded-lg flex flex-col">
-              <Figure
-                src={Card}
-                alt={"Thumbnail Artikel"}
-                className={"rounded-md w-full h-[250px] overflow-hidden"}
-                caption={""}
-                captionClass={"text-center mb-5"}
-              />
-              <div className="flex items-center mb-3 gap-x-2">
-                <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
-                <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <div className="font-normal text-[#757575]">10 minutes read</div>
-              </div>
-              <div className="mb-3 text-2xl font-bold">10 Rekomendasi Tempat Wisata Di Jawa Timur</div>
-              <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
-                Kami memahami pentingnya kualitas dan efisiensi produksi untuk mencapai tujuan bisnis. Kami
-                menyediakan solusi teknologi yang terkini dan berorientasi pada klien
-              </div>
-              <div className="flex items-center font-medium gap-x-2">
-                <span className="text-[#3E7BFA]">Wisata</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <span className="text-[#1C1C1E]">10 min Read</span>
-              </div>
+              {terbaru.slice(4, 5).map(({ id, title, category, content, image_url, updated_at }) => {
+                return (
+                  <div key={id}>
+                    <Figure
+                      src={image_url}
+                      alt={"Thumbnail Artikel"}
+                      className={"rounded-md w-full h-[250px] overflow-hidden"}
+                      caption={""}
+                      captionClass={"text-center mb-5"}
+                    />
+                    <div className="flex items-center mb-3 gap-x-2">
+                      <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
+                      <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <div className="font-normal text-[#757575]">{convertDate(updated_at)} ago</div>
+                    </div>
+                    <div className="mb-3 text-2xl font-bold">
+                      <Link to={`/artikel/${id}`}>{title}</Link>
+                    </div>
+                    <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
+                      {content.substr(0, 160)}...
+                    </div>
+                    <div className="flex items-center font-medium gap-x-2">
+                      <span className="text-[#3E7BFA]">{category}</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <span className="text-[#1C1C1E]">10 min Read</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="flex-[1] rounded-lg flex flex-col">
-              <Figure
-                src={Card}
-                alt={"Thumbnail Artikel"}
-                className={"rounded-md w-full h-[250px] overflow-hidden"}
-                caption={""}
-                captionClass={"text-center mb-5"}
-              />
-              <div className="flex items-center mb-3 gap-x-2">
-                <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
-                <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <div className="font-normal text-[#757575]">10 minutes read</div>
-              </div>
-              <div className="mb-3 text-2xl font-bold">10 Rekomendasi Tempat Wisata Di Jawa Timur</div>
-              <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
-                Kami memahami pentingnya kualitas dan efisiensi produksi untuk mencapai tujuan bisnis. Kami
-                menyediakan solusi teknologi yang terkini dan berorientasi pada klien
-              </div>
-              <div className="flex items-center font-medium gap-x-2">
-                <span className="text-[#3E7BFA]">Wisata</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <span className="text-[#1C1C1E]">10 min Read</span>
-              </div>
+              {terbaru.slice(1, 2).map(({ id, title, category, content, image_url, updated_at }) => {
+                return (
+                  <div key={id}>
+                    <Figure
+                      src={image_url}
+                      alt={"Thumbnail Artikel"}
+                      className={"rounded-md w-full h-[250px] overflow-hidden"}
+                      caption={""}
+                      captionClass={"text-center mb-5"}
+                    />
+                    <div className="flex items-center mb-3 gap-x-2">
+                      <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
+                      <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <div className="font-normal text-[#757575]">{convertDate(updated_at)} ago</div>
+                    </div>
+                    <div className="mb-3 text-2xl font-bold">
+                      <Link to={`/artikel/${id}`}>{title}</Link>
+                    </div>
+                    <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
+                      {content.substr(0, 160)}...
+                    </div>
+                    <div className="flex items-center font-medium gap-x-2">
+                      <span className="text-[#3E7BFA]">{category}</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <span className="text-[#1C1C1E]">10 min Read</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </article>
@@ -331,86 +401,109 @@ function Artikel() {
         <article className="my-10">
           <div className="flex items-center justify-between mt-5 mb-5">
             <div className="text-2xl font-bold">Wisata</div>
-            <div className="text-xl font bold text-[#3E7BFA]">Lihat lainnya</div>
+            <div className="text-xl font bold text-[#3E7BFA]">
+              <Link to={"/artikel/wisata"}>Lihat lainnya</Link>
+            </div>
           </div>
           <div className="flex flex-wrap justify-around w-full gap-6 sm:gap-x-8">
             {/* Revisi Card */}
             <div className="flex-[1] rounded-lg flex flex-col">
-              <Figure
-                src={Card}
-                alt={"Thumbnail Artikel"}
-                className={"rounded-md w-full h-[250px] overflow-hidden"}
-                caption={""}
-                captionClass={"text-center mb-5"}
-              />
-              <div className="flex items-center mb-3 gap-x-2">
-                <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
-                <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <div className="font-normal text-[#757575]">10 minutes read</div>
-              </div>
-              <div className="mb-3 text-2xl font-bold">10 Rekomendasi Tempat Wisata Di Jawa Timur</div>
-              <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
-                Kami memahami pentingnya kualitas dan efisiensi produksi untuk mencapai tujuan bisnis. Kami
-                menyediakan solusi teknologi yang terkini dan berorientasi pada klien
-              </div>
-              <div className="flex items-center font-medium gap-x-2">
-                <span className="text-[#3E7BFA]">Wisata</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <span className="text-[#1C1C1E]">10 min Read</span>
-              </div>
+              {wisata.slice(0, 1).map(({ id, title, category, content, image_url, updated_at }) => {
+                return (
+                  <div key={id}>
+                    <Figure
+                      src={image_url}
+                      alt={"Thumbnail Artikel"}
+                      className={"rounded-md w-full h-[250px] overflow-hidden"}
+                      caption={""}
+                      captionClass={"text-center mb-5"}
+                    />
+                    <div className="flex items-center mb-3 gap-x-2">
+                      <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
+                      <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <div className="font-normal text-[#757575]">{convertDate(updated_at)} ago</div>
+                    </div>
+                    <div className="mb-3 text-2xl font-bold">
+                      <Link to={`/artikel/${id}`}>{title}</Link>
+                    </div>
+                    <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
+                      {content.substr(0, 160)}...
+                    </div>
+                    <div className="flex items-center font-medium gap-x-2">
+                      <span className="text-[#3E7BFA]">{category}</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <span className="text-[#1C1C1E]">10 min Read</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="flex-[1] rounded-lg flex flex-col">
-              <Figure
-                src={Card}
-                alt={"Thumbnail Artikel"}
-                className={"rounded-md w-full h-[250px] overflow-hidden"}
-                caption={""}
-                captionClass={"text-center mb-5"}
-              />
-              <div className="flex items-center mb-3 gap-x-2">
-                <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
-                <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <div className="font-normal text-[#757575]">10 minutes read</div>
-              </div>
-              <div className="mb-3 text-2xl font-bold">10 Rekomendasi Tempat Wisata Di Jawa Timur</div>
-              <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
-                Kami memahami pentingnya kualitas dan efisiensi produksi untuk mencapai tujuan bisnis. Kami
-                menyediakan solusi teknologi yang terkini dan berorientasi pada klien
-              </div>
-              <div className="flex items-center font-medium gap-x-2">
-                <span className="text-[#3E7BFA]">Wisata</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <span className="text-[#1C1C1E]">10 min Read</span>
-              </div>
+              {wisata.slice(1, 2).map(({ id, title, category, content, image_url, updated_at }) => {
+                return (
+                  <div key={id}>
+                    <Figure
+                      src={image_url}
+                      alt={"Thumbnail Artikel"}
+                      className={"rounded-md w-full h-[250px] overflow-hidden"}
+                      caption={""}
+                      captionClass={"text-center mb-5"}
+                    />
+                    <div className="flex items-center mb-3 gap-x-2">
+                      <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
+                      <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <div className="font-normal text-[#757575]">{convertDate(updated_at)} ago</div>
+                    </div>
+                    <div className="mb-3 text-2xl font-bold">
+                      <Link to={`/artikel/${id}`}>{title}</Link>
+                    </div>
+                    <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
+                      {content.substr(0, 160)}...
+                    </div>
+                    <div className="flex items-center font-medium gap-x-2">
+                      <span className="text-[#3E7BFA]">{category}</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <span className="text-[#1C1C1E]">10 min Read</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="flex-[1] rounded-lg flex flex-col">
-              <Figure
-                src={Card}
-                alt={"Thumbnail Artikel"}
-                className={"rounded-md w-full h-[250px] overflow-hidden"}
-                caption={""}
-                captionClass={"text-center mb-5"}
-              />
-              <div className="flex items-center mb-3 gap-x-2">
-                <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
-                <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <div className="font-normal text-[#757575]">10 minutes read</div>
-              </div>
-              <div className="mb-3 text-2xl font-bold">10 Rekomendasi Tempat Wisata Di Jawa Timur</div>
-              <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
-                Kami memahami pentingnya kualitas dan efisiensi produksi untuk mencapai tujuan bisnis. Kami
-                menyediakan solusi teknologi yang terkini dan berorientasi pada klien
-              </div>
-              <div className="flex items-center font-medium gap-x-2">
-                <span className="text-[#3E7BFA]">Wisata</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <span className="text-[#1C1C1E]">10 min Read</span>
-              </div>
+              {wisata.slice(2, 3).map(({ id, title, category, content, image_url, updated_at }) => {
+                return (
+                  <div key={id}>
+                    <Figure
+                      src={image_url}
+                      alt={"Thumbnail Artikel"}
+                      className={"rounded-md w-full h-[250px] overflow-hidden"}
+                      caption={""}
+                      captionClass={"text-center mb-5"}
+                    />
+                    <div className="flex items-center mb-3 gap-x-2">
+                      <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
+                      <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <div className="font-normal text-[#757575]">{convertDate(updated_at)} ago</div>
+                    </div>
+                    <div className="mb-3 text-2xl font-bold">
+                      <Link to={`/artikel/${id}`}>{title}</Link>
+                    </div>
+                    <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
+                      {content.substr(0, 160)}...
+                    </div>
+                    <div className="flex items-center font-medium gap-x-2">
+                      <span className="text-[#3E7BFA]">{category}</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <span className="text-[#1C1C1E]">10 min Read</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </article>
@@ -419,86 +512,109 @@ function Artikel() {
         <article>
           <div className="flex items-center justify-between mt-5 mb-5">
             <div className="text-2xl font-bold">Kuliner</div>
-            <div className="text-xl font bold text-[#3E7BFA]">Lihat lainnya</div>
+            <div className="text-xl font bold text-[#3E7BFA]">
+              <Link to={"/artikel/kuliner"}>Lihat lainnya</Link>
+            </div>
           </div>
           <div className="flex flex-wrap justify-around w-full gap-6 sm:gap-x-8">
             {/* Revisi Card */}
             <div className="flex-[1] rounded-lg flex flex-col">
-              <Figure
-                src={Card}
-                alt={"Thumbnail Artikel"}
-                className={"rounded-md w-full h-[250px] overflow-hidden"}
-                caption={""}
-                captionClass={"text-center mb-5"}
-              />
-              <div className="flex items-center mb-3 gap-x-2">
-                <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
-                <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <div className="font-normal text-[#757575]">10 minutes read</div>
-              </div>
-              <div className="mb-3 text-2xl font-bold">10 Rekomendasi Tempat Wisata Di Jawa Timur</div>
-              <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
-                Kami memahami pentingnya kualitas dan efisiensi produksi untuk mencapai tujuan bisnis. Kami
-                menyediakan solusi teknologi yang terkini dan berorientasi pada klien
-              </div>
-              <div className="flex items-center font-medium gap-x-2">
-                <span className="text-[#3E7BFA]">Wisata</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <span className="text-[#1C1C1E]">10 min Read</span>
-              </div>
+              {kuliner.slice(0, 1).map(({ id, title, category, content, image_url, updated_at }) => {
+                return (
+                  <div key={id}>
+                    <Figure
+                      src={image_url}
+                      alt={"Thumbnail Artikel"}
+                      className={"rounded-md w-full h-[250px] overflow-hidden"}
+                      caption={""}
+                      captionClass={"text-center mb-5"}
+                    />
+                    <div className="flex items-center mb-3 gap-x-2">
+                      <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
+                      <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <div className="font-normal text-[#757575]">{convertDate(updated_at)} ago</div>
+                    </div>
+                    <div className="mb-3 text-2xl font-bold">
+                      <Link to={`/artikel/${id}`}>{title}</Link>
+                    </div>
+                    <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
+                      {content.substr(0, 160)}...
+                    </div>
+                    <div className="flex items-center font-medium gap-x-2">
+                      <span className="text-[#3E7BFA]">{category}</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <span className="text-[#1C1C1E]">10 min Read</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="flex-[1] rounded-lg flex flex-col">
-              <Figure
-                src={Card}
-                alt={"Thumbnail Artikel"}
-                className={"rounded-md w-full h-[250px] overflow-hidden"}
-                caption={""}
-                captionClass={"text-center mb-5"}
-              />
-              <div className="flex items-center mb-3 gap-x-2">
-                <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
-                <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <div className="font-normal text-[#757575]">10 minutes read</div>
-              </div>
-              <div className="mb-3 text-2xl font-bold">10 Rekomendasi Tempat Wisata Di Jawa Timur</div>
-              <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
-                Kami memahami pentingnya kualitas dan efisiensi produksi untuk mencapai tujuan bisnis. Kami
-                menyediakan solusi teknologi yang terkini dan berorientasi pada klien
-              </div>
-              <div className="flex items-center font-medium gap-x-2">
-                <span className="text-[#3E7BFA]">Wisata</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <span className="text-[#1C1C1E]">10 min Read</span>
-              </div>
+              {kuliner.slice(1, 2).map(({ id, title, category, content, image_url, updated_at }) => {
+                return (
+                  <div key={id}>
+                    <Figure
+                      src={image_url}
+                      alt={"Thumbnail Artikel"}
+                      className={"rounded-md w-full h-[250px] overflow-hidden"}
+                      caption={""}
+                      captionClass={"text-center mb-5"}
+                    />
+                    <div className="flex items-center mb-3 gap-x-2">
+                      <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
+                      <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <div className="font-normal text-[#757575]">{convertDate(updated_at)} ago</div>
+                    </div>
+                    <div className="mb-3 text-2xl font-bold">
+                      <Link to={`/artikel/${id}`}>{title}</Link>
+                    </div>
+                    <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
+                      {content.substr(0, 160)}...
+                    </div>
+                    <div className="flex items-center font-medium gap-x-2">
+                      <span className="text-[#3E7BFA]">{category}</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <span className="text-[#1C1C1E]">10 min Read</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="flex-[1] rounded-lg flex flex-col">
-              <Figure
-                src={Card}
-                alt={"Thumbnail Artikel"}
-                className={"rounded-md w-full h-[250px] overflow-hidden"}
-                caption={""}
-                captionClass={"text-center mb-5"}
-              />
-              <div className="flex items-center mb-3 gap-x-2">
-                <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
-                <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <div className="font-normal text-[#757575]">10 minutes read</div>
-              </div>
-              <div className="mb-3 text-2xl font-bold">10 Rekomendasi Tempat Wisata Di Jawa Timur</div>
-              <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
-                Kami memahami pentingnya kualitas dan efisiensi produksi untuk mencapai tujuan bisnis. Kami
-                menyediakan solusi teknologi yang terkini dan berorientasi pada klien
-              </div>
-              <div className="flex items-center font-medium gap-x-2">
-                <span className="text-[#3E7BFA]">Wisata</span>
-                <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
-                <span className="text-[#1C1C1E]">10 min Read</span>
-              </div>
+              {kuliner.slice(2, 3).map(({ id, title, category, content, image_url, updated_at }) => {
+                return (
+                  <div key={id}>
+                    <Figure
+                      src={image_url}
+                      alt={"Thumbnail Artikel"}
+                      className={"rounded-md w-full h-[250px] overflow-hidden"}
+                      caption={""}
+                      captionClass={"text-center mb-5"}
+                    />
+                    <div className="flex items-center mb-3 gap-x-2">
+                      <Image src={Logo} alt={"logo"} className={"w-[15px] h-[15px]"} />
+                      <span className="text-lg font-bold text-[#075efd]">Travel.id</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <div className="font-normal text-[#757575]">{convertDate(updated_at)} ago</div>
+                    </div>
+                    <div className="mb-3 text-2xl font-bold">
+                      <Link to={`/artikel/${id}`}>{title}</Link>
+                    </div>
+                    <div className="font-normal text-[#757575] text-lg mb-3 text-justify">
+                      {content.substr(0, 160)}...
+                    </div>
+                    <div className="flex items-center font-medium gap-x-2">
+                      <span className="text-[#3E7BFA]">{category}</span>
+                      <div className="h-[5px] w-[5px] rounded-full bg-[#334155]"></div>
+                      <span className="text-[#1C1C1E]">10 min Read</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </article>
