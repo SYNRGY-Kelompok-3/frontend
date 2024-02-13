@@ -7,7 +7,7 @@ import SeatLists from "../SeatLists";
 import Button from "../../atoms/Button";
 import { useDispatch } from "react-redux";
 import { setSeats } from "src/state/seatSlice/slice";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export interface SeatProps {
   seat: string;
@@ -29,7 +29,11 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
     onClose!();
   };
 
-  const { passengerClass, airline } = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
+  const passengerClass = searchParams.get("flightClass");
+  const airline = searchParams.get("airline");
 
   const renderTag = () => {
     if (passengerClass === "business") {
@@ -39,7 +43,7 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
           <Rectangle bgColor="bg-gray-300" priceTag={"Tidak Tersedia"} />
         </>
       );
-    } else if (passengerClass === "economy" && airline === "Garuda") {
+    } else if (passengerClass === "economy" && airline?.split(" ")[0] === "Garuda") {
       return (
         <>
           <Rectangle bgColor="bg-green-600" priceTag={85000} />

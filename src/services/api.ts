@@ -138,6 +138,35 @@ function Api() {
     }
   };
 
+  const handleUpdateTicket = async (payload: Ticket, id: number) => {
+    try {
+      const data = { id, ...payload };
+      const response: AxiosResponse = await axios.put(`${axiosApi.defaults.baseURL}flight/update`, data, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return response;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log(error.response?.data.error);
+      }
+    }
+  };
+
+  const handleDeleteTicket = async (id: number) => {
+    try {
+      const payload = { id: id };
+      const response: AxiosResponse = await axios.delete(`${axiosApi.defaults.baseURL}flight/delete`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        data: payload,
+      });
+      return response;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log(error.response?.data.error);
+      }
+    }
+  };
+
   const showTicket = async (page: number, size: number) => {
     try {
       const response: AxiosResponse = await axios.get(
@@ -158,6 +187,8 @@ function Api() {
     handleUploadAndUpdate,
     handleUpdate,
     handleTicket,
+    handleUpdateTicket,
+    handleDeleteTicket,
     showTicket,
   };
 }

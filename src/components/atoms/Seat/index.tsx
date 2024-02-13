@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SmallRectangle from "../Icon/SmallRectangle";
 import { fetchSeat, seatPrice } from "src/components/organisms/SeatLists/helpers";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 interface SeatType {
   seat: string;
@@ -17,7 +17,13 @@ interface SeatProps {
 const Seat = ({ rows, renderSeat }: SeatProps) => {
   const [loaded, setLoaded] = useState(false);
 
-  const { flightId, passengerClass, airline } = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
+  const flightId = searchParams.get("flightId");
+  const passengerClass = searchParams.get("flightClass");
+  const airline = searchParams.get("airline");
+
   const airlinveVar = airline?.split(" ")[0];
 
   useEffect(() => {

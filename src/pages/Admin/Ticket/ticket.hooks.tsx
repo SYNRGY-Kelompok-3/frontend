@@ -2,6 +2,7 @@ import Api from "src/services/api";
 import { useEffect, useState } from "react";
 import { axiosApi } from "src/services/axios";
 import axios, { AxiosResponse } from "axios";
+import { differenceInMinutes } from "date-fns";
 
 interface Id {
   id: number;
@@ -30,17 +31,23 @@ interface Ticket {
 }
 
 function TicketHooks() {
-  const { handleTicket } = Api();
+  const { handleTicket, handleUpdateTicket, handleDeleteTicket } = Api();
   const [formValues, setFormValues] = useState<Ticket>({} as Ticket);
   const [departureDate, setDepartureDate] = useState("");
   const [arrivalDate, setArrivalDate] = useState("");
   const [tickets, setTickets] = useState<Ticket[]>([]);
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [createModal, setCreateModal] = useState<boolean>(false);
+  const [editModal, setEditModal] = useState<boolean>(false);
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
+  const [id, setId] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(0);
+  const [data, setData] = useState<Ticket>({} as Ticket);
 
   const handleCloseModal = () => {
-    setShowModal(false);
+    setCreateModal(false);
+    setEditModal(false);
+    setDeleteModal(false);
     fetchTicket(currentPage);
   };
 
@@ -65,8 +72,13 @@ function TicketHooks() {
     try {
       const departure = `${departureDate}:00.000+0700`;
       const arrival = `${arrivalDate}:00.000+0700`;
-      const payload = { ...formValues, flightTime: departure, arrivedTime: arrival };
+      const differenceInMinutesValue = differenceInMinutes(arrivalDate, departureDate);
+      const hours = Math.floor(differenceInMinutesValue / 60);
+      const minutes = differenceInMinutesValue % 60;
+      const totalDuration = `${hours} hours${minutes === 0 ? null : ` ${minutes} minutes`}`;
+      const payload = { ...formValues, flightTime: departure, arrivedTime: arrival, duration: totalDuration };
       const response = await handleTicket(payload);
+      console.log(totalDuration);
       console.log(response);
       fetchTicket(page);
       callback && callback();
@@ -75,15 +87,44 @@ function TicketHooks() {
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleUpdate = async (e: React.FormEvent<HTMLFormElement>, id: number, callback?: () => void) => {
+    e.preventDefault();
     try {
-      const payload = { id: id };
-      const response: AxiosResponse = await axios.delete(`${axiosApi.defaults.baseURL}flight/delete`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        data: payload,
-      });
+      if (!departureDate || !arrivalDate) {
+        const payload = { ...formValues };
+        const response = await handleUpdateTicket(payload, id);
+        console.log(response?.data.message + " Update!");
+        fetchTicket(currentPage);
+        callback && callback();
+      } else {
+        const departure = `${departureDate}:00.000+0700`;
+        const arrival = `${arrivalDate}:00.000+0700`;
+        const differenceInMinutesValue = differenceInMinutes(arrivalDate, departureDate);
+        const hours = Math.floor(differenceInMinutesValue / 60);
+        const minutes = differenceInMinutesValue % 60;
+        const totalDuration = `${hours} hours${minutes === 0 ? null : ` ${minutes} minutes`}`;
+        const payload = {
+          ...formValues,
+          flightTime: departure,
+          arrivedTime: arrival,
+          duration: totalDuration,
+        };
+        const response = await handleUpdateTicket(payload, id);
+        console.log(response);
+        fetchTicket(currentPage);
+        callback && callback();
+      }
+    } catch (error) {
+      console.log("error >", error);
+    }
+  };
+
+  const handleDelete = async (id: number, callback?: () => void) => {
+    try {
+      const response = await handleDeleteTicket(id);
       fetchTicket(currentPage);
-      console.log(response);
+      console.log(response?.data.message + " Delete!");
+      callback && callback();
     } catch (error) {
       console.log("error >", error);
     }
@@ -101,17 +142,33 @@ function TicketHooks() {
     }
   };
 
+  const fetchTicketId = async (id: number) => {
+    try {
+      const response: AxiosResponse = await axios.get(`${axiosApi.defaults.baseURL}flight/${id}`);
+      return response.data.data;
+    } catch (error) {
+      console.log("error > ", error);
+    }
+  };
+
   useEffect(() => {
     fetchTicket(currentPage);
   }, [currentPage]);
 
   return {
-    showModal,
-    setShowModal,
+    createModal,
+    setCreateModal,
+    editModal,
+    setEditModal,
+    deleteModal,
+    setDeleteModal,
+    id,
+    setId,
     handleCloseModal,
     formValues,
     setFormValues,
     handleSubmit,
+    handleUpdate,
     setDepartureDate,
     setArrivalDate,
     fetchTicket,
@@ -121,6 +178,9 @@ function TicketHooks() {
     handleNextPage,
     handlePreviousPage,
     handleDelete,
+    data,
+    setData,
+    fetchTicketId,
   };
 }
 

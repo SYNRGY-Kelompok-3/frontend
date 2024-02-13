@@ -1,15 +1,20 @@
-import { useNavigate } from "react-router-dom";
 import Button from "src/components/atoms/Button";
-import Modal from "../Ticket/modal";
+import ModalCreate from "./modalCreate";
+import ModalEdit from "./modalEdit";
+import ModalDelete from "./modalDelete";
 import useAction from "./ticket.hooks";
 import { parseISO, format } from "date-fns";
 
 function Tiket() {
-  const navigate = useNavigate();
   const {
-    showModal,
-    setShowModal,
-    handleDelete,
+    createModal,
+    setCreateModal,
+    editModal,
+    setEditModal,
+    deleteModal,
+    setDeleteModal,
+    id,
+    setId,
     handleCloseModal,
     handleNextPage,
     handlePreviousPage,
@@ -17,6 +22,7 @@ function Tiket() {
     totalPages,
     tickets,
     fetchTicket,
+    fetchTicketId,
   } = useAction();
 
   return (
@@ -32,16 +38,16 @@ function Tiket() {
                   onClick={() => fetchTicket(currentPage)}
                   type={"button"}
                   className={
-                    "bg-lime-500 px-2.5 text-md rounded-1.8 py-2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
+                    "bg-blue-500 px-2.5 text-md rounded-1.8 py-2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
                   }
                   content={<i className="fa-solid fa-arrows-rotate"></i>}
                 />
                 <Button
                   id="add-ticket"
-                  onClick={() => setShowModal(true)}
+                  onClick={() => setCreateModal(true)}
                   type={"button"}
                   className={
-                    "bg-lime-500 px-2.5 text-md rounded-1.8 py-2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
+                    "bg-blue-500 px-2.5 text-md rounded-1.8 py-2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
                   }
                   content={"Add Ticket"}
                 />
@@ -190,7 +196,10 @@ function Tiket() {
                           <div className="flex items-center justify-center gap-3">
                             <Button
                               id="edit"
-                              onClick={() => navigate(`/edit-ticket/${1}`)}
+                              onClick={() => {
+                                setEditModal(true);
+                                setId(data.id);
+                              }}
                               type={"button"}
                               className={
                                 "bg-lime-500 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
@@ -199,7 +208,11 @@ function Tiket() {
                             />
                             <Button
                               id="delete"
-                              onClick={() => handleDelete(data.id)}
+                              onClick={() => {
+                                setDeleteModal(true);
+                                setId(data.id);
+                                fetchTicketId(data.id);
+                              }}
                               type={"button"}
                               className={
                                 "bg-red-500 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
@@ -220,7 +233,7 @@ function Tiket() {
                   id="prev-ticket"
                   onClick={() => handlePreviousPage()}
                   type={"button"}
-                  className={`bg-lime-500 px-2.5 text-md rounded-1.8 py-2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white`}
+                  className={`bg-blue-500 px-2.5 text-md rounded-1.8 py-2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white`}
                   content={<i className="fa-solid fa-arrow-left"></i>}
                 />
               </div>
@@ -231,7 +244,7 @@ function Tiket() {
                   onClick={() => handleNextPage()}
                   type={"button"}
                   className={
-                    "bg-lime-500 px-2.5 text-md rounded-1.8 py-2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
+                    "bg-blue-500 px-2.5 text-md rounded-1.8 py-2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
                   }
                   content={<i className="fa-solid fa-arrow-right"></i>}
                 />
@@ -240,7 +253,9 @@ function Tiket() {
           </div>
         </div>
       </div>
-      <Modal visible={showModal} onClose={handleCloseModal} />
+      <ModalCreate visible={createModal} onClose={handleCloseModal} />
+      <ModalEdit visible={editModal} id={id} onClose={handleCloseModal} />
+      <ModalDelete visible={deleteModal} id={id} onClose={handleCloseModal} />
     </>
   );
 }
