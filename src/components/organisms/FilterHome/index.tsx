@@ -160,7 +160,7 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                       onClick={() => setShowModal(true)}
                       className="mt-2 pl-3 flex items-center opacity-[0.7] text-[#757575] h-[42px] w-full justify-start border border-slate-200 rounded-lg"
                     >
-                      <p className="text-sm text-gray-500">{`${adultCount} Adult, ${childCount} Child, ${infantCount} Infant`}</p>
+                      <p className="text-sm">{`${adultCount} Adult, ${childCount} Child, ${infantCount} Infant`}</p>
                     </button>
                     {showModal && (
                       <div className="fixed z-10 inset-0 overflow-y-auto">
@@ -192,7 +192,7 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                                       <div className="flex items-center">
                                         <button
                                           onClick={() => handleDecrement("adult")}
-                                          className="border border-blue-600 p-1 text-blue-600"
+                                          className="bg-red-500 p-1 text-white rounded-lg"
                                         >
                                           <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -208,10 +208,12 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                                             />
                                           </svg>
                                         </button>
-                                        <span className="mx-3">{adultCount}</span>
+                                        <span className="mx-3 flex justify-center w-[10px]">
+                                          {adultCount}
+                                        </span>
                                         <button
                                           onClick={() => handleIncrement("adult")}
-                                          className="border border-blue-600 p-1 text-blue-600"
+                                          className="bg-blue-500 p-1 text-white rounded-lg"
                                         >
                                           <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -234,7 +236,7 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                                       <div className="flex items-center">
                                         <button
                                           onClick={() => handleDecrement("child")}
-                                          className="border border-blue-600 p-1 text-blue-600"
+                                          className="bg-red-500 p-1 text-white rounded-lg"
                                         >
                                           <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -250,10 +252,12 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                                             />
                                           </svg>
                                         </button>
-                                        <span className="mx-3">{childCount}</span>
+                                        <span className="mx-3 flex justify-center w-[10px]">
+                                          {childCount}
+                                        </span>
                                         <button
                                           onClick={() => handleIncrement("child")}
-                                          className="border border-blue-600 p-1 text-blue-600"
+                                          className="bg-blue-500 p-1 text-white rounded-lg"
                                         >
                                           <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -276,7 +280,7 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                                       <div className="flex items-center">
                                         <button
                                           onClick={() => handleDecrement("infant")}
-                                          className="border border-blue-600 p-1 text-blue-600"
+                                          className="bg-red-500 p-1 text-white rounded-lg"
                                         >
                                           <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -292,10 +296,12 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                                             />
                                           </svg>
                                         </button>
-                                        <span className="mx-3">{infantCount}</span>
+                                        <span className="mx-3 flex justify-center w-[10px]">
+                                          {infantCount}
+                                        </span>
                                         <button
                                           onClick={() => handleIncrement("infant")}
-                                          className="border border-blue-600 p-1 text-blue-600"
+                                          className="bg-blue-500 p-1 text-white rounded-lg"
                                         >
                                           <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -345,6 +351,7 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                         backgroundColor: "transparent",
                         borderColor: "rgb(226 232 240)",
                         opacity: "0.7",
+                        color: "#757575",
                       }}
                     />
                   </div>
@@ -370,6 +377,7 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                         backgroundColor: "transparent",
                         borderColor: "rgb(226 232 240)",
                         opacity: "0.7",
+                        color: "#757575",
                       }}
                     />
                   </div>
@@ -458,6 +466,7 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                         backgroundColor: "transparent",
                         borderColor: "rgb(226 232 240)",
                         opacity: "0.7",
+                        color: "#757575",
                       }}
                     />
                   </div>
@@ -478,6 +487,7 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                         backgroundColor: "transparent",
                         borderColor: "rgb(226 232 240)",
                         opacity: "0.7",
+                        color: "#757575",
                       }}
                     />
                   </div>

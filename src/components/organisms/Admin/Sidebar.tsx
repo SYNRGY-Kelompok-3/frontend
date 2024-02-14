@@ -28,13 +28,12 @@ function Sidebar() {
 
         <div className="items-center block w-auto max-h-screen h-sidenav grow basis-full">
           <ul className="flex flex-col pl-0 mb-0">
-            <li className="mt-0.5 w-full">
+            {/* <li className="mt-0.5 w-full">
               <NavLink
                 className={({ isActive }): string =>
-                  `${
-                    isActive
-                      ? "py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors"
-                      : "py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors dark:text-white dark:opacity-80"
+                  `${isActive
+                    ? "py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors"
+                    : "py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors dark:text-white dark:opacity-80"
                   }`
                 }
                 to={"/dashboard"}
@@ -44,7 +43,7 @@ function Sidebar() {
                 </div>
                 <span className="ml-1 duration-300 opacity-100 pointer-events-none ease">Dashboard</span>
               </NavLink>
-            </li>
+            </li> */}
             <li className="mt-0.5 w-full">
               <NavLink
                 className={({ isActive }): string =>
@@ -54,7 +53,7 @@ function Sidebar() {
                       : "py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors dark:text-white dark:opacity-80"
                   }`
                 }
-                to={"/tiket"}
+                to={"/dashboard/tiket"}
               >
                 <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                   <i className="fa-solid fa-ticket text-lime-500"></i>
@@ -71,7 +70,7 @@ function Sidebar() {
                       : "py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors dark:text-white dark:opacity-80"
                   }`
                 }
-                to={"/analitik"}
+                to={"dashboard/analitik"}
               >
                 <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                   <i className="fa-solid fa-chart-simple"></i>
