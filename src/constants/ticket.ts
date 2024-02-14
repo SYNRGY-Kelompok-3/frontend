@@ -12,6 +12,7 @@ export interface ITicketListParams {
   originCity: TCity;
   destinationCity: TCity;
   passengerClass?: TPassengerClass;
+  airlines: string | null;
   transit?: TTransit;
 }
 

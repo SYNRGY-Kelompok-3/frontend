@@ -1,15 +1,12 @@
 import { useOrderForm } from "src/usecases/modules/checkout/useOrderForm";
 import Button from "../../atoms/Button";
 import { memo, FC } from "react";
+import PopUpCheckout from "../PopUpCheckout";
+import Image from "src/assets/pana.svg";
 
 const FormCheckout: FC = memo(() => {
-  const {
-    handleCheckoutPayment,
-    checkoutState,
-    register,
-    errors,
-    onChange,
-  } = useOrderForm()
+  const { handleCheckoutPayment, checkoutState, register, errors, onChange, showPopup, reCheckData } =
+    useOrderForm();
   return (
     <div className=" w-full rounded-lg border border-[#EDEDED] p-5 mx-2.5">
       <form onSubmit={handleCheckoutPayment}>
@@ -24,8 +21,9 @@ const FormCheckout: FC = memo(() => {
                 type="text"
                 id="firstName"
                 {...register("firstName", { required: true })}
-                className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${errors.firstName && "focus:border-red-500 focus:ring-red-500 border-red-500"
-                  }`}
+                className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${
+                  errors.firstName && "focus:border-red-500 focus:ring-red-500 border-red-500"
+                }`}
                 placeholder="Masukkan Nama Depan"
               />
               {errors.firstName && <span className="text-[10px] text-red-500">This is required</span>}
@@ -50,8 +48,9 @@ const FormCheckout: FC = memo(() => {
             <select
               id="title"
               {...register("title", { required: true })}
-              className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-1 focus:ring-blue-700 focus:border-blue-700 placeholder:text-[#757575] ${errors.title && "focus:border-red-500 focus:ring-red-500 border-red-500"
-                }`}
+              className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-1 focus:ring-blue-700 focus:border-blue-700 placeholder:text-[#757575] ${
+                errors.title && "focus:border-red-500 focus:ring-red-500 border-red-500"
+              }`}
             >
               <option value="">Pilih Titel</option>
               <option value="tuan">Tuan</option>
@@ -69,8 +68,9 @@ const FormCheckout: FC = memo(() => {
                 type="text"
                 id="phoneNumber"
                 {...register("phoneNumber", { required: true })}
-                className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${errors.phoneNumber && "focus:border-red-500 focus:ring-red-500 border-red-500"
-                  }`}
+                className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${
+                  errors.phoneNumber && "focus:border-red-500 focus:ring-red-500 border-red-500"
+                }`}
                 placeholder="Masukkan Nomor Handphone"
               />
               {errors.phoneNumber && <span className="text-[10px] text-red-500">This is required</span>}
@@ -83,8 +83,9 @@ const FormCheckout: FC = memo(() => {
                 type="text"
                 id="email"
                 {...register("email", { required: true })}
-                className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${errors.email && "focus:border-red-500 focus:ring-red-500 border-red-500"
-                  }`}
+                className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${
+                  errors.email && "focus:border-red-500 focus:ring-red-500 border-red-500"
+                }`}
                 placeholder="Masukkan Email"
               />
               {errors.email && <span className="text-[10px] text-red-500">This is required</span>}
@@ -124,8 +125,9 @@ const FormCheckout: FC = memo(() => {
                   id="firstNamePassenger"
                   {...register("firstNamePassenger")}
                   disabled={true}
-                  className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${errors.firstNamePassenger && "focus:border-red-500 focus:ring-red-500 border-red-500"
-                    }`}
+                  className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${
+                    errors.firstNamePassenger && "focus:border-red-500 focus:ring-red-500 border-red-500"
+                  }`}
                   placeholder="Masukkan Nama Depan"
                 />
               ) : (
@@ -133,12 +135,15 @@ const FormCheckout: FC = memo(() => {
                   type="text"
                   id="firstNamePassenger"
                   {...register("firstNamePassenger", { required: true })}
-                  className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${errors.firstNamePassenger && "focus:border-red-500 focus:ring-red-500 border-red-500"
-                    }`}
+                  className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold placeholder:text-[#757575] ${
+                    errors.firstNamePassenger && "focus:border-red-500 focus:ring-red-500 border-red-500"
+                  }`}
                   placeholder="Masukkan Nama Depan"
                 />
               )}
-              {errors.firstNamePassenger && <span className="text-[10px] text-red-500">This is required</span>}
+              {errors.firstNamePassenger && (
+                <span className="text-[10px] text-red-500">This is required</span>
+              )}
             </div>
             <div className="flex flex-col flex-1">
               <label htmlFor="lastNamePassenger" className="mb-2 text-xs font-medium">
@@ -173,8 +178,9 @@ const FormCheckout: FC = memo(() => {
                 id="titlePassenger"
                 {...register("titlePassenger")}
                 disabled={true}
-                className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-1 focus:ring-blue-700 focus:border-blue-700 placeholder:text-[#757575] ${errors.titlePassenger && "focus:border-red-500 focus:ring-red-500 border-red-500"
-                  }`}
+                className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-1 focus:ring-blue-700 focus:border-blue-700 placeholder:text-[#757575] ${
+                  errors.titlePassenger && "focus:border-red-500 focus:ring-red-500 border-red-500"
+                }`}
               >
                 <option value="">Pilih Titel</option>
                 <option value="tuan">Tuan</option>
@@ -185,8 +191,9 @@ const FormCheckout: FC = memo(() => {
               <select
                 id="titlePassenger"
                 {...register("titlePassenger", { required: true })}
-                className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-1 focus:ring-blue-700 focus:border-blue-700 placeholder:text-[#757575] ${errors.titlePassenger && "focus:border-red-500 focus:ring-red-500 border-red-500"
-                  }`}
+                className={`px-4 py-2 rounded border bg-transparent text-[10px] font-semibold focus:ring-1 focus:ring-blue-700 focus:border-blue-700 placeholder:text-[#757575] ${
+                  errors.titlePassenger && "focus:border-red-500 focus:ring-red-500 border-red-500"
+                }`}
               >
                 <option value="">Pilih Titel</option>
                 <option value="tuan">Tuan</option>
@@ -208,6 +215,18 @@ const FormCheckout: FC = memo(() => {
           content={"Lanjut Pembayaran"}
         />
       </form>
+      {showPopup && (
+        <PopUpCheckout
+          btnlabel="Ya, Benar"
+          btnLabelCancel="Periksa Kembali"
+          okAction={() => handleCheckoutPayment()}
+          cancelAction={() => reCheckData()}
+          image={Image}
+          isWithAction={true}
+          label="Apakah Data Penumpang Sudah Benar?"
+          desc="Setelah menekan tombol “Ya, Benar”  maka data pemesanan akan dimasukan kedalam sistem dan tidak bisa diubah."
+        />
+      )}
     </div>
   );
 });

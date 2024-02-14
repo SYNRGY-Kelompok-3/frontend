@@ -63,6 +63,7 @@ export const useSearchTicket = () => {
   const params: ITicketListParams = {
     page: 0,
     size: PAGE_SIZE,
+    airlines: ``,
     isDiscount: false,
     freeMeal: false,
     startDateStr,

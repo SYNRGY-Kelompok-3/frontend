@@ -5,14 +5,16 @@ import { PAGE_SIZE } from "src/constants";
 
 export interface ITicketState extends ITicketListParams {
   isLoading: boolean;
+  isLoadingLoadMore: boolean;
   isLoadingDetail: boolean;
   isError: boolean;
-  data: unknown | null | Array<ITicket>;
+  data: Array<ITicket>;
   detailTicket: ITicket;
 }
 
 const initialState: ITicketState = {
   isLoading: false,
+  isLoadingLoadMore: false,
   isLoadingDetail: false,
   isError: false,
   data: [] || null,
@@ -26,6 +28,7 @@ const initialState: ITicketState = {
   originCity: "",
   destinationCity: "",
   passengerClass: "",
+  airlines: ``,
   detailTicket: {
     airlines: {
       id: 0,
@@ -88,12 +91,15 @@ const initialState: ITicketState = {
 //   }
 // };
 
-export const fetchTicketList = createAsyncThunk("fetchTicketList", async (params: ITicketListParams) => {
-  const { page, size, startDateStr, originCity, destinationCity } = params;
-  const url: string = `/flight/listFlights?page=${page}&size=${size}&startDateStr=${startDateStr}&endDateStr=&originCity=${originCity}&destinationCity=${destinationCity}`;
-  const res = await axiosAuth.get(url);
-  return res?.data?.data?.content;
-});
+export const fetchTicketList = createAsyncThunk(
+  "fetchTicketList",
+  async (params: ITicketListParams & { isLoadMore: boolean }) => {
+    const { page, size, startDateStr, originCity, destinationCity, airlines, transit } = params;
+    const url: string = `/flight/listFlights?page=${page}&size=${size}&startDateStr=${startDateStr}&endDateStr=&originCity=${originCity}&destinationCity=${destinationCity}&airlines=${airlines}&transit=${transit}`;
+    const res = await axiosAuth.get(url);
+    return res?.data?.data?.content;
+  }
+);
 
 export const fetchTicketDetail = createAsyncThunk("fetchTicketDetail", async (id: number) => {
   const url: string = `/flight/${id}`;
@@ -126,18 +132,31 @@ const ticketSlice = createSlice({
     setDetailTicket: (state, action: PayloadAction<ITicket>) => {
       state.detailTicket = action.payload;
     },
+    resetState: () => {
+      return initialState;
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchTicketList.pending, (state) => {
-      state.isLoading = true;
+    builder.addCase(fetchTicketList.pending, (state, action) => {
+      if (action.meta.arg.isLoadMore) {
+        state.isLoadingLoadMore = true;
+      } else {
+        state.isLoading = true;
+      }
     });
     builder.addCase(fetchTicketList.fulfilled, (state, action) => {
+      if (action.meta.arg.isLoadMore) {
+        state.data = [...state.data, ...action.payload];
+      } else if (Number(action.meta.arg.page) <= 0 || !action.meta.arg.isLoadMore) {
+        state.data = action.payload;
+      }
       state.isLoading = false;
-      state.data = action.payload;
+      state.isLoadingLoadMore = false;
     });
     builder.addCase(fetchTicketList.rejected, (state) => {
       state.isError = true;
       state.isLoading = false;
+      state.isLoadingLoadMore = false;
     });
     builder.addCase(fetchTicketDetail.pending, (state) => {
       state.isLoadingDetail = true;
@@ -160,5 +179,6 @@ export const {
   setDestinationCity,
   setPassengerClass,
   setDetailTicket,
+  resetState,
 } = ticketSlice.actions;
 export default ticketSlice.reducer;

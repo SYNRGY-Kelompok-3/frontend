@@ -80,6 +80,9 @@ const forgotPasswordSlice = createSlice({
     setConfirmNewPassword: (state, action: PayloadAction<string>) => {
       state.confirmNewPassword = action.payload;
     },
+    resetState: () => {
+      return initialState;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -141,6 +144,6 @@ const forgotPasswordSlice = createSlice({
   },
 });
 
-export const { setEmail, setOtp, setFlow, setEmailError, setNewPassword, setConfirmNewPassword } =
+export const { setEmail, setOtp, setFlow, setEmailError, setNewPassword, setConfirmNewPassword, resetState } =
   forgotPasswordSlice.actions;
 export default forgotPasswordSlice.reducer;
