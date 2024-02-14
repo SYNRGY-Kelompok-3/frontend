@@ -22,7 +22,7 @@ function DropdownMenu({ name, picture }: { name: string | undefined; picture: st
 
   const Menu: Menu[] = [
     { text: "Profile", link: "/profile", id: "profile" },
-    { text: "Dashboard", link: "/dashboard", id: "dashboard" },
+    { text: "Dashboard", link: "/dashboard/tiket", id: "dashboard" },
     { text: "Notification", link: "/notification", id: "notification" },
   ];
 

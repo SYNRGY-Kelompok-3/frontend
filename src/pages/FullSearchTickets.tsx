@@ -18,11 +18,11 @@ const FullSearchTickets: FC = () => {
 
   return (
     <>
-      <div className="mx-auto mt-5">
+      <div className="mt-5">
         <div
           className={`sticky ${
             scrollDirection === "down" ? "top-[5rem] transition-all" : "top-0 transition-all"
-          }  z-[99] w-10/12 mx-auto relative radius-lg rounded-md px-5 py-3`}
+          }  z-[99] mx-[20px] sm:mx-10 xl:mx-[250px] radius-lg rounded-md px-5 py-3`}
           style={{
             backgroundImage: `url(${bgPrimary})`,
             backgroundSize: "cover",
@@ -32,7 +32,7 @@ const FullSearchTickets: FC = () => {
           <FilterHome isFilterMore={true} />
         </div>
 
-        <div className="flex  w-10/12 mx-auto mt-5 relative justify-between">
+        <div className="flex mx-[20px] sm:mx-10 xl:mx-[250px] mt-5 justify-between">
           <div className="basis-[20%] sticky top-[12rem]" style={{ height: "130vh", overflowY: "scroll" }}>
             <div className="position-sticky top-[12rem]">
               <h2 className="justify-self-end text-xl  font-medium my-2">Filter</h2>
