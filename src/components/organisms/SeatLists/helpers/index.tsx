@@ -10,6 +10,7 @@ const rows = 22;
 let emptySeats: string[] = [];
 
 export const fetchSeat = async (flightId: number) => {
+  emptySeats = [];
   try {
     const response = await axios.get(`${axiosAuth.defaults.baseURL}seat/getByFlight/${flightId}`, {
       headers: {
