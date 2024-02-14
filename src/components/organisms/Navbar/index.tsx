@@ -9,6 +9,7 @@ import Navmenu from "src/components/molecules/Navmenu";
 import Button from "src/components/atoms/Button";
 import Image from "src/components/atoms/Img";
 import useAction from "./navbar.hooks";
+import { useScroll } from "src/usecases/common/useScroll";
 
 interface NavmenuProps {
   bg?: "bg-transparent" | "bg-opaque" | "bg-white shadow-md" | undefined;
@@ -18,10 +19,15 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
   const navigate = useNavigate();
   const { navMenu, sidemenuResult, user, handleLogout, handleCheckboxChange, token, isChecked, checkboxRef } =
     useAction();
+  const { scrollDirection } = useScroll();
 
   return (
     <>
-      <nav className={`${bg} bg-cover`}>
+      <nav
+        className={`${bg} ${
+          scrollDirection === "down" ? "sticky top-0 z-[99] " : "opacity-0 -translate-y-full"
+        }`}
+      >
         <div className="px-[20px] sm:px-10 xl:px-28 py-5 flex justify-between items-center">
           <NavLink id="logo" to="/" className="flex items-center z-20">
             <Image

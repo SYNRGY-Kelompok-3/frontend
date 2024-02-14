@@ -10,11 +10,13 @@ import {
 } from "src/state/checkoutSlice/payment";
 import { setFlow } from "src/state/checkoutSlice/checkout";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const usePayment = () => {
   const paymentState = useSelector((state: RootState) => state.payment);
   const dispatch = useDispatch<AppDispatch>();
+  const [showPopup, setShowPopup] = useState<boolean>(false);
+
   const {
     handleSubmit,
     register,
@@ -32,20 +34,26 @@ export const usePayment = () => {
   const watchCvv = watch("cvvCvn");
 
   const handleProcessPayment = handleSubmit(async () => {
-    const payload = {
-      booking: {
-        id: 1,
-      },
-      bankPembayaran: paymentState.bankPembayaran,
-      namaRekening: paymentState.namaRekening,
-      nomorRekening: paymentState.nomorRekening,
-      masaBerlaku: paymentState.masaBerlaku,
-      cvvCvn: paymentState.cvvCvn,
-    };
-    await dispatch(fetchHandleProcessPayment(payload));
-    await dispatch(setFlow(3));
+    setShowPopup(true);
+    if (showPopup) {
+      const payload = {
+        booking: {
+          id: 1,
+        },
+        bankPembayaran: paymentState.bankPembayaran,
+        namaRekening: paymentState?.namaRekening ?? "John Doe",
+        nomorRekening: paymentState.nomorRekening,
+        masaBerlaku: paymentState.masaBerlaku,
+        cvvCvn: paymentState.cvvCvn,
+      };
+      await dispatch(fetchHandleProcessPayment(payload));
+      await dispatch(setFlow(3));
+    }
   });
 
+  const reCheckData = () => {
+    setShowPopup(false);
+  };
   useEffect(() => {
     setValue("bankPembayaran", watchBankPembayaran);
     setValue("namaRekening", watchNamaRekening);
@@ -71,6 +79,8 @@ export const usePayment = () => {
     handleProcessPayment,
     paymentState,
     register,
+    showPopup,
+    reCheckData,
     errors,
   };
 };

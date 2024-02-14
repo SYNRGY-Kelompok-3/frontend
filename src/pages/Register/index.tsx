@@ -72,9 +72,9 @@ function Register() {
             <div className="w-[90%] lg:w-[100%] flex-col min-w-0 break-words bg-white xl:bg-transparent border-0 lg:py-4 dark:bg-gray-950 rounded-2xl bg-clip-border shadow-lg">
               <div className="p-6 pb-0 mb-0">
                 <div className="font-bold text-3xl flex gap-5 items-center">
-                  <Link to="/" className="text-xl">
+                  <div onClick={() => navigate(-1)} className="text-xl">
                     <i className="fa fa-arrow-left"></i>
-                  </Link>
+                  </div>
                   <p className="font-bold text-2xl sm:text-3xl">Buat Akunmu Sekarang</p>
                 </div>
                 <div className="py-3">

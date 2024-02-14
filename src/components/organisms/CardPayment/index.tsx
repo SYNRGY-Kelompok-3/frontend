@@ -2,9 +2,11 @@ import Button from "src/components/atoms/Button";
 import KreditDebitIcon from "src/assets/images/kreditdebit.png";
 import { usePayment } from "src/usecases/modules/checkout/usePayment";
 import { memo } from "react";
+import PopUpCheckout from "../PopUpCheckout";
+import Image from "src/assets/confirm-payment.svg";
 
 const Payment = memo(() => {
-  const { handleProcessPayment, register, errors } = usePayment();
+  const { handleProcessPayment, register, errors, showPopup, reCheckData } = usePayment();
   return (
     <div className=" w-full rounded-lg border border-[#EDEDED] p-5 mx-2.5">
       <div className="flex flex-col md:flex-row">
@@ -37,11 +39,11 @@ const Payment = memo(() => {
                 <input
                   type="text"
                   id="cardName"
-                  {...register("namaRekening", { required: true })}
+                  {...register("bankPembayaran", { required: true })}
                   placeholder="Masukan nama kartu kredit"
                   className="shadow text-xs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
-                {errors.namaRekening && <span className="text-[10px] text-red-500">This is required</span>}
+                {errors.bankPembayaran && <span className="text-[10px] text-red-500">This is required</span>}
               </div>
 
               <div className="mb-4 flex items-center justify-between">
@@ -93,6 +95,18 @@ const Payment = memo(() => {
           </div>
         </div>
       </div>
+      {showPopup && (
+        <PopUpCheckout
+          btnlabel="Ya, Benar"
+          btnLabelCancel="Kembali"
+          okAction={() => handleProcessPayment()}
+          cancelAction={() => reCheckData()}
+          image={Image}
+          isWithAction={true}
+          label="Apakah Anda Ingin Melakukan Pembayaran?"
+          desc="Setelah menekan tombol “Ya, Benar”  maka pembayaran akan secara otomatis menggunakan saldo rekening anda"
+        />
+      )}
     </div>
   );
 });

@@ -28,9 +28,11 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose, id }) => {
     }
   };
 
+  // Call Ticket function inside useEffect
   useEffect(() => {
     Ticket(id);
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   if (!data) {
     return;

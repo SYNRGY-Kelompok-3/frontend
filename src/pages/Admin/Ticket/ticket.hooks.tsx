@@ -102,7 +102,7 @@ function TicketHooks() {
         const differenceInMinutesValue = differenceInMinutes(arrivalDate, departureDate);
         const hours = Math.floor(differenceInMinutesValue / 60);
         const minutes = differenceInMinutesValue % 60;
-        const totalDuration = `${hours} hours${minutes === 0 ? null : ` ${minutes} minutes`}`;
+        const totalDuration = `${hours} hours${minutes === 0 ? "" : ` ${minutes} minutes`}`;
         const payload = {
           ...formValues,
           flightTime: departure,

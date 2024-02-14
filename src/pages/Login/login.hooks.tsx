@@ -19,7 +19,7 @@ interface Login {
 }
 
 function LoginHooks() {
-  const { fetchLogin } = Api();
+  const { fetchLogin, fetchProfile } = Api();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordType, setPasswordType] = useState("password");
@@ -74,14 +74,15 @@ function LoginHooks() {
 
     try {
       const response = (await fetchLogin(email, password)) as Login;
-
       if (response.access_token) {
         setLoginError({
           message: "Login Berhasil!",
           color: "text-lime-500",
           status: STATUS_CODE[200],
         });
+        const userData = await fetchProfile(response.access_token);
         localStorage.setItem("token", response?.access_token);
+        localStorage.setItem("userData", JSON.stringify(userData["data 2"]));
       } else {
         setLoginError({
           message: "Email atau Password Salah!",
