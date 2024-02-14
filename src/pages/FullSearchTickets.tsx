@@ -27,6 +27,7 @@ const FullSearchTickets: FC = () => {
             backgroundImage: `url(${bgPrimary})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
+            backgroundColor: "white",
           }}
         >
           <FilterHome isFilterMore={true} />
@@ -35,14 +36,16 @@ const FullSearchTickets: FC = () => {
         <div className="flex mx-[20px] sm:mx-10 xl:mx-[250px] mt-5 justify-between">
           <div className="basis-[20%] sticky top-[12rem]" style={{ height: "130vh", overflowY: "scroll" }}>
             <div className="position-sticky top-[12rem]">
-              <h2 className="justify-self-end text-xl  font-medium my-2">Filter</h2>
+              <h2 className={`justify-self-end text-xl font-medium my-2 ${scrollY > 180 ? "pt-3 pb-3" : ""}`}>
+                Filter
+              </h2>
               <FilterFlightTicket />
             </div>
           </div>
           <div className="basis-[78%]">
             <h2
               className={`justify-self-end text-xl  font-medium my-2 bg-white ${
-                scrollY > 180 ? "py-5" : ""
+                scrollY > 180 ? "pt-10 pb-3 px-3 rounded-lg shadow-md" : ""
               } sticky top-[11rem]`}
             >
               Penerbangan Dari <span className="font-bold">`{params.originCity}` </span>
