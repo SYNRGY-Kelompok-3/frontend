@@ -156,8 +156,11 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                         Jumlah Penumpang
                       </button>
                     </div>
-                    <button onClick={() => setShowModal(true)}>
-                      <p className="mt-3 text-sm text-gray-500">{`${adultCount} Adult, ${childCount} Child, ${infantCount} Infant`}</p>
+                    <button
+                      onClick={() => setShowModal(true)}
+                      className="mt-2 pl-3 flex items-center opacity-[0.7] text-[#757575] h-[42px] w-full justify-start border border-slate-200 rounded-lg"
+                    >
+                      <p className="text-sm text-gray-500">{`${adultCount} Adult, ${childCount} Child, ${infantCount} Infant`}</p>
                     </button>
                     {showModal && (
                       <div className="fixed z-10 inset-0 overflow-y-auto">
@@ -338,6 +341,11 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                       minDate={new Date()}
                       language="id-ID"
                       value={formatDateMonthYear(startDateStr)}
+                      style={{
+                        backgroundColor: "transparent",
+                        borderColor: "rgb(226 232 240)",
+                        opacity: "0.7",
+                      }}
                     />
                   </div>
                   <div
@@ -358,6 +366,11 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                       language="id-ID"
                       disabled={!isOneWay}
                       value={formatDateMonthYear(endDateStr)}
+                      style={{
+                        backgroundColor: "transparent",
+                        borderColor: "rgb(226 232 240)",
+                        opacity: "0.7",
+                      }}
                     />
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
@@ -441,6 +454,11 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                       minDate={new Date()}
                       language="id-ID"
                       value={formatDateMonthYear(startDateStr)}
+                      style={{
+                        backgroundColor: "transparent",
+                        borderColor: "rgb(226 232 240)",
+                        opacity: "0.7",
+                      }}
                     />
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
@@ -456,6 +474,11 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                       minDate={formatUTC(startDateStr)}
                       language="id-ID"
                       value={formatDateMonthYear(endDateStr)}
+                      style={{
+                        backgroundColor: "transparent",
+                        borderColor: "rgb(226 232 240)",
+                        opacity: "0.7",
+                      }}
                     />
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">

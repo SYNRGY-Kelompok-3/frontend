@@ -24,7 +24,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
   return (
     <>
       <nav
-        className={`bg-white ${
+        className={`${bg} ${
           scrollDirection === "down" ? "sticky top-0 z-[99] " : "opacity-0 -translate-y-full"
         }`}
       >
