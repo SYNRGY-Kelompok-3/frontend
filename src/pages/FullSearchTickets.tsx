@@ -22,7 +22,7 @@ const FullSearchTickets: FC = () => {
         <div
           className={`sticky ${
             scrollDirection === "down" ? "top-[5rem] transition-all" : "top-0 transition-all"
-          }  z-[99] mx-[20px] sm:mx-10 xl:mx-[250px] radius-lg rounded-md px-5 py-3`}
+          }  z-[99] mx-[20px] sm:mx-10 xl:mx-[250px] radius-lg rounded-md p-5`}
           style={{
             backgroundImage: `url(${bgPrimary})`,
             backgroundSize: "cover",
