@@ -25,6 +25,7 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
 
   //   Saves the selected data to global state
   const handlePilihKursi = () => {
+    console.log(selectedSeats, "nah");
     dispatch(setSeats(selectedSeats));
     onClose!();
   };

@@ -24,7 +24,7 @@ const CardTicket = memo((data: TProps) => {
       <Card className="mb-3 rounded-xl">
         <div className="flex flex-row  items-center ">
           <div className="basis-[25.00%] m-2">
-            <Image src={`${VITE_APP_API_URL}showFile/${ticketData.airlines.pathLogo}`} alt="template" />
+            <Image src={`${VITE_APP_API_URL}showFile/${ticketData?.airlines?.pathLogo}`} alt="template" />
           </div>
           <div className="basis-[50.00%] m-2 px-5">
             <div className="grid grid-cols-3 ">
@@ -73,7 +73,7 @@ const CardTicket = memo((data: TProps) => {
               </h2>
               <Button
                 content={"Lihat Detail"}
-                className={"self-stretch w-full py-1 px-5 rounded-lg bg-[#3e7bfa] text-white"}
+                className={"  self-stretch p-3 rounded bg-[#3e7bfa] text-white"}
                 onClick={() => onShowTicketDetail(ticketData.id)}
               />
             </div>

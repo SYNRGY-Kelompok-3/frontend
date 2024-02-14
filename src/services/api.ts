@@ -56,10 +56,10 @@ function Api() {
     }
   };
 
-  const fetchProfile = async () => {
+  const fetchProfile = async (tokenParams?: string) => {
     try {
       const response: AxiosResponse = await axios.get(`${axiosApi.defaults.baseURL}user/detail-profile/`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${tokenParams || token}` },
       });
       setUser(response.data["data 2"]);
 

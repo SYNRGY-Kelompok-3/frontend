@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { axiosApi } from "src/services/axios";
 import { CHECKOUT_FLOW } from "src/constants/";
+
 type TTitle = "Tuan" | "Nyonya" | "Nona" | "";
 
 interface ICheckout {
@@ -21,19 +22,21 @@ interface ICheckout {
 }
 
 interface IBookingDetail {
-  flight: {
-    id: number;
-  };
   customerName: string;
-  identityNumber: string;
+  category: "adult" | "child" | "infant";
+  phoneNumber?: string;
   seatNumber?: string;
   totalSeatPrice?: number;
-  category: "adult" | "child" | "infant";
 }
 export interface IBooking {
   customer: {
     id: number;
   };
+  flight: {
+    id: number;
+  };
+  email: string;
+  phoneNumber: string;
   listBookingDetail: IBookingDetail[];
 }
 
@@ -92,6 +95,9 @@ const checkoutSlice = createSlice({
     setFlow: (state, action: PayloadAction<number>) => {
       state.flow = action.payload;
     },
+    resetState: () => {
+      return initialState;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -121,6 +127,7 @@ export const {
   setFirstNamePassenger,
   setLastNamePassenger,
   setTitlePassenger,
+  resetState,
   setFlow,
 } = checkoutSlice.actions;
 

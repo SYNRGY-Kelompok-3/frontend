@@ -47,6 +47,47 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
     }
   };
 
+  const [showModal, setShowModal] = useState(false);
+  const [adultCount, setAdultCount] = useState(1);
+  const [childCount, setChildCount] = useState(0);
+  const [infantCount, setInfantCount] = useState(0);
+
+  const handleIncrement = (type: string) => {
+    switch (type) {
+      case "adult":
+        setAdultCount(adultCount + 1);
+        break;
+      case "child":
+        setChildCount(childCount + 1);
+        break;
+      case "infant":
+        setInfantCount(infantCount + 1);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleDecrement = (type: string) => {
+    switch (type) {
+      case "adult":
+        if (adultCount > 1) setAdultCount(adultCount - 1);
+        break;
+      case "child":
+        if (childCount > 0) setChildCount(childCount - 1);
+        break;
+      case "infant":
+        if (infantCount > 0) setInfantCount(infantCount - 1);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleSubmit = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       {isLoading && <Loading />}
@@ -108,18 +149,183 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Passanger} alt={"Departure"} className="h-[15px] mr-2" />
-                      <div className=" text-[#333] text-lg font-medium leading-[1.625rem]">
+                      <button
+                        onClick={() => setShowModal(true)}
+                        className="text-[#333] text-lg font-medium leading-[1.625rem]"
+                      >
                         Jumlah Penumpang
-                      </div>
+                      </button>
                     </div>
-                    <select
-                      id="jumlah"
-                      className="flex bg-transparent h-[42px] self-stretch opacity-[0.7] text-[#757575] text-sm leading-5 mt-2 w-full border-slate-200 rounded-lg"
-                    >
-                      <option value="">Masukkan Jumlah Penumpang</option>
-                      <option value="1">1</option>
-                      <option value="3">2</option>
-                    </select>
+                    <button onClick={() => setShowModal(true)}>
+                      <p className="mt-3 text-sm text-gray-500">{`${adultCount} Adult, ${childCount} Child, ${infantCount} Infant`}</p>
+                    </button>
+                    {showModal && (
+                      <div className="fixed z-10 inset-0 overflow-y-auto">
+                        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                          <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+                            <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+                          </div>
+
+                          <span
+                            className="hidden sm:inline-block sm:align-middle sm:h-screen"
+                            aria-hidden="true"
+                          >
+                            &#8203;
+                          </span>
+
+                          <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full w-full">
+                            <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                              <div className="sm:flex sm:items-start">
+                                <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                                  <h3
+                                    className="text-lg leading-6 font-medium text-gray-900"
+                                    id="modal-title"
+                                  >
+                                    Jumlah Penumpang
+                                  </h3>
+                                  <div className="mt-4 space-y-4">
+                                    <div className="flex items-center justify-between w-full">
+                                      <div>Adult:</div>
+                                      <div className="flex items-center">
+                                        <button
+                                          onClick={() => handleDecrement("adult")}
+                                          className="border border-blue-600 p-1 text-blue-600"
+                                        >
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            fill="currentColor"
+                                            className="bi bi-dash-lg"
+                                            viewBox="0 0 16 16"
+                                          >
+                                            <path
+                                              fill-rule="evenodd"
+                                              d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8"
+                                            />
+                                          </svg>
+                                        </button>
+                                        <span className="mx-3">{adultCount}</span>
+                                        <button
+                                          onClick={() => handleIncrement("adult")}
+                                          className="border border-blue-600 p-1 text-blue-600"
+                                        >
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            fill="currentColor"
+                                            className="bi bi-plus-lg"
+                                            viewBox="0 0 16 16"
+                                          >
+                                            <path
+                                              fill-rule="evenodd"
+                                              d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"
+                                            />
+                                          </svg>
+                                        </button>
+                                      </div>
+                                    </div>
+                                    <div className="flex items-center justify-between w-full">
+                                      <div>Child:</div>
+                                      <div className="flex items-center">
+                                        <button
+                                          onClick={() => handleDecrement("child")}
+                                          className="border border-blue-600 p-1 text-blue-600"
+                                        >
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            fill="currentColor"
+                                            className="bi bi-dash-lg"
+                                            viewBox="0 0 16 16"
+                                          >
+                                            <path
+                                              fill-rule="evenodd"
+                                              d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8"
+                                            />
+                                          </svg>
+                                        </button>
+                                        <span className="mx-3">{childCount}</span>
+                                        <button
+                                          onClick={() => handleIncrement("child")}
+                                          className="border border-blue-600 p-1 text-blue-600"
+                                        >
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            fill="currentColor"
+                                            className="bi bi-plus-lg"
+                                            viewBox="0 0 16 16"
+                                          >
+                                            <path
+                                              fill-rule="evenodd"
+                                              d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"
+                                            />
+                                          </svg>
+                                        </button>
+                                      </div>
+                                    </div>
+                                    <div className="flex items-center justify-between w-full">
+                                      <div>Infant:</div>
+                                      <div className="flex items-center">
+                                        <button
+                                          onClick={() => handleDecrement("infant")}
+                                          className="border border-blue-600 p-1 text-blue-600"
+                                        >
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            fill="currentColor"
+                                            className="bi bi-dash-lg"
+                                            viewBox="0 0 16 16"
+                                          >
+                                            <path
+                                              fill-rule="evenodd"
+                                              d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8"
+                                            />
+                                          </svg>
+                                        </button>
+                                        <span className="mx-3">{infantCount}</span>
+                                        <button
+                                          onClick={() => handleIncrement("infant")}
+                                          className="border border-blue-600 p-1 text-blue-600"
+                                        >
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            fill="currentColor"
+                                            className="bi bi-plus-lg"
+                                            viewBox="0 0 16 16"
+                                          >
+                                            <path
+                                              fill-rule="evenodd"
+                                              d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"
+                                            />
+                                          </svg>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                              <button
+                                onClick={handleSubmit}
+                                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-full sm:text-sm"
+                              >
+                                Simpan
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center mb-2">

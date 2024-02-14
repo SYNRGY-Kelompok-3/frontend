@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "src/state/store";
+
 import {
   handleCheckout as fetchHandleCheckout,
   setFirstName,
@@ -14,10 +15,15 @@ import {
   IBooking,
 } from "src/state/checkoutSlice/checkout";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const useOrderForm = () => {
   const checkoutState = useSelector((state: RootState) => state.checkout);
+  const ticketState = useSelector((state: RootState) => state.ticket);
+  const seatState = useSelector((state: RootState) => state.seat);
+  const userData: string = localStorage.getItem("userData") || ``;
+  const [showPopup, setShowPopup] = useState<boolean>(false);
+
   const dispatch = useDispatch<AppDispatch>();
   const {
     handleSubmit,
@@ -40,25 +46,33 @@ export const useOrderForm = () => {
   const watchTitlePassenger = watch("titlePassenger");
 
   const handleCheckoutPayment = handleSubmit(async () => {
-    const payload: IBooking = {
-      customer: {
-        id: 8,
-      },
-      listBookingDetail: [
-        {
-          flight: {
-            id: 5,
-          },
-          customerName: checkoutState.firstName,
-          identityNumber: "tes",
-          seatNumber: "tes",
-          totalSeatPrice: 2000,
-          category: "adult",
+    setShowPopup(true);
+    if (showPopup) {
+      const payload: IBooking = {
+        customer: {
+          id: JSON.parse(userData).id,
         },
-      ],
-    };
-    await dispatch(fetchHandleCheckout(payload));
+        flight: {
+          id: ticketState.detailTicket.id,
+        },
+        email: watchEmail,
+        phoneNumber: watchPhoneNumber.toString(),
+        listBookingDetail: seatState.seatNumbers.map((seatNumber) => {
+          return {
+            customerName: watchFirstNamePassenger + " " + watchLastNamePassenger,
+            seatNumber: seatNumber,
+            totalSeatPrice: seatState.totalPrice + ticketState.detailTicket.price,
+            category: "adult",
+          };
+        }),
+      };
+      await dispatch(fetchHandleCheckout(payload));
+    }
   });
+
+  const reCheckData = () => {
+    setShowPopup(false);
+  };
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
@@ -114,7 +128,10 @@ export const useOrderForm = () => {
     handleCheckoutPayment,
     checkoutState,
     register,
+    showPopup,
     errors,
+    reCheckData,
+    setShowPopup,
     onChange,
   };
 };
