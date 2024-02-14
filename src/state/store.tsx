@@ -16,6 +16,7 @@ import ticketReducer from "./ticketSlice/ticketList";
 import forgotPasswordReducer from "./authSlice/forgotPasswordFlow";
 import checkoutReducer from "./checkoutSlice/checkout";
 import paymentReducer from "./checkoutSlice/payment";
+
 const persistConfig = {
   key: "root",
   version: 1,

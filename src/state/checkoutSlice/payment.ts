@@ -19,6 +19,7 @@ interface IPaymentState extends IPayment {
   data: unknown | null;
   flow: number;
 }
+
 const initialState: IPaymentState = {
   booking: {
     id: 0,
@@ -58,6 +59,9 @@ const paymentSlice = createSlice({
     setCvv: (state, action: PayloadAction<string>) => {
       state.cvvCvn = action.payload;
     },
+    resetState: () => {
+      return initialState;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -77,7 +81,7 @@ const paymentSlice = createSlice({
   },
 });
 
-export const { setBankPembayaran, setNomorRekening, setMasaBerlaku, setCvv, setNamaRekening } =
+export const { setBankPembayaran, setNomorRekening, setMasaBerlaku, setCvv, setNamaRekening, resetState } =
   paymentSlice.actions;
 
 export default paymentSlice.reducer;

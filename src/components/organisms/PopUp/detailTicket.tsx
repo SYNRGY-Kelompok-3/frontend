@@ -107,7 +107,7 @@ function DetailTiket({ onClose, ticketId }: DetailTiketProps) {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-gray-800 bg-opacity-75">
+        <div className="fixed z-[100] top-0 left-0 flex items-center justify-center w-full h-full bg-gray-800 bg-opacity-75">
           <div className="p-4 bg-white rounded-lg sm:p-8 md:p-12 lg:w-[700px] xl:w-[800px]">
             {/* Header */}
             <div className="flex items-center justify-between mb-4">
