@@ -13,6 +13,7 @@ import { Button } from "flowbite-react";
 
 const FullSearchTickets: FC = () => {
   const { ticketList, isLoading, isLoadingLoadMore, params, loadMore } = useGetTicketList();
+
   const tickets: ITicket[] = ticketList as ITicket[];
   const { scrollDirection, scrollY } = useScroll();
 
@@ -64,9 +65,12 @@ const FullSearchTickets: FC = () => {
               : tickets.length <= 0 && <Image id={"not-found"} src={NotFound} alt={"Data Not Found"} />}
             {isLoadingLoadMore &&
               Array.from({ length: 3 }).map((_, index) => <CardSkeletonLoading key={index} />)}
-            <Button className="w-full z-1" onClick={loadMore}>
-              Load More
-            </Button>
+
+            {tickets.length >= 10 && (
+              <Button className="w-full z-1" onClick={loadMore}>
+                Load More
+              </Button>
+            )}
           </div>
         </div>
       </div>
