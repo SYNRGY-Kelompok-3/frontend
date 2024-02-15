@@ -77,7 +77,7 @@ function Notification() {
 
   return (
     <>
-      <div className="flex items-center mr-3">
+      <div className="flex items-center mr-3 z-20">
         <div ref={iconRef} onClick={handleIconClick} className="relative cursor-pointer">
           <Image id={"notification-icon"} src={Bell} alt={"bell"} className={"h-10"} />
         </div>

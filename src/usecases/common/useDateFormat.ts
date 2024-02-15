@@ -14,11 +14,15 @@ export const useDateFormatter = () => {
   };
 
   const formatDateTime = (date: Date) => {
-    return dayjs(date).format("DD MMM YYYY hh:mm");
+    return dayjs(date).format("DD MMM YYYY HH:mm");
   };
 
   const formatTime = (date: Date | string | null) => {
-    return dayjs(date).format("hh:mm");
+    return dayjs(date).format("HH:mm");
+  };
+
+  const formatHour = (date: Date | string | null) => {
+    return dayjs(date).format("HH");
   };
 
   const formatDateMonthYear = (date: Date | undefined | string) => {
@@ -30,7 +34,7 @@ export const useDateFormatter = () => {
   };
 
   const formatDayDateTime = (date: Date) => {
-    return dayjs(date).format("ddd, DD MMM YYYY - hh:mm");
+    return dayjs(date).format("ddd, DD MMM YYYY - HH:mm");
   };
 
   const formatDay = (date: Date | string | null) => {
@@ -56,6 +60,7 @@ export const useDateFormatter = () => {
     formatDayDate,
     formatDateTime,
     formatTime,
+    formatHour,
     formatDateMonthYear,
     formatDay,
     formatFlightDuration,
