@@ -14,7 +14,7 @@ const PopUpCheckout: React.FC<IModalCheckEmail> = (props) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md transform transition-all sm:w-auto">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md transform transition-all sm:w-auto mx-[20px]">
         <img src={image} alt="tes" className="w-75 mx-auto" />
         <div className="text-sm mt-5 font-bold text-center text-blue-600 mb-4">{label}</div>
         <div
@@ -22,18 +22,18 @@ const PopUpCheckout: React.FC<IModalCheckEmail> = (props) => {
           dangerouslySetInnerHTML={{ __html: desc }}
         ></div>
         {isWithAction && (
-          <div className="flex justify-between">
+          <div className="flex justify-center items-center gap-[40px]">
             <button
-              id="periksa"
+              id="kembali"
               onClick={cancelAction}
-              className="basis-[48%] bg-gray-600 hover:bg-blue-700 text-white font-500 py-2 px-4 rounded-lg w-full"
+              className="w-[125px] bg-transparent border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white font-500 py-2 px-4 rounded-lg"
             >
               {btnLabelCancel}
             </button>
             <button
-              id="benar"
+              id="konfirmasi"
               onClick={okAction}
-              className="basis-[48%] bg-blue-600 hover:bg-blue-700 text-white font-500 py-2 px-4 rounded-lg w-full"
+              className="w-[125px] bg-blue-500 hover:bg-blue-600 text-white font-500 py-2 px-4 rounded-lg"
             >
               {btnlabel}
             </button>

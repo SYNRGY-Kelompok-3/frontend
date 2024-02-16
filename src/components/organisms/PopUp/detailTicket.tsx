@@ -108,7 +108,7 @@ function DetailTiket({ onClose, ticketId }: DetailTiketProps) {
         <Loading />
       ) : (
         <div className="fixed z-[100] top-0 left-0 flex items-center justify-center w-full h-full bg-gray-800 bg-opacity-75">
-          <div className="p-4 bg-white rounded-lg sm:p-8 md:p-12 lg:w-[700px] xl:w-[800px]">
+          <div className="p-5 bg-white rounded-lg sm:p-8 md:p-12 mx-[20px]">
             {/* Header */}
             <div className="flex items-center justify-between mb-4">
               <h1 className="text-xl font-semibold text-black">
@@ -144,8 +144,8 @@ function DetailTiket({ onClose, ticketId }: DetailTiketProps) {
                   </div>
 
                   {/* Kotak atau banner */}
-                  <div className="flex items-center w-full mt-2 border-2 rounded-md border-slate-200">
-                    <div className="mr-2">
+                  <div className="flex items-center w-full border-2 rounded-md border-slate-200">
+                    <div className="">
                       <img
                         src={`${axiosAuth.defaults.baseURL}showFile/${flightData?.airlines.pathLogo}`}
                         alt={flightData?.airlines.airline}
@@ -154,14 +154,14 @@ function DetailTiket({ onClose, ticketId }: DetailTiketProps) {
                     </div>
 
                     {/* Garis Vertikal */}
-                    <div className="h-16 mx-2 border-l text-slate-400"></div>
+                    <div className="h-16 border-l text-slate-400"></div>
 
                     {/* Kolom Kedua */}
-                    <div className="flex flex-col ms-2">
+                    <div className="flex flex-col px-3">
                       <p className="font-medium text-black" style={{ fontSize: "14px" }}>
                         {flightData?.airlines.airline}
                       </p>
-                      <p className="font-semibold text-slate-500" style={{ fontSize: "12px" }}>
+                      <p className="font-semibold text-slate-500 text-wrap" style={{ fontSize: "12px" }}>
                         {flightData?.flightNumber} • {flightData?.passengerClass} • {flightData?.duration}
                       </p>
                     </div>

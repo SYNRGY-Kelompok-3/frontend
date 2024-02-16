@@ -3,7 +3,7 @@ import KreditDebitIcon from "src/assets/images/kreditdebit.png";
 import { usePayment } from "src/usecases/modules/checkout/usePayment";
 import { memo } from "react";
 import PopUpCheckout from "../PopUp/PopUpCheckout";
-import Image from "src/assets/confirm-payment.svg";
+import Image from "src/assets/confirmpayment.svg";
 
 const Payment = memo(() => {
   const { handleProcessPayment, register, errors, showPopup, reCheckData } = usePayment();
@@ -15,7 +15,7 @@ const Payment = memo(() => {
             <h2 className="font-bold mb-4">Metode Pembayaran</h2>
 
             <div className="flex items-center mb-4">
-              <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 p-2 rounded border border-blue-400">
+              <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 p-2 rounded-lg border border-blue-400">
                 Kartu Kredit/Debit
               </span>
               <img src={KreditDebitIcon} alt="credit card" />
@@ -29,7 +29,7 @@ const Payment = memo(() => {
                   id="cardNumber"
                   {...register("nomorRekening", { required: true })}
                   placeholder="Masukan nomor kartu kredit"
-                  className="shadow text-xs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow text-xs appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
                 {errors.nomorRekening && <span className="text-[10px] text-red-500">This is required</span>}
               </div>
@@ -41,7 +41,7 @@ const Payment = memo(() => {
                   id="cardName"
                   {...register("bankPembayaran", { required: true })}
                   placeholder="Masukan nama kartu kredit"
-                  className="shadow text-xs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow text-xs appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
                 {errors.bankPembayaran && <span className="text-[10px] text-red-500">This is required</span>}
               </div>
@@ -56,7 +56,7 @@ const Payment = memo(() => {
                     id="expiryDate"
                     {...register("masaBerlaku", { required: true })}
                     placeholder="MM/YY"
-                    className="shadow text-xs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="shadow text-xs appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   />
                   {errors.masaBerlaku && <span className="text-[10px] text-red-500">This is required</span>}
                 </div>
@@ -69,7 +69,7 @@ const Payment = memo(() => {
                     id="cvv"
                     {...register("cvvCvn", { required: true })}
                     placeholder="CVV"
-                    className="shadow text-xs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="shadow text-xs appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   />
                   {errors.cvvCvn && <span className="text-[10px] text-red-500">This is required</span>}
                 </div>
@@ -98,7 +98,7 @@ const Payment = memo(() => {
       </div>
       {showPopup && (
         <PopUpCheckout
-          btnlabel="Ya, Benar"
+          btnlabel="Konfirmasi"
           btnLabelCancel="Kembali"
           okAction={() => handleProcessPayment()}
           cancelAction={() => reCheckData()}

@@ -1,14 +1,16 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { useState } from "react";
 import Image from "src/components/atoms/Img";
 import LogoBlue from "src/assets/LogoBlue.png";
+import ModalLogout from "src/components/organisms/PopUp/modalLogout";
 
 function Sidebar() {
-  const handleLogout = () => {
-    const c = confirm("are you sure want to logout?");
-    if (c) {
-      localStorage.removeItem("token");
-      window.location.reload();
-    }
+  const [logoutModal, setLogoutModal] = useState(false);
+
+  const location = useLocation();
+
+  const handleCloseModal = () => {
+    setLogoutModal(false);
   };
 
   return (
@@ -56,7 +58,11 @@ function Sidebar() {
                 to={"/dashboard/tiket"}
               >
                 <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                  <i className="fa-solid fa-ticket text-lime-500"></i>
+                  <i
+                    className={`fa-solid fa-ticket ${
+                      location.pathname === "/dashboard/tiket" ? "text-lime-500" : "text-gray-500"
+                    }`}
+                  ></i>
                 </div>
                 <span className="ml-1 duration-300 opacity-100 pointer-events-none ease">Tiket</span>
               </NavLink>
@@ -73,7 +79,11 @@ function Sidebar() {
                 to={"dashboard/analitik"}
               >
                 <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                  <i className="fa-solid fa-chart-simple"></i>
+                  <i
+                    className={`fa-solid fa-ticket ${
+                      location.pathname === "/dashboard/analitik" ? "text-lime-500" : "text-gray-500"
+                    }`}
+                  ></i>
                 </div>
                 <span className="ml-1 duration-300 opacity-100 pointer-events-none ease">Analitik</span>
               </NavLink>
@@ -83,7 +93,7 @@ function Sidebar() {
                 className={
                   "py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors dark:text-white dark:opacity-80 hover:text-red-500 hover:font-bold"
                 }
-                onClick={handleLogout}
+                onClick={() => setLogoutModal(true)}
               >
                 <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                   <i className="fa-solid fa-arrow-right-from-bracket"></i>
@@ -94,6 +104,7 @@ function Sidebar() {
           </ul>
         </div>
       </aside>
+      <ModalLogout visible={logoutModal} onClose={handleCloseModal} />
     </>
   );
 }
