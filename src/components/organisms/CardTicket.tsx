@@ -18,7 +18,7 @@ const { VITE_APP_API_URL } = import.meta.env;
 const CardTicket = memo((data: TProps) => {
   const { ticketData } = data;
   const { onShowTicketDetail, showModalDetailTicket, onCloseTicketDetail } = useCardTicket();
-  const { formatDay, formatTime, formatHour, formatFlightDuration } = useDateFormatter();
+  const { formatDay, formatTime, formatFlightDuration } = useDateFormatter();
   return (
     <>
       <Card className="mb-3 rounded-xl">
@@ -32,7 +32,6 @@ const CardTicket = memo((data: TProps) => {
                 <div className="justify-self-center">{formatDay(ticketData.flightTime)}</div>
                 <div className="justify-self-center font-semibold text-lg">
                   {formatTime(ticketData.flightTime)}{" "}
-                  {Number(formatHour(ticketData.flightTime)) < 12 ? "AM" : "PM"}
                 </div>
                 <div className="justify-self-center">{ticketData.originAirport}</div>
               </div>
@@ -51,7 +50,6 @@ const CardTicket = memo((data: TProps) => {
                 <div className="justify-self-center">{formatDay(ticketData.arrivedTime)}</div>
                 <div className="justify-self-center font-semibold text-lg">
                   {formatTime(ticketData.arrivedTime)}{" "}
-                  {Number(formatHour(ticketData.arrivedTime)) < 12 ? "AM" : "PM"}
                 </div>
                 <div className="justify-self-center">{ticketData.destinationAirport}</div>
               </div>
@@ -78,6 +76,7 @@ const CardTicket = memo((data: TProps) => {
                 </h2>
               </div>
               <Button
+                id={"detail-tiket"}
                 content={"Lihat Detail"}
                 className={"  self-stretch p-3 rounded-lg bg-[#3e7bfa] text-white"}
                 onClick={() => onShowTicketDetail(ticketData.id)}

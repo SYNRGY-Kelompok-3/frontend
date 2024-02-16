@@ -16,14 +16,14 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose, id }) => {
   return (
     <div className="fixed inset-0 bg-opacity-50 backdrop-blur-sm flex justify-center items-center">
       <div className="w-[400px] m-5 bg-white shadow-xl flex flex-col p-8 rounded-lg gap-3">
-        <i className="fa fa-times self-end hover:cursor-pointer" onClick={onClose}></i>
+        <i id="close" className="fa fa-times self-end hover:cursor-pointer" onClick={onClose}></i>
         <div className="flex flex-col items-center justify-center text-center">
           <Image src={IconCO} alt={"Confirm Order"} className="w-[190px] h-[180px] mb-5"></Image>
           <p className="text-black text-lg font-bold mb-2">Apakah Data Penumpang Sudah Benar?</p>
           <p className="text-black text-sm">
             Setelah menekan tombol
             <span className="text-[#3E7BFA] font-semibold text-center text-sm"> “Ya, Benar”</span> maka data
-            pemesanan akan dimasukan kedalam sistem dan tidak bisa diubah.
+            yang sudah di hapus dari sistem dan tidak bisa di kembalikan.
           </p>
         </div>
         <div className="flex justify-center items-center gap-3">

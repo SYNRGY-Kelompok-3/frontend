@@ -13,6 +13,7 @@ import { Button } from "flowbite-react";
 
 const FullSearchTickets: FC = () => {
   const { ticketList, isLoading, isLoadingLoadMore, params, loadMore } = useGetTicketList();
+
   const tickets: ITicket[] = ticketList as ITicket[];
   const { scrollDirection, scrollY } = useScroll();
 
@@ -22,7 +23,7 @@ const FullSearchTickets: FC = () => {
         <div
           className={`sticky ${
             scrollDirection === "down" ? "top-[5rem] transition-all" : "top-0 transition-all"
-          }  z-20 mx-[20px] sm:mx-10 xl:mx-[250px] radius-lg rounded-md p-5`}
+          }  z-20 mx-[20px] sm:mx-10 md:mx-[90px] lg:mx-[125px] xl:mx-[200px] radius-lg rounded-md p-5`}
           style={{
             backgroundImage: `url(${bgPrimary})`,
             backgroundSize: "cover",
@@ -33,7 +34,7 @@ const FullSearchTickets: FC = () => {
           <FilterHome isFilterMore={true} />
         </div>
 
-        <div className="flex mx-[20px] sm:mx-10 xl:mx-[250px] mt-5 justify-between">
+        <div className="flex mx-[20px] sm:mx-10 md:mx-[90px] lg:mx-[125px] xl:mx-[200px] mt-5 justify-between">
           <div className="basis-[20%] sticky top-[12rem]" style={{ height: "130vh", overflowY: "scroll" }}>
             <div className="position-sticky top-[12rem]">
               <h2 className={`justify-self-end text-xl font-medium my-2 ${scrollY > 180 ? "pt-3 pb-3" : ""}`}>
@@ -64,9 +65,12 @@ const FullSearchTickets: FC = () => {
               : tickets.length <= 0 && <Image id={"not-found"} src={NotFound} alt={"Data Not Found"} />}
             {isLoadingLoadMore &&
               Array.from({ length: 3 }).map((_, index) => <CardSkeletonLoading key={index} />)}
-            <Button className="w-full z-1" onClick={loadMore}>
-              Load More
-            </Button>
+
+            {tickets.length >= 10 && (
+              <Button className="w-full z-1" onClick={loadMore}>
+                Load More
+              </Button>
+            )}
           </div>
         </div>
       </div>

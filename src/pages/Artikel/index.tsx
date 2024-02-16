@@ -24,7 +24,7 @@ interface Probs {
 }
 
 function Artikel() {
-  const breadcrumbSteps = [{ text: "Artikel", link: "/artikel" }, { text: "" }];
+  const breadcrumbSteps = [{ text: "Artikel" }];
 
   const [activeFilter, setActiveFilter] = useState(ARTICLE_FILTER.SEMUA);
 

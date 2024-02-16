@@ -18,7 +18,7 @@ export const useDateFormatter = () => {
   };
 
   const formatTime = (date: Date | string | null) => {
-    return dayjs(date).format("HH:mm");
+    return dayjs(date).format("HH:mm A");
   };
 
   const formatHour = (date: Date | string | null) => {

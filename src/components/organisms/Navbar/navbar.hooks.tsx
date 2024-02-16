@@ -54,14 +54,6 @@ function useNavbarHooks() {
     }
   }, []);
 
-  const handleLogout = useCallback(() => {
-    const c = window.confirm("are you sure want to logout?");
-    if (c) {
-      localStorage.removeItem("token");
-      window.location.reload();
-    }
-  }, []);
-
   const fetchUser = useCallback(async () => {
     try {
       const response = await fetchProfile();
@@ -93,16 +85,24 @@ function useNavbarHooks() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleDocumentClick]);
 
+  const [logoutModal, setLogoutModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setLogoutModal(false);
+  };
+
   return {
     navMenu,
     sidemenuResult,
     user,
     role,
-    handleLogout,
     handleCheckboxChange,
     token,
     isChecked,
     checkboxRef,
+    logoutModal,
+    setLogoutModal,
+    handleCloseModal,
   };
 }
 

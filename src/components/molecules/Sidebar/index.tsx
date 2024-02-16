@@ -1,14 +1,14 @@
 import { NavLink } from "react-router-dom";
-
-const handleLogout = () => {
-  const c = confirm("are you sure want to logout?");
-  if (c) {
-    localStorage.removeItem("token");
-    window.location.reload();
-  }
-};
+import ModalLogout from "src/components/organisms/PopUp/modalLogout";
+import { useState } from "react";
 
 function Sidebar() {
+  const [logoutModal, setLogoutModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setLogoutModal(false);
+  };
+
   return (
     <>
       <aside className="w-full sm:w-1/4 mt-4 sm:ml-8 xl:ml-25 text-lg">
@@ -42,7 +42,7 @@ function Sidebar() {
           </li>
           <li id="notifikasi" className="w-[50px] sm:w-[180px] lg:w-[250px]">
             <NavLink
-              to="/notification"
+              to="/notifikasi"
               className={({ isActive }): string =>
                 `flex justify-center sm:justify-start items-center ${
                   isActive
@@ -96,7 +96,7 @@ function Sidebar() {
           </li>
           <li id="keluar" className="w-[50px] sm:w-[180px] lg:w-[250px]">
             <div
-              onClick={handleLogout}
+              onClick={() => setLogoutModal(true)}
               className="flex items-center py-5 hover:text-red-500 cursor-pointer hover:font-bold"
             >
               <svg
@@ -117,6 +117,7 @@ function Sidebar() {
           </li>
         </ul>
       </aside>
+      <ModalLogout visible={logoutModal} onClose={handleCloseModal} />
     </>
   );
 }

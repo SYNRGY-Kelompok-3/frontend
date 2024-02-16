@@ -2,7 +2,7 @@ import React from "react";
 import Check from "../../atoms/Icon/Check";
 import Seat from "../../atoms/Seat";
 import { rows, emptySeats, seatPrice } from "./helpers";
-import { SeatProps } from "../SeatModal";
+import { SeatProps } from "../PopUp/SeatModal";
 
 interface seatStateProps {
   selectedSeats: SeatProps[];

@@ -6,9 +6,6 @@ import BurgerSoda from "../../../assets/BurgerSoda.svg";
 import ChairOffice from "../../../assets/ChairOffice.svg";
 import { useSelector } from "react-redux";
 import { RootState } from "src/state/store";
-import { useState } from "react";
-import PopupConfirm from "src/components/organisms/ForgotPassword/ModalPopupConfirm";
-import ImagePopup from "src/assets/success-payment.svg";
 
 interface SummaryOrderProps {
   modalHandler: () => void;
@@ -16,10 +13,9 @@ interface SummaryOrderProps {
 
 function SummaryOrder({ modalHandler }: SummaryOrderProps) {
   const { detailTicket } = useSelector((state: RootState) => state.ticket);
-  const [showPopup, setShowPopup] = useState<boolean>(true);
   return (
     <>
-      <div className="w-full flex flex-col mx-2.5">
+      <div className="w-full flex flex-col">
         <div key={detailTicket.id}>
           <div className="rounded-lg border border-[#EDEDED] p-5">
             <details className="group" open>
@@ -137,6 +133,7 @@ function SummaryOrder({ modalHandler }: SummaryOrderProps) {
                       </p>
                     </div>
                     <Button
+                      id={"pilih-kursi"}
                       type="button"
                       className={"text-xs font-semibold text-blue-500"}
                       content={"Pilih Kursi"}
@@ -149,15 +146,6 @@ function SummaryOrder({ modalHandler }: SummaryOrderProps) {
           </div>
         </div>
       </div>
-      {showPopup && (
-        <PopupConfirm
-          redirectAction={() => setShowPopup(false)}
-          btnlabel="Selesai"
-          image={ImagePopup}
-          label="Yeay, Pembayaran Telah Berhasil"
-          desc="Selamat pembayaran anda telah berhasil, Nikmati perjalananmu bersama travel.id"
-        />
-      )}
     </>
   );
 }

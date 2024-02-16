@@ -10,7 +10,7 @@ import { useSearchTicket } from "src/usecases/modules/home";
 import { memo, useState } from "react";
 import { Datepicker } from "flowbite-react";
 import { useDateFormatter } from "src/usecases/common/useDateFormat";
-import Loading from "src/components/organisms/Loading";
+import Loading from "src/components/organisms/PopUp/Loading";
 interface IFilterHome {
   isFilterMore?: boolean;
 }
@@ -418,7 +418,7 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
           >
             <div className="flex justify-center gap-2.5 self-stretch">
               <div className="w-full gap-3 self-stretch p-4 rounded-lg bg-white">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 items-center gap-1 sm:gap-2 self-stretch">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 items-center gap-1 sm:gap-2 self-stretch">
                   <div className="justify-start py-1 lg:py-2 rounded-bl-xl bg-white">
                     <div className="flex items-center">
                       <Image src={Departure} alt={"Departure"} className="h-[15px] mr-2" />
