@@ -89,7 +89,7 @@ const Payment = memo(() => {
                 id={"bayar"}
                 content={"Bayar"}
                 className={
-                  "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg-lg mt-4 mx-auto w-full"
+                  "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-4 mx-auto w-full"
                 }
               />
             </form>
