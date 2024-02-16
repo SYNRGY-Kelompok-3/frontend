@@ -53,6 +53,7 @@ const SeatLists = ({ selectedSeats, setSelectedSeats }: seatStateProps) => {
           } rounded-lg flex items-center cursor-pointer hover:scale-105 transition duration-150 border-[2px]`}
           key={key}
           onClick={() => handleClick(key[0], key.substring(1))}
+          id={`${key[0]}${key.substring(1)}`}
         >
           {isSelected ? <Check /> : key}
         </div>

@@ -27,6 +27,7 @@ import TermOfService from "src/pages/TermsOfService";
 import ArtikelTerbaru from "src/pages/ArtikelTerbaru";
 import ArtikelWisata from "src/pages/ArtikelWisata";
 import ArtikelKuliner from "src/pages/ArtikelKuliner";
+import AndroidInvoice from "src/components/organisms/Invoice/AndroidInvoice";
 
 function Router() {
   return (
@@ -49,6 +50,10 @@ function Router() {
             <Route element={<PrivateProvider />}>
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/invoices" element={<Invoice />} />
+              <Route
+                path="/andro-invoice/:orderNumber/:orderDate/:bankName/:accountName/:accountNumber/:fullName/:phoneNumber/:emailAddress/:orderName/:orderPrice/:serviceFee/:totalPayment"
+                element={<AndroidInvoice />}
+              />
               <Route element={<LayoutUserDashboard />}>
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/riwayat-transaksi" element={<Riwayat />} />
