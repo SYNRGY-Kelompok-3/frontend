@@ -51,26 +51,26 @@ const Seat = ({ rows, renderSeat }: SeatProps) => {
 
   return (
     // Map the seat lists according to rows
-    <div className="w-[324px]  font-semibold text-black pt-[312px] pl-2 relative h-fit">
-      <div className="flex justify-between bg-white">
+    <div className="w-[324px] font-semibold text-black pt-[180px] relative h-fit">
+      <div className="flex justify-between bg-white mx-2">
         {!loaded ? (
           <p className="w-full text-center">Loading seats ...</p>
         ) : (
           <>
-            <div>
+            <div className="">
               {Array.from({ length: rows }, (_, index) => {
                 if (
                   (passengerClass === "business" && index < 7) ||
                   (passengerClass === "economy" && airlinveVar === "Garuda" && index > 6)
                 ) {
                   return (
-                    <div key={`column1-${index + 1}`} className="flex items-center justify-center mb-4 ">
+                    <div key={`column1-${index + 1}`} className="flex items-center justify-center gap-2 mb-4">
                       {["A", "B", "C"].map((seat) => renderSeat({ seat, row: index + 1 }))}
                     </div>
                   );
                 } else if (passengerClass === "economy" && airlinveVar !== "Garuda") {
                   return (
-                    <div key={`column1-${index + 1}`} className="flex items-center justify-center mb-4 ">
+                    <div key={`column1-${index + 1}`} className="flex items-center justify-center gap-2 mb-4">
                       {["A", "B", "C"].map((seat) => renderSeat({ seat, row: index + 1 }))}
                     </div>
                   );
@@ -86,20 +86,20 @@ const Seat = ({ rows, renderSeat }: SeatProps) => {
               </div>
             </div>
 
-            <div>
+            <div className="">
               {Array.from({ length: rows }, (_, index) => {
                 if (
                   (passengerClass === "business" && index < 7) ||
                   (passengerClass === "economy" && airlinveVar === "Garuda" && index > 6)
                 ) {
                   return (
-                    <div key={`column1-${index + 1}`} className="flex items-center justify-center mb-4 ">
+                    <div key={`column1-${index + 1}`} className="flex items-center justify-center gap-2 mb-4">
                       {["D", "E", "F"].map((seat) => renderSeat({ seat, row: index + 1 }))}
                     </div>
                   );
                 } else if (passengerClass === "economy" && airlinveVar !== "Garuda") {
                   return (
-                    <div key={`column1-${index + 1}`} className="flex items-center justify-center mb-4 ">
+                    <div key={`column1-${index + 1}`} className="flex items-center justify-center gap-2 mb-4">
                       {["D", "E", "F"].map((seat) => renderSeat({ seat, row: index + 1 }))}
                     </div>
                   );

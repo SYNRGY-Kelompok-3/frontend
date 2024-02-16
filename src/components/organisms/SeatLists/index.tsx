@@ -48,7 +48,7 @@ const SeatLists = ({ selectedSeats, setSelectedSeats }: seatStateProps) => {
       const [, data] = seatCategory;
       return (
         <div
-          className={`w-[41px] h-[41px] mr-2 justify-center ${
+          className={`w-[41px] h-[41px] justify-center ${
             isSelected ? "bg-white border-blue-300 border-2" : data.color
           } rounded-lg flex items-center cursor-pointer hover:scale-105 transition duration-150 border-[2px]`}
           key={key}
@@ -60,7 +60,7 @@ const SeatLists = ({ selectedSeats, setSelectedSeats }: seatStateProps) => {
     } else {
       return (
         <div
-          className={`w-[41px] h-[41px] mr-2 justify-center rounded-lg flex items-center cursor-pointer hover:scale-105 transition duration-150`}
+          className={`w-[41px] h-[41px] justify-center rounded-lg flex items-center cursor-pointer hover:scale-105 transition duration-150`}
           key={key}
           onClick={() => handleClick(key[0], key.substring(1))}
         >
@@ -75,7 +75,7 @@ const SeatLists = ({ selectedSeats, setSelectedSeats }: seatStateProps) => {
     const key = `${seat}${row}`;
 
     if ((seat === "A" || seat === "F") && row === "1") {
-      return <div className="w-[41px] h-[41px] mr-2" key={key} />;
+      return <div className="w-[41px] h-[41px]" key={key} />;
     }
 
     return isSeatEmpty(seat, row) ? renderEmptySeat(key) : renderSeatWithCategory(key);

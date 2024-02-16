@@ -63,14 +63,13 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
   };
 
   return (
-    <div className="w-[698px] bg-white h-fit p-[20px] rounded-lg mt-[240px]">
+    <div className="w-[698px] h-fit bg-white mx-[20px] md:mx-0 p-[20px] rounded-lg">
       <div className="relative w-full h-full">
         <div className="flex justify-end">
           <button id="close" onClick={onClose} className="text-black">
             <CloseIcon />
           </button>
         </div>
-
         <div className="pt-[40px] space-y-[20px]">
           <div className="text-center">
             <h1 className="text-sm font-medium tracking-wide text-black">Silahkan memilih nomor kursi</h1>
@@ -82,7 +81,7 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
           <div className="flex items-center justify-center w-full h-20 gap-[20px]">{renderTag()}</div>
 
           <div
-            className="h-[700px] bg-no-repeat bg-center bg-scroll overflow-y-scroll"
+            className="h-[500px] bg-no-repeat bg-center bg-scroll overflow-y-scroll"
             style={{
               backgroundImage: `url(${bgBody})`,
               backgroundSize: "325px",
@@ -104,7 +103,7 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
           </div>
           <Button
             id={"pilih-kursi"}
-            className="px-4 py-2 text-white bg-blue-500 rounded-lg text-sm"
+            className="px-4 py-2 h-full text-white bg-blue-500 rounded-lg text-sm"
             content="Pilih Kursi"
             onClick={handlePilihKursi}
           />

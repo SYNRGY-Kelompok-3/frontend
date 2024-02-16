@@ -18,9 +18,9 @@ const Order = ({ modalHandler }: OrderProps) => {
 
   return (
     <section>
-      <div className="flex justify-center px-[38px]">
+      <div className="flex justify-center">
         {[CHECKOUT_FLOW.FILL_IDENTITY, CHECKOUT_FLOW.FILL_PAYMENT_METHOD].includes(flow) && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full mx-[20px] sm:mx-10 xl:mx-28">
             {flow === CHECKOUT_FLOW.FILL_IDENTITY ? <FormCheckout /> : <CardPayment />}
             <SummaryOrder modalHandler={modalHandler} />
           </div>

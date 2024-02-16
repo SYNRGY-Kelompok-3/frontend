@@ -26,7 +26,7 @@ function TimelineOrder() {
               {detailTicket.destinationCity} - {detailTicket.destinationAirport}
             </p>
           </div>
-          <div className="flex items-center rounded border border-[#EDEDED] px-3 py-2">
+          <div className="flex items-center rounded-lg border border-[#EDEDED] px-3 py-2">
             <div className="mr-2">
               <Image
                 src={`${VITE_APP_API_URL}showFile/${detailTicket.airlines.pathLogo}`}

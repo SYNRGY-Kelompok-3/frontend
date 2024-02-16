@@ -6,8 +6,8 @@ interface BackdropProps {
 
 const Backdrop = ({ children }: BackdropProps) => {
   return (
-    <div className="fixed top-0 z-50 w-screen h-screen overflow-y-scroll bg-black/50">
-      <div className="flex items-center justify-center w-full h-full my-[100px]">{children}</div>
+    <div className="fixed top-0 z-50 w-screen h-screen bg-black/50">
+      <div className="flex items-center justify-center w-full h-full mt-[40px]">{children}</div>
     </div>
   );
 };

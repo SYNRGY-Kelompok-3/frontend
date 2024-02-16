@@ -16,7 +16,7 @@ function SummaryOrder({ modalHandler }: SummaryOrderProps) {
   return (
     <>
       <div className="w-full flex flex-col">
-        <div key={detailTicket.id}>
+        <div key={detailTicket.id} className="space-y-3">
           <div className="rounded-lg border border-[#EDEDED] p-5">
             <details className="group" open>
               <summary className="flex items-center justify-between pb-5 text-base font-semibold list-none cursor-pointer">
@@ -95,9 +95,9 @@ function SummaryOrder({ modalHandler }: SummaryOrderProps) {
               </ul>
             </details>
           </div>
-          <div>
+          <div className="rounded-lg border border-[#EDEDED] p-5">
             <details className="group" open>
-              <summary className="flex items-center justify-between py-5 text-base font-semibold list-none cursor-pointer">
+              <summary className="flex items-center justify-between text-base font-semibold list-none cursor-pointer">
                 Fasilitas Tambahan
                 <div>
                   <svg
@@ -122,25 +122,21 @@ function SummaryOrder({ modalHandler }: SummaryOrderProps) {
                   </svg>
                 </div>
               </summary>
-              <div className="rounded-lg border border-[#EDEDED] p-5">
-                <ul>
-                  <li className="flex items-center">
-                    <Image src={ChairOffice} alt={""} className={""} />
-                    <div className="flex-1 ml-1.5">
-                      <h3 className="text-xs font-medium">Amankan Kursi</h3>
-                      <p className="text-[10px] font-semibold text-[#757575]">
-                        Jika anda ingin memilih kursi, maka akan dikenakan biaya tambahan
-                      </p>
-                    </div>
-                    <Button
-                      id={"pilih-kursi"}
-                      type="button"
-                      className={"text-xs font-semibold text-blue-500"}
-                      content={"Pilih Kursi"}
-                      onClick={modalHandler}
-                    />
-                  </li>
-                </ul>
+              <div className="flex items-center pt-5">
+                <Image src={ChairOffice} alt={""} className={""} />
+                <div className="flex-1 ml-1.5">
+                  <h3 className="text-xs font-medium">Amankan Kursi</h3>
+                  <p className="text-[10px] font-semibold text-[#757575]">
+                    Jika anda ingin memilih kursi, maka akan dikenakan biaya tambahan
+                  </p>
+                </div>
+                <Button
+                  id={"pilih-kursi"}
+                  type="button"
+                  className={"text-xs font-semibold text-blue-500"}
+                  content={"Pilih Kursi"}
+                  onClick={modalHandler}
+                />
               </div>
             </details>
           </div>
