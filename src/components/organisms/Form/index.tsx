@@ -235,7 +235,7 @@ const FormCheckout: FC = memo(() => {
       </form>
       {showPopup && (
         <PopUpCheckout
-          btnlabel="Ya, Benar"
+          btnlabel="Konfirmasi"
           btnLabelCancel="Periksa Kembali"
           okAction={() => handleCheckoutPayment()}
           cancelAction={() => reCheckData()}

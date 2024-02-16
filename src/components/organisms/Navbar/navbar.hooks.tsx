@@ -35,7 +35,7 @@ function useNavbarHooks() {
     { text: "Profile", link: "/profile", id: "profile" },
     { text: "Notifikasi", link: "/notifikasi", id: "notifikasi" },
     ...navMenu,
-    { text: "Dashboard", link: "/dashboard", id: "dashboard" },
+    { text: "Dashboard", link: "/dashboard/tiket", id: "dashboard" },
   ];
 
   const checkboxRef = useRef<HTMLInputElement>(null);
