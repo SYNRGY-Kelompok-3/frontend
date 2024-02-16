@@ -50,10 +50,6 @@ function Router() {
             <Route element={<PrivateProvider />}>
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/invoices" element={<Invoice />} />
-              <Route
-                path="/andro-invoice/:orderNumber/:orderDate/:bankName/:accountName/:accountNumber/:fullName/:phoneNumber/:emailAddress/:orderName/:orderPrice/:serviceFee/:totalPayment"
-                element={<AndroidInvoice />}
-              />
               <Route element={<LayoutUserDashboard />}>
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/riwayat-transaksi" element={<Riwayat />} />
@@ -61,6 +57,10 @@ function Router() {
                 <Route path="/notifikasi" element={<Notifikasi />} />
               </Route>
             </Route>
+            <Route
+              path="/andro-invoice/:orderNumber/:orderDate/:bankName/:accountName/:accountNumber/:fullName/:phoneNumber/:emailAddress/:orderName/:orderPrice/:serviceFee/:totalPayment"
+              element={<AndroidInvoice />}
+            />
           </Route>
           <Route element={<PrivateProvider />}>
             <Route element={<LayoutAdminDashboard />}>
