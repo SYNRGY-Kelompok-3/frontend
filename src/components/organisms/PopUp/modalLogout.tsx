@@ -21,14 +21,14 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
           <Image src={IconCO} alt={"Confirm Order"} className="w-[190px] h-[180px] mb-5"></Image>
           <p className="text-black text-lg font-bold mb-2">Apakah Anda Yakin Ingin Keluar?</p>
         </div>
-        <div className="flex justify-center items-center gap-3">
+        <div className="flex justify-center items-center gap-[40px]">
           <Button
             id="kembali"
             content={"Tidak"}
             type={"submit"}
             onClick={onClose}
             className={
-              "inline-block mt-3 w-[100px] p-3 font-bold leading-normal text-lg text-center text-black align-middle transition-all bg-white border-2 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
+              "inline-block mt-3 w-[125px] p-3 font-bold leading-normal text-lg text-center text-black align-middle transition-all bg-white border-2 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
             }
           />
           <Button
@@ -37,7 +37,7 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
             type={"submit"}
             onClick={handleLogout}
             className={
-              "inline-block mt-3 w-[100px] p-3 font-bold leading-normal text-lg text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
+              "inline-block mt-3 w-[125px] p-3 font-bold leading-normal text-lg text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
             }
           />
         </div>
