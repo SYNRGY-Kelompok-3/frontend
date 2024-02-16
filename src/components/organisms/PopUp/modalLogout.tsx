@@ -10,7 +10,7 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.reload();
+    window.location.href = "/";
   };
 
   if (!visible) return null;
