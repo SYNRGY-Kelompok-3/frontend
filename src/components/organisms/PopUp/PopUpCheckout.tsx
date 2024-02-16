@@ -22,18 +22,18 @@ const PopUpCheckout: React.FC<IModalCheckEmail> = (props) => {
           dangerouslySetInnerHTML={{ __html: desc }}
         ></div>
         {isWithAction && (
-          <div className="flex justify-between">
+          <div className="flex justify-center items-center gap-[40px]">
             <button
               id="kembali"
               onClick={cancelAction}
-              className="basis-[48%] bg-gray-600 hover:bg-blue-700 text-white font-500 py-2 px-4 rounded-lg w-full"
+              className="w-[125px] bg-transparent border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white font-500 py-2 px-4 rounded-lg"
             >
               {btnLabelCancel}
             </button>
             <button
               id="konfirmasi"
               onClick={okAction}
-              className="basis-[48%] bg-blue-600 hover:bg-blue-700 text-white font-500 py-2 px-4 rounded-lg w-full"
+              className="w-[125px] bg-blue-500 hover:bg-blue-600 text-white font-500 py-2 px-4 rounded-lg"
             >
               {btnlabel}
             </button>
