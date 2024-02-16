@@ -3,7 +3,7 @@ import IconCP from "../../../assets/PopUp/ConfirmPayment.svg";
 import Image from "../../atoms/Img";
 import PaymentSuccess from "./paymentSuccess";
 import { useState } from "react";
-import Loading from "src/components/organisms/Loading";
+import Loading from "src/components/organisms/PopUp/Loading";
 
 interface ConfirmPaymentProps {
   onClose: () => void;

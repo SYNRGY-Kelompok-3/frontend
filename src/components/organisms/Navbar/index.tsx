@@ -10,6 +10,7 @@ import Button from "src/components/atoms/Button";
 import Image from "src/components/atoms/Img";
 import useAction from "./navbar.hooks";
 import { useScroll } from "src/usecases/common/useScroll";
+import ModalLogout from "../PopUp/modalLogout";
 
 interface NavmenuProps {
   bg?: "bg-transparent" | "bg-opaque" | "bg-white shadow-md" | undefined;
@@ -17,8 +18,18 @@ interface NavmenuProps {
 
 function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
   const navigate = useNavigate();
-  const { navMenu, sidemenuResult, user, handleLogout, handleCheckboxChange, token, isChecked, checkboxRef } =
-    useAction();
+  const {
+    navMenu,
+    sidemenuResult,
+    user,
+    handleCheckboxChange,
+    token,
+    isChecked,
+    checkboxRef,
+    logoutModal,
+    setLogoutModal,
+    handleCloseModal,
+  } = useAction();
   const { scrollDirection } = useScroll();
 
   return (
@@ -127,7 +138,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
                   <div className="flex w-full">
                     <Button
                       id={"logout"}
-                      onClick={handleLogout}
+                      onClick={() => setLogoutModal(true)}
                       type={"button"}
                       className={
                         "w-full bg-gradient-to-r from-red-500 to-pink-400 text-white font-medium text-lg sm:text-xl my-8 mx-5 py-2 px-4 rounded-md hover:from-red-600 hover:to-pink-500 transition-all duration-500 ease-in-out hover:scale-[1.02]"
@@ -153,6 +164,7 @@ function Navbar({ bg = "bg-transparent" }: NavmenuProps) {
           </div>
         </div>
       </nav>
+      <ModalLogout visible={logoutModal} onClose={handleCloseModal} />
     </>
   );
 }

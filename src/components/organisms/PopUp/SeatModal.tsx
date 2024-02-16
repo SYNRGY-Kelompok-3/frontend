@@ -66,7 +66,7 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
     <div className="w-[698px] bg-white h-fit p-[20px] rounded-lg mt-[240px]">
       <div className="relative w-full h-full">
         <div className="flex justify-end">
-          <button onClick={onClose} className="text-black">
+          <button id="close" onClick={onClose} className="text-black">
             <CloseIcon />
           </button>
         </div>
@@ -103,7 +103,8 @@ const SeatModal = ({ onClose }: DetailTiketProps) => {
             </p>
           </div>
           <Button
-            className="px-4 py-2 text-white bg-blue-500 rounded-[4px] text-sm"
+            id={"pilih-kursi"}
+            className="px-4 py-2 text-white bg-blue-500 rounded-lg text-sm"
             content="Pilih Kursi"
             onClick={handlePilihKursi}
           />

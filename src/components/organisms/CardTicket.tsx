@@ -76,6 +76,7 @@ const CardTicket = memo((data: TProps) => {
                 </h2>
               </div>
               <Button
+                id={"detail-tiket"}
                 content={"Lihat Detail"}
                 className={"  self-stretch p-3 rounded-lg bg-[#3e7bfa] text-white"}
                 onClick={() => onShowTicketDetail(ticketData.id)}

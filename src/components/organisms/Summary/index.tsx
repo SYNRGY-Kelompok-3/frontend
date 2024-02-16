@@ -15,7 +15,7 @@ function SummaryOrder({ modalHandler }: SummaryOrderProps) {
   const { detailTicket } = useSelector((state: RootState) => state.ticket);
   return (
     <>
-      <div className="w-full flex flex-col mx-2.5">
+      <div className="w-full flex flex-col">
         <div key={detailTicket.id}>
           <div className="rounded-lg border border-[#EDEDED] p-5">
             <details className="group" open>
@@ -133,6 +133,7 @@ function SummaryOrder({ modalHandler }: SummaryOrderProps) {
                       </p>
                     </div>
                     <Button
+                      id={"pilih-kursi"}
                       type="button"
                       className={"text-xs font-semibold text-blue-500"}
                       content={"Pilih Kursi"}

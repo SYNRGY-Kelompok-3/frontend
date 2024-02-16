@@ -40,7 +40,9 @@ function Invoice() {
           backgroundColor: "#3E7BFA",
         }}
       >
-        <h1 className="text-4xl font-semibold text-white">Pembelian Tiket Berhasil</h1>
+        <h1 id="title" className="text-4xl font-semibold text-white">
+          Pembelian Tiket Berhasil
+        </h1>
       </div>
       <div className="flex justify-between mt-4">
         <div>

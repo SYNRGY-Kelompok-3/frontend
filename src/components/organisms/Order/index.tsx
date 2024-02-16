@@ -18,12 +18,12 @@ const Order = ({ modalHandler }: OrderProps) => {
 
   return (
     <section>
-      <div className="flex px-[38px]">
+      <div className="flex justify-center px-[38px]">
         {[CHECKOUT_FLOW.FILL_IDENTITY, CHECKOUT_FLOW.FILL_PAYMENT_METHOD].includes(flow) && (
-          <>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {flow === CHECKOUT_FLOW.FILL_IDENTITY ? <FormCheckout /> : <CardPayment />}
             <SummaryOrder modalHandler={modalHandler} />
-          </>
+          </div>
         )}
         {flow === CHECKOUT_FLOW.INVOICE_SUMMARY && <Invoice />}
         {showPopup && flow === CHECKOUT_FLOW.INVOICE_SUMMARY && (

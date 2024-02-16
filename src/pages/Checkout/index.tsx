@@ -3,7 +3,7 @@ import StepsOrder from "src/components/organisms/Steps";
 import Order from "src/components/organisms/Order";
 import { useState, useEffect } from "react";
 import Backdrop from "src/components/atoms/Backdrop";
-import SeatModal from "src/components/organisms/SeatModal";
+import SeatModal from "src/components/organisms/PopUp/SeatModal";
 import { useLocation } from "react-router-dom";
 import { resetState as resetCheckoutState } from "src/state/checkoutSlice/checkout";
 import { resetState as resetPaymentState } from "src/state/checkoutSlice/payment";

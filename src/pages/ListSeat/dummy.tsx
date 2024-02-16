@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import Button from "src/components/atoms/Button";
 import Backdrop from "src/components/atoms/Backdrop";
-import SeatModal from "src/components/organisms/SeatModal";
+import SeatModal from "src/components/organisms/PopUp/SeatModal";
 
 function DummyDetailTiket() {
   const [showModalDetailTicket, setShowModalDetailTicket] = useState(false);

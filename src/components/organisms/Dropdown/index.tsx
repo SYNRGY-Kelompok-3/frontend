@@ -2,9 +2,10 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Api from "src/services/api";
 
-import Image from "../../atoms/Img";
-import Avatar from "../../../assets/Avatar.png";
-import ChevronDown from "../../../assets/ChevronDown.svg";
+import ModalLogout from "../PopUp/modalLogout";
+import Image from "src/components/atoms/Img";
+import Avatar from "src/assets/Avatar.png";
+import ChevronDown from "src/assets/ChevronDown.svg";
 
 interface Menu {
   text: string;
@@ -19,6 +20,7 @@ function DropdownMenu({ name, picture }: { name: string | undefined; picture: st
   const modalRef = useRef<HTMLDivElement | null>(null);
   const iconRef = useRef<HTMLDivElement | null>(null);
   const [role, setRole] = useState<string>();
+  const [logoutModal, setLogoutModal] = useState(false);
 
   const Menu: Menu[] = [
     { text: "Profile", link: "/profile", id: "profile" },
@@ -70,12 +72,8 @@ function DropdownMenu({ name, picture }: { name: string | undefined; picture: st
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
-  const handleLogout = () => {
-    const c = confirm("are you sure want to logout?");
-    if (c) {
-      localStorage.removeItem("token");
-      window.location.reload();
-    }
+  const handleCloseModal = () => {
+    setLogoutModal(false);
   };
 
   return (
@@ -110,7 +108,8 @@ function DropdownMenu({ name, picture }: { name: string | undefined; picture: st
                 </li>
               ))}
               <li
-                onClick={handleLogout}
+                id="logout"
+                onClick={() => setLogoutModal(true)}
                 className="text-red-500 py-2 px-3 cursor-pointer rounded hover:bg-red-500 hover:text-white hover:font-bold"
               >
                 Logout
@@ -119,6 +118,7 @@ function DropdownMenu({ name, picture }: { name: string | undefined; picture: st
           </div>
         )}
       </div>
+      <ModalLogout visible={logoutModal} onClose={handleCloseModal} />
     </>
   );
 }

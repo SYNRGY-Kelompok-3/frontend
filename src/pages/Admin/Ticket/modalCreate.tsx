@@ -14,7 +14,7 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
   return (
     <div className="fixed inset-0 bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-20">
       <div className="m-5 bg-white shadow-xl flex flex-col p-8 rounded-lg gap-3">
-        <i className="fa fa-times self-end hover:cursor-pointer" onClick={onClose}></i>
+        <i id="close" className="fa fa-times self-end hover:cursor-pointer" onClick={onClose}></i>
         <form
           onSubmit={(e) => {
             handleSubmit(e, currentPage, onClose);

@@ -2,7 +2,7 @@ import Button from "src/components/atoms/Button";
 import KreditDebitIcon from "src/assets/images/kreditdebit.png";
 import { usePayment } from "src/usecases/modules/checkout/usePayment";
 import { memo } from "react";
-import PopUpCheckout from "../PopUpCheckout";
+import PopUpCheckout from "../PopUp/PopUpCheckout";
 import Image from "src/assets/confirm-payment.svg";
 
 const Payment = memo(() => {
@@ -86,9 +86,10 @@ const Payment = memo(() => {
                 .
               </p>
               <Button
+                id={"bayar"}
                 content={"Bayar"}
                 className={
-                  "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 mx-auto w-full"
+                  "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-4 mx-auto w-full"
                 }
               />
             </form>

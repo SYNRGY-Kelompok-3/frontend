@@ -10,7 +10,7 @@ import { useSearchTicket } from "src/usecases/modules/home";
 import { memo, useState } from "react";
 import { Datepicker } from "flowbite-react";
 import { useDateFormatter } from "src/usecases/common/useDateFormat";
-import Loading from "src/components/organisms/Loading";
+import Loading from "src/components/organisms/PopUp/Loading";
 interface IFilterHome {
   isFilterMore?: boolean;
 }
