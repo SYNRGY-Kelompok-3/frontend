@@ -44,7 +44,7 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose, id }) => {
   return (
     <div className="fixed inset-0 bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-20">
       <div className="w-[900px] m-5 bg-white shadow-xl flex flex-col p-8 rounded-lg gap-3">
-        <i className="fa fa-times self-end hover:cursor-pointer" onClick={onClose}></i>
+        <i id="close" className="fa fa-times self-end hover:cursor-pointer" onClick={onClose}></i>
         <form onSubmit={(e) => handleUpdate(e, id, onClose)}>
           <div className="grid grid-cols-3 gap-4">
             <div className="flex flex-col">

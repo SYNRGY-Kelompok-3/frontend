@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { axiosAuth } from "src/services/axios";
 import { useNavigate } from "react-router-dom";
-import Loading from "src/components/organisms/Loading";
+import Loading from "src/components/organisms/PopUp/Loading";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "src/state/store";
 import { setDetailTicket } from "src/state/ticketSlice/ticketList";
@@ -114,7 +114,7 @@ function DetailTiket({ onClose, ticketId }: DetailTiketProps) {
               <h1 className="text-xl font-semibold text-black">
                 Penerbangan Dari {flightData?.originCity} ke {flightData?.destinationCity}
               </h1>
-              <button onClick={onClose} className="text-black">
+              <button id="close-detail" onClick={onClose} className="text-black">
                 <X size={24} />
               </button>
             </div>
@@ -246,7 +246,11 @@ function DetailTiket({ onClose, ticketId }: DetailTiketProps) {
                   <p className="font-bold text-black sm:ml-2">/pax</p>
                 </div>
               </div>
-              <button className="px-5 py-3 text-white bg-blue-500 rounded" onClick={handleCheckout}>
+              <button
+                id="pesan-tiket"
+                className="px-5 py-3 text-white bg-blue-500 rounded-lg"
+                onClick={handleCheckout}
+              >
                 Pesan Tiket
               </button>
             </div>

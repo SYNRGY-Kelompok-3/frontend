@@ -19,6 +19,7 @@ const PopupConfirm: React.FC<IModalCheckEmail> = (props) => {
           dangerouslySetInnerHTML={{ __html: desc }}
         ></div>
         <button
+          id="selesai"
           onClick={redirectAction}
           className="bg-blue-600 hover:bg-blue-700 text-white font-500 py-2 px-4 rounded w-full"
         >
