@@ -51,7 +51,7 @@ const Seat = ({ rows, renderSeat }: SeatProps) => {
 
   return (
     // Map the seat lists according to rows
-    <div className="w-[324px] font-semibold text-black pt-[180px] relative h-fit">
+    <div className="w-[324px] font-semibold text-black pt-[220px] relative h-fit">
       <div className="flex justify-between bg-white mx-2">
         {!loaded ? (
           <p className="w-full text-center">Loading seats ...</p>
@@ -117,8 +117,8 @@ const Seat = ({ rows, renderSeat }: SeatProps) => {
         )}
       </div>
 
-      <SmallRectangle className="absolute left-0 top-[300px]" />
-      <SmallRectangle className="absolute right-0 top-[300px]" />
+      <SmallRectangle className="absolute left-0 top-[180px]" />
+      <SmallRectangle className="absolute right-0 top-[180px]" />
     </div>
   );
 };
