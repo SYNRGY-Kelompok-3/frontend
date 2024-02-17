@@ -33,7 +33,7 @@ export const useDateFormatter = () => {
     return dayjs(date).format("ddd, DD MMM YYYY");
   };
 
-  const formatDayDateTime = (date: Date) => {
+  const formatDayDateTime = (date: TDate) => {
     return dayjs(date).format("ddd, DD MMM YYYY - HH:mm");
   };
 

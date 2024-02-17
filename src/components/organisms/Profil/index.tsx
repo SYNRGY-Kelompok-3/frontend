@@ -18,7 +18,7 @@ function Profil() {
 
   return (
     <>
-      <div className="flex-1 p-5 m-4 border-2 rounded-lg sm:p-8 overflow-y-auto h-fit sm:h-screen">
+      <div className="flex-1 p-5 mt-4 ml-4 border-2 rounded-lg sm:p-8 overflow-y-auto h-fit sm:h-screen">
         <h1 className="mb-4 text-xl font-bold sm:text-2xl">Profil Akun</h1>
 
         <div className="col-span-12 mb-4 text-center">
