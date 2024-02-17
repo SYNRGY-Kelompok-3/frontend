@@ -36,9 +36,7 @@ function Artikel() {
   const [wisata, setWisata] = useState<Probs[]>([]);
   const [kuliner, setKuliner] = useState<Probs[]>([]);
 
-  const handleFilterChange = (filter: SetStateAction<string>) => {
-    setActiveFilter(filter);
-  };
+  const [filteredArticles, setFilteredArticles] = useState<Probs[]>([]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -64,6 +62,20 @@ function Artikel() {
       setKuliner(filterKuliner);
     });
   }, [data, terbaru, wisata, kuliner]);
+
+  const handleFilterChange = (filter: SetStateAction<string>) => {
+    setActiveFilter(filter);
+
+    if (filter === ARTICLE_FILTER.SEMUA) {
+      setFilteredArticles(data);
+    } else if (filter === ARTICLE_FILTER.TERBARU) {
+      setFilteredArticles(terbaru);
+    } else if (filter === ARTICLE_FILTER.WISATA) {
+      setFilteredArticles(wisata);
+    } else if (filter === ARTICLE_FILTER.KULINER) {
+      setFilteredArticles(kuliner);
+    }
+  };
 
   return (
     <>
@@ -147,7 +159,7 @@ function Artikel() {
 
           {/* Konten slider 1 */}
           <div>
-            {data.slice(0, 1).map(({ id, title, category, content, image_url, updated_at }) => {
+            {filteredArticles.slice(0, 1).map(({ id, title, category, content, image_url, updated_at }) => {
               return (
                 <div key={id} className="flex flex-col md:flex-row">
                   {currentSlide === 0 && (
@@ -194,7 +206,7 @@ function Artikel() {
 
           {/* Konten slider 2 */}
           <div>
-            {data.slice(1, 2).map(({ id, title, category, content, image_url, updated_at }) => {
+            {filteredArticles.slice(1, 2).map(({ id, title, category, content, image_url, updated_at }) => {
               return (
                 <div key={id} className="flex flex-col md:flex-row">
                   {currentSlide === 1 && (
@@ -241,7 +253,7 @@ function Artikel() {
 
           {/* Konten slider 3 */}
           <div>
-            {data.slice(3, 4).map(({ id, title, category, content, image_url, updated_at }) => {
+            {filteredArticles.slice(2, 3).map(({ id, title, category, content, image_url, updated_at }) => {
               return (
                 <div key={id} className="flex flex-col md:flex-row">
                   {currentSlide === 2 && (
