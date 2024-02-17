@@ -73,6 +73,7 @@ function ProfileHooks() {
       };
 
       const transformedUserData = {
+        id: userData.id,
         name: userData.name || "",
         phoneNumber: userData.phoneNumber || "",
         email: userData.email || "",
@@ -80,7 +81,7 @@ function ProfileHooks() {
         gender: userData.gender || "",
         profilePicture: userData.profilePicture || null,
       };
-
+      setUser(transformedUserData);
       setFormValues(transformedUserData);
       setProfileImageFile(transformedUserData.profilePicture);
     } catch (error) {

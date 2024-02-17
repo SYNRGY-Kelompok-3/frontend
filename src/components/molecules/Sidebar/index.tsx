@@ -11,7 +11,7 @@ function Sidebar() {
 
   return (
     <>
-      <aside className="w-full sm:w-1/4 mt-4 sm:ml-8 xl:ml-25 text-lg">
+      <aside className="w-full sm:w-auto mt-7 text-lg">
         <ul className="flex justify-center items-center gap-6 sm:gap-0 sm:grid">
           <li id="profil" className="w-[50px] sm:w-[180px] lg:w-[250px]">
             <NavLink

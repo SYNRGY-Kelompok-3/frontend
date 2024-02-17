@@ -36,7 +36,7 @@ const SeatLists = ({ selectedSeats, setSelectedSeats }: seatStateProps) => {
 
   //   Renders empty seats
   const renderEmptySeat = (key: string) => (
-    <div className="w-[41px] h-[41px] mr-2 bg-gray-300 rounded-lg border-2px]" key={key} />
+    <div className="w-[41px] h-[41px] bg-gray-300 rounded-lg border-2px]" key={key} />
   );
 
   //   Renders seat according to its category

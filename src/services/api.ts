@@ -180,6 +180,20 @@ function Api() {
     }
   };
 
+  const showBookings = async () => {
+    try {
+      const response: AxiosResponse = await axios.get(
+        `${axiosAuth.defaults.baseURL}booking/bookingsByCustomerId?customerId=${user.id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log(error.response?.data.error);
+      }
+    }
+  };
+
   return {
     fetchLogin,
     fetchProfile,
@@ -190,6 +204,8 @@ function Api() {
     handleUpdateTicket,
     handleDeleteTicket,
     showTicket,
+    showBookings,
+    user,
   };
 }
 
