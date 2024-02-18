@@ -60,13 +60,14 @@ function Invoice() {
       <div className="flex justify-between mt-4">
         <div>
           <p className="text-base font-semibold text-black">Detail Pembayaran</p>
-          <p className="my-3 text-gray-500">Bank Pembayaran</p>
+          <p className="my-3 text-gray-500">Metode Pembayaran</p>
           <p className="my-3 text-gray-500">Nama Rekening</p>
           <p className="my-3 text-gray-500">Nomor Rekening</p>
         </div>
         <div className="text-right">
           <br />
-          <p className="my-3 font-semibold text-black">{paymentState.bankPembayaran}</p>
+          {/* <p className="my-3 font-semibold text-black">{paymentState.bankPembayaran}</p> */}
+          <p className="my-3 font-semibold text-black">Kartu Kredit</p>
           <p className="my-3 font-semibold text-black">{paymentState.namaRekening}</p>
           <p className="my-3 font-semibold text-black">{paymentState.nomorRekening}</p>
         </div>

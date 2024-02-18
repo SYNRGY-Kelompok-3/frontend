@@ -39,7 +39,7 @@ const Payment = memo(() => {
                 <input
                   type="text"
                   id="cardName"
-                  {...register("bankPembayaran", { required: true })}
+                  {...register("namaRekening", { required: true })}
                   placeholder="Masukan nama kartu kredit"
                   className="shadow text-xs appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
