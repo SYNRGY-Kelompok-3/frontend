@@ -44,7 +44,7 @@ const StepsOrder = () => {
                   </span>
                   <span
                     className={`hidden sm:block sm:text-xs md:text-sm lg:text-md ${
-                      flow === CHECKOUT_FLOW.FILL_PAYMENT_METHOD && "text-white"
+                      flow === CHECKOUT_FLOW.FILL_PAYMENT_METHOD ? "text-white" : "text-white"
                     } mr-4`}
                   >
                     Pembayaran
