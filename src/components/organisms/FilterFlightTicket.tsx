@@ -7,6 +7,7 @@ const FilterFlightTicket = () => {
   // const [selectedAirlines, setSelectedAirlines] = useState<string[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const handleAirlineChange = (checked: boolean, label: string) => {
+    searchParams.set("page", "0");
     searchParams.set("airlines", !checked ? "" : label);
     setSearchParams(searchParams);
     // if (checked) {
@@ -16,6 +17,7 @@ const FilterFlightTicket = () => {
     // }
   };
   const handleTransitChange = (checked: boolean, label: string) => {
+    searchParams.set("page", "0");
     searchParams.set("transit", !checked ? "" : label);
     setSearchParams(searchParams);
     // if (checked) {

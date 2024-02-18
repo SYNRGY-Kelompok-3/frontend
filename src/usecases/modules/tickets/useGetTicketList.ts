@@ -16,7 +16,7 @@ export const useGetTicketList = () => {
     const isDiscount = searchParams.get("isDiscount");
     const freeMeal = searchParams.get("freeMeal");
     const startDateStr = searchParams.get("startDateStr") || new Date();
-    // const endDateStr = searchParams.get("endDateStr");
+    const endDateStr = searchParams.get("endDateStr") || new Date();
     const transit = searchParams.get("transit") || ``;
     const originCity = searchParams.get("originCity");
     const destinationCity = searchParams.get("destinationCity");
@@ -27,7 +27,7 @@ export const useGetTicketList = () => {
       isDiscount,
       freeMeal,
       startDateStr,
-      // endDateStr,
+      endDateStr,
       transit: transit as TTransit,
       originCity: originCity as TCity,
       destinationCity: destinationCity as TCity,
