@@ -21,7 +21,7 @@ const FullSearchTickets: FC = () => {
     <>
       <div className="mt-5">
         <div
-          className={`sticky ${
+          className={`static lg:sticky ${
             scrollDirection === "down" ? "top-[5rem] transition-all" : "top-0 transition-all"
           }  z-20 mx-[20px] sm:mx-10 md:mx-[90px] lg:mx-[125px] xl:mx-[200px] radius-lg rounded-md p-5`}
           style={{
@@ -35,7 +35,10 @@ const FullSearchTickets: FC = () => {
         </div>
 
         <div className="flex mx-[20px] sm:mx-10 md:mx-[90px] lg:mx-[125px] xl:mx-[200px] mt-5 justify-between">
-          <div className="basis-[20%] sticky top-[12rem]" style={{ height: "130vh", overflowY: "scroll" }}>
+          <div
+            className="hidden lg:block basis-[20%] sticky top-[12rem]"
+            style={{ height: "130vh", overflowY: "scroll" }}
+          >
             <div className="position-sticky top-[12rem]">
               <h2 className={`justify-self-end text-xl font-medium my-2 ${scrollY > 180 ? "pt-3 pb-3" : ""}`}>
                 Filter
@@ -43,11 +46,11 @@ const FullSearchTickets: FC = () => {
               <FilterFlightTicket />
             </div>
           </div>
-          <div className="basis-[78%]">
+          <div className="basis-[100%] lg:basis-[78%]">
             <h2
               className={`justify-self-end text-xl  font-medium my-2 bg-white ${
                 scrollY > 180 ? "pt-10 pb-3 px-3 rounded-lg shadow-md" : ""
-              } sticky top-[11rem]`}
+              } static lg:sticky top-[11rem]`}
             >
               Penerbangan Dari <span className="font-bold">`{params.originCity}` </span>
               ke

@@ -58,7 +58,7 @@ function Notification() {
 
   return (
     <>
-      <div className="flex-1 p-5 sm:p-8 border-2 rounded-lg mt-4 ml-4 h-[500px] overflow-y-auto sm:h-screen">
+      <div className="flex-1 p-5 sm:p-8 border-2 rounded-lg mt-4 ml-4 mr-4 sm:mr-0 h-[500px] overflow-y-auto sm:h-screen">
         <div className="flex justify-between items-center">
           <h1 className="text-xl sm:text-2xl font-bold mb-4">Notifikasi</h1>
           <h1 className="text-sm sm:text-md font-bold mb-4 text-sky-400">Mark All As Read</h1>
