@@ -92,7 +92,7 @@ function Invoice() {
       <div className="flex justify-between mt-4">
         <div>
           <p className="text-base font-semibold text-black">Detail Pemesanan</p>
-          <p className="px-2 py-2 my-3 text-blue-500 bg-blue-100" style={{ width: "76.8rem" }}>
+          <p className="px-2 py-2 my-3 text-blue-500 bg-blue-100 w-auto">
             {checkoutState.firstName + " " + checkoutState.lastName}
           </p>
         </div>
@@ -108,9 +108,9 @@ function Invoice() {
         <div className="text-right">
           <br />
           <p className="my-3 font-semibold text-black">{priceFormatter(ticketState.detailTicket.price)}</p>
-          <p className="my-3 font-semibold text-black">{priceFormatter(200000)}</p>
+          <p className="my-3 font-semibold text-black">{priceFormatter(20000)}</p>
           <p className="my-3 text-2xl font-semibold text-blue-500">
-            {priceFormatter(ticketState.detailTicket.price + 200)}
+            {priceFormatter(ticketState.detailTicket.price + 20000)}
           </p>
         </div>
       </div>
