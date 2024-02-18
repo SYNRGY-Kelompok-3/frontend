@@ -74,9 +74,9 @@ export const useSearchTicket = () => {
   };
 
   const onSearchTicket = async (): Promise<void> => {
-    const { page, size, startDateStr, originCity, destinationCity } = params;
+    const { page, size, startDateStr, originCity, destinationCity, endDateStr } = params;
     await navigate(
-      `/flight/full-search?page=${page}&size=${size}&startDateStr=${startDateStr}&endDateStr=&originCity=${originCity}&destinationCity=${destinationCity}`
+      `/flight/full-search?page=${page}&size=${size}&startDateStr=${startDateStr}&endDateStr=${endDateStr}&originCity=${originCity}&destinationCity=${destinationCity}`
     );
   };
   return {

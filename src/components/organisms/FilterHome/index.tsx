@@ -28,7 +28,7 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
     handleSelectStartDate,
     handleSelectEndDate,
   } = useSearchTicket();
-  const { formatDateMonthYear, formatUTC } = useDateFormatter();
+  const { formatDateMonthYear } = useDateFormatter();
   const [isOneWay, setOneWayValue] = useState<boolean>(false);
   const setOneWay = () => {
     setOneWayValue(!isOneWay);
@@ -369,7 +369,7 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                     <Datepicker
                       showClearButton={false}
                       onSelectedDateChanged={(date: Date) => handleSelectEndDate(date)}
-                      minDate={formatUTC(startDateStr)}
+                      minDate={new Date()}
                       language="id-ID"
                       disabled={!isOneWay}
                       value={formatDateMonthYear(endDateStr)}
@@ -480,7 +480,7 @@ const Filter = memo(({ isFilterMore }: IFilterHome) => {
                     <Datepicker
                       showClearButton={false}
                       onSelectedDateChanged={(date: Date) => handleSelectEndDate(date)}
-                      minDate={formatUTC(startDateStr)}
+                      minDate={new Date()}
                       language="id-ID"
                       value={formatDateMonthYear(endDateStr)}
                       style={{
