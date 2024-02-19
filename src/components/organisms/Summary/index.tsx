@@ -6,12 +6,14 @@ import BurgerSoda from "../../../assets/BurgerSoda.svg";
 import ChairOffice from "../../../assets/ChairOffice.svg";
 import { useSelector } from "react-redux";
 import { RootState } from "src/state/store";
+import { CHECKOUT_FLOW } from "src/constants/";
 
 interface SummaryOrderProps {
   modalHandler: () => void;
+  flow: number;
 }
 
-function SummaryOrder({ modalHandler }: SummaryOrderProps) {
+function SummaryOrder({ flow, modalHandler }: SummaryOrderProps) {
   const { detailTicket } = useSelector((state: RootState) => state.ticket);
   return (
     <>
@@ -95,7 +97,11 @@ function SummaryOrder({ modalHandler }: SummaryOrderProps) {
               </ul>
             </details>
           </div>
-          <div className="rounded-lg border border-[#EDEDED] p-5">
+          <div
+            className={`${
+              flow === CHECKOUT_FLOW.FILL_IDENTITY ? "block" : "hidden"
+            } rounded-lg border border-[#EDEDED] p-5`}
+          >
             <details className="group" open>
               <summary className="flex items-center justify-between text-base font-semibold list-none cursor-pointer">
                 Fasilitas Tambahan
